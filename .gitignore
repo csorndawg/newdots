@@ -163,3 +163,11 @@ cython_debug/
 
 # Tmux Plugins
 tmuxd/plugins/
+
+# Vim Plugins
+vimd/
+!vimd/vimrc
+
+# NVim Plugins
+
+# Bash Plugins

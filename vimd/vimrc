@@ -1,0 +1,174 @@
+"" ------------------------
+""  GENERAL 
+"" ------------------------
+
+set  nocompatible
+filetype plugin indent on
+syntax on
+let g:is_posix = 1  " correctly highlight $() if filetype=sh
+set wildmenu                        " visual autocomplete for command menu
+set showmatch                       " highlight matching !!important!!
+set showcmd                         " show command in bottom bar
+"syntax enable
+set linebreak
+set noerrorbells
+set autoindent
+set expandtab
+set smartindent
+set tabstop=4 
+set softtabstop=4
+set shiftwidth=4
+set complete-=i
+set rnu
+set smartcase
+set colorcolumn=80
+set hidden      " switch b/w buffers without having to save first
+set noswapfile
+set nobackup
+
+" make undodir if not present
+silent execute '!mkdir -p ~/.vim/undodir/'
+set undodir=~/.vim/undodir  " need to create dir if DNE
+set undofile
+set incsearch   " highlight matches from ? and /
+set laststatus=2 
+set wrapscan    " wrap search results
+set splitbelow
+set splitright
+set encoding=utf-8
+set clipboard=unnamed
+set backspace=indent,eol,start
+set nrformats-=octal
+set ttimeout
+set ttimeoutlen=10
+set incsearch
+set laststatus=2
+set ruler
+set wildmenu
+set wildmode=longest,list
+set wildignore+=*/tmp/*,*.so,*/ignore/*,*.ignore,*.zip,*.tmp  " ignore specific files and directories
+set scrolloff=1
+set sidescroll=1
+set sidescrolloff=2
+set display+=lastline
+set history=1500
+set tabpagemax=50
+set nohlsearch
+
+
+"" ------------------------
+"" REMAPS
+"" ------------------------
+
+" remap leader to <space> and set backslash '/' and commas ',' 
+" as leader alias 
+let mapleader= " "
+nmap <bslash> <space>
+nmap , <space>
+
+" recover accidentally deleted text with undo (`u` in normal mode)
+inoremap <C-U> <C-G>u<C-U>
+inoremap <C-W> <C-G>u<C-W>
+
+"  tmux-like commands for better window navigation remaps (change to mirror tmux)
+nnoremap <C-h> <C-w>h      
+nnoremap <C-j> <C-w>j      
+nnoremap <C-k> <C-w>k      
+nnoremap <C-l> <C-w>l      
+nnoremap <leader>, <C-w>w
+
+" paste toggle
+nnoremap <leader>pp :set paste<CR>
+nnoremap <leader>PP :set nopaste<CR>
+
+"" ------------------------
+""  VIM-PLUG
+"" ------------------------
+
+
+" install vim-plug if not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
+
+" now that plugin dirs exist, install plugin 
+call plug#begin()
+
+Plug 'dense-analysis/ale'
+Plug 'arcticicestudio/nord-vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'mbbill/undotree'
+Plug 'tpope/vim-fugitive'
+
+" alernate colorschemes
+Plug 'xero/miasma.nvim' 
+" Plug 'mhartington/oceanic-next'
+" Plug 'romainl/Apprentice'
+
+" check for nvim alternates first
+" Plug 'davidhalter/jedi-vim'
+" Plug 'easymotion/vim-easymotion'
+" Plug 'tpope/vim-surround'
+
+call plug#end()
+
+
+"" ------------------------
+"" PLUGIN CONFIG/REMAP
+"" ------------------------
+
+
+"" colorscheme
+set t_Co=256
+set background=dark
+let g:nord_cursor_line_number_background = 1
+let g:nord_bold_vertical_split_line = 1
+let g:nord_uniform_diff_background = 1
+let g:nord_italic = 1
+let g:nord_underline = 1
+""let g:nord_italic_comments = 1
+colorscheme nord
+
+"" ale
+
+" lint on save only 
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_save = 1
+let g:ale_fix_on_save = 0  " disable fixer 
+
+" error symbols
+let g:ale_sign_error = '●'
+let g:ale_sign_warning = '.'
+
+" error strings format 
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+" only lint below filetypes with below linters
+let g:ale_linters = {
+  \ 'python': ['flake8'] ,
+  \ 'bash': ['shellcheck'] ,
+  \ 'sh': ['shellcheck'] ,
+  \ 'yaml': ['yamllint'] ,
+  \ }
+
+" easier error cycling w/ `CTRL-e` 
+nmap <silent> <C-e> <Plug>(ale_next_wrap)
+
+" display number of errors/warnings in status line
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+    return l:counts.total == 0 ? 'OK' : printf(
+        \   '%d. %d● ',
+        \   all_non_errors,
+        \   all_errors
+        \)
+endfunction
+set statusline+=%=
+set statusline+=\ %{LinterStatus()}
+

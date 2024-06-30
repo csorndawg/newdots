@@ -1,0 +1,28 @@
+[user]
+	email = zaccsorny@yahoo.com
+	name = csorndawg
+
+[init]
+	defaultBranch = main
+
+[core]
+	editor = vim
+    #pager = bat
+
+[init]
+	defaultBranch = main
+
+[merge]
+	conflictstyle = diff3
+
+[diff]
+	tool = vimdiff
+    colorMoved = default
+
+[credential]
+	#cache expires after 1 day
+    helper = cache --timeout=86400
+
+[push]
+	autoSetupRemote = true
+

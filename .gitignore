@@ -171,3 +171,12 @@ vimd/
 # NVim Plugins
 
 # Bash Plugins
+.temp/
+**/temp/
+**.temp
+**/tmp/
+.tmp/
+.tmp
+*.diff
+patch*
+diffpatches**

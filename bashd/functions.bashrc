@@ -16,3 +16,24 @@ gdfhx (){
     fi
     git diff HEAD~$X
 }
+
+## RSYNC HELPER FUNCTIONS
+
+## rsync dir - dryrun
+rsdd (){
+    #echo "rsync --dry-run -azvphr"
+    rsync --dry-run -azvphr $1 $2
+}
+## rsync dir - execute
+rsdx(){
+    rsync -azvphr $1 $2
+}
+## rsync file - dryrun
+rsfd (){
+    rsync --dry-run -azvph $1 $2
+}
+## rsync file - execute
+rsfx(){
+    rsync -azvphr $1 $2
+}
+

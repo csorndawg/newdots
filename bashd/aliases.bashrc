@@ -18,6 +18,7 @@ alias gcmn="git checkout main "
 alias gcmsg="git commit -m"
 alias gcmt="git commit "
 alias gco="git checkout "
+alias gd="git diff "
 alias gdf="git diff "
 alias gdfh="git diff HEAD~1"
 alias gdfo="git diff origin"
@@ -33,8 +34,10 @@ alias grb="git rebase -i HEAD~$1"
 alias grs="git restore "
 alias grss="git restore --staged "
 alias gs="git status"
-
-
+alias gsth="git stash"
+alias gsthp="git stash push"
+alias gstha="git stash apply "
+alias gsthl="git stash list"
 
 # tmux 
 alias tmls='tmux ls'
@@ -52,18 +55,23 @@ alias tmas="tmux attach"
 
 
 # general 
-alias eg=egrep
+alias eg="egrep"
 alias egv="egrep -v"
 alias rgv="rg -v"
-alias a=alias
+alias a="alias"
 alias ag="alias | egrep "
 alias h="history"
-alias ag="history | egrep "
+alias hg="history | egrep "
+alias xargsi='xargs -I "{}"'
+alias trup="tr [:lower:] [:upper:]"
+alias trlow="tr [:upper:] [:lower:]"
 
 # cron
 alias cte="crontab -e"
 alias ctl="crontab -l"
 
+alias q="cd ~/git/quarry"
+alias dots="cd ~/dotfiles"
 
 ## preliminary/ideas
 

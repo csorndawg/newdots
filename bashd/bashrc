@@ -123,3 +123,7 @@ fi
 source $HOME/dotfiles/bashd/aliases.bashrc
 source $HOME/dotfiles/bashd/exports.bashrc
 source $HOME/dotfiles/bashd/functions.bashrc
+
+# NOTE: Sourcing directly for now. If this gets too messy replace
+# with a bash function/script to source all config files 
+source /home/shelby-sensation/dotfiles/configd/fzf.config

@@ -12,11 +12,12 @@ alias vi=nvim
 ## WORKFLOW ALIASES WIP
 alias gs="git status"
 alias gcb="git checkout -b "
-alias gcmn="git checkout main "
-alias gcmt="git commit -m "
+alias gcm="git checkout main "
+alias gcmt="git commit "
 alias gcmn="git checkout main "
 alias grb="git rebase -i HEAD~$1"
-alias grb2='git rebase -i HEAD~'"$1"
+alias glg="git log "
+alias glgn="git log -n"
 alias ga="git add"
 alias gpl="git pull "
 alias gp="git push "
@@ -25,9 +26,11 @@ alias gdf="git diff "
 alias gdfm="git diff main"
 alias gdfh="git diff HEAD~1"
 alias gdfs="git diff --staged "
-alias grs="git restore "$1
+alias grs="git restore "
 alias grss="git restore --staged "
 alias gbl="git branch --list"
+alias gco="git checkout "
+alias gcmsg="git commit -m"
 
 
 

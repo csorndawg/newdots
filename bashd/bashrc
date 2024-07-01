@@ -122,3 +122,4 @@ fi
 # source bash submodules
 source $HOME/dotfiles/bashd/aliases.bashrc
 source $HOME/dotfiles/bashd/exports.bashrc
+source $HOME/dotfiles/bashd/functions.bashrc

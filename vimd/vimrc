@@ -6,7 +6,6 @@ set  nocompatible
 filetype plugin indent on
 syntax on
 let g:is_posix = 1  " correctly highlight $() if filetype=sh
-set wildmenu                        " visual autocomplete for command menu
 set showmatch                       " highlight matching !!important!!
 set showcmd                         " show command in bottom bar
 "syntax enable
@@ -45,7 +44,8 @@ set incsearch
 set laststatus=2
 set ruler
 set wildmenu
-set wildmode=longest,list
+"set wildmode=longest,list
+set wildmode=list:full
 set wildignore+=*/tmp/*,*.so,*/ignore/*,*.ignore,*.zip,*.tmp  " ignore specific files and directories
 set scrolloff=1
 set sidescroll=1
@@ -55,20 +55,11 @@ set history=1500
 set tabpagemax=50
 set nohlsearch
 
-
-"" ------------------------
-"" REMAPS
-"" ------------------------
-
 " remap leader to <space> and set backslash '/' and commas ',' 
 " as leader alias 
 let mapleader= " "
 nmap <bslash> <space>
 nmap , <space>
-
-" recover accidentally deleted text with undo (`u` in normal mode)
-inoremap <C-U> <C-G>u<C-U>
-inoremap <C-W> <C-G>u<C-W>
 
 "  tmux-like commands for better window navigation remaps (change to mirror tmux)
 nnoremap <C-h> <C-w>h      
@@ -76,6 +67,23 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k      
 nnoremap <C-l> <C-w>l      
 nnoremap <leader>, <C-w>w
+
+" normal-insert mode remaps
+inoremap <leader>,, <ESC>
+nnoremap <leader>,, i
+
+" enter command mode with <Space>;
+nnoremap <leader>; :
+" leave command mode with <Ctrl-z>
+cnoremap <C-z> <ESC>
+
+"" ------------------------
+"" REMAPS
+"" ------------------------
+" recover accidentally deleted text with undo (`u` in normal mode)
+inoremap <C-U> <C-G>u<C-U>
+inoremap <C-W> <C-G>u<C-W>
+
 
 " paste toggle
 nnoremap <leader>pp :set paste<CR>

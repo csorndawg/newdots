@@ -55,9 +55,18 @@ set history=1500
 set tabpagemax=50
 set nohlsearch
 
-" remap leader to <space> and set backslash '/' and commas ',' 
-" as leader alias 
+" --------------------------------------------
+"   LEADER 
+" --------------------------------------------
+
+
+" decrease leader timeout latency (default 1000 ms)
+set timeoutlen=500
+" 
+" remap leader to <space>  
 let mapleader= " "
+
+" backslash '/' and commas ',' remap to leader 
 nmap <bslash> <space>
 nmap , <space>
 
@@ -89,6 +98,11 @@ inoremap <C-W> <C-G>u<C-W>
 nnoremap <leader>pp :set paste<CR>
 nnoremap <leader>PP :set nopaste<CR>
 
+" disable mouse
+"set mouse=
+" extend mouse selection instead of showing popup mouse menu
+set mousemodel=extend
+
 "" ------------------------
 ""  VIM-PLUG
 "" ------------------------
@@ -104,11 +118,18 @@ endif
 call plug#begin()
 
 Plug 'dense-analysis/ale'
-Plug 'arcticicestudio/nord-vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'preservim/vimux'
+
+" revert below if using vim 
+"Plug 'arcticicestudio/nord-vim'
+Plug 'shaunsingh/nord.nvim'
+
+
 
 " alernate colorschemes
 Plug 'xero/miasma.nvim' 

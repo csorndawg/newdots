@@ -27,7 +27,8 @@ alias gdfh="git diff HEAD~1"
 alias gdfs="git diff --staged "
 alias grs="git restore "$1
 alias grss="git restore --staged "
-alias gpo="git push -u origin $(git branch --show-current)"
+alias gbl="git branch --list"
+
 
 
 # tmux 

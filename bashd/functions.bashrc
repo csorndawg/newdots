@@ -37,3 +37,8 @@ rsfx(){
     rsync -azvphr $1 $2
 }
 
+
+mcd (){
+    DIRPATH="$1"
+    mkdir -p $DIRPATH && cd $DIRPATH
+}

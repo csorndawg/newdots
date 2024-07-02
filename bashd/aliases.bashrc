@@ -85,7 +85,9 @@ alias tmuxDumpBufferExisting="tmux save-buffer -a $HOME/.local/state/tmux/sessio
 
 # general 
 alias varnotes="cd ~/.local/var/notes"
-alias sourceZSHRC="source $HOME/.zshrc "
+#alias sourceZSHRC="source $HOME/.zshrc "
+alias sourceZSHRC="source $HOME/.bashrc "
 alias sourceVIMRC="source $HOME/.vimrc "
+alias sourceNVIMRC="source $HOME/.config/init.vim "
 alias historyLog="echo $(history |tail -n2 | head -n1) | tee $HOME/.local/state/history/command_history_dumps.txt"
 

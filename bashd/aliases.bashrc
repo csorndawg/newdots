@@ -27,6 +27,7 @@ alias gdfs="git diff --staged "
 alias gdfss="git diff --compact-summary --staged "
 alias glg="git log "
 alias glgn="git log -n"
+alias gmr="git merge "
 alias gp="git push "
 alias gpf="git push --force "
 alias gpl="git pull "
@@ -35,9 +36,9 @@ alias grs="git restore "
 alias grss="git restore --staged "
 alias gs="git status"
 alias gsth="git stash"
-alias gsthp="git stash push"
 alias gstha="git stash apply "
 alias gsthl="git stash list"
+alias gsthp="git stash push"
 
 # tmux 
 alias tmls='tmux ls'

@@ -126,7 +126,7 @@ source $HOME/dotfiles/bashd/functions.bashrc
 
 # NOTE: Sourcing directly for now. If this gets too messy replace
 # with a bash function/script to source all config files 
-source /home/shelby-sensation/dotfiles/configd/fzf.config
+source /home/$USER/dotfiles/configd/fzf.config
 
 # TODO: make into script and call 
 # display new quote on every source

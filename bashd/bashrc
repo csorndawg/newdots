@@ -119,6 +119,10 @@ fi
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
+# source rc modules
+source $HOME/dotfiles/rc.d/aliases.rc
+source $HOME/dotfiles/rc.d/exports.rc
+
 # source bash submodules
 source $HOME/dotfiles/bashd/aliases.bashrc
 source $HOME/dotfiles/bashd/exports.bashrc

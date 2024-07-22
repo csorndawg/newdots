@@ -1,0 +1,4 @@
+# bash/zsh shared aliases 
+
+alias jc="jupyter-console"
+alias fdd="find -type d"

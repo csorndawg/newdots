@@ -9,7 +9,16 @@ test/*
 testing/*
 **/testing/*
 *.test
+
+# ignore all idea folders except "*.d" (e.g. "bash.d") folders top level files 
+# ex: copy `ohmybash/lib/history.sh` (file from ohmybash repo) 
+#   ... to `ideas/bash.d/ohmybash_history.sh` if ready for version control
+#   ... otherwise copy to something like `ideas/bash.d/subdirX/ohmybash_history" 
+#   ... to work on file before versioning 
 ideas/
+!ideas/*.d/*
+
+
 *.wip
 wip.*
 wip/*

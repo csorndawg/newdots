@@ -49,3 +49,10 @@ fi
 # TMUX 
 ln -sr $DOTFILES_HOME/tmuxd $HOME/.config/tmux #2> /dev/null
 ln -sr $DOTFILES_HOME/tmuxd/tmux.conf $HOME/.tmux.conf #2> /dev/null
+
+# check if TPM present, if not clone
+if [[ ! -d "$XDG_CONFIG_HOME/tmux/tpm" ]];
+then 
+    echo "TPM directory missing. Cloning into tmux config directory."
+    git clone https://github.com/tmux-plugins/tpm "$XDG_CONFIG_HOME/tmux/tpm"
+fi

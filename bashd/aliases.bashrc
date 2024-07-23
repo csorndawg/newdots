@@ -1,8 +1,13 @@
 # BASHRC aliases
 
 # use neovim instead of vim/vi
-alias vim=nvim
-alias vi=nvim
+if [[ -z "/usr/bin/nvim" || -z "$HOME/.local/bin/nvim" ]];
+then
+    echo "Neovim binary found. Creating nvim 'vim' alias"
+    #alias vim="nvim"
+    #alias vi="nvim"
+fi
+
 
 ## =======================================
 ##  OLD ALIAS DUMP
@@ -87,8 +92,20 @@ alias tmuxDumpBufferExisting="tmux save-buffer -a $HOME/.local/state/tmux/sessio
 # general 
 alias varnotes="cd ~/.local/var/notes"
 #alias sourceZSHRC="source $HOME/.zshrc "
-alias sourceZSHRC="source $HOME/.bashrc "
+alias sourceBASHRC="source $HOME/.bashrc "
 alias sourceVIMRC="source $HOME/.vimrc "
 alias sourceNVIMRC="source $HOME/.config/init.vim "
 alias historyLog="echo $(history |tail -n2 | head -n1) | tee $HOME/.local/state/history/command_history_dumps.txt"
 
+
+alias gds="git diff --summary"
+alias gf="git fetch"
+alias gd="git diff"
+alias gad="git add --dry-run"
+alias gdm="git diff main"
+alias gm="git merge "
+alias gco="git checkout"
+alias gbl="git branch --list"
+alias grb="git rebase"
+alias gc="git commit"
+alias gst="git stash"

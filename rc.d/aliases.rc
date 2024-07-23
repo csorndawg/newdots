@@ -2,3 +2,4 @@
 
 alias jc="jupyter-console"
 alias fdd="find -type d"
+alias gds="git diff --summary"

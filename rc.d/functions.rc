@@ -1,12 +1,12 @@
-# BASHRC Functions
+# Runtime functions 
 
-# TODO: add check to see if cwd within git repo, and if so quit gracefully
+# git push for new upstream origin 
 gpou (){
     git push -u origin $(git branch --show-current)
 }
 
 
-# git diff HEAD <X>  where X is 1 
+# git diff HEAD <X>  where X is 1 by default
 gdfhx (){
     if [ -z "$1" ];
     then
@@ -17,31 +17,12 @@ gdfhx (){
     git diff HEAD~$X
 }
 
-## RSYNC HELPER FUNCTIONS
-
-## rsync dir - dryrun
-rsdd (){
-    #echo "rsync --dry-run -azvphr"
-    rsync --dry-run -azvphr $1 $2
-}
-## rsync dir - execute
-rsdx(){
-    rsync -azvphr $1 $2
-}
-## rsync file - dryrun
-rsfd (){
-    rsync --dry-run -azvph $1 $2
-}
-## rsync file - execute
-rsfx(){
-    rsync -azvphr $1 $2
-}
-
 
 mcd (){
     DIRPATH="$1"
     mkdir -p $DIRPATH && cd $DIRPATH
 }
+
 
 # recache git credentials -- temporary fix until I can find a way to 
 # share $SSH_AUTH b/w tmux windows

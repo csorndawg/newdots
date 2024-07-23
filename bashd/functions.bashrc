@@ -42,3 +42,10 @@ mcd (){
     DIRPATH="$1"
     mkdir -p $DIRPATH && cd $DIRPATH
 }
+
+# recache git credentials -- temporary fix until I can find a way to 
+# share $SSH_AUTH b/w tmux windows
+gcc (){
+    eval $(ssh-agent) && ssh-add "$HOME"/.ssh/id_rsa
+    git config credential.helper 'cache --timeout=3600'
+}

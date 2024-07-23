@@ -127,6 +127,7 @@ source $HOME/dotfiles/rc.d/exports.rc
 source $HOME/dotfiles/bashd/aliases.bashrc
 source $HOME/dotfiles/bashd/exports.bashrc
 source $HOME/dotfiles/bashd/functions.bashrc
+source $HOME/dotfiles/bashd/completions.bashrc
 
 # NOTE: Sourcing directly for now. If this gets too messy replace
 # with a bash function/script to source all config files 

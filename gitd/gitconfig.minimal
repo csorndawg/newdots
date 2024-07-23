@@ -13,6 +13,7 @@
 	defaultBranch = main
 
 [merge]
+    ff = only
 	conflictstyle = diff3
 
 [diff]
@@ -20,9 +21,9 @@
     colorMoved = default
 
 [credential]
-	#cache expires after 1 day
+	# cache expires after 10 hours
 	helper = cache --timeout=36000
+
 
 [push]
 	autoSetupRemote = true
-

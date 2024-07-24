@@ -1,0 +1,4 @@
+- name: setup local env.
+  hosts: localhost
+  roles:
+    - nvim

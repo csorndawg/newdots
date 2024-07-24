@@ -1,0 +1,29 @@
+- name: create nvim config dir 
+  file:
+    path: ~/.config/nvim
+    state: directory
+
+- name: install neovim on linux
+  package:
+    name:
+      - neovim
+      - python-pynvim
+      - nord.nvim
+      - leap.nvim
+    state: present
+    become: yes
+
+- name: install latest version of unzip and MariaDB
+  ansible.builtin.package:
+    name:
+      - unzip
+      - mariadb-server
+    state: latest
+
+- name: install w3m and xsel packages with dnf package manager
+  ansible.builtin.package:
+    name:
+      - w3m
+      - xsel
+    state: present
+    use: dnf

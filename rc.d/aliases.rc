@@ -1,5 +1,110 @@
 # bash/zsh shared aliases 
 
+
+# inital examples
 alias jc="jupyter-console"
+alias python=python3
 alias fdd="find -type d"
 alias gds="git diff --summary"
+
+
+# general
+alias eg="egrep"
+alias egv="egrep -v"
+alias rgv="rg -v"
+alias a="alias"
+alias ag="alias | egrep "
+alias h="history"
+alias hg="history | egrep "
+alias xargsi='xargs -I "{}"'
+alias trup="tr [:lower:] [:upper:]"
+alias trlow="tr [:upper:] [:lower:]"
+
+# cron
+alias cte="crontab -e"
+alias ctl="crontab -l"
+
+# tmux 
+alias tmab="tmux save-buffer -a"
+alias tmas="tmux attach"
+alias tmcb="tmux choose-buffer"
+alias tmds="tmux detach"
+alias tmls='tmux ls'
+alias tmns="tmux new-session -t"     
+alias tmnw="tmux new-window -t"     # new window default name
+alias tmnwn="tmux new-window -n "   # new window with name flag
+alias tmpb="tmux paste-buffer"
+alias tmshb="tmux show-buffer"
+alias tmsk="tmux send-keys "
+alias tmstb="tmux set-buffer"
+alias tmsvb="tmux save-buffer"
+
+
+
+# GIT ALIASES 
+alias g="git"
+
+## add
+alias gad="git add --dry-run"
+alias ga="git add"
+
+## branch
+alias gbl="git branch --list "          # list branches that match glob 
+alias gbc="git branch --contains "      # like -l except for commits
+alias gba="git branch -a"               # list all branchs
+alias gbr="git branch -r"               # list remote branchs
+alias gbs="git branch --show-current"   
+alias gbm="git branch --merged"         # list all branches merged into CURRENT branch
+alias gbnm="git branch --no-merged"     # list all branches not merged into CURRENT branch
+
+## commit 
+alias gc="git commit"
+alias gcmf="git commit --fixup "
+alias gcm="git commit -m"
+alias gcmsg="git commit -m"
+
+## checkout
+alias gco="git checkout "
+alias gcmn="git checkout main "
+alias gcb="git checkout -b "
+
+## diff
+alias gd="git diff "
+alias gdf="git diff "
+alias gdfc="git diff --compact-summary"
+alias gdfcs="git diff --compact-summary --staged "
+alias gdfh="git diff HEAD~1"
+alias gdfo="git diff origin"
+alias gdfs="git diff --staged "
+alias gd="git diff"
+alias gdm="git diff main"
+alias gds="git diff --summary"
+
+## fetch
+alias gf="git fetch"
+
+## log
+alias glg="git log "
+alias glgn="git log -n"
+alias glgo="git log --oneline"
+alias gm="git merge "
+alias gmr="git merge "
+alias gpf="git push --force "
+alias gp="git push "
+alias gpl="git pull "
+alias grb="git rebase "
+alias grbi="git rebase -i "
+alias grbsq="git rebase -i --autosquash"
+alias grs="git restore "
+alias grss="git restore --staged "
+
+## status
+alias gs="git status"
+alias gss="git status -s"
+alias gst="git stash"
+alias gsta="git stash apply "
+alias gstl="git stash list"
+alias gstp="git stash push "
+
+
+# unsorted/new

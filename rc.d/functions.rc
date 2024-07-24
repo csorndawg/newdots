@@ -28,5 +28,5 @@ mcd (){
 # share $SSH_AUTH b/w tmux windows
 gcc (){
     eval $(ssh-agent) && ssh-add "$HOME"/.ssh/id_rsa
-    git config credential.helper 'cache --timeout=3600'
+    git config credential.helper 'cache --timeout=82800'
 }

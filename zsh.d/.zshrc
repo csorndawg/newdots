@@ -275,18 +275,7 @@ deactive
 #rc_src $RC_DIR
 
 
-# TEMPFIX:
-alias vim="/usr/bin/vim"
-alias vi="/usr/bin/vim"
-alias nv="/usr/bin/nvim"
-alias lv="/usr/bin/lvim"
 
-# temp zsh/bash bridge
-RC_DIR="/home/nukk/git/ongoing/newdots/rc.d" 
-source "$RC_DIR/functions.rc"
-source "$RC_DIR/aliases.rc"
-source "$RC_DIR/exports.rc"
-alias gccssh="~/git/ongoing/newdots/rc.d/functions.rc"
 
 # open files selected in FZF with vim
 fv(){
@@ -298,3 +287,20 @@ fv(){
         vim $(fd -t f | fzf -m)
     fi
 }
+
+
+# shell agnostic
+source /home/$USER/dotfiles/configd/fzf.config
+
+# TEMPFIX:
+alias vim="/usr/bin/vim"
+alias vi="/usr/bin/vim"
+alias nv="/usr/bin/nvim"
+alias lv="/usr/bin/lvim"
+
+# temp zsh/bash bridge
+RC_DIR="/home/nukk/git/ongoing/newdots/rc.d" 
+source "$RC_DIR/functions.rc"
+source "$RC_DIR/aliases.rc"
+source "$RC_DIR/exports.rc"
+#alias gccssh="~/git/ongoing/newdots/rc.d/functions.rc"

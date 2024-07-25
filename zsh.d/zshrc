@@ -277,3 +277,7 @@ for x in $(find $HOME/dotfiles/rc.d -type f | sort -r | egrep -v "idea"); # W: F
 do
     source "$x" # W: ShellCheck can't follow non-constant source. Use a …
 done
+
+# reminder to use new CLI tool
+printf "\n%s\n" "Reminder: run rce [fcei] for on-the-fly shell edits"
+printf "\n%s\n" "Reminder: run tmpp [dnpuw] for on-the-fly notes"

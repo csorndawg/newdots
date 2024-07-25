@@ -61,3 +61,36 @@ rce(){
 }
 
 
+# TODO: make version of this to quickly select folder to save existing file 
+# TODO Example:  <quick save function> <file> ->> brings up fzf prompt and from FZF prompt destination location selected ->> script saves <file> at <fzf selected dir>
+
+# TODO: integrate FZF so file can be saved from FZF selection instead of location from predefined array
+# quickly add tmp file to one of handful locations
+# useage: tmpp <config file flag>
+# config file flags: {d: dump} {n: note} {w: work} {p: persist} {u: unsorted}
+tmpp(){
+    TMP_DIR="$HOME/tmp"
+    # TODO: convert to CASE statement
+    if [[ -z "$1" ]];
+    then
+        vim "$TMP_DIR/quick-$(date +%Y%M%D-%H%M%S).md"
+    elif [[ "$1" = "d" ]];
+    then
+        TMP_DIR="$TMP_DIR/dumps"
+    elif [[ "$1" = "n" ]];
+    then
+        TMP_DIR="$TMP_DIR/notes"
+    elif [[ "$1" = "w" ]];
+    then
+        TMP_DIR="$TMP_DIR/work"
+    elif [[ "$1" = "u" ]];
+    then
+        TMP_DIR="$TMP_DIR/persist"
+    elif [[ "$1" = "u" ]];
+    then
+        TMP_DIR="$TMP_DIR/unsorted"
+    else
+        echo "Error"
+    fi
+    vim "$TMP_DIR/quick-$(date +%Y%m%d-%H%M%S).md"
+}

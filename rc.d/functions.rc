@@ -36,23 +36,25 @@ gcc (){
 # config file flags: {a: alias} {e: exports} {f: functions} {i: idea}
 rce(){
     RC_DIR="/home/nukk/git/ongoing/newdots/rc.d/"
+    # TODO: convert to CASE statement
     if [[ -z "$1" ]];
     then
         vim "$RC_DIR"
     elif [[ "$1" = "a" ]];
     then
-        vim "$RC_DIR/exports.rc"
+        vim "$RC_DIR/aliases.rc"
     elif [[ "$1" = "e" ]];
     then
         vim "$RC_DIR/exports.rc"
-        vim $RC_DIR/exports.rc
     elif [[ "$1" = "f" ]];
     then
-        vim "$RC_DIR/exports.rc"
+        vim "$RC_DIR/functions.rc"
     elif [[ "$1" = "i" ]];
+    then
         vim "$RC_DIR/ideas.rc"
     else
-        vim "$RC_DIR"
+        echo "Error"
+    fi
 }
 
 

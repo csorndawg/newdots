@@ -1,0 +1,10 @@
+# Source relevant configuration files for specific CLI tools from config.d folder
+# For CLI tools like FZF that have their own CLI scripts/functions 
+
+DOTFILES_HOME="/home/nukk/git/ongoing/newdots"
+CONFIGD_SRC_LIST=(fzf)
+for x in "${CONFIGD_SRC_LIST[@]}";
+do
+    echo source $x
+    source "$DOTFILES_HOME/config.d/$x.config"
+done

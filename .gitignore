@@ -15,8 +15,15 @@ testing/*
 #   ... to `ideas/bash.d/ohmybash_history.sh` if ready for version control
 #   ... otherwise copy to something like `ideas/bash.d/subdirX/ohmybash_history" 
 #   ... to work on file before versioning 
-ideas/
-!ideas/*.d/*
+idea?/
+!idea?/*.d/*
+idea?.*
+*.idea?
+dump?/
+dump?.*
+*.dump?
+scratchpad?/
+*.scratch
 
 
 *.wip

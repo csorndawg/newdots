@@ -120,18 +120,23 @@ fi
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
 # source rc modules
-source $HOME/dotfiles/rc.d/aliases.rc
-source $HOME/dotfiles/rc.d/exports.rc
+for x in $(find $HOME/dotfiles/rc.d -type f);
+do
+    echo source "$x"
+    source "$x"
+done
 
+# TODO: migrate all non-bash only exports, and functions files to rc.d
+#   aliases have been migrated
 # source bash submodules
-source $HOME/dotfiles/bashd/aliases.bashrc
+#source $HOME/dotfiles/bashd/aliases.bashrc
 source $HOME/dotfiles/bashd/exports.bashrc
 source $HOME/dotfiles/bashd/functions.bashrc
 source $HOME/dotfiles/bashd/completions.bashrc
 
 # NOTE: Sourcing directly for now. If this gets too messy replace
 # with a bash function/script to source all config files 
-source /home/$USER/dotfiles/configd/fzf.config
+#source /home/$USER/dotfiles/config.d/fzf.config
 
 # TODO: make into script and call 
 # display new quote on every source

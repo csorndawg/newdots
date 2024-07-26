@@ -12,6 +12,10 @@ export XDG_TMP_HOME="$HOME/.local/tmp"
 export XDG_VAR_HOME="$HOME/.local/var"
 export XDG_VAR_TMP_HOME="$HOME/.local/var/tmp"
 
+# local venvs
+export VENVS_HOME="$XDG_STATE_HOME/python/virtualEnvs"
+export DOTFILE_HOME="$HOME/dotfiles"
+
 
 export GIT_WORK_HOME="$HOME/git"
 export GIT_CONFIG="$HOME/.gitconfig"

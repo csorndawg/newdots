@@ -234,26 +234,6 @@ prompt pure
 # 	Functions
 # ========================================================================
 
-function activate-venv() {
-
-LOCAL_VENVS_DIR="$XDG_STATE_HOME/python/virtualEnvs" 
-source "$(find $LOCAL_VENVS_DIR -type f -path '*activate' | fzf)"
-
-}
-
-# gracefully venv deactivating
-function venvfreeze() {
-
-# constants
-LOCAL_VENV_HOME="$XDG_STATE_HOME/python/virtualEnvs"
-CURRENT_VENV_DIR="$(which python3  | sed -E 's/\/bin.+$//g')"
-VENV_NAME="$(basename $CURRENT_VENV_DIR)"
-
-# gracefully deactivate
-pip freeze | tee $CURRENT_VENV_DIR/requirements.txt
-ln -sf "$CURRENT_VENV_DIR/requirements.txt" "$LOCAL_VENV_HOME/requirements/$VENV_NAME.requirements.txt"
-deactive 
-}
 
 
 # open files selected in FZF with vim
@@ -283,3 +263,5 @@ done
 # reminder to use new CLI tool
 printf "\n%s\n" "Reminder: run rce [fcei] for on-the-fly shell edits"
 printf "\n%s\n" "Reminder: run tmpp [dnpuw] for on-the-fly notes"
+
+

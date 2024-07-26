@@ -19,6 +19,8 @@ alias hg="history | egrep "
 alias xargsi='xargs -I "{}"'
 alias trup="tr [:lower:] [:upper:]"
 alias trlow="tr [:upper:] [:lower:]"
+alias t="tldr"
+alias c="cheat"
 
 # cron
 alias cte="crontab -e"

@@ -94,3 +94,16 @@ tmpp(){
     fi
     vim "$TMP_DIR/quick-$(date +%Y%m%d-%H%M%S).md"
 }
+
+function venvfreeze() {
+
+# constants
+LOCAL_VENV_HOME="$XDG_STATE_HOME/python/virtualEnvs"
+CURRENT_VENV_DIR="$(which python3  | sed -E 's/\/bin.+$//g')"
+VENV_NAME="$(basename $CURRENT_VENV_DIR)"
+
+# gracefully deactivate
+pip freeze | tee $CURRENT_VENV_DIR/requirements.txt
+ln -sf "$CURRENT_VENV_DIR/requirements.txt" "$LOCAL_VENV_HOME/requirements/$VENV_NAME.requirements.txt"
+deactive 
+}

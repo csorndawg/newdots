@@ -1,3 +1,7 @@
+-- load custom lvim options
+reload("zac.options")
+
+
 -- install plugins
 --  "ChristianChiarulli/swenv.nvim",
 lvim.plugins = {

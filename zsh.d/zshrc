@@ -12,7 +12,8 @@ export DOTFILES_CONFD="$HOME/.dotfiles/conf.d"
 # CHEATBOOKS: home for all personal cheatsheets/docs
 export CHEATBOOK_CHEAT="$HOME/git/ongoing/cheatbook/cheatbook/cheat"
 # set up non-root bins 
-export LOCAL_BIN="$HOME/git/ongoing/toolbox/bin"
+#export LOCAL_BIN="$HOME/git/ongoing/toolbox/bin"
+export LOCAL_BIN="$HOME/.local/bin"
 export GOPATH="$HOME/.local/share/applications/go"
 GO_BIN="$GOPATH/bin"
 export CARGO_BIN="$HOME/.cargo/bin"
@@ -270,7 +271,8 @@ fv(){
 alias vim="/usr/bin/vim"
 alias vi="/usr/bin/vim"
 alias nv="/usr/bin/nvim"
-alias lv="/usr/bin/lvim"
+alias lv="$HOME/.local/bin/lvim"
+alias lvim="$HOME/.local/bin/lvim"
 
 # source runtime config files 
 for x in $(find $HOME/dotfiles/rc.d -type f | sort -r | egrep -v "idea"); # W: For loops over find o…

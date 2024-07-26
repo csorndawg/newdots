@@ -56,9 +56,11 @@ alias gbl="git branch --list "          # list branches that match glob
 alias gbc="git branch --contains "      # like -l except for commits
 alias gba="git branch -a"               # list all branchs
 alias gbr="git branch -r"               # list remote branchs
-alias gbs="git branch --show-current"   
+alias gbshw="git branch --show-current"   
 alias gbm="git branch --merged"         # list all branches merged into CURRENT branch
 alias gbnm="git branch --no-merged"     # list all branches not merged into CURRENT branch
+alias gbsr="git branch --sort=-committerdate"   # sort newest -> oldest
+alias gbsl="git branch --sort=committerdate"   # sort oldest -> newest
 
 ## commit 
 alias gc="git commit"

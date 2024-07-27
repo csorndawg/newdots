@@ -14,6 +14,8 @@ lvim.plugins = {
   "rmehri01/onenord.nvim",
   "nvim-telescope/telescope-dap.nvim",
   "mfussenegger/nvim-dap",
+  "hrsh7th/nvim-cmp",
+  "https://github.com/saadparwaiz1/cmp_luasnip"
 }
 
 -- switch venv function
@@ -38,6 +40,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "git_config",
   "gitcommit",
   "gitignore",
+  "html",
   "ini",
   "jq",
   "json",
@@ -45,10 +48,12 @@ lvim.builtin.treesitter.ensure_installed = {
   "make",
   "markdown",
   "python",
+  "regex",
   "sql",
   "ssh_config",
   "tmux",
   "vim",
+  "vimdoc",
   "xml",
   "yaml",
 }

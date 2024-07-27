@@ -1,10 +1,5 @@
 # Runtime functions 
 
-# git push for new upstream origin 
-gpou (){
-    git push -u origin $(git branch --show-current)
-}
-
 
 # git diff HEAD <X>  where X is 1 by default
 gdfhx (){
@@ -67,25 +62,30 @@ rce(){
 # TODO: integrate FZF so file can be saved from FZF selection instead of location from predefined array
 # quickly add tmp file to one of handful locations
 # useage: tmpp <config file flag>
-# config file flags: {d: dump} {n: note} {w: work} {p: persist} {u: unsorted}
+# config file flags: {a: archive} {d: dump} {n: note} {s: sandbox}  {u: unsorted}
 tmpp(){
-    TMP_DIR="$HOME/tmp"
+    TMP_DIR="$HOME/quick/tmp"
     # TODO: convert to CASE statement
     if [[ -z "$1" ]];
     then
         vim "$TMP_DIR/quick-$(date +%Y%M%D-%H%M%S).md"
+
+    elif [[ "$1" = "a" ]];
+    then
+        TMP_DIR="$TMP_DIR/archive"
+
     elif [[ "$1" = "d" ]];
     then
-        TMP_DIR="$TMP_DIR/dumps"
+        TMP_DIR="$TMP_DIR/data/"
+
     elif [[ "$1" = "n" ]];
     then
         TMP_DIR="$TMP_DIR/notes"
-    elif [[ "$1" = "w" ]];
+
+    elif [[ "$1" = "s" ]];
     then
-        TMP_DIR="$TMP_DIR/work"
-    elif [[ "$1" = "u" ]];
-    then
-        TMP_DIR="$TMP_DIR/persist"
+        TMP_DIR="$TMP_DIR/sandboxes"
+
     elif [[ "$1" = "u" ]];
     then
         TMP_DIR="$TMP_DIR/unsorted"
@@ -95,15 +95,42 @@ tmpp(){
     vim "$TMP_DIR/quick-$(date +%Y%m%d-%H%M%S).md"
 }
 
-function venvfreeze() {
+venvfreeze() {
 
-# constants
-LOCAL_VENV_HOME="$XDG_STATE_HOME/python/virtualEnvs"
-CURRENT_VENV_DIR="$(which python3  | sed -E 's/\/bin.+$//g')"
-VENV_NAME="$(basename $CURRENT_VENV_DIR)"
+    # constants
+    LOCAL_VENV_HOME="$XDG_STATE_HOME/python/virtualEnvs"
+    CURRENT_VENV_DIR="$(which python3  | sed -E 's/\/bin.+$//g')"
+    VENV_NAME="$(basename $CURRENT_VENV_DIR)"
 
-# gracefully deactivate
-pip freeze | tee $CURRENT_VENV_DIR/requirements.txt
-ln -sf "$CURRENT_VENV_DIR/requirements.txt" "$LOCAL_VENV_HOME/requirements/$VENV_NAME.requirements.txt"
-deactive 
+    # gracefully deactivate
+    pip freeze | tee $CURRENT_VENV_DIR/requirements.txt
+    ln -sf "$CURRENT_VENV_DIR/requirements.txt" "$LOCAL_VENV_HOME/requirements/$VENV_NAME.requirements.txt"
+    deactive 
+}
+
+
+# TODO: finish building - need to figure out if rc.d files will get their own flag or if they will be included in single "bundle" flag
+# arg map: {z:zshrc} {l:lunarvim} {r:rcdirs?} 
+# must pass at least 1 args
+
+source_dotfile() {
+        # check arg, and depending on arg source relevant file(s)
+        echo "Work in progress"
+}
+
+# create new test/sandbox folder
+# 2 optional arg: 
+#   1: name of test dir
+#   2: cd flag ("y" means, yes cd to newly created dir)
+mk_testdir() {
+    TEST_HOME_DIR="$HOME/.local/tmp/tests"
+    TEST_TEMPLATE_NAME="template1"
+    TEST_TEMPLATE_DIRPATH="$TEST_HOME_DIR/$TEST_TEMPLATE_NAME"
+    if [[ -n "$1" ]]; then
+        NEW_DIR_NAME="$1"
+    else
+        NEW_DIR_NAME="test-$(date +%Y%m%d_%H%M%S)"
+    fi
+    cp -rv   $TEST_TEMPLATE_DIRPATH $TEST_HOME_DIR/$NEW_DIR_NAME
+    test "$2" = "y" && cd $TEST_HOME_DIR/$NEW_DIR_NAME
 }

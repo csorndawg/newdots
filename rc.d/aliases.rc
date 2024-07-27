@@ -29,11 +29,12 @@ alias ctl="crontab -l"
 
 # tmux 
 alias tmab="tmux save-buffer -a"
-alias tmas="tmux attach"
+alias tma="tmux attach"
+alias tmas="tmux attach -t "
 alias tmcb="tmux choose-buffer"
 alias tmds="tmux detach"
 alias tmls='tmux ls'
-alias tmns="tmux new-session -t"     
+alias tmns="tmux new-session -t "     
 alias tmnw="tmux new-window -t"     # new window default name
 alias tmnwn="tmux new-window -n "   # new window with name flag
 alias tmpb="tmux paste-buffer"
@@ -95,6 +96,7 @@ alias gf="git fetch"
 alias glg="git log "
 alias glgn="git log -n"
 alias glgo="git log --oneline"
+alias glga="git log -all"
 
 ## merge
 alias gm="git merge "

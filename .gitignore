@@ -37,8 +37,14 @@ wips/*
 tmuxd/plugins/
 
 # Vim Plugins
+vim.d/
+!vim.d/vimrc
+!vim.d/rt
 vimd/
 !vimd/vimrc
+!vimd/rt
+
+nvim.d/plugs
 
 # Bash Plugins
 .temp/

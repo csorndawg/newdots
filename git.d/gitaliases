@@ -1,2 +1,110 @@
+## RIPPED ALIASES
 [alias]
-    recent="branch --sort=-committerdate"
+    
+    # one-line log
+    l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+
+    a = add
+    ap = add -p
+    c = commit --verbose
+    ca = commit -a --verbose
+    cm = commit -m
+    cam = commit -a -m
+    m = commit --amend --verbose
+	col = checkout @{-1}
+    
+    d = diff
+    ds = diff --stat
+    dc = diff --cached
+    dw = diff --color-words
+    dws = diff --color-words --staged
+    dwr = diff --word-diff-regex=.
+
+    s = status -s
+    co = checkout
+    cob = checkout -b
+	com="checkout master"
+	st="stash"
+	stl="stash list"
+	rl="ref log"
+
+	undo-commit = reset --soft HEAD~1
+
+    # list branches sorted by last modified
+    b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+
+	# remove all local branches that have been merged with current branch 
+	clean-merged = !git branch --merged | grep -v \"\\*\" | xargs -n 1 git branch -d
+
+    # list aliases
+    la = "!git config -l | grep alias | cut -c 7-" | grep -Ei --color \"$1\" "#" # List aliases
+
+	# add + commit all changes oneliner
+	ac = !git add . && git commit -am
+
+	# diff last commit for given file
+	# usage:  git diff-file-last-commit <file name>
+	diff-file-last-commit = "!f() { \
+            project_root_dir=$(git rev-parse --show-toplevel); \
+            echo finding full file path of $1 in $project_root_dir; \
+            filepath=$(find $project_root_dir -type f -name $1); \
+            echo full file path $filepath; \
+            last_modified_commit_hash=$(git rev-list -1 HEAD $filepath); \
+            echo last commit file modified $last_modified_commit_hash; \
+            git difftool $last_modified_commit_hash^ $filepath; \
+       }; f"
+	
+	
+	diff-names= diff --name-only
+
+	# quick amend: Amend my staged changes to the last commit, keeping the same commit message
+	amend = commit --amend -C HEAD
+
+	# history: This is pretty much the only way I look at my log. Aside from providing one-line logs,
+	#          it also shows the branching in/out
+	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+	
+
+	# quote multiline input string
+	quote-string = "!read -r l; printf \\\"!; printf %s \"$l\" | sed 's/\\([\\\"]\\)/\\\\\\1/g'; printf \" #\\\"\\n\" #"
+	
+
+
+# rebase w/ tracked branch even if uncommitted changes present
+    rb = "!f() { \
+                echo fetching...; \
+                git fetch; \
+                if [ $? -eq 0 ]; then \
+                    last_status=$(git status --untracked-files=no --porcelain); \
+                    if [ \"$last_status\" != \"\" ]; then \
+                        echo stashing local changes...; \
+                        git stash; \
+                    else \
+                        echo nothing to stash...; \
+                    fi;\
+                    if [ $? -eq 0 ]; then \
+                        echo rebasing...;\
+                        git rebase;\
+                        if [ $? -eq 0 ]; then \
+                            if [ \"$last_status\" != \"\" ]; then\
+                                echo applying stashed changes...;\
+                                git stash pop;\
+                                if [ $? -ne 0 ]; then \
+                                    echo STASH POP FAIL - you will need to resolve merge conflicts with git mergetool; \
+                                fi; \
+                            fi; \
+                        else \
+                            echo REBASE FAILED - you will need to manually run stash pop; \
+                        fi;\
+                    fi;\
+                fi; \
+                if [ $? -ne 0 ]; then \
+                    echo ERROR: Operation failed; \
+                fi; \
+            }; f"
+
+
+# check for conflicts before merging
+    mergetest = "!f(){ git merge --no-commit --no-ff \"$1\"; git merge --abort; echo \"Merge aborted\"; };f "
+
+

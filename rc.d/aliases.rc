@@ -21,6 +21,7 @@ alias trup="tr [:lower:] [:upper:]"
 alias trlow="tr [:upper:] [:lower:]"
 alias t="tldr"
 alias c="cheat"
+alias tt="cd $HOME/.local/tmp"
 
 # cron
 alias cte="crontab -e"
@@ -59,8 +60,8 @@ alias gbr="git branch -r"               # list remote branchs
 alias gbshw="git branch --show-current"   
 alias gbm="git branch --merged"         # list all branches merged into CURRENT branch
 alias gbnm="git branch --no-merged"     # list all branches not merged into CURRENT branch
-alias gbsr="git branch --sort=-committerdate"   # sort newest -> oldest
-alias gbsl="git branch --sort=committerdate"   # sort oldest -> newest
+alias gbsmr="git branch --sort=-committerdate"   # sort newest -> oldest
+alias gbslr="git branch --sort=committerdate"   # sort oldest -> newest
 
 ## commit 
 alias gc="git commit"

@@ -1,26 +1,73 @@
+-- source local submodules test
+reload("zac.options")
+
 -- install plugins
+--  "ChristianChiarulli/swenv.nvim",
 lvim.plugins = {
-  "ChristianChiarulli/swenv.nvim",
+  "AckslD/swenv.nvim",
   "stevearc/dressing.nvim",
   "mfussenegger/nvim-dap-python",
+  "nvim-neotest/nvim-nio",
   "nvim-neotest/neotest",
   "nvim-neotest/neotest-python",
+  "shaunsingh/nord.nvim",
+  "rmehri01/onenord.nvim",
+  "nvim-telescope/telescope-dap.nvim",
+  "mfussenegger/nvim-dap",
 }
+
+-- switch venv function
+require('swenv').setup({
+  post_set_venv = function()
+    vim.cmd("LspRestart")
+  end,
+})
+
+
+-- load colorscheme submodule
+reload("zac.colorscheme")
+--lvim.colorscheme = "onenord"
+
 
 -- automatically install python syntax highlighting
 lvim.builtin.treesitter.ensure_installed = {
+  "bash",
+  "csv",
+  "diff",
+  "dockerfile",
+  "git_config",
+  "gitcommit",
+  "gitignore",
+  "ini",
+  "jq",
+  "json",
+  "lua",
+  "make",
+  "markdown",
   "python",
+  "sql",
+  "ssh_config",
+  "tmux",
+  "vim",
+  "xml",
+  "yaml",
 }
 
 -- setup formatting
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup { { name = "black" }, }
-lvim.format_on_save.enabled = true
+lvim.format_on_save.enabled = false
 lvim.format_on_save.pattern = { "*.py" }
 
 -- setup linting
 local linters = require "lvim.lsp.null-ls.linters"
-linters.setup { { command = "flake8", filetypes = { "python" } } }
+linters.setup {
+  { name = "flake8" },
+  {
+    name = "shellcheck",
+    args = { "--severity", "warning" },
+  },
+}
 
 -- setup debug adapter
 lvim.builtin.dap.active = true
@@ -61,4 +108,3 @@ lvim.builtin.which_key.mappings["C"] = {
   name = "Python",
   c = { "<cmd>lua require('swenv.api').pick_venv()<cr>", "Choose Env" },
 }
-

@@ -1,0 +1,2 @@
+[alias]
+    recent="branch --sort=-committerdate"

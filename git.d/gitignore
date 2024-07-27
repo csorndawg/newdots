@@ -3,7 +3,181 @@
 **.temp
 **/tmp/
 .tmp/
-.tmp
+**.tmp
+temp.*
+**/temp.*
 *.diff
 patch*
 diffpatches**
+
+.cargo/
+.vim/plugged
+
+# gitignore.io
+
+# standard
+*.swp
+*.tar
+*.tar.*
+*.jar
+*.exe
+*.msi
+*.zip
+*.tgz
+*.log
+*.log.*
+*.sig
+
+pkg/
+src/
+
+*.og
+*.ig
+*.tmp
+*.temp
+*.bk
+*.bak
+*.db
+*.avi
+*.pdf
+*.ps
+*.mid
+*.midi
+*.mp3
+*.aif
+*.wav
+
+#### Test ###
+#### Ignore all files that could be used to test your code and
+#### you wouldn't want to push
+
+## Reference https://en.wikipedia.org/wiki/Metasyntactic_variable
+
+## Most common
+*foo
+*bar
+*fubar
+*foobar
+
+## Less common
+*qux
+*qxk
+*quux
+*ztest
+
+## Other names that would make sense
+*tests
+*testsdir
+*testsfile
+*testsfiles
+*test
+*testdir
+*testfile
+*testfiles
+*testing
+*testingdir
+*testingfile
+*testingfiles
+temp
+temp.
+tempdir
+tempfile
+tempfiles
+tmp
+tmpdir
+tmpfile
+tmpfiles
+lol
+*untracked
+ignoreme
+
+
+#### Ansible ###
+*.retry
+# Ansible runtime and backups
+*.original
+*.tmp
+*.bkp
+*.retry
+*.*~
+
+# Tower runtime roles
+roles/**
+!roles/requirements.yml
+
+# Avoid plain-text passwords
+*pwd*
+*pass*
+*creds*
+*password*
+*.txt
+
+# Exclude all binaries
+*.bin
+*.jar
+*.tar
+*.zip
+*.gzip
+*.tgz
+
+### Compressed Files ###
+*.7z
+*.deb
+*.gz
+*.pkg
+*.rar
+*.rpm
+*.sit
+*.sitx
+*.tar
+*.zip
+*.zipx
+*.tgz
+
+### Font ###
+*.fnt
+*.fon
+*.otf
+*.ttf
+
+###  Git ###
+reated by git for backups. To disable backups in Git:
+# $ git config --global mergetool.keepBackup false
+*.orig
+
+# Created by git when using merge tools for conflicts
+*.BACKUP.*
+*.BASE.*
+*.LOCAL.*
+*.REMOTE.*
+*_BACKUP_*.txt
+*_BASE_*.txt
+*_LOCAL_*.txt
+*_REMOTE_*.txt
+
+#### Vim ###
+# Swap
+[._]*.s[a-v][a-z]
+!*.svg  # comment out if you don't need vector files
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Session
+Session.vim
+Sessionx.vim
+
+# Temporary
+.netrwhist
+*~
+# Auto-generated tag files
+tags
+# Persistent undo
+[._]*.un~
+
+#### SSH ###
+**/.ssh/id_*
+**/.ssh/*_id_*
+**/.ssh/known_hosts
+

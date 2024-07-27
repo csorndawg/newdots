@@ -1,0 +1,9 @@
+.temp/
+**/temp/
+**.temp
+**/tmp/
+.tmp/
+.tmp
+*.diff
+patch*
+diffpatches**

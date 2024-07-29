@@ -46,7 +46,12 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'SirVer/ultisnips'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
-Plug 'petertriho/cmp-git'
+"Plug 'petertriho/cmp-git'
+
+" debuggers
+Plug "nvim-telescope/telescope-dap.nvim"
+Plug "mfussenegger/nvim-dap"
+Plug "mfussenegger/nvim-dap-python"
 
 call plug#end()
 
@@ -92,13 +97,13 @@ lua <<EOF
   -- To use git you need to install the plugin petertriho/cmp-git and uncomment lines below
   -- Set configuration for specific filetype.
   --[[ cmp.setup.filetype('gitcommit', {
-    sources = cmp.config.sources({
-      { name = 'git' },
-    }, {
-      { name = 'buffer' },
-    })
- })
- require("cmp_git").setup() ]]-- 
+  --  sources = cmp.config.sources({
+  --   { name = 'git' },
+  -- }, {
+  --    { name = 'buffer' },
+  --  })
+ -- })
+ -- require("cmp_git").setup() ]]-- 
 
   -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline({ '/', '?' }, {
@@ -119,6 +124,7 @@ lua <<EOF
     matching = { disallow_symbol_nonprefix_matching = false }
   })
 
+  -- @TODO: FIX YOUR_LSP_SERVER
   -- Set up lspconfig.
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.

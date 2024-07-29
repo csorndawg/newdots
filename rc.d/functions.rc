@@ -105,7 +105,7 @@ venvfreeze() {
     # gracefully deactivate
     pip freeze | tee $CURRENT_VENV_DIR/requirements.txt
     ln -sf "$CURRENT_VENV_DIR/requirements.txt" "$LOCAL_VENV_HOME/requirements/$VENV_NAME.requirements.txt"
-    deactive 
+    deactivate
 }
 
 
@@ -131,6 +131,9 @@ mk_testdir() {
     else
         NEW_DIR_NAME="test-$(date +%Y%m%d_%H%M%S)"
     fi
-    cp -rv   $TEST_TEMPLATE_DIRPATH $TEST_HOME_DIR/$NEW_DIR_NAME
+
+    # copy template and if "cd" flag enabled cd into new dir
+    cp -r   $TEST_TEMPLATE_DIRPATH $TEST_HOME_DIR/$NEW_DIR_NAME
+    echo "cp -rv   $TEST_TEMPLATE_DIRPATH $TEST_HOME_DIR/$NEW_DIR_NAME"
     test "$2" = "y" && cd $TEST_HOME_DIR/$NEW_DIR_NAME
 }

@@ -6,6 +6,9 @@ alias jc="jupyter-console"
 alias python=python3
 alias fdd="find -type d"
 alias gds="git diff --summary"
+alias tdv="vim $HOME/dotfiles/TODO.md"
+alias tdb="bat --theme='Nord' $HOME/dotfiles/TODO.md"
+alias bat="bat --theme='Nord'"
 
 
 # general

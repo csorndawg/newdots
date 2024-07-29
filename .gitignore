@@ -67,4 +67,10 @@ idea.*
 */*.idea
 */idea.*
 
-
+# adhoc
+experimental/
+!experimental/worktrees
+*.expt
+expt.*
+experiment.*
+*.experiment

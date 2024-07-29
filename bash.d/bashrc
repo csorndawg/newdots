@@ -129,10 +129,10 @@ done
 # TODO: migrate all non-bash only exports, and functions files to rc.d
 #   aliases have been migrated
 # source bash submodules
-#source $HOME/dotfiles/bashd/aliases.bashrc
-source $HOME/dotfiles/bashd/exports.bashrc
-source $HOME/dotfiles/bashd/functions.bashrc
-source $HOME/dotfiles/bashd/completions.bashrc
+#source $HOME/dotfiles/bash.d/aliases.bashrc
+source $HOME/dotfiles/bash.d/exports.bashrc
+source $HOME/dotfiles/bash.d/functions.bashrc
+source $HOME/dotfiles/bash.d/completions.bashrc
 
 # NOTE: Sourcing directly for now. If this gets too messy replace
 # with a bash function/script to source all config files 

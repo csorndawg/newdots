@@ -1,8 +1,7 @@
 # source bash completion files defined in completers subdir
 
-COMPLETERS_LIB="$HOME/dotfiles/bashd/completers"
+COMPLETERS_LIB="$HOME/dotfiles/bash.d/completers"
 find "$COMPLETERS_LIB" -type f -path "*.completers" -exec echo source {} \;
-
 
 ## test LIB path valid, has at least 1 non empty file
 if [[ ! -d "$COMPLETERS_LIB" ]];
@@ -12,10 +11,5 @@ then
     exit 1
 
 else
-    echo ""
-    echo "At least 1 non-empty completion module present in library."
-    #for completer in $(find "$COMPLETERS_LIB" -type f  -name "*.completer" );
-    #find "$COMPLETERS_LIB" -mindepth 2 -type f   -exec echo sourcing {} now \;
-    #find "$COMPLETERS_LIB" -type f -path "*.completers" -exec source {}
-    
+    printf "\n%s\n" "At least 1 non-empty completion module present in library."
 fi

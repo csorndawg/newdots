@@ -24,7 +24,7 @@ alias trup="tr [:lower:] [:upper:]"
 alias trlow="tr [:upper:] [:lower:]"
 alias t="tldr"
 alias c="cheat"
-alias tt="cd $HOME/.local/tmp"
+
 
 # cron
 alias cte="crontab -e"
@@ -55,6 +55,7 @@ alias o="origin"
 ## add
 alias gad="git add --dry-run"
 alias ga="git add"
+alias gacm="git add . && git commit -m "
 
 ## branch
 alias gbl="git branch --list "          # list branches that match glob 
@@ -97,9 +98,10 @@ alias gf="git fetch"
 
 ## log
 alias glg="git log "
-alias glgn="git log -n"
+alias glgn="git log -n "
 alias glgo="git log --oneline"
 alias glga="git log -all"
+alias glga_graph="git log --oneline --decorate --graph --all"
 
 ## merge
 alias gm="git merge "
@@ -125,10 +127,20 @@ alias grss="git restore --staged "
 ## status
 alias gs="git status"
 alias gss="git status -s"
+
+## stash
 alias gst="git stash"
 alias gsta="git stash apply "
 alias gstl="git stash list"
-alias gstp="git stash push "
+alias gstp="git stash push"
+alias gstpm="git stash push -m"
+alias gsts="git stash show -p "
 
 
-# unsorted/new
+
+# miscellaneous 
+alias tmploc="cd $HOME/.local/tmp"
+alias tbx="cd $HOME/.toolbox"
+alias C="cd $HOME/.cheatbinder"
+alias learn="vim $HOME/git/ongoing/learning"
+alias tree="tree -C"  # colorize output by default

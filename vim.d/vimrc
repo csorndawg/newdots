@@ -90,7 +90,7 @@ nnoremap <leader>,, i
 " enter command mode with <Space>;
 nnoremap <leader>; :
 " leave command mode with <Ctrl-z>
-cnoremap <C-z> <ESC>
+cnoremap <leader>z <ESC>
 
 "" ------------------------
 "" REMAPS

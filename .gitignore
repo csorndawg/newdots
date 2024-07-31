@@ -69,7 +69,7 @@ idea.*
 # adhoc
 experimental/
 !experimental/worktrees
-*.expt
+#*.expt
 expt.*
 experiment.*
 *.experiment
@@ -78,3 +78,7 @@ experiment.*
 # zsh custom plugins - ignore everything but plugin script
 zsh.d/plugins/
 !zsh.d/plugins/**/*.zsh
+
+config.d/dircolors/nord/
+#!config.d/dircolors/nord/src/
+

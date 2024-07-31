@@ -1,0 +1,1 @@
+../../tmp/dotty.zsh.d/zsh.d/themes/pure.zsh

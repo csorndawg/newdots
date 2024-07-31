@@ -34,16 +34,14 @@ wips/*
 
 
 # Tmux Plugins
-tmuxd/plugins/
+tmux.d/plugins/
 
 # Vim Plugins
-vim.d/
-!vim.d/vimrc
-!vim.d/rt
-vimd/
-!vimd/vimrc
-!vimd/rt
+vim.d/plugins/
+#!vim.d/vimrc
+#!vim.d/rt/
 
+# neovim plugins
 nvim.d/plugs
 
 # Bash Plugins
@@ -54,7 +52,8 @@ nvim.d/plugs
 .tmp/
 .tmp
 *.diff
-patch*
+patch.*
+*.patch
 diffpatches**
 
 # initial-build
@@ -74,3 +73,8 @@ experimental/
 expt.*
 experiment.*
 *.experiment
+
+
+# zsh custom plugins - ignore everything but plugin script
+zsh.d/plugins/
+!zsh.d/plugins/**/*.zsh

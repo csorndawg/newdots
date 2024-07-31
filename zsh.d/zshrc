@@ -1,23 +1,33 @@
-# in zshrc
-export ZSHRC_SOURCING_TEST="~/test_zsh.txt"
+# source rc/runtime config dirs
 
 # CONTINUE AFTER TESTING
-export DOTFILES_HOME="$HOME/.dotfiles"
-export DOTFILES_ZSHD="$HOME/.dotfiles/zsh.d"
-export DOTFILES_VIMD="$HOME/.dotfiles/vim.d"
-export DOTFILES_GITD="$HOME/.dotfiles/gitd"
-export DOTFILES_TMUXD="$HOME/.dotfiles/tmux.d"
-export DOTFILES_CONFD="$HOME/.dotfiles/conf.d"
+export DOTFILES_HOME="$HOME/dotfiles"
+export ZSH_CONFD="$HOME/dotfiles/zsh.d"
+export RC_CONFD="$HOME/dotfiles/rc.d"
+export BASHRC_CONFD="$HOME/dotfiles/bashrc.d"
+export GIT_CONFD="$HOME/dotfiles/git.d"
+export TMUX_CONFD="$HOME/dotfiles/tmux.d"
+export CONFIG_CONFD="$HOME/dotfiles/config.d"
+export LVIM_CONFD="$HOME/dotfiles/lvim.d"
+export NVIM_CONFD="$HOME/dotfiles/nvim.d"
+export UTILS_CONFD="$HOME/dotfiles/utils.d"
 
-# CHEATBOOKS: home for all personal cheatsheets/docs
-export CHEATBOOK_CHEAT="$HOME/git/ongoing/cheatbook/cheatbook/cheat"
+
+
+export CHEATFILES_HOME="/home/nukk/.config/cheat"
+export CHEATFILES_WORK_HOME="/home/nukk/.config/cheat/cheatsheets/work"
+export CHEATFILES_IMMACULATE_HOME="/home/nukk/.config/cheat/cheatsheets/immaculate"
+
+# toolbox export 
+export TOOLBOX_HOME="$HOME/git/ongoing/toolbox"
+alias tbx_j="cd $TOOLBOX_HOME"
+alias tbx_v="cd $TOOLBOX_HOME"
+
 # set up non-root bins 
-#export LOCAL_BIN="$HOME/git/ongoing/toolbox/bin"
-export LOCAL_BIN="$HOME/.local/bin"
 export GOPATH="$HOME/.local/share/applications/go"
 GO_BIN="$GOPATH/bin"
 export CARGO_BIN="$HOME/.cargo/bin"
-TOOLBOX_BIN="$HOME/git/ongoing/toolbox/bin"
+export TOOLBOX_BIN="$TOOLBOX_HOME/bin"
 
 # standard bins
 export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
@@ -46,7 +56,7 @@ ZSH_THEME=""
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment one of the following lines to change the auto-update behavior
 zstyle ':omz:update' mode disabled  # disable automatic updates
@@ -74,7 +84,7 @@ zstyle ':omz:update' mode disabled  # disable automatic updates
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+#DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -85,7 +95,7 @@ zstyle ':omz:update' mode disabled  # disable automatic updates
 HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM="$HOME/.dotfiles/zsh.d"
+ZSH_CUSTOM="$HOME/dotfiles/zsh.d/custom"
 
 
 ## ------------------------------
@@ -105,12 +115,13 @@ ZSH_AUTOSUGGEST_EXECUTE_WIDGETS=(menu-expand-or-complete)
 #bindkey '^I' autosuggest-execute
 
 # <CTRL><SPACE> to accept and execute suggestion
-bindkey '^@' autosuggest-execute
+#bindkey '^@' autosuggest-execute
 
 
-## @TODO: continue reviewing docs/github to see if better options available
-## NOTE: zsh-bat overwrites "cat" with "bat" - use "rcat" to use old "cat"
-plugins=(git colored-man-pages zsh-autosuggestions git-extras tldr z  zsh-syntax-highlighting )
+## NOTE: manually sourcing custom plugin files at end of script so theres 
+##       ... no need to define them here 
+#plugins=(git colored-man-pages zsh-autosuggestions git-extras tldr z  zsh-syntax-highlighting )
+plugins=(git colored-man-pages git-extras tldr z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -144,67 +155,84 @@ generate_env_vars() {
     # define constants
     DOTFILES_ROOT="$HOME/.dotfiles"
     GENERIC_EXPORTS="$HOME/.dotfiles/shell.d/exports"
-    ZSH_EXPORTS="$DOTFILES_ROOT/zsh.d/exports.zsh"
+    #ZSH_EXPORTS="$DOTFILES_ROOT/zsh.d/exports.zsh"
     BASH_EXPORTS="$DOTFILES_ROOT/bash.d/exports.bash"
-    DOTFILE_STARTUP_LOGFILE="$XDG_STATE_HOME/dotfiles/logs/startup.log"
+    STARTUP_LOGFILE="$XDG_STATE_HOME/zsh/logs/zshrc/startup.log"
     LOG_MSG=""
+
+    ZSHRC_DIR="$HOME/dotfiles/zsh.d"
+    SUBMODS=(aliases.zsh exports.zsh completions.zsh)
 
     # determine if current shell is ZSH or BASH 
     # check if using ZSH shell, otherwise assume n/zsh"
     if [[ ! -z "$SHELL" && "$SHELL" = "/bin/zsh" ]];
     then
+        echo ""
+        OUT_MSG="ZSH shell detected. Checking $ZSHRC_DIR for any shell-specific configuration files."
 
-        OUT_MSG="ZSH shell detected. Checking for additional shell-specific exports.\n"
-        
-
-        # check if export file exists and is nonempty
-        if [[ -f "$ZSH_EXPORTS" ]];
-        then
-            source $ZSH_EXPORTS
-        else
-            # TODO:Adds too much visual noise, output ECHO to a logfile instead
-        
-            OUT_MSG="ZSH export file does not exist, is empty, or is not in the expected location. No additional files will be sourced." 
-            
-        fi
-
-    # TODO: add same logic for bash-specific overrides
-    # else   if [[ ! -z "$SHELL" && "$SHELL" = "/bin/zsh" ]];
-    else
-        OUT_MSG="ZSH shell not active, no additional files to source."
+        # source all zshrc submodules that were defined above
+        for x in ${ZSHRC_SUBMODS[@]};
+        do
+            echo sourcing:  source $x 
+            source $x  > $STARTUP_LOGFILE 2&1 
+        done
     fi
 
-    # update log 
-    LOG_MSG="$LOG_MSG\n$OUT_MSG"
-    echo $LOG_MSG >> $DOTFILE_STARTUP_LOGFILE
-
         
+}
+
+# source runtime + shell-specific configs
+source_shell_configs(){
+
+    DOTFILES_HOME="$HOME/dotfiles"
+    RUNTIME_CONFD="$DOTFILES_HOME/rc.d"
+
+    SUBMODULES=(aliases exports completions "functions")
+
+   # source runtime config directory (configurations used by both bash and zsh)
+
+
+    FT="bash"   # assume bash by default
+    STARTUP_LOGFILE="$XDG_STATE_HOME/$FT/logs/shell/startup.log"
+    test $STARTUP_LOGFILE || mkdir -p "$(dirname $STARTUP_LOGFILE)" 
+    echo ""
+    if [[ ! -z "$SHELL" && "$SHELL" = "/bin/zsh" ]];
+    then
+        FT="zsh"
+    fi
+
+    # source all runtime configuration submodules
+    for x in ${SUBMODULES[@]};
+    do
+        echo sourcing:  source "$x.zsh"
+        source $x  > $STARTUP_LOGFILE 2&1 
+    done
+
+    # source bashrc submodules is they also exist
+    if [[ -n "$BASHRC_SUBMODS" ]];
+    then
+        for x in ${ZSHRC_SUBMODS[@]};
+        do
+            echo sourcing:  source $x 
+            source $x  > $ZSHRC_STARTUP_LOGFILE 2&1 
+        done
+    fi
+
 }
 
 
 # ohmyzsh requires aliases in root level of zsh.d
 #source "$HOME/.dotfiles/zsh.d/lib/aliases.zsh"
-. "$HOME/.dotfiles/zsh.d/aliases.zsh"
+#. "$HOME/.dotfiles/zsh.d/aliases.zsh"
 
 # NOTE: source zsh-specific exports after to avoid accidentally overwriting
 # check if zsh-specific export file exists, and source if so 
 
 
 # TEMP WORKAROUND
-source "$HOME/.dotfiles/shell.d/shell.exports"
-source "$HOME/.dotfiles/zsh.d/lib/exports.zsh"
-source "$HOME/.dotfiles/zsh.d/lib/functions.zsh"
-
-#export $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias gs='git status'
-alias gs='git status'
-
+#source "$HOME/.dotfiles/shell.d/shell.exports"
+#source "$HOME/.dotfiles/zsh.d/lib/exports.zsh"
+#source "$HOME/.dotfiles/zsh.d/lib/functions.zsh"
 
 
 # TODO: see if this can be factored out into submodule
@@ -212,20 +240,45 @@ alias gs='git status'
 # 	THEME
 # ========================================================================
 
-fpath+=(/home/nukk/.dotfiles/zsh.d/themes/pure)
-fpath+=(/home/nukk/.dotfiles/zsh.d/themes/pure.zsh)
+# Broken FPATHS from tests
+#fpath+=(/home/nukk/.dotfiles/zsh.d/themes/pure)
+#fpath+=(/home/nukk/.dotfiles/zsh.d/themes/pure.zsh)
+#fpath+=(/home/nukk/dotfiles/zsh.d/themes/pure)
+#fpath+=(/home/nukk/dotfiles/zsh.d/custom/patches/pure-theme-patch.zsh)
+# add pure REPO FOLDER to fpath, not the ".zsh" file like other ohmyzsh themes
+# uncomment example below to rollback to working pure prompt
+
+fpath+=(/home/nukk/dotfiles/zsh.d/custom/themes/pure)
 autoload -U promptinit; promptinit
 
-zstyle :prompt:pure:user color '#81A1C1'
-zstyle :prompt:pure:host color '#81A1C1'
-zstyle :prompt:pure:path color '#81A1C1'
+# options
+PURE_CMD_MAX_EXEC_TIME=10
+PURE_GIT_PULL=0
+
+# prompt configurations
+# NORD FROST SHADES:  
+#   #8fbcbb
+#   #88c0d0
+#   #81a1c1
+#   #5e81ac
+
+# non-git prompt components
+#zstyle :prompt:pure:path color '#81A1C1'
+#zstyle :prompt:pure:path color '#5e81ac'
+zstyle :prompt:pure:host color blue
+zstyle :prompt:pure:user color blue
+zstyle :prompt:pure:path color blue
 zstyle :prompt:pure:prompt:success color green
-zstyle :prompt:pure:git:branch color '#D8BFD8'
-zstyle :prompt:pure:git:action color '#B48EAD'
+
+# git prompt components
+zstyle :prompt:pure:git:action color yellow
+zstyle :prompt:pure:git:branch color yellow
 zstyle :prompt:pure:git:dirty color red 
-zstyle :prompt:pure:git:arrow color green
+
 zstyle :prompt:pure:git:stash show yes
-zstyle :prompt:pure:git:stash color magenta
+zstyle :prompt:pure:git:arrow color yellow
+zstyle :prompt:pure:git:stash color yellow
+
 
 prompt pure
 
@@ -247,12 +300,21 @@ fv(){
     fi
 }
 
-# TEMPFIX:
+# vim
 alias vim="/usr/bin/vim"
 alias vi="/usr/bin/vim"
+
+# neovim
 alias nv="/usr/bin/nvim"
+alias nvim="$HOME/.local/bin/lvim"
+
+# lunarvim stable
 alias lv="$HOME/.local/bin/lvim"
 alias lvim="$HOME/.local/bin/lvim"
+
+# experimental lunarvim
+alias lv2="$HOME/.local/bin/lvim2"
+alias lvim2="$HOME/.local/bin/lvim2"
 
 # source runtime config files 
 for x in $(find $HOME/dotfiles/rc.d -type f | sort -r | egrep -v "idea"); # W: For loops over find o…
@@ -263,5 +325,32 @@ done
 # reminder to use new CLI tool
 printf "\n%s\n" "Reminder: run rce [fcei] for on-the-fly shell edits"
 printf "\n%s\n" "Reminder: run tmpp [dnpuw] for on-the-fly notes"
+
+
+
+### ========================================
+###     CUSTOM PLUGINS
+### ========================================
+
+### Define customizations
+# make highl;ight color more visitble  
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#81A1C1"
+ZSH_AUTOSUGGEST_EXECUTE_WIDGETS=(menu-expand-or-complete)
+#ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(menu-expand-or-complete)
+#ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(menu-expand-or-complete)
+
+# enbable s tab complete for current autosuggest
+# <TAB> will complete suggestion AND execute
+# <SHIFT TAB>  completes suggestion but doesnt execute
+#bindkey '^I' autosuggest-execute
+
+# <CTRL><SPACE> to accept and execute suggestion
+#bindkey '^@' autosuggest-execute
+
+### Source custom plugins with defined above customizations
+source  $HOME/dotfiles/zsh.d/custom/patches/you-should-use-patch.zsh
+source $HOME/dotfiles/zsh.d/custom/plugins/zsh-autosuggestions.zsh
+source $HOME/dotfiles/zsh.d/custom/plugins/zsh-syntax-highlighting.zsh
 
 

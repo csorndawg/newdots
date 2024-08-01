@@ -120,7 +120,7 @@ fi
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
 # source rc modules
-for x in $(find $HOME/dotfiles/rc.d -type f);
+for x in $(find $HOME/dotfiles/rc.d -type f -name "*.rc");
 do
     echo source "$x"
     source "$x"
@@ -143,3 +143,28 @@ source $HOME/dotfiles/bash.d/completions.bashrc
 echo ""
 curl https://api.kanye.rest/text
 echo ""
+
+
+## source dotfile configuration submodules
+
+
+# runtime/shell-agnostic
+for x in $(find $HOME/dotfiles/rc.d -type f -name "*.rc");
+do
+    echo source "$x"
+    source "$x"
+done
+
+# bash.d submodules
+for x in $(find $HOME/dotfiles/bash.d -type f -name "*.bashrc");
+do
+    echo source "$x"
+    source "$x"
+done
+
+# runtime/shell-agnostic
+for x in $(find $HOME/dotfiles/rc.d -type f -name "*.rc");
+do
+    echo source "$x"
+    source "$x"
+done

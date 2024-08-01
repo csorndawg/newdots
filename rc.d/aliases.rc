@@ -105,7 +105,7 @@ alias glga_graph="git log --oneline --decorate --graph --all"
 
 ## merge
 alias gm="git merge "
-alias gmm="git merge main"      # merge main into branch to ensure branch always in-sync with main
+alias gmmn="git merge main"      # merge main into branch to ensure branch always in-sync with main
 alias gml="git merge @{-1}"     # merge last checkout branch
 
 ## push

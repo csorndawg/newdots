@@ -36,7 +36,7 @@ alias tmpb="tmux paste-buffer"
 alias tmsk="tmux send-keys "
 alias tmnw="tmux new-window -t"
 alias tmnwn="tmux new-window -n "
-alias tmds="tmux detach"
+alias tmd="tmux detach"
 alias tmas="tmux attach"
 
 
@@ -133,13 +133,52 @@ alias rgv="rg -v "
 alias D="diff"
 alias V="/usr/local/bin/vim"
 alias v="/usr/local/bin/vim"
-alias vim="nvim"
+#alias vim="nvim"
 alias nv="nvim"
 alias lvim="$XDG_BIN_HOME/lvim"
 alias lunarvim="$XDG_BIN_HOME/lvim"
 
 # prelim
 alias xargsi='xargs -I "{}" '
-alias t="cd $HOME/.toolbox"
-alias c="cd $HOME/.cheatsheets"
-alias cfg="cd $HOME/.config"
+
+# TODO: FZF docker manager util script (similar to activate-venv) for 
+#       easy container mangagement (cd, activate, update, etc.)
+
+alias ..="cd .." 
+alias ..1="cd .."
+alias ..2="cd ../.."
+alias ..3="cd ../../.."
+alias ..4="cd ../../../.."
+alias ..5="cd ../../../../.."
+alias fhome="find $HOME "
+alias fdbd='fd  --base-directory="$1"'  # TODO: turn into function and move to rc.d/functions
+alias fdhome='fd  --base-directory="$HOME" '
+alias fdhi='fd -HI '
+alias mnt_cd="cd /mnt/dat || mkdir -p /mnt/dat && cd /mnt/dat"
+
+alias untar='tar -zxvf $1'  # alias untar='tar -zxvf $1'
+alias tar='tar -czvf $1'  # compress folder in tar.gz format
+alias peak_sshconf="bat $HOME/.ssh/config"
+
+# use fd/ripgrep to filter dotfiles for 
+alias peak_dotconfs='vim $(fd --base-directory="$HOME/dotfiles" -t f |  rg \
+"i.((zsh|bash)?rc|vim|lua|yml|conf(ig)?|custom.+patch.zsh)$" | fzf -m)'
+alias peak_dotconfs='vim $(fd --base-directory="$HOME/dotfiles" -t f |  rg "i.((zsh|bash)?rc|vim|lua|yml|conf(ig)?|custom.+patch.zsh)$" | fzf -m)'
+ 
+# timestamp with timezone
+alias dt='date "+%Y%m%d_%H%M%S_%Z"' 
+
+
+## ---------------------------------------------
+## ZSH suffix aliases (zsh feature only)
+## syntax:  alias -s extension=name-of-the-tool
+## ---------------------------------------------
+
+# TRY: try lvim, if errors occur try nvim, if errors still occurring 
+#       use vim as a fallback
+#alias -s {md,sh,zshrc,bashrc,config,py,conf,yml}=vim 
+#alias -s {md,sh,zshrc,bashrc,config,py,conf,yml}=nvim 
+alias -s {md,sh,zshrc,bashrc,config,py,conf,yml}=lvim 
+
+# use "bat" for csv/json/mdz file
+alias -s {csv,json,mdz}=bat

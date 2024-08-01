@@ -6,6 +6,7 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_BIN_HOME="$HOME/.local/bin"
+export XDG_DOWNLOADS_HOME="$HOME/.local/var/data/downloads"
 
 # custom XDG local dirs
 export XDG_TMP_HOME="$HOME/.local/tmp"
@@ -14,15 +15,35 @@ export XDG_VAR_TMP_HOME="$HOME/.local/var/tmp"
 
 # local venvs
 export VENVS_HOME="$XDG_STATE_HOME/python/virtualEnvs"
+
+# dotfile related
+# export RETIRED_DOTFILES_HOME="$HOME/.dotfiles" 
 export DOTFILE_HOME="$HOME/dotfiles"
+export DOTFILES_HOME="$HOME/dotfiles"
+export ZSH_CONFD="$HOME/dotfiles/zsh.d"
+export RC_CONFD="$HOME/dotfiles/rc.d"
+export BASH_CONFD="$HOME/dotfiles/bash.d"
+export GIT_CONFD="$HOME/dotfiles/git.d"
+export TMUX_CONFD="$HOME/dotfiles/tmux.d"
+export CONFIG_CONFD="$HOME/dotfiles/config.d"
+export LVIM_CONFD="$HOME/dotfiles/lvim.d"
+export NVIM_CONFD="$HOME/dotfiles/nvim.d"
+export UTILS_CONFD="$HOME/dotfiles/utils.d"
 
+# freq. used 
+export CHEATFILES_HOME="$HOME/.config/cheat"
+export CHEATFILES_WORK_HOME="$HOME/.config/cheat/cheatsheets/work"
+export CHEAT_PERSONAL_HOME="$HOME/.config/cheat/cheatsheets/personal"
+export CHEATLIB_HOME="$HOME/.cheatlib"
+export SSH_HOME="$HOME/.ssh"
+export TOOLBOX_HOME="$HOME/.toolbox"
+export TOOLBOX_HOME="$HOME/git/ongoing/toolbox"
+# check notes on when to use 'var/tmp' or 'var/tmp/data' 
+export VAR_DATA_DIR="/home/nukk/.local/var/data"
+export VAR_TMP_DATA_DIR="/home/nukk/.local/var/tmp/data"
 
+# git-related
 export GIT_WORK_HOME="$HOME/git"
 export GIT_GISTS_HOME="$HOME/git/gists"
 export GIT_CONFIG="$HOME/.gitconfig"
 export GIT_IGNORE="$HOME/.gitignore"
-export DOTFILES_HOME="$HOME/.dotfiles"
-export SSH_HOME="$HOME/.ssh"
-export TMP_DATA_DIR="/home/nukk/.local/tmp/data"
-export CHEAT_VOLS_HOME="$HOME/.cheat_vols"
-export TOOLBOX_HOME="$HOME/.toolbox"

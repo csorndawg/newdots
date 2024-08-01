@@ -23,7 +23,14 @@ alias xargsi='xargs -I "{}"'
 alias trup="tr [:lower:] [:upper:]"
 alias trlow="tr [:upper:] [:lower:]"
 alias t="tldr"
-alias c="cheat"
+
+# cheat
+alias c="cheat -c"      # colorize cheat
+alias ce="cheat -e"     # cheat edit
+alias cl="cheat -l"     # cheat edit
+alias cs="cheat -s"     # cheat edit
+alias cconf="vim $(cheat --conf)"   # edit cheat conf
+alias clt="cheat -l -t personal"    # list all cheatfiles with 'personal' tag
 
 
 # cron
@@ -139,8 +146,9 @@ alias gsts="git stash show -p "
 
 
 # miscellaneous 
-alias tmploc="cd $HOME/.local/tmp"
-alias tbx="cd $HOME/.toolbox"
-alias C="cd $HOME/.cheatbinder"
 alias learn="vim $HOME/git/ongoing/learning"
 alias tree="tree -C"  # colorize output by default
+
+# view custom shell scripts/functions/completions on the fly
+alias help_fzf="bat $HOME/dotfiles/rc.d/fzf.rc"
+alias help_rc_functs="bat $HOME/dotfiles/rc.d/functions.rc"

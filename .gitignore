@@ -82,3 +82,7 @@ zsh.d/plugins/
 config.d/dircolors/nord/
 #!config.d/dircolors/nord/src/
 
+
+# ignore all symlinked worktree folders (they are being tracked by Git under the worktree itself)
+*.wt
+*.wt.syml

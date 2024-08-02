@@ -86,3 +86,26 @@ config.d/dircolors/nord/
 # ignore all symlinked worktree folders (they are being tracked by Git under the worktree itself)
 *.wt
 *.wt.syml
+
+
+
+#### Filetype Core
+
+## python
+
+
+## rust 
+**/rustup/**
+**/cargo**
+
+
+## go 
+
+
+## cli tools 
+**/node_modules/
+**/go/pkg/
+**/ctags/Units
+#**/lvim/**/packages/
+**/venv/**
+**/plugged/

@@ -35,15 +35,30 @@ export CHEATFILES_HOME="$HOME/.config/cheat"
 export CHEATFILES_WORK_HOME="$HOME/.config/cheat/cheatsheets/work"
 export CHEAT_PERSONAL_HOME="$HOME/.config/cheat/cheatsheets/personal"
 export CHEATLIB_HOME="$HOME/.cheatlib"
+export CHEATLIB_CHEATFILES="$HOME/.cheatlib/cheatfiles"
+export CHEATLIB_RESOURCES="$HOME/.cheatlib/resources"
 export SSH_HOME="$HOME/.ssh"
-export TOOLBOX_HOME="$HOME/.toolbox"
 export TOOLBOX_HOME="$HOME/git/ongoing/toolbox"
+
+#
+# .local/var and .local/tmp favorites
 # check notes on when to use 'var/tmp' or 'var/tmp/data' 
+# 
+export VAR_ARCHIVE_DIR="/home/nukk/.local/var/archive"
+export VAR_DATA_DIR="/home/nukk/.local/var/data"
 export VAR_DATA_DIR="/home/nukk/.local/var/data"
 export VAR_TMP_DATA_DIR="/home/nukk/.local/var/tmp/data"
+export LOCAL_TESTS_DIR="$HOME/.local/tmp/tests"
 
 # git-related
 export GIT_WORK_HOME="$HOME/git"
 export GIT_GISTS_HOME="$HOME/git/gists"
 export GIT_CONFIG="$HOME/.gitconfig"
 export GIT_IGNORE="$HOME/.gitignore"
+
+# other
+export TMUX_BUFFERS="$HOME/.local/state/tmux/buffers"
+export VIM_BUFFERS="$HOME/.local/state/vim/buffers"
+export NVIM_BUFFERS="$HOME/.local/state/nvim/buffers"
+export LVIM_BUFFERS="$HOME/.local/state/lvim/buffers"
+export DOCKER_CONTAINERS="$HOME/.local/share/docker/containers"

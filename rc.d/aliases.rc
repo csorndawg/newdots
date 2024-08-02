@@ -139,8 +139,8 @@ alias gss="git status -s"
 alias gst="git stash"
 alias gsta="git stash apply "
 alias gstl="git stash list"
-alias gstp="git stash push"
-alias gstpm="git stash push -m"
+alias gstp="git stash push -m"
+alias gstpu="git stash push -u -m"
 alias gsts="git stash show -p "
 
 
@@ -148,6 +148,13 @@ alias gsts="git stash show -p "
 # miscellaneous 
 alias learn="vim $HOME/git/ongoing/learning"
 alias tree="tree -C"  # colorize output by default
+alias t10="tail -n10"
+alias t30="tail -n30"
+alias h10="head -n10"
+alias h30="head -n30"
+alias hist10="history | tail -n 10"
+alias hist30="history | tail -n 30"
+
 
 # view custom shell scripts/functions/completions on the fly
 alias help_fzf="bat $HOME/dotfiles/rc.d/fzf.rc"

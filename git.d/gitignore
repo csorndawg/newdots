@@ -181,3 +181,23 @@ tags
 **/.ssh/*_id_*
 **/.ssh/known_hosts
 
+#### Filetype Core
+
+## python
+
+
+## rust 
+**/rustup/**
+**/cargo**
+
+
+## go 
+
+
+## cli tools 
+**/node_modules/
+**/go/pkg/
+**/ctags/Units
+#**/lvim/**/packages/
+**/venv/**
+**/plugged/

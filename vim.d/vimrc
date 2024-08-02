@@ -261,3 +261,11 @@ endif
 
 "let g:UltiSnipsSnippetDirectories = ['~/.vim/mysnippets', 'UltiSnips']
 let g:UltiSnipsSnippetDirectories = ['UltiSnips','$HOME/.vim/MySnippets2']
+
+
+" fzf.vim 
+nnoremap <leader>gf :GFiles<Cr>
+nnoremap <leader>rg :Rg<Cr>
+
+" fzf for buffer exploration
+nnoremap <silent><leader>l :Buffers<CR>

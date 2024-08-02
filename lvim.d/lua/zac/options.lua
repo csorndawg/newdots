@@ -10,8 +10,7 @@ vim.opt.history = 1500
 set.softtabstop = 2
 set.tabstop = 2
 set.clipboard = "unnamedplus"
-set.clipboard = "unnamedplus"
-set.completeopt = "noinsert,menuone,noselect"
+--set.completeopt = "noinsert,menuone,noselect"
 set.cursorline = true
 set.hidden = true
 set.incsearch = true
@@ -25,7 +24,8 @@ set.shiftwidth = 2
 set.showcmd = true
 set.showmatch = true 
 set.smarttab = true
-set.timeoutlen=500  -- decrease leader timeout latency
+set.timeoutlen=400  -- decrease leader timeout latency (default 1000 ms)
+set.ttimeoutlen=40  -- decrease latency for key code/command completion (default 50ms)
 set.ttimeout = true
 set.ttimeoutlen=10
 set.wildignore = "*/ignore/*,*.zip,*.ignore,*.tmp"
@@ -42,3 +42,6 @@ vimp.opt.backspace = "indent,eol,start"
 --  filetype plugin indent on
 --    syntax on
 --    ]])
+
+-- stop auto commenting on next line
+set.formatoptions-=cro

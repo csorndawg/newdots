@@ -89,23 +89,9 @@ config.d/dircolors/nord/
 
 
 
-#### Filetype Core
-
-## python
 
 
-## rust 
-**/rustup/**
-**/cargo**
 
-
-## go 
-
-
-## cli tools 
-**/node_modules/
-**/go/pkg/
-**/ctags/Units
-#**/lvim/**/packages/
-**/venv/**
-**/plugged/
+**/todo.*.md
+todo.*.md
+*/todo.*.md

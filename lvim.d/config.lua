@@ -1,5 +1,6 @@
 -- source local submodules test
 reload("zac.options")
+reload("zac.keybinds")
 
 -- install plugins
 --  "ChristianChiarulli/swenv.nvim",
@@ -15,7 +16,11 @@ lvim.plugins = {
   "nvim-telescope/telescope-dap.nvim",
   "mfussenegger/nvim-dap",
   "hrsh7th/nvim-cmp",
-  "https://github.com/saadparwaiz1/cmp_luasnip"
+  "saadparwaiz1/cmp_luasnip",
+  "tpope/vim-repeat",
+  "tpope/vim-surround",
+  "tpope/vim-fugitive",
+  --"",
 }
 
 -- switch venv function
@@ -113,3 +118,8 @@ lvim.builtin.which_key.mappings["C"] = {
   name = "Python",
   c = { "<cmd>lua require('swenv.api').pick_venv()<cr>", "Choose Env" },
 }
+
+
+-- call the rest of my custom zac/.lua configs
+reload("zac.plug")
+--require("zac.plug")

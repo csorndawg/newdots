@@ -77,14 +77,14 @@ ZSH_AUTOSUGGEST_EXECUTE_WIDGETS=(menu-expand-or-complete)
 #bindkey '^I' autosuggest-execute
 
 # <CTRL><SPACE> to accept and execute suggestion
-#bindkey '^@' autosuggest-execute
+bindkey '^@' autosuggest-execute
 
 
 # NOTE: syntax-highlighting will not work if removed from belo
 #       still debugging why but for now will keep here. It seems to be an issue with 
 #       the custom plugins being sorted as "quote-of-the-day" (renamed version of rand-quote)
 #       does not get sourced when added to below array
-plugins=(git colored-man-pages git-extras tldr z zsh-syntax-highlighting)
+plugins=(git colored-man-pages zsh-autosuggestions git-extras tldr z zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -96,7 +96,7 @@ export MANPATH="/usr/local/man:$MANPATH"
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='lvim'
+   export EDITOR='vim'
 fi
 
 # Compilation flags
@@ -212,3 +212,6 @@ printf "\n%s\n" "Sourcing shell configuration files"
 # send output to /dev/null unless an error occurrs when sourcing 
 source_runtime_configs 1> /dev/null && echo "Runtime configuration files sourced successfully"
 source_shell_configs 1> /dev/null && echo "Shell-specific configuration files sourced successfully"
+
+source $HOME/dotfiles/zsh.d/custom/plugins/quote-of-the-day.zshrc
+echo "Run 'quote' to get a random quote"

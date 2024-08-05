@@ -1,0 +1,13 @@
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           fzf "$@" --preview 'tree -C {} | head -200' ;;
+    *)            fzf "$@" ;;
+  esac
+}
+
+# above should append extra arguments with the "tree" command 
+# if fzf used in combination with "cd" otherwise it should 
+# run as is

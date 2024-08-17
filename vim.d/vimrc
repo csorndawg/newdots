@@ -2,6 +2,10 @@
 ""  GENERAL 
 "" ------------------------
 
+" source vimrc submodules
+source "$HOME/dotfiles/vim.d/rt/remaps.vimrc"
+
+
 set  nocompatible
 filetype plugin indent on
 syntax on
@@ -149,6 +153,9 @@ Plug 'xero/miasma.nvim'
 " For ultisnips users.
 Plug 'SirVer/ultisnips'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+Plug 'shaunsingh/nord.nvim'
+Plug 'neanias/everforest-nvim'
+Plug 'AlexvZyl/nordic.nvim'
 
 
 call plug#end()
@@ -269,3 +276,6 @@ nnoremap <leader>rg :Rg<Cr>
 
 " fzf for buffer exploration
 nnoremap <silent><leader>l :Buffers<CR>
+
+" `%%` expands to dirpath of current buffer in cmdline mode
+cnoremap <expr> %%  getcmdtype() == ':' ? expand('%:h').'/' : '%%'

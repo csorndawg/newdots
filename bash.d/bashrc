@@ -130,9 +130,9 @@ done
 #   aliases have been migrated
 # source bash submodules
 #source $HOME/dotfiles/bash.d/aliases.bashrc
-source $HOME/dotfiles/bash.d/exports.bashrc
-source $HOME/dotfiles/bash.d/functions.bashrc
-source $HOME/dotfiles/bash.d/completions.bashrc
+##source $HOME/dotfiles/bash.d/exports.bashrc
+#source $HOME/dotfiles/bash.d/functions.bashrc
+#source $HOME/dotfiles/bash.d/completions.bashrc
 
 # NOTE: Sourcing directly for now. If this gets too messy replace
 # with a bash function/script to source all config files 
@@ -147,23 +147,16 @@ echo ""
 
 ## source dotfile configuration submodules
 
-
-# runtime/shell-agnostic
-for x in $(find $HOME/dotfiles/rc.d -type f -name "*.rc");
-do
-    echo source "$x"
-    source "$x"
-done
-
+#
+## runtime/shell-agnostic
+#for x in $(find $HOME/dotfiles/rc.d -type f -name "*.rc");
+#do
+#    echo source "$x"
+#    source "$x"
+#done
+#
 # bash.d submodules
 for x in $(find $HOME/dotfiles/bash.d -type f -name "*.bashrc");
-do
-    echo source "$x"
-    source "$x"
-done
-
-# runtime/shell-agnostic
-for x in $(find $HOME/dotfiles/rc.d -type f -name "*.rc");
 do
     echo source "$x"
     source "$x"

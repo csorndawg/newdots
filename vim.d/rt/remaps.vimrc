@@ -54,4 +54,5 @@ cnoremap <leader>zm windcmd T<cr>
 nnoremap <leader>xx :! bash %  <cr>
 nnoremap <leader>rf :! python % <cr>
 
-
+" `%%` expands dirpath of current buffer
+cnoremap <expr> %%  getcmdtype() == ':' ? expand('%:h').'/' : '%%'

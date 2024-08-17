@@ -1,6 +1,5 @@
 # bash/zsh shared aliases 
 
-
 # inital examples
 alias jc="jupyter-console"
 alias python=python3
@@ -19,9 +18,6 @@ alias a="alias"
 alias ag="alias | egrep "
 alias h="history"
 alias hg="history | egrep "
-alias xargsi='xargs -I "{}"'
-alias trup="tr [:lower:] [:upper:]"
-alias trlow="tr [:upper:] [:lower:]"
 alias t="tldr"
 
 # cheat
@@ -146,7 +142,6 @@ alias gsts="git stash show -p "
 
 
 # miscellaneous 
-alias learn="vim $HOME/git/ongoing/learning"
 alias tree="tree -C"  # colorize output by default
 alias t10="tail -n10"
 alias t30="tail -n30"
@@ -159,3 +154,4 @@ alias hist30="history | tail -n 30"
 # view custom shell scripts/functions/completions on the fly
 alias help_fzf="bat $HOME/dotfiles/rc.d/fzf.rc"
 alias help_rc_functs="bat $HOME/dotfiles/rc.d/functions.rc"
+alias gw="cd $HOME/gitwork"

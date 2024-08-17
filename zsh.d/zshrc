@@ -4,7 +4,7 @@
 export GOPATH="$HOME/.local/share/applications/go"
 GO_BIN="$GOPATH/bin"
 export CARGO_BIN="$HOME/.cargo/bin"
-export TOOLBOX_BIN="$TOOLBOX_HOME/bin"
+export TOOLBOX_BIN="$HOME/.toolbox/bin"
 
 # standard bins
 export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
@@ -169,20 +169,16 @@ alias lvim="$HOME/.local/bin/lvim"
 ### ========================================
 ###     SOURCE DOTFILE CONFIG SUBMODULES
 ### ========================================
-
+#
 # runtime/shell-agnostic config files
 source_runtime_configs(){
-    for x in $(find "$HOME/dotfiles/rc.d" -type f -name "*.rc" | sort );
+    DIRPATH="$HOME/dotfiles/rc.d"
+    for x in $(find $DIRPATH -type f | egrep "\.rc$");
     do
-        source "$x" && echo "$x" sourced successfully
-    done
-    return 0
+        source "$x" && echo "$x sourced successfully"
+    echo "Done"
 }
 
-# TODO: move to rc.d/ and call from an rc.d/ script
-#       so this can be called by both bashrc and zshrc without hardcoding 
-#       explictly in the script
-# shell-specific config files, always run after sourcing runtime config files
 source_shell_configs(){
 
     if [ "$(basename $SHELL)" = "zsh" ];
@@ -204,15 +200,6 @@ source_shell_configs(){
     fi
     return 0
 }
-
-#
-#echo "Sourcing shell configuration files"
-printf "\n%s\n" "Sourcing shell configuration files"
-
 # send output to /dev/null unless an error occurrs when sourcing 
 source_runtime_configs 1> /dev/null && echo "Runtime configuration files sourced successfully"
-source_shell_configs 1> /dev/null && echo "Shell-specific configuration files sourced successfully"
-
-source $HOME/dotfiles/zsh.d/custom/plugins/quote-of-the-day.zshrc
-echo "Run 'quote' to get a random quote"
-alias gw="cd $HOME/gitwork"
+source_runtime_configs 1> /dev/null && echo "Runtime configuration files sourced successfully"

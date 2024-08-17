@@ -18,7 +18,6 @@ export VENVS_HOME="$XDG_STATE_HOME/python/virtualEnvs"
 
 # dotfile related
 # export RETIRED_DOTFILES_HOME="$HOME/.dotfiles" 
-export DOTFILE_HOME="$HOME/dotfiles"
 export DOTFILES_HOME="$HOME/dotfiles"
 export ZSH_CONFD="$HOME/dotfiles/zsh.d"
 export RC_CONFD="$HOME/dotfiles/rc.d"

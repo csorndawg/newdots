@@ -215,3 +215,4 @@ source_shell_configs 1> /dev/null && echo "Shell-specific configuration files so
 
 source $HOME/dotfiles/zsh.d/custom/plugins/quote-of-the-day.zshrc
 echo "Run 'quote' to get a random quote"
+alias gw="cd $HOME/gitwork"

@@ -2,6 +2,8 @@
 utils/
 **.temp
 **.tmp
+tmp.**
+example.**
 temp/
 tmp/
 test/*
@@ -9,6 +11,8 @@ test/*
 testing/*
 **/testing/*
 *.test
+ref.*
+*.ref
 
 # ignore all idea folders except "*.d" (e.g. "bash.d") folders top level files 
 # ex: copy `ohmybash/lib/history.sh` (file from ohmybash repo) 

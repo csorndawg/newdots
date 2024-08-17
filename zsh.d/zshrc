@@ -155,15 +155,15 @@ alias vi="/usr/bin/vim"
 
 # neovim
 alias nv="/usr/bin/nvim"
-alias nvim="$HOME/.local/bin/lvim"  # use lvim until nvim is operational
+#alias nvim="$HOME/.local/bin/lvim"  # use lvim until nvim is operational
 
 # lunarvim stable
 alias lv="$HOME/.local/bin/lvim"
 alias lvim="$HOME/.local/bin/lvim"
 
 # experimental lunarvim
-alias lv2="$HOME/.local/bin/lvim2"
-alias lvim2="$HOME/.local/bin/lvim2"
+# alias lv2="$HOME/.local/bin/lvim2"
+# alias lvim2="$HOME/.local/bin/lvim2"
 
 
 ### ========================================

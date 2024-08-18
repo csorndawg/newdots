@@ -201,7 +201,8 @@ source_shell_configs(){
     fi
     return 0
 }
-# send output to /dev/null unless an error occurrs when sourcing 
-source_runtime_configs 
-#source_runtime_configs 1> /dev/null && echo "Runtime configuration files sourced successfully"
-source_runtime_configs 1> /dev/null && echo "Runtime configuration files sourced successfully"
+
+# silectly source files - uncomment echo commands here and within functions
+# to debug
+source_runtime_configs 1> /dev/null 
+source_runtime_configs 1> /dev/null #&& echo "Runtime configuration files sourced successfully"

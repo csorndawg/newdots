@@ -176,6 +176,7 @@ source_runtime_configs(){
     for x in $(find $DIRPATH -type f | egrep "\.rc$");
     do
         source "$x" && echo "$x sourced successfully"
+    done
     echo "Done"
 }
 
@@ -201,5 +202,6 @@ source_shell_configs(){
     return 0
 }
 # send output to /dev/null unless an error occurrs when sourcing 
-source_runtime_configs 1> /dev/null && echo "Runtime configuration files sourced successfully"
+source_runtime_configs 
+#source_runtime_configs 1> /dev/null && echo "Runtime configuration files sourced successfully"
 source_runtime_configs 1> /dev/null && echo "Runtime configuration files sourced successfully"

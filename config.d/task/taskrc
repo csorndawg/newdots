@@ -1,0 +1,29 @@
+# [Created by task 3.1.0 8/18/2024 19:42:27]
+news.version=3.1.0
+
+# XDG compliant dirs
+data.location=~/.local/share/task
+#hooks.location=~/.config/task/hooks
+
+# Color theme (uncomment one to use)
+#include light-16.theme
+#include light-256.theme
+#include dark-16.theme
+#include dark-256.theme
+#include dark-red-256.theme
+#include dark-green-256.theme
+#include dark-blue-256.theme
+#include dark-violets-256.theme
+#include dark-yellow-green.theme
+#include dark-gray-256.theme
+#include dark-gray-blue-256.theme
+#include solarized-dark-256.theme
+#include solarized-light-256.theme
+#include no-color.theme
+
+## theme with overrides
+include dark-16.theme
+color.overdue=bold white on red
+color.recurring=bold magenta
+color.tagged=white on bright black
+color.project=blue

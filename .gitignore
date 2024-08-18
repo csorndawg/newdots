@@ -99,3 +99,7 @@ config.d/dircolors/nord/
 **/todo.*.md
 todo.*.md
 */todo.*.md
+
+# ignore all files with Git IGnore prefix/suffix
+**.gig
+gig.**

@@ -173,3 +173,15 @@ function venvmake() {
     echo "Trial Function: Make VENV Automateer"
  }
 
+# dump either urser text string or url to master dumpfile (not suited for anything more complex than single string)
+quickdump(){
+    # variables
+    DUMPFILE="$$HOME/git/fortknox/knowledge_dumpfile_master.md"
+    BACKUPFILE="$HOME/.local/session/quickdumps/master_dumpfile.bk"
+    DUMPTEXT="$1"
+
+    # smart copy 
+    cp $DUMPFILE $BACKUPFILE
+    echo "" >> $DUMPFILE
+    echo "$DUMPTEXT" >> DUMPFILE
+}

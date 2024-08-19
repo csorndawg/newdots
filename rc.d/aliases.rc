@@ -48,6 +48,8 @@ alias tmshb="tmux show-buffer"
 alias tmsk="tmux send-keys "
 alias tmstb="tmux set-buffer"
 alias tmsvb="tmux save-buffer"
+alias tmk="tmux kill-session -t"
+alias tmka="tmux kill-session -a -t"
 
 
 
@@ -81,7 +83,7 @@ alias gcmsg="git commit -m"
 alias gco="git checkout "
 alias gcmn="git checkout main "
 alias gcb="git checkout -b "
-alias gcl="git checkout @{-1}"  # checkout last branch 
+alias gc1="git checkout @{-1}"  # checkout last branch 
 
 ## diff
 alias gd="git diff "
@@ -143,8 +145,10 @@ alias gsts="git stash show -p "
 
 # miscellaneous 
 alias tree="tree -C"  # colorize output by default
+alias t1="tail -n1"
 alias t10="tail -n10"
 alias t30="tail -n30"
+alias h1="head -n1"
 alias h10="head -n10"
 alias h30="head -n30"
 alias hist10="history | tail -n 10"
@@ -155,3 +159,8 @@ alias hist30="history | tail -n 30"
 alias help_fzf="bat $HOME/dotfiles/rc.d/fzf.rc"
 alias help_rc_functs="bat $HOME/dotfiles/rc.d/functions.rc"
 alias gw="cd $HOME/gitwork"
+
+# taskwarrior
+alias ta="task add"
+alias tl="task list"
+

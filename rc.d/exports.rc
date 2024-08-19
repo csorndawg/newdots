@@ -16,8 +16,7 @@ export XDG_VAR_TMP_HOME="$HOME/.local/var/tmp"
 # local venvs
 export VENVS_HOME="$XDG_STATE_HOME/python/virtualEnvs"
 
-# dotfile related
-# export RETIRED_DOTFILES_HOME="$HOME/.dotfiles" 
+# dotfile directories
 export DOTFILES_HOME="$HOME/dotfiles"
 export ZSH_CONFD="$HOME/dotfiles/zsh.d"
 export RC_CONFD="$HOME/dotfiles/rc.d"
@@ -29,6 +28,12 @@ export LVIM_CONFD="$HOME/dotfiles/lvim.d"
 export NVIM_CONFD="$HOME/dotfiles/nvim.d"
 export UTILS_CONFD="$HOME/dotfiles/utils.d"
 
+## dotfiles 
+export ZSHRC="$HOME/.zshrc"
+export VIMRC="$HOME/.zshrc"
+export TMUX_CONF="$HOME/.tmux.conf"
+
+
 # freq. used 
 export CHEATFILES_HOME="$HOME/.config/cheat"
 export CHEATFILES_WORK_HOME="$HOME/.config/cheat/cheatsheets/work"
@@ -39,7 +44,7 @@ export CHEATLIB_RESOURCES="$HOME/.cheatlib/resources"
 export SSH_HOME="$HOME/.ssh"
 export TOOLBOX_HOME="$HOME/git/ongoing/toolbox"
 
-#
+
 # .local/var and .local/tmp favorites
 # check notes on when to use 'var/tmp' or 'var/tmp/data' 
 # 
@@ -60,4 +65,6 @@ export TMUX_BUFFERS="$HOME/.local/state/tmux/buffers"
 export VIM_BUFFERS="$HOME/.local/state/vim/buffers"
 export NVIM_BUFFERS="$HOME/.local/state/nvim/buffers"
 export LVIM_BUFFERS="$HOME/.local/state/lvim/buffers"
-export DOCKER_CONTAINERS="$HOME/.local/share/docker/containers"
+export KNOWLEDGE_DUMPFILE="$HOME/git/fortknox/knowledge_dumpfile_master.md"
+export SECRETS_DUMPFILE="$HOME/git/fortknox/secrets_dumpfile_master.md"
+export DIFFPATCHES="$HOME/.local/state/diffpatch"

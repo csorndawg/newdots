@@ -3,9 +3,14 @@ utils/
 **.temp
 **.tmp
 tmp.**
+temp.**
+temp_**
+temp-**
+
 example.**
 temp/
 tmp/
+.tmp/
 test/*
 **/test/
 testing/*
@@ -103,3 +108,9 @@ todo.*.md
 # ignore all files with Git IGnore prefix/suffix
 **.gig
 gig.**
+**.ref
+**.exp
+exp-**
+exp.**
+exp_**
+*/**/**examples.md

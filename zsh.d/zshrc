@@ -77,6 +77,11 @@ bindkey '^[m' forward-word
 # <Alt>, clear suggestion
 bindkey '^[,' autosuggest-clear
 
+
+# WIP
+# Extra binds
+#bindkey '^X^E' # open $EDITOR 
+
 # source ohmyzsh for default behaviors
 source $ZSH/oh-my-zsh.sh 
 

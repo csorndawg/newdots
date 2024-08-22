@@ -186,3 +186,9 @@ alias debuggy_on="activate $HOME/.venv/bin/activate"
 alias rsrc_fzf_kb="source /usr/share/fzf/shell/key-bindings.zsh"
 alias fzfkb="source /usr/share/fzf/shell/key-bindings.zsh"
 alias fzfcompz="source /usr/share/zsh/site-functions/fzf"
+
+# pomodoro 
+alias pt="pomodoro"
+alias ptn="pomodoro start"
+alias pts='pomodoro status --format "Time Remaining: %R  Timer: %L"'
+alias pta="pomodoro ammend"

@@ -182,3 +182,5 @@ alias -s {md,sh,zshrc,bashrc,config,py,conf,yml}=nvim
 
 # use "bat" for csv/json/mdz file
 alias -s {csv,json,mdz}=bat
+
+alias zmkd="z tmp work && mcd" 

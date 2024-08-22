@@ -177,8 +177,8 @@ alias dt='date "+%Y%m%d_%H%M%S_%Z"'
 # TRY: try lvim, if errors occur try nvim, if errors still occurring 
 #       use vim as a fallback
 #alias -s {md,sh,zshrc,bashrc,config,py,conf,yml}=vim 
-#alias -s {md,sh,zshrc,bashrc,config,py,conf,yml}=nvim 
-alias -s {md,sh,zshrc,bashrc,config,py,conf,yml}=lvim 
+alias -s {md,sh,zshrc,bashrc,config,py,conf,yml}=nvim 
+#alias -s {md,sh,zshrc,bashrc,config,py,conf,yml}=lvim 
 
 # use "bat" for csv/json/mdz file
 alias -s {csv,json,mdz}=bat

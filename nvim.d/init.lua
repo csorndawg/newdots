@@ -44,7 +44,24 @@ require("lazy").setup({
 
 require("preferences")
 require("remaps")
+<<<<<<< Updated upstream
+||||||| Stash base
+-- TODO: add hotreload functionality from lunarvim
+
+-- TESTING
+-- source all plugin-related remaps
+require("lazyplug_remaps")
+=======
+-- TODO: add hotreload functionality from lunarvim
+
+-- EXPERIMENTAL
+-- source all plugin-related remaps
+require("lazyplug_remaps")
+>>>>>>> Stashed changes
 
 
 -- testcase: testing to see if plugins are being loaded by lazy
 vim.cmd("colorscheme everforest")
+
+-- EXPERIMENTAL
+require("user.experimental")

@@ -27,3 +27,4 @@ color.overdue=bold white on red
 color.recurring=bold magenta
 color.tagged=white on bright black
 color.project=blue
+color.uda.priority.M=yellow

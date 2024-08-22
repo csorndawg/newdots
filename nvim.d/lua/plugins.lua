@@ -35,5 +35,102 @@ return {
 		})
 	  end
 	},
+<<<<<<< Updated upstream
+||||||| Stash base
+    {
+        "kylechui/nvim-surround",
+        version = "*", -- Use for stability; omit to use `main` branch for the latest features
+        event = "VeryLazy",
+        config = function()
+            require("nvim-surround").setup({
+                -- Configuration here, or leave empty to use defaults
+            })
+        end
+    },
+
+
+    -- TODO: update config for plugins below, if needed (for now installing in
+    --        the most vanilla way to speed up migration)
+    -- preliminary installs 
+    {"ggandor/leap.nvim", event = "VeryLazy"},
+
+    -- melange-test
+    {"savq/melange-nvim"},
+
+	-- install markdown-preview without yarn or npm
+	{
+		"iamcco/markdown-preview.nvim",
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		ft = { "markdown" },
+		build = function() vim.fn["mkdp#util#install"]() end,
+	},
+
+	{ "tpope/vim-repeat" },
+	{
+	  "tpope/vim-fugitive",
+	  cmd = {
+		"G",
+		"Git",
+		"Gdiffsplit",
+		"Gread",
+		"Gwrite",
+		"Ggrep",
+		"GMove",
+		"GDelete",
+		"GBrowse",
+		"GRemove",
+		"GRename",
+		"Glgrep",
+		"Gedit"
+	  },
+	  ft = {"fugitive"}
+	},
+
+    -- create/edit gists
+	{  
+        "mattn/vim-gist",
+        event = "BufRead",
+        dependencies = "mattn/webapi-vim",
+    },
+
+=======
+    {
+        "kylechui/nvim-surround",
+        version = "*", -- Use for stability; omit to use `main` branch for the latest features
+        event = "VeryLazy",
+        config = function()
+            require("nvim-surround").setup({
+                -- Configuration here, or leave empty to use defaults
+            })
+        end
+    },
+
+
+    -- TODO: update config for plugins below, if needed (for now installing in
+    --        the most vanilla way to speed up migration)
+    -- preliminary installs 
+    {"ggandor/leap.nvim", event = "VeryLazy"},
+
+    -- melange-test
+    {"savq/melange-nvim"},
+
+	-- install markdown-preview without yarn or npm
+	{
+		"iamcco/markdown-preview.nvim",
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		ft = { "markdown" },
+		build = function() vim.fn["mkdp#util#install"]() end,
+	},
+
+	{ "tpope/vim-repeat" },
+
+    -- create/edit gists
+	{  
+        "mattn/vim-gist",
+        event = "BufRead",
+        dependencies = "mattn/webapi-vim",
+    },
+
+>>>>>>> Stashed changes
 }
 

@@ -108,9 +108,23 @@ todo.*.md
 # ignore all files with Git IGnore prefix/suffix
 **.gig
 gig.**
+<<<<<<< Updated upstream
 **.ref
 **.exp
 exp-**
 exp.**
 exp_**
 */**/**examples.md
+||||||| Stash base
+=======
+
+exp.**
+**.exp
+
+**/**-temp
+**/**_temp
+**/**.temp
+**/temp.**
+**/temp-**
+**/temp_**
+>>>>>>> Stashed changes

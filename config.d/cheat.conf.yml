@@ -1,45 +1,15 @@
 ---
-editor: vim
+# https://github.com/cheat/cheatsheets
+
+## cheat tool configuration
+editor: nvim
 colorize: false
 style: nord
 formatter: terminal256
 # TODO: check if bat can be used
 pager: less   
 
-# Cheatpaths are paths at which cheatsheets are available on your local
-# filesystem.
-#
-# It is useful to sort cheatsheets into different cheatpaths for organizational
-# purposes. For example, you might want one cheatpath for community
-# cheatsheets, one for personal cheatsheets, one for cheatsheets pertaining to
-# your day job, one for code snippets, etc.
-#
-# Cheatpaths are scoped, such that more "local" cheatpaths take priority over
-# more "global" cheatpaths. (The most global cheatpath is listed first in this
-# file; the most local is listed last.) For example, if there is a 'tar'
-# cheatsheet on both global and local paths, you'll be presented with the local
-# one by default. ('cheat -p' can be used to view cheatsheets from alternative
-# cheatpaths.)
-#
-# Cheatpaths can also be tagged as "read only". This instructs cheat not to
-# automatically create cheatsheets on a read-only cheatpath. Instead, when you
-# would like to edit a read-only cheatsheet using 'cheat -e', cheat will
-# perform a copy-on-write of that cheatsheet from a read-only cheatpath to a
-# writeable cheatpath.
-#
-# This is very useful when you would like to maintain, for example, a
-# "pristine" repository of community cheatsheets on one cheatpath, and an
-# editable personal reponsity of cheatsheets on another cheatpath.
-#
-# Cheatpaths can be also configured to automatically apply tags to cheatsheets
-# on certain paths, which can be useful for querying purposes.
-# Example: 'cheat -t work jenkins'.
-#
-# Community cheatsheets must be installed separately, though you may have
-# downloaded them automatically when installing 'cheat'. If not, you may
-# download them here:
-#
-# https://github.com/cheat/cheatsheets
+## CHEAT cheatpaths 
 cheatpaths:
   # Cheatpath properties mean the following:
   #   'name': the name of the cheatpath (view with 'cheat -d', filter with 'cheat -p')
@@ -55,24 +25,31 @@ cheatpaths:
   ## Personal Cheat Dirs 
   ############################
 
-  # drafts
-  - name: immaculate
-    path: /home/nukk/.config/cheat/cheatsheets/immaculate
-    tags: [ immaculate readonly personal ]
-    readonly: true
+  ## VERSION CONTROLLED 
 
-  # version controlled under "toolbox" repo
+  # for new and current cheatfiles, feeds into pristine 
   - name: work
-    path: /home/nukk/.config/cheat/cheatsheets/work
-    tags: [ work ]
+    path: /home/nukk/.cheatlib/tools/cheat/cheatfiles/work
+    tags: [ personal, work ]
     readonly: false
 
-  # While it requires no configuration here, it's also worth noting that
-  # cheat will automatically append directories named '.cheat' within the
-  # current working directory to the 'cheatpath'. This can be very useful if
-  # you'd like to closely associate cheatsheets with, for example, a directory
-  # containing source code.
-  #
-  # Such "directory-scoped" cheatsheets will be treated as the most "local"
-  # cheatsheets, and will override less "local" cheatsheets. Similarly,
-  # directory-scoped cheatsheets will always be editable ('readonly: false').
+  # cleaned up "work" cheatfiles
+  - name: pristine
+    path: /home/nukk/.cheatlib/tools/cheat/cheatfiles/pristine
+    tags: [ readonly personal ]
+    readonly: true
+
+
+  # for special cases that dont follow "cheat" syntax/formatting
+  - name: misc
+    path: /home/nukk/.cheatlib/tools/cheat/cheatfiles/misc
+    tags: [ personal, misc ]
+    readonly: false
+
+  ## UNTRACKED 
+  # catch-all folder for things like stashing broken cheat 
+  # comamnds, partially completed cheatfiles, etc.
+  - name: quick
+    path: /home/nukk/.cheatlib/tools/cheat/cheatfiles/quick
+    tags: [ personal, quick ]
+    readonly: false

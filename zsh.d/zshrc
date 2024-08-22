@@ -47,9 +47,16 @@ export EDITOR=nvim
 ## Color hexcodes source: https://github.com/AlexvZyl/nordic.nvim/blob/main/assets/palette.png
 
 ##  ZSH-VI-MODE
+ZVM_KEYTIMEOUT=0.4
 ZVM_ESCAPE_KEYTIMEOUT=0.25        # escape key timeout default is 0.3
-ZVM_VI_INSERT_ESCAPE_BINDKEY='^[b'  # <ALT>b switch from Insert to Normal  
-ZVM_VI_VISUAL_ESCAPE_BINDKEY='^[v'  # <ALT>v switch from Insert to Visual
+#ZVM_VI_INSERT_ESCAPE_BINDKEY='^[b'  # <ALT>b switch from Insert to Normal  
+#ZVM_VI_INSERT_ESCAPE_BINDKEY='^C'
+
+# remap <CTRL-c> to kill signal to <Ctrl-q> so we can bind <Ctrl-c> to
+# ZVM_ESCAPE to mirror vim
+stty intr ^Q
+ZVM_VI_ESCAPE_BINDKEY="^C"  # <Ctrl-c> to escape modes
+#ZVM_VI_VISUAL_ESCAPE_BINDKEY='^[v'  # <ALT>v switch from Insert to Visual
 ZVM_VI_HIGHLIGHT_BACKGROUND="#60728A"   # prettier visual mode highlighting 
 
 # plugins (has both custom and default ohmyzsh plugins)
@@ -169,19 +176,39 @@ source_runtime_configs > /dev/null 2>&1
 source $ZSH_CUSTOM/patches/you-should-use-patch.zshrc > /dev/null 2>&1
 source_shell_configs > /dev/null 2>&1
 
-# NEEDSFIX: as of now the completions need to be sourced manually after
-# everything is loaded at runtime. Also the command flag tab completion is
-# broken.
-# fzf 
-source $HOME/dotfiles/rc.d/fzf.rc
-source $HOME/dotfiles/config.d/fzf.config
-source /usr/share/fzf/shell/key-bindings.zsh
-source /usr/share/zsh/site-functions/fzf
-# TEMPFIX: easier reloaded after shell initialized
+## fzf 
+# FIXNEEDED: shell flag tab-completion broken, key bindings for history 
+# need to be re-sourced after shell initializes at runtime. Using below "fzz" function as workaround in the interim.
+
 fzz(){
     source /usr/share/fzf/shell/key-bindings.zsh
-    #source /usr/share/zsh/site-functions/fzf
+    # below script was copied from "/usr/share/zsh/site-functions/fzf"
     source $XDG_BIN_HOME/fzf_completion.zsh
-
 }
 fzz
+source $HOME/dotfiles/rc.d/fzf.rc
+source $HOME/dotfiles/config.d/fzf.config
+
+###########################################
+##  EXPERIMENTAL (NEW TOOLS/CONFIGS)
+###########################################
+
+## PET CLI SNIPPET manager
+
+## add previous command to snippet manager
+#cat .zshrc
+function prev() {
+  PREV=$(fc -lrn | head -n 1)
+  sh -c "pet new `printf %q "$PREV"`"
+}
+
+## select and run snippets from the CLI
+#cat .zshrc
+function pet-select() {
+  BUFFER=$(pet search --query "$LBUFFER")
+  CURSOR=$#BUFFER
+  zle redisplay
+}
+zle -N pet-select
+stty -ixon
+bindkey '^[g' pet-select

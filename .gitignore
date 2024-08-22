@@ -17,7 +17,11 @@ testing/*
 **/testing/*
 *.test
 ref.*
-*.ref
+ref_**
+ref-**
+**-ref.*    # ex. filename-ref.txt, kickstart_nvim_ref.lua
+**_ref.*    # ex. filename-ref.txt, kickstart_nvim_ref.lua
+
 
 # ignore all idea folders except "*.d" (e.g. "bash.d") folders top level files 
 # ex: copy `ohmybash/lib/history.sh` (file from ohmybash repo) 
@@ -108,15 +112,12 @@ todo.*.md
 # ignore all files with Git IGnore prefix/suffix
 **.gig
 gig.**
-<<<<<<< Updated upstream
 **.ref
 **.exp
 exp-**
 exp.**
 exp_**
 */**/**examples.md
-||||||| Stash base
-=======
 
 exp.**
 **.exp
@@ -127,4 +128,3 @@ exp.**
 **/temp.**
 **/temp-**
 **/temp_**
->>>>>>> Stashed changes

@@ -8,6 +8,7 @@ alias gds="git diff --summary"
 alias tdv="vim $HOME/dotfiles/TODO.md"
 alias tdb="bat --theme='Nord' $HOME/dotfiles/TODO.md"
 alias bat="bat --theme='Nord'"
+alias zc="z -c" 
 
 
 # general
@@ -27,6 +28,14 @@ alias cl="cheat -l"     # cheat edit
 alias cs="cheat -s"     # cheat edit
 alias cconf="vim $(cheat --conf)"   # edit cheat conf
 alias clt="cheat -l -t personal"    # list all cheatfiles with 'personal' tag
+
+# pet (cheat meets ultisnips)
+alias pc="pet clip"
+alias pe="pet edit"
+alias px="pet exec"
+alias pl="pet list"
+alias ph="pet help"     # how to use: `ph search` (returns help for search subcommand)
+alias psr="pet search"
 
 
 # cron
@@ -176,3 +185,4 @@ alias debuggy_on="activate $HOME/.venv/bin/activate"
 # fzf keybinds 
 alias rsrc_fzf_kb="source /usr/share/fzf/shell/key-bindings.zsh"
 alias fzfkb="source /usr/share/fzf/shell/key-bindings.zsh"
+alias fzfcompz="source /usr/share/zsh/site-functions/fzf"

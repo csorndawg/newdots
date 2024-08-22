@@ -70,7 +70,10 @@ set completeopt+=longest
 
 
 " decrease leader timeout latency (default 1000 ms)
-set timeoutlen=500
+"set ttimeoutlen=500
+" set latency for mappings  to 300ms and 100ms for normal vim commands
+set timeout timeoutlen=300 ttimeoutlen=100
+
  
 "  tmux-like commands for better window navigation remaps (change to mirror tmux)
 nnoremap <C-h> <C-w>h      
@@ -78,35 +81,22 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k      
 nnoremap <C-l> <C-w>l      
 
-" normal-insert mode remaps
 
-" in insert mode <CTRL>, to literally insert a comma 
-"nmap <leader>, i
-"inoremap <C-,> i
+"" Mode switching remaps
 
-
-
-" switch b/w imo/nmo with <space>, and <Ctrl-,>
-inoremap <C-,> <ESC>
+" switch b/w imo/nmo with <space>, and <Alt-,>
+inoremap <A-,> <ESC>
 nnoremap <leader>, i
 
 
-" VALIDATED: <leader><arrow key> remaps have been validated
-" using arrows as extra ways to mode switch
+" use arrows keys for additionally mode switching method
 imap <leader><down> <ESC>
 nmap <leader><down> i
 
-" NOTE: using <left/right> for cmo since <up/down> used for history cycling
-" expanding above to normal/command mode switching
+" use <left/right> for cmo since <up/down> used for history cycling
 cmap <leader><left> <ESC>
 nmap <leader><left> :
  
-" EXPERIMENTAL:
-" cmo to imo
-"cmap <leader><left><left> <ESC>:
-"imap <leader><left><left> <ESC>:
-
-
 "" ------------------------
 "" REMAPS
 "" ------------------------
@@ -158,6 +148,7 @@ Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'shaunsingh/nord.nvim'
 Plug 'neanias/everforest-nvim'
 Plug 'AlexvZyl/nordic.nvim'
+Plug 'vim-airline/vim-airline'
 
 
 call plug#end()
@@ -178,6 +169,12 @@ let g:nord_italic = 1
 let g:nord_underline = 1
 ""let g:nord_italic_comments = 1
 colorscheme nord
+
+" airline
+let g:airline_section_y=''
+let g:airline_section_z=''
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#branch#empty_message = ''
 
 " undodir
 noremap <leader>u :UndotreeShow<CR>
@@ -306,3 +303,5 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+set foldmethod=indent

@@ -35,8 +35,6 @@ return {
 		})
 	  end
 	},
-<<<<<<< Updated upstream
-||||||| Stash base
     {
         "kylechui/nvim-surround",
         version = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -64,7 +62,7 @@ return {
 		ft = { "markdown" },
 		build = function() vim.fn["mkdp#util#install"]() end,
 	},
-
+    
 	{ "tpope/vim-repeat" },
 	{
 	  "tpope/vim-fugitive",
@@ -93,7 +91,6 @@ return {
         dependencies = "mattn/webapi-vim",
     },
 
-=======
     {
         "kylechui/nvim-surround",
         version = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -131,6 +128,4 @@ return {
         dependencies = "mattn/webapi-vim",
     },
 
->>>>>>> Stashed changes
 }
-

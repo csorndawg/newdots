@@ -131,3 +131,6 @@ exp.**
 **/todo/**
 
 IGNOREME/
+
+# temporary until core of nvim plugins setup
+nvim.d/lazy-lock.json   

@@ -217,3 +217,12 @@ function pet-select() {
 zle -N pet-select
 stty -ixon
 bindkey '^[g' pet-select
+
+# added automatically after plugin was installed by TPM
+tmux-git-autofetch() {(/home/nukk/git/ongoing/newdots/tmux.d/plugins/tmux-git-autofetch/git-autofetch.tmux --current &)}
+Add-zsh-hook chpwd tmux-git-autofetch
+    
+# local forecast weather  (go depenency)
+echo ""
+curl "wttr.in/New+York+City?2nq"
+echo ""

@@ -1,3 +1,5 @@
 return {
-    "nordic.nvim",
+    {
+      "andersevenrud/nordic.nvim",
+    }
 }

@@ -36,7 +36,6 @@ require("lazy").setup({
   },
 })
 
-
 -- -----------------------------------------------------------------
 --   source custom nvim config submodules (source after lazy to 
 --   avoid overwriting personal configuration)
@@ -44,13 +43,23 @@ require("lazy").setup({
 
 require("preferences")
 require("remaps")
--- TODO: cleanup by breaking lazyplug_remaps into indv. spec files within lua/plugin/<spec>.lua
 require("lazy_remaps")
-
--- load colorscheme
-vim.cmd("colorscheme everforest")
 
 -- EXPERIMENTAL 
 -- test experimental configurations (plugin, opt, remap, etc.)
--- comment if any breaking changes occurr when experimenting
-require("user.experimental")
+--require("user.experimental")
+
+
+-- set Nord theme for colorscheme/lualine/bufferline to Nord
+vim.cmd("colorscheme nord")
+
+require('lualine').setup({
+  options = { theme = 'nord' }
+})
+
+require("bufferline").setup({
+    options = {
+        separator_style = "thin",
+        theme = 'nord',
+    },
+})

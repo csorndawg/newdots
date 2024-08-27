@@ -1,34 +1,21 @@
 {
-<<<<<<< Updated upstream
-  "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
-  "cmp-nvim-lsp": { "branch": "main", "commit": "39e2eda76828d88b773cc27a3f61d2ad782c922d" },
-  "dial.nvim": { "branch": "master", "commit": "ed4d6a5bbd5e479b4c4a3019d148561a2e6c1490" },
-  "dressing.nvim": { "branch": "master", "commit": "c5775a888adbc50652cb370073fcfec963eca93e" },
-  "everforest-nvim": { "branch": "main", "commit": "2c40c11b971da120796564e69aecce7e7c82a854" },
-||||||| Stash base
-  "LuaSnip": { "branch": "master", "commit": "b84eeb3641b08324287587b426ec974b888390d9" },
-  "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
-  "everforest-nvim": { "branch": "main", "commit": "2c40c11b971da120796564e69aecce7e7c82a854" },
-=======
-  "LuaSnip": { "branch": "master", "commit": "b84eeb3641b08324287587b426ec974b888390d9" },
-  "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
+  "bufferline.nvim": { "branch": "main", "commit": "2e3c8cc5a57ddd32f1edd2ffd2ccb10c09421f6c" },
   "everforest-nvim": { "branch": "main", "commit": "5493fc380cf871d6ee9395f2613e57006b2a1626" },
-  "friendly-snippets": { "branch": "main", "commit": "00ebcaa159e817150bd83bfe2d51fa3b3377d5c4" },
-  "fzf-lua": { "branch": "main", "commit": "264f5d870d603d4f90ef7ec0f61fcb5987efc1d5" },
->>>>>>> Stashed changes
   "lazy.nvim": { "branch": "main", "commit": "077102c5bfc578693f12377846d427f49bc50076" },
-  "lua-utils.nvim": { "branch": "main", "commit": "e565749421f4bbb5d2e85e37c3cef9d56553d8bd" },
-  "neorg": { "branch": "main", "commit": "09deca2ba5adcf1a729d1e3abf64438d7ce4d7ee" },
-  "nordic.nvim": { "branch": "main", "commit": "03fcff3c8d68049b8118047784746048b4a08049" },
+  "leap.nvim": { "branch": "main", "commit": "c6bfb191f1161fbabace1f36f578a20ac6c7642c" },
+  "lualine.nvim": { "branch": "master", "commit": "b431d228b7bbcdaea818bdc3e25b8cdbe861f056" },
+  "neo-tree.nvim": { "branch": "v3.x", "commit": "29f7c215332ba95e470811c380ddbce2cebe2af4" },
+  "nord.nvim": { "branch": "master", "commit": "80c1e5321505aeb22b7a9f23eb82f1e193c12470" },
+  "nordic.nvim": { "branch": "main", "commit": "c88388b2a5f6e621df2718c316b856d4971bb89d" },
   "nui.nvim": { "branch": "main", "commit": "61574ce6e60c815b0a0c4b5655b8486ba58089a1" },
-  "nvim-cmp": { "branch": "main", "commit": "ae644feb7b67bf1ce4260c231d1d4300b19c6f30" },
   "nvim-juliana": { "branch": "master", "commit": "881d1a85d33f744b6b851a210becb3194da8e2a6" },
-  "nvim-nio": { "branch": "master", "commit": "a428f309119086dc78dd4b19306d2d67be884eee" },
+  "nvim-surround": { "branch": "main", "commit": "ec2dc7671067e0086cdf29c2f5df2dd909d5f71f" },
   "nvim-web-devicons": { "branch": "master", "commit": "3722e3d1fb5fe1896a104eb489e8f8651260b520" },
-  "pathlib.nvim": { "branch": "main", "commit": "7a5a6facd29e306bc73a37719fa67c0d2226f852" },
-  "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },
-  "tokyonight.nvim": { "branch": "main", "commit": "b0e7c7382a7e8f6456f2a95655983993ffda745e" },
-  "treesj": { "branch": "main", "commit": "0d81326b5afd36babe7dd480aabbb0b05f33e688" },
-  "vim-startuptime": { "branch": "master", "commit": "ac2cccb5be617672add1f4f3c0a55ce99ba34e01" },
-  "which-key.nvim": { "branch": "main", "commit": "6c1584eb76b55629702716995cca4ae2798a9cca" }
+  "onenord.nvim": { "branch": "main", "commit": "057d7048e499b4de7cd4edaff94ec1890242a117" },
+  "plenary.nvim": { "branch": "master", "commit": "ec289423a1693aeae6cd0d503bac2856af74edaa" },
+  "poimandres.nvim": { "branch": "main", "commit": "77635055e686ae3c8a519198006ff0b43b6b2eae" },
+  "vim-fugitive": { "branch": "master", "commit": "0444df68cd1cdabc7453d6bd84099458327e5513" },
+  "vim-gist": { "branch": "master", "commit": "5bfbb5450d9eff248f6c074de0b7800392439304" },
+  "vim-repeat": { "branch": "master", "commit": "65846025c15494983dafe5e3b46c8f88ab2e9635" },
+  "webapi-vim": { "branch": "master", "commit": "70c49ada7827d3545a65cbdab04c5c89a3a8464e" }
 }

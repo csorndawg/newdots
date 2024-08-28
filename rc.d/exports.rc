@@ -48,6 +48,7 @@ export FORTKNOX_HOME="$HOME/git/ongoing/fortknox"
 
 # .local/var and .local/tmp favorites
 # check notes on when to use 'var/tmp' or 'var/tmp/data' 
+export TMP_WORK="$HOME/.local/work"
  
 export VAR_ARCHIVE_DIR="/home/nukk/.local/var/archive"
 export VAR_DATA_DIR="/home/nukk/.local/var/data"

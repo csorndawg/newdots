@@ -185,14 +185,12 @@ source_shell_configs > /dev/null 2>&1
 # FIXNEEDED: shell flag tab-completion broken, key bindings for history 
 # need to be re-sourced after shell initializes at runtime. Using below "fzz" function as workaround in the interim.
 
-fzz(){
+ff(){
     source /usr/share/fzf/shell/key-bindings.zsh
     # below script was copied from "/usr/share/zsh/site-functions/fzf"
     source $XDG_BIN_HOME/fzf_completion.zsh
 }
-fzz
-source $HOME/dotfiles/rc.d/fzf.rc
-source $HOME/dotfiles/config.d/fzf.config
+ff
 
 ###########################################
 ##  EXPERIMENTAL (NEW TOOLS/CONFIGS)

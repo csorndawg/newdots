@@ -134,3 +134,7 @@ IGNOREME/
 
 # temporary until core of nvim plugins setup
 nvim.d/**/config.d
+
+# ignore plugin/submodules .git folders
+tmux.d/plugins
+.git/modules    

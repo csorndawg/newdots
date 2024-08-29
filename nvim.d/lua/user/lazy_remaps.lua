@@ -1,4 +1,4 @@
--- All plugin related remaps/key binds
+-- Custom configuration/key bindings for Lazy-installed plugins
 
 -- neo-tree
 vim.api.nvim_set_keymap('n', '<leader>t', ':Neotree toggle<CR> ', { noremap = true })

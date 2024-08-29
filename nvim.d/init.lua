@@ -68,10 +68,21 @@ require("bufferline").setup({
 })
 
 
+require("mason").setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
 
 
---require("mason-lspconfig").setup {
+require("mason-lspconfig").setup {
     -- add dockerls, docker_compose_language_service, jsonls, marksman, awk_ls
     -- sqlls, glint, etc. after getting base cases set up
- -- ensure_installed = { "lua_ls", "bashls", "vimls" , "yamlls" },
---}
+ensure_installed = { "lua_ls", "bashls", "vimls" , "yamlls" },
+}
+
+require'lspconfig'.pyright.setup{}

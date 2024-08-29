@@ -45,7 +45,7 @@ require("lazy").setup({
 require("user.opts")
 require("user.keymaps")
 require("user.lazy_remaps")
---require("config.autocmds")
+--require("user.autocmds")
 
 -- EXPERIMENTAL 
 -- test experimental configurations (plugin, opt, remap, etc.)

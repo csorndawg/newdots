@@ -32,6 +32,7 @@ require("lazy").setup({
   spec = {
     -- import all plugins (plus their configurations) defined 
     -- in nvim/lua/plugins.lua
+    --{ import = "plugins" },
     { import = "plugins" },
   },
 })
@@ -41,14 +42,16 @@ require("lazy").setup({
 --   avoid overwriting personal configuration)
 -- -----------------------------------------------------------------
 
-require("preferences")
-require("remaps")
-require("lazy_remaps")
+-- 3 modules below were moved to lua/config and are now sourced 
+-- by Lazy automatically (https://www.lazyvim.org/configuration/general)
+--require("user.opts")
+--require("user.autocmds")
+--require("user.keymaps")
 
--- EXPERIMENTAL 
+-- @EXPERIMENTAL 
 -- test experimental configurations (plugin, opt, remap, etc.)
 --require("user.experimental")
-
+require("user.lazy_remaps")     -- load custom plugin remaps
 
 -- set Nord theme for colorscheme/lualine/bufferline to Nord
 vim.cmd("colorscheme nord")
@@ -63,3 +66,12 @@ require("bufferline").setup({
         theme = 'nord',
     },
 })
+
+
+
+
+--require("mason-lspconfig").setup {
+    -- add dockerls, docker_compose_language_service, jsonls, marksman, awk_ls
+    -- sqlls, glint, etc. after getting base cases set up
+ -- ensure_installed = { "lua_ls", "bashls", "vimls" , "yamlls" },
+--}

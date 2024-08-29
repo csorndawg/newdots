@@ -32,6 +32,7 @@ require("lazy").setup({
   spec = {
     -- import all plugins (plus their configurations) defined 
     -- in nvim/lua/plugins.lua
+    --{ import = "plugins" },
     { import = "plugins" },
   },
 })
@@ -41,9 +42,10 @@ require("lazy").setup({
 --   avoid overwriting personal configuration)
 -- -----------------------------------------------------------------
 
-require("preferences")
-require("remaps")
-require("lazy_remaps")
+require("user.opts")
+require("user.keymaps")
+require("user.lazy_remaps")
+--require("config.autocmds")
 
 -- EXPERIMENTAL 
 -- test experimental configurations (plugin, opt, remap, etc.)

@@ -79,10 +79,109 @@ require("mason").setup({
 })
 
 
+-- LSP/MASON
+
 require("mason-lspconfig").setup {
     -- add dockerls, docker_compose_language_service, jsonls, marksman, awk_ls
     -- sqlls, glint, etc. after getting base cases set up
 ensure_installed = { "lua_ls", "bashls", "vimls" , "yamlls" },
 }
 
+-- Python 
 require'lspconfig'.pyright.setup{}
+
+
+-- Vim
+require'lspconfig'.vimls.setup({
+	diagnostic = {
+        enable = true
+	  },
+	  indexes = {
+		count = 3,
+		gap = 100,
+		projectRootPatterns = { "runtime", "nvim", ".git", "autoload", "plugin" },
+		runtimepath = true
+	  },
+      isNeovim = true,
+
+runtimepath = "",
+  suggest = {
+    fromRuntimepath = true,
+    fromVimruntime = true
+  },
+  vimruntime = ""
+})
+
+
+-- BASH
+require'lspconfig'.bashls.setup({
+	filetypes = { "sh", "bash", "bashrc" }
+})
+
+-- YAML
+
+
+-- Docker/Docker Compose
+require'lspconfig'.docker_compose_language_service.setup{}
+require("lspconfig").dockerls.setup {
+    settings = {
+        docker = {
+	    languageserver = {
+	        formatter = {
+		    ignoreMultilineInstructions = true,
+		},
+	    },
+	}
+    }
+}
+
+
+
+-- Ansible
+require'lspconfig'.ansiblels.setup({
+filetypes = {"yaml.ansible"},
+})
+
+
+-- SQL (all non-postgres flavors)
+require'lspconfig'.sqls.setup({
+  cmd = {"path/to/command", "-config", "path/to/config.yml"},
+  filetypes = {"sql","mysql"},
+})
+
+-- POSTGRES
+require'lspconfig'.postgres_lsp.setup{}
+
+-- LUA
+require'lspconfig'.lua_ls.setup {
+  on_init = function(client)
+    local path = client.workspace_folders[1].name
+    if vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc') then
+      return
+    end
+
+    client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+      runtime = {
+        -- Tell the language server which version of Lua you're using
+        -- (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT'
+      },
+      -- Make the server aware of Neovim runtime files
+      workspace = {
+        checkThirdParty = false,
+        library = {
+          vim.env.VIMRUNTIME
+          -- Depending on the usage, you might want to add additional paths here.
+          -- "${3rd}/luv/library"
+          -- "${3rd}/busted/library",
+        }
+        -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+        -- library = vim.api.nvim_get_runtime_file("", true)
+      }
+    })
+  end,
+  settings = {
+    Lua = {}
+  }
+}
+

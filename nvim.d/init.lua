@@ -185,3 +185,8 @@ require'lspconfig'.lua_ls.setup {
   }
 }
 
+
+
+-- TREESITTER
+-- lua require'nvim-treesitter.configs'.setup{highlight={enable=true}}  " At the bottom of your init.vim, keep all configs on one line
+--require("lazy").setup({{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"}})

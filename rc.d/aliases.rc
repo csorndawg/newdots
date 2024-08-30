@@ -27,9 +27,17 @@ alias t="tldr"
 alias c="cheat -c"      # colorize cheat
 alias ce="cheat -e"     # cheat edit
 alias cl="cheat -l"     # cheat edit
-alias cs="cheat -s"     # cheat edit
-alias cconf="vim $(cheat --conf)"   # edit cheat conf
+alias cs="cheat -cs"     # cheat edit
 alias clt="cheat -l -t personal"    # list all cheatfiles with 'personal' tag
+alias config_cheat="nvim $(cheat --conf)"   # edit cheat conf
+
+# FZF integration -- EXPERIMENTAL 
+# for now two aliases - one to view cheatfiles/ one to edit cheatfiles
+# if works move to more flexible script
+#alias fzcv="bat $(cheat -l | tr -s ' ' | awk -F ' ' '{print $2}' | fzf -m | xargs -I '{}')"     # (fz)f (c)heatfile (v)iewer
+#alias fzce="nvim $(cheat -l | tr -s ' ' | awk -F ' ' '{print $2}' | fzf -m | xargs -I '{}')"    # (fz)f (c)heatfile (e)ditor
+
+
 
 # pet (cheat meets ultisnips)
 alias pc="pet clip"
@@ -38,6 +46,7 @@ alias px="pet exec"
 alias pl="pet list"
 alias ph="pet help"     # how to use: `ph search` (returns help for search subcommand)
 alias psr="pet search"
+alias pvw="bat $HOME/dotfiles/config.d/pet/snippet.toml"
 
 
 # cron
@@ -86,6 +95,7 @@ alias gbslr="git branch --sort=committerdate"   # sort oldest -> newest
 
 ## commit 
 alias gc="git commit"
+alias gcma="git commit --amend"
 alias gcmf="git commit --fixup "
 alias gcm="git commit -m"
 alias gcmsg="git commit -m"
@@ -189,3 +199,8 @@ alias pt="pomodoro"
 alias ptn="pomodoro start"
 alias pts='pomodoro status --format "Time Remaining: %R  Timer: %L"'
 alias pta="pomodoro ammend"
+
+# FZF fe only runs from CWD 
+alias feh="cd && fe"
+alias weather='curl "wttr.in/New+York+City?2nq"'
+

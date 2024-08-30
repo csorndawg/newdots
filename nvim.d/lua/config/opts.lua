@@ -8,7 +8,7 @@ vim.g.maplocalleader = "\\"
 -- Can be one of: telescope, fzf
 -- Leave it to "auto" to automatically use the picker
 -- enabled with `:LazyExtras`
-vim.g.lazyvim_picker = "auto"
+--vim.g.lazyvim_picker = "auto"
 
 -- LazyVim root dir detection
 vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
@@ -17,14 +17,14 @@ vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 --  * theme, based on the active colorscheme.
 --  * editorPreset to nvim-remote
 --  * enables nerd font icons
-vim.g.lazygit_config = true
+--vim.g.lazygit_config = true
 
 
 -- set filetype to `bigfile` for files larger than 1.5 MB
 -- Only vim syntax will be enabled (with the correct filetype)
 -- LSP, treesitter and other ft plugins will be disabled.
 -- mini.animate will also be disabled.
-vim.g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
+--vim.g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
 
 local opt = vim.opt
 
@@ -32,7 +32,8 @@ opt.autowrite = true -- Enable auto write
 -- only set clipboard if not in ssh, to make sure the OSC 52
 -- integration works automatically. Requires Neovim >= 0.10.0
 opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Sync with system clipboard
-opt.completeopt = "menu,menuone,noselect"
+--opt.completeopt = "menu,menuone,noselect"
+opt.completeopt = "longest,menuone,preview"
 opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
 opt.confirm = false -- do not warn/ask for confirmation when exiting an unsaved modified buffer 
 opt.cursorline = true -- Enable highlighting of the current line
@@ -52,6 +53,7 @@ opt.number = true -- Print line number
 opt.pumblend = 10 -- Popup blend
 opt.pumheight = 10 -- Maximum number of entries in a popup
 opt.relativenumber = true -- Relative line numbers
+opt.number = true -- Relative line numbers
 opt.scrolloff = 4 -- Lines of context
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 opt.shiftround = true -- Round indent
@@ -67,7 +69,7 @@ opt.spelllang = { "en" }
 opt.spelloptions:append("noplainbuffer")
 opt.splitbelow = true -- Put new windows below current
 opt.splitright = true -- Put new windows right of current
-opt.statuscolumn = [[%!v:lua.require'lazyvim.util'.ui.statuscolumn()]]
+--opt.statuscolumn = [[%!v:lua.require'lazyvim.util'.ui.statuscolumn()]]
 opt.tabstop = 2 -- Number of spaces tabs count for
 opt.termguicolors = true -- True color support
 opt.timeoutlen = vim.g.vscode and 1000 or 300 -- Lower than default (1000) to quickly trigger which-key

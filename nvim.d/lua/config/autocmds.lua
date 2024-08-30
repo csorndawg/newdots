@@ -1,6 +1,10 @@
 -- Automatically loaded by lazyvim
 -- My custom Neovim  autocommands (events)
 
+local function augroup(name)
+    return vim.api.nvim_create_augroup(name, { clear = false } )
+end
+
 -- highlight yanked text
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = augroup("highlight_yank"),
@@ -26,35 +30,36 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		end
 	  end,
 	})
--- close some filetypes with <q>
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("close_with_q"),
-  pattern = {
-    "PlenaryTestPopup",
-    "grug-far",
-    "help",
-    "lspinfo",
-    "notify",
-    "qf",
-    "spectre_panel",
-    "startuptime",
-    "tsplayground",
-    "neotest-output",
-    "checkhealth",
-    "neotest-summary",
-    "neotest-output-panel",
-    "dbout",
-    "gitsigns.blame",
-  },
-  callback = function(event)
-    vim.bo[event.buf].buflisted = false
-    vim.keymap.set("n", "q", "<cmd>close<cr>", {
-      buffer = event.buf,
-      silent = true,
-      desc = "Quit buffer",
-    })
-  end,
-})
+
+---- close some filetypes with <q>
+--vim.api.nvim_create_autocmd("FileType", {
+--  group = augroup("close_with_q"),
+--  pattern = {
+--    "PlenaryTestPopup",
+--    "grug-far",
+--    "help",
+--    "lspinfo",
+--    "notify",
+--    "qf",
+--    "spectre_panel",
+--    "startuptime",
+--    "tsplayground",
+--    "neotest-output",
+--    "checkhealth",
+--    "neotest-summary",
+--    "neotest-output-panel",
+--    "dbout",
+--    "gitsigns.blame",
+--  },
+--  callback = function(event)
+--    vim.bo[event.buf].buflisted = false
+--    vim.keymap.set("n", "q", "<cmd>close<cr>", {
+--      buffer = event.buf,
+--      silent = true,
+--      desc = "Quit buffer",
+--    })
+--  end,
+--})
 
 -- wrap and check for spell in text filetypes
 vim.api.nvim_create_autocmd("FileType", {
@@ -75,15 +80,15 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
--- create intermediate directories if the they do not exist
-vim.api.nvim_create_augroup({"BufWritePre"}, {
-    group = augroup("mkdirp")
-    callback = function(event)
-        if event.match:match("^%w%w+:[\\/][\\/]") then
-      return
-    end
-    local file = vim.uv.fs_realpath(event.match) or event.match
-    vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
-end,
-})
+---- create intermediate directories if the they do not exist
+--vim.api.nvim_create_augroup({"BufWritePre"}, {
+--    group = augroup("mkdirp")
+--    callback = function(event)
+--        if event.match:match("^%w%w+:[\\/][\\/]") then
+--      return
+--    end
+--    local file = vim.uv.fs_realpath(event.match) or event.match
+--    vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
+--end,
+--})
 

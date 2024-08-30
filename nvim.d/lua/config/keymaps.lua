@@ -10,6 +10,7 @@ vim.api.nvim_set_keymap('n', '<leader>npp', ':set nopaste<CR>', { noremap = true
 -- TODO: modify/build on Lazy/Lunar defaults
 -- Lazy/Lunar
 -- Resize window using <ctrl> arrow keys
+local map = vim.keymap.set
 
 map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
 map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
@@ -31,7 +32,7 @@ map("n", "<C-b>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 map("n", "<C-n>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 map("n", "<leader><Ctrl-c>", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-map("n", "<leader>bd", LazyVim.ui.bufremove, { desc = "Delete Buffer" })
+--map("n", "<leader>bd", LazyVim.ui.bufremove, { desc = "Delete Buffer" })
 --map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 map("n", "<leader>bdd", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 
@@ -85,37 +86,37 @@ map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 -- stylua: ignore start
 
 -- toggle options
-LazyVim.toggle.map("<leader>uf", LazyVim.toggle.format())
-LazyVim.toggle.map("<leader>uF", LazyVim.toggle.format(true))
-LazyVim.toggle.map("<leader>us", LazyVim.toggle("spell", { name = "Spelling" }))
-LazyVim.toggle.map("<leader>uw", LazyVim.toggle("wrap", { name = "Wrap" }))
-LazyVim.toggle.map("<leader>uL", LazyVim.toggle("relativenumber", { name = "Relative Number" }))
-LazyVim.toggle.map("<leader>ud", LazyVim.toggle.diagnostics)
-LazyVim.toggle.map("<leader>ul", LazyVim.toggle.number)
-LazyVim.toggle.map( "<leader>uc", LazyVim.toggle("conceallevel", { values = { 0, vim.o.conceallevel > 0 and vim.o.conceallevel or 2 } }))
-LazyVim.toggle.map("<leader>uT", LazyVim.toggle.treesitter)
-LazyVim.toggle.map("<leader>ub", LazyVim.toggle("background", { values = { "light", "dark" }, name = "Background" }))
-if vim.lsp.inlay_hint then
-  LazyVim.toggle.map("<leader>uh", LazyVim.toggle.inlay_hints)
-end
+--LazyVim.toggle.map("<leader>uf", LazyVim.toggle.format())
+--LazyVim.toggle.map("<leader>uF", LazyVim.toggle.format(true))
+--LazyVim.toggle.map("<leader>us", LazyVim.toggle("spell", { name = "Spelling" }))
+--LazyVim.toggle.map("<leader>uw", LazyVim.toggle("wrap", { name = "Wrap" }))
+--LazyVim.toggle.map("<leader>uL", LazyVim.toggle("relativenumber", { name = "Relative Number" }))
+--LazyVim.toggle.map("<leader>ud", LazyVim.toggle.diagnostics)
+--LazyVim.toggle.map("<leader>ul", LazyVim.toggle.number)
+--LazyVim.toggle.map( "<leader>uc", LazyVim.toggle("conceallevel", { values = { 0, vim.o.conceallevel > 0 and vim.o.conceallevel or 2 } }))
+--LazyVim.toggle.map("<leader>uT", LazyVim.toggle.treesitter)
+--LazyVim.toggle.map("<leader>ub", LazyVim.toggle("background", { values = { "light", "dark" }, name = "Background" }))
+--if vim.lsp.inlay_hint then
+--  LazyVim.toggle.map("<leader>uh", LazyVim.toggle.inlay_hints)
+--end
 
 -- lazygit
-map("n", "<leader>gg", function() LazyVim.lazygit( { cwd = LazyVim.root.git() }) end, { desc = "Lazygit (Root Dir)" })
-map("n", "<leader>gG", function() LazyVim.lazygit() end, { desc = "Lazygit (cwd)" })
-map("n", "<leader>gb", LazyVim.lazygit.blame_line, { desc = "Git Blame Line" })
-map("n", "<leader>gB", LazyVim.lazygit.browse, { desc = "Git Browse" })
-
-map("n", "<leader>gf", function()
-  local git_path = vim.api.nvim_buf_get_name(0)
-  LazyVim.lazygit({args = { "-f", vim.trim(git_path) }})
-end, { desc = "Lazygit Current File History" })
-
-map("n", "<leader>gl", function()
-  LazyVim.lazygit({ args = { "log" }, cwd = LazyVim.root.git() })
-end, { desc = "Lazygit Log" })
-map("n", "<leader>gL", function()
-  LazyVim.lazygit({ args = { "log" } })
-end, { desc = "Lazygit Log (cwd)" })
+--map("n", "<leader>gg", function() LazyVim.lazygit( { cwd = LazyVim.root.git() }) end, { desc = "Lazygit (Root Dir)" })
+--map("n", "<leader>gG", function() LazyVim.lazygit() end, { desc = "Lazygit (cwd)" })
+--map("n", "<leader>gb", LazyVim.lazygit.blame_line, { desc = "Git Blame Line" })
+--map("n", "<leader>gB", LazyVim.lazygit.browse, { desc = "Git Browse" })
+--
+--map("n", "<leader>gf", function()
+--  local git_path = vim.api.nvim_buf_get_name(0)
+--  LazyVim.lazygit({args = { "-f", vim.trim(git_path) }})
+--end, { desc = "Lazygit Current File History" })
+--
+--map("n", "<leader>gl", function()
+--  LazyVim.lazygit({ args = { "log" }, cwd = LazyVim.root.git() })
+--end, { desc = "Lazygit Log" })
+--map("n", "<leader>gL", function()
+--  LazyVim.lazygit({ args = { "log" } })
+--end, { desc = "Lazygit Log (cwd)" })
 
 -- quit
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
@@ -137,7 +138,7 @@ map("n", "<leader>w", "<c-w>", { desc = "Windows", remap = true })
 map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
 map("n", "<leader>|", "<C-W>v", { desc = "Split Window Right", remap = true })
 map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
-LazyVim.toggle.map("<leader>wm", LazyVim.toggle.maximize)
+--LazyVim.toggle.map("<leader>wm", LazyVim.toggle.maximize)
 
 -- tabs
 map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
@@ -148,3 +149,5 @@ map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
+map("n", "<leader>pp", "<cmd>set paste", { desc = "Enable Paste Mode" })
+map("n", "<leader>PP", "<cmd>set nopaste", { desc = "Disable Paste Mode" })

@@ -9,6 +9,8 @@ alias tdv="vim $HOME/dotfiles/TODO.md"
 alias tdb="bat --theme='Nord' $HOME/dotfiles/TODO.md"
 alias bat="bat --theme='Nord'"
 alias zc="z -c" 
+alias nv="nvim"
+alias n="nvim"
 
 
 # general

@@ -20,6 +20,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   end
 end
 vim.opt.rtp:prepend(lazypath)
+--vim.opt.rtp:append(vim.fn.expand("$HOME/dotfiles/nvim.d/lua/user"))
 
 
 
@@ -32,7 +33,6 @@ require("lazy").setup({
   spec = {
     -- import all plugins (plus their configurations) defined 
     -- in nvim/lua/plugins.lua
-    --{ import = "plugins" },
     { import = "plugins" },
   },
 })
@@ -51,7 +51,11 @@ require("lazy").setup({
 -- @EXPERIMENTAL 
 -- test experimental configurations (plugin, opt, remap, etc.)
 --require("user.experimental")
+require("config.opts")
+require("config.keymaps")
+require("config.autocmds")
 require("user.lazy_remaps")     -- load custom plugin remaps
+
 
 -- set Nord theme for colorscheme/lualine/bufferline to Nord
 vim.cmd("colorscheme nord")
@@ -190,3 +194,6 @@ require'lspconfig'.lua_ls.setup {
 -- TREESITTER
 -- lua require'nvim-treesitter.configs'.setup{highlight={enable=true}}  " At the bottom of your init.vim, keep all configs on one line
 --require("lazy").setup({{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"}})
+--
+
+

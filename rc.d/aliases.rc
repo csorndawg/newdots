@@ -185,6 +185,7 @@ alias gw="cd $HOME/gitwork"
 alias ta="task add"
 alias tl="task list"
 
+<<<<<<< Updated upstream
 # misc.
 alias fdh="fd -H"
 alias fdi="fd -I"
@@ -204,3 +205,7 @@ alias pta="pomodoro ammend"
 alias feh="cd && fe"
 alias weather='curl "wttr.in/New+York+City?2nq"'
 
+||||||| Stash base
+=======
+ssh-cacher="eval $(ssh-agent) && ssh-add /home/shelby-sensation/.ssh/id_rsa"
+>>>>>>> Stashed changes

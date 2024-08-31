@@ -185,3 +185,8 @@ quickdump(){
     echo "" >> $DUMPFILE
     echo "$DUMPTEXT" >> DUMPFILE
 }
+
+# mkdir+cd
+mcd(){
+	mkdir $1 -p; cd $1; 
+}

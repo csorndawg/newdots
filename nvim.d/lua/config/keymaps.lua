@@ -1,10 +1,10 @@
 -- neovim  core remaps
 
 -- paste on
-vim.api.nvim_set_keymap('n', '<leader>pp', ':set paste<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>pp', ':set paste <CR>', { noremap = true })
 
 -- paste off
-vim.api.nvim_set_keymap('n', '<leader>npp', ':set nopaste<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>npp', ':set nopaste <CR>', { noremap = true, silent = true })
 
 
 -- TODO: modify/build on Lazy/Lunar defaults
@@ -149,5 +149,6 @@ map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
-map("n", "<leader>pp", "<cmd>set paste", { desc = "Enable Paste Mode" })
-map("n", "<leader>PP", "<cmd>set nopaste", { desc = "Disable Paste Mode" })
+-- NEEDSFIX
+--map("n", "<leader>pp", "<cmd>set paste", { desc = "Enable Paste Mode" })
+--map("n", "<leader>PP", "<cmd>set nopaste", { desc = "Disable Paste Mode" })

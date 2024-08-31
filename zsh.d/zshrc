@@ -5,6 +5,7 @@ export GOPATH="$HOME/.local/share/applications/go"
 GO_BIN="$GOPATH/bin"
 export CARGO_BIN="$HOME/.cargo/bin"
 export TOOLBOX_BIN="$HOME/.toolbox/bin"
+export UTILS_BIN="$HOME/dotfiles/utils.d"
 
 # neovim mason install bin (needed for LSP+DAP+more)
 export MASON_BIN="$HOME/.local/share/nvim/mason/bin"
@@ -13,7 +14,7 @@ export MASON_BIN="$HOME/.local/share/nvim/mason/bin"
 export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 
 # non-standard bins
-export PATH=$MASON_BIN:$GO_BIN:$CARGO_BIN:$TOOLBOX_BIN:$PATH
+export PATH=$MASON_BIN:$UTILS_BIN:$GO_BIN:$CARGO_BIN:$TOOLBOX_BIN:$PATH
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -50,7 +51,7 @@ export EDITOR=nvim
 ## Color hexcodes source: https://github.com/AlexvZyl/nordic.nvim/blob/main/assets/palette.png
 
 ##  ZSH-VI-MODE
-ZVM_KEYTIMEOUT=0.4
+#ZVM_KEYTIMEOUT=0.4
 ZVM_ESCAPE_KEYTIMEOUT=0.25        # escape key timeout default is 0.3
 #ZVM_VI_INSERT_ESCAPE_BINDKEY='^[b'  # <ALT>b switch from Insert to Normal  
 #ZVM_VI_INSERT_ESCAPE_BINDKEY='^C'
@@ -71,6 +72,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#60728A"    # gray5
 
 # <Ctrl><Space> accepts and executes suggestion
 bindkey '^ ' autosuggest-accept
+
 # <Alt>x accepts but doesnt execute suggestion
 bindkey '^[x' autosuggest-execute 
 
@@ -78,14 +80,14 @@ bindkey '^[x' autosuggest-execute
 bindkey '^[m' forward-word
 
 # <Alt>, clear suggestion
-bindkey '^[,' autosuggest-clear
-
+#bindkey '^[,' autosuggest-clear
 
 # WIP
 # Extra binds
 #bindkey '^X^E' # open $EDITOR 
 
 # source ohmyzsh for default behaviors
+#export KEYTIMEOUT=3
 source $ZSH/oh-my-zsh.sh 
 
 # User configuration
@@ -179,6 +181,7 @@ source_shell_configs(){
 }
 
 
+
 # source custom configuration files
 source_runtime_configs > /dev/null 2>&1
 source $ZSH_CUSTOM/patches/you-should-use-patch.zshrc > /dev/null 2>&1
@@ -188,19 +191,36 @@ source_shell_configs > /dev/null 2>&1
 # FIXNEEDED: shell flag tab-completion broken, key bindings for history 
 # need to be re-sourced after shell initializes at runtime. Using below "fzz" function as workaround in the interim.
 
+# Re-sourcing function for FZF configurations that are being overwritten 
+# by ZSH PLUGINS
 ff(){
+
+    # increase timeout (default 1s) for chained key binds
+    export KEYTIMEOUT=3
+
+    # re-source fzf key bindings, completions, and git-pickers
+    # sources:
+    #   - fzf-git:  https://github.com/junegunn/fzf-git.sh
+    #   - completions: /usr/share/zsh/site-functions/fzf
     source /usr/share/fzf/shell/key-bindings.zsh
-    # below script was copied from "/usr/share/zsh/site-functions/fzf"
     source $XDG_BIN_HOME/fzf_completion.zsh
+    source fzf-git.sh     
+
+    # rebind <Ctrl-x><Ctrl-r>
+		fzf-history-widget-accept() {
+			fzf-history-widget
+			zle accept-line
+		}
+		zle     -N     fzf-history-widget-accept
+		bindkey '^X^R' fzf-history-widget-accept
+
+    # ZSH binds <Ctrl-g> by default which executes instantly, preventing 
+    # any of fzf-git keybinds from being picked up. Remap the existing 
+    # action to <Alt-e>.
+    bindkey -r "^G" 
+    bindkey "^[e" list-expand
 }
 
-# Binds <Ctrl-x><Ctrl-r> to search-and-execute command history w/ FZF
-fzf-history-widget-accept() {
-  fzf-history-widget
-  zle accept-line
-}
-zle     -N     fzf-history-widget-accept
-bindkey '^X^R' fzf-history-widget-accept
 
 
 ###########################################
@@ -227,3 +247,11 @@ function pet-select() {
 #stty -ixon
 #bindkey '^[g' pet-select    # <Alt-g> keybind
 ##
+
+
+# EXPERIMENTAL: TESTING FZFxGIT
+##gco() {
+##  _fzf_git_each_ref --no-multi | xargs git checkout
+##}
+export KEYTIMEOUT=3
+#export ZVM_KEYTIMEOUT=3

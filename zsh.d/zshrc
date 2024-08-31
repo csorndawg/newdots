@@ -187,12 +187,14 @@ source_runtime_configs > /dev/null 2>&1
 source $ZSH_CUSTOM/patches/you-should-use-patch.zshrc > /dev/null 2>&1
 source_shell_configs > /dev/null 2>&1
 
-## fzf 
-# FIXNEEDED: shell flag tab-completion broken, key bindings for history 
-# need to be re-sourced after shell initializes at runtime. Using below "fzz" function as workaround in the interim.
+## @TODO: cleanup and consolidate into function or submodule
+## ONEOFF SOURCING FILES
+echo source "$HOME/dotfiles/utils.d/symlink_helper.sh"
+source "$HOME/dotfiles/utils.d/symlink_helper.sh"
 
-# Re-sourcing function for FZF configurations that are being overwritten 
-# by ZSH PLUGINS
+## fzf 
+# @FIXNEEDED: shell flag tab-completion broken, key bindings for history 
+# @TEMPFIX: run "ff" function to manually resource FZF files
 ff(){
 
     # increase timeout (default 1s) for chained key binds

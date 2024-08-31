@@ -203,4 +203,4 @@ alias pta="pomodoro ammend"
 # FZF fe only runs from CWD 
 alias feh="cd && fe"
 alias weather='curl "wttr.in/New+York+City?2nq"'
-
+alias ch777="chmod 777 -R"

@@ -1,2 +1,3 @@
 return {
+  -- blank module example
 }

@@ -1,5 +1,0 @@
-return {
-    {
-      "andersevenrud/nordic.nvim",
-    }
-}

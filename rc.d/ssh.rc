@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Needed to share SSH socket across tmux windows
+
+auth_socket_file="$HOME/.ssh/ssh_auth_sock"
+
+if [ -S "$SSH_AUTH_SOCK" ]; then
+  
+  # TEMPFIX: "-f" force flag not overwriting old links manually removing for now
+  if [ -L "$auth_socket_file" ];
+    rm $auth_socket_file -v
+    # make symlink now that stale link was removed
+    ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/ssh_auth_sock"
+fi

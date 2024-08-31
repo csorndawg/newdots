@@ -19,13 +19,6 @@ mcd (){
 }
 
 
-# recache git credentials -- temporary fix until I can find a way to 
-# share $SSH_AUTH b/w tmux windows
-gcc (){
-    eval $(ssh-agent) && ssh-add "$HOME"/.ssh/id_rsa
-    git config credential.helper 'cache --timeout=82800'
-}
-
 # quickly tweak rc shell configs 
 # useage: rce <config file flag>
 # config file flags: {a: alias} {e: exports} {f: functions} {i: idea}
@@ -184,4 +177,14 @@ quickdump(){
     cp $DUMPFILE $BACKUPFILE
     echo "" >> $DUMPFILE
     echo "$DUMPTEXT" >> DUMPFILE
+}
+
+# mkdir+cd
+mcd(){
+	mkdir $1 -p; cd $1; 
+}
+
+
+ssh-cacher(){
+    eval $(ssh-agent) && ssh-add "$HOME/.ssh/id_rsa"
 }

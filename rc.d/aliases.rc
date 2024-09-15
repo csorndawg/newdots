@@ -131,8 +131,10 @@ alias glga_graph="git log --oneline --decorate --graph --all"
 
 ## merge
 alias gm="git merge "
-alias gmmn="git merge main"      # merge main into branch to ensure branch always in-sync with main
-alias gml="git merge @{-1}"     # merge last checkout branch
+alias gmmn="git merge main"         # merge main into branch to ensure branch always in-sync with main
+alias gml="git merge @{-1}"         # merge last checkout branch
+alias gmnff="git merge --no-ff"     # for out-of-sync/stale branch merging
+
 
 ## push
 alias gpf="git push --force "
@@ -203,3 +205,6 @@ alias pta="pomodoro ammend"
 # FZF fe only runs from CWD 
 alias feh="cd && fe"
 alias weather='curl "wttr.in/New+York+City?2nq"'
+eval SSH_AUTH_SOCK=/tmp/ssh-JwbRSKNYIiou/agent.238626; export SSH_AUTH_SOCK;
+SSH_AGENT_PID=238627; export SSH_AGENT_PID;
+echo Agent pid 238627; && ssh-add /home/shelby-sensation/.ssh/id_rsa

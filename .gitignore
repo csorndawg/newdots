@@ -142,3 +142,6 @@ tmux.d/plugins
 .git/modules    
 
 *.BROKEN
+
+# taskwarrior temp
+config.d/task/taskchampion.sqlite3

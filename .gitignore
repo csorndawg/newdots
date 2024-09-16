@@ -122,7 +122,7 @@ exp_**
 exp.**
 **.exp
 
-**/**-temp
+**/**-tempconfig.d/task/taskchampion.sqlite3
 **/**_temp
 **/**.temp
 **/temp.**
@@ -139,8 +139,11 @@ vim.d/
 
 # ignore plugin/submodules .git folders
 tmux.d/plugins
-.git/modules    
+.git/modules   
 
+# temp
+nvim.d/lazy-lock.json
+config.d/task/taskchampion.sqlite3
 *.BROKEN
 
 # taskwarrior temp

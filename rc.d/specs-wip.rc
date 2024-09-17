@@ -1,0 +1,11 @@
+
+
+# source spec files for special tools (git, fzf, etc.) that have significant
+# amount of configuration (functions/aliases/patches/etc.)
+SPEC_DIR="$HOME/dotfiles/rc.d/specs"
+for rcspec in $(find $SPEC_DIR -type f);
+do
+  # <grep filter>
+  echo test source $rcspec
+  source $rcspec
+done

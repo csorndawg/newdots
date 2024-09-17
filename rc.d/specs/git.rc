@@ -1,0 +1,34 @@
+
+
+# Git Diff Current Branch w/ remote (origin)
+gdcb() {
+  # exit silently if ran cwd not a repo
+  if [ -d "$(pwd)/.git" ];
+  then
+    # remove after test
+    echo ""
+    echo "Running gdcb from $(pwd) directory"
+  else
+    echo "" 
+    # remove after test
+    echo "$(pwd) doesnt have a .git file - silently exiting"
+    exit 
+  fi
+
+  # diff logic for current v. remote for non-main branch
+  CBL="$(git branch --show-current)"
+  RBL="origin/$CBL"
+
+  # @TODO: add logic to alternate b/w "stat" output and actual diff
+  # changes code w/ function arg check (might need python)
+
+  # @WORKAROUND: if no arg passed, assume diff code, if ANYTHING passed assume stat
+  if [ -z $1 ];
+  then
+    echo "No arg passed - assume diff code output"
+    git diff --color "$CBL" "$RBL"
+  else
+    echo "Arg passed - will return diff stat output"
+    git diff --color --stat "$CBL" "$RBL"
+  fi
+}

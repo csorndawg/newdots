@@ -358,3 +358,63 @@ ftpane() {
     tmux select-window -t $target_window
   fi
 }
+
+
+##############################
+#   QUICKADDS
+##############################
+
+
+# use /home/<user> as starting point for fzf
+fzcd_hm() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
+
+# use current dir as starting point for fzf, include subdirs
+fzcd_cwd() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
+
+
+# current dir max depth 1 (no subdirs)
+fzcd_cwd1() {
+  DIR=`find * -maxdepth 0 -type d -print 2> /dev/null | fzf-tmux` \
+    && cd "$DIR"
+}
+
+
+## @TODO: make separate function to include hidden and no-ignore-vcs
+ff (){
+# Interactive search.
+# Usage: `ff` or `ff <folder>`.
+#
+[[ -n $1 ]] && cd $1 # go to provided folder or noop
+#RG_DEFAULT_COMMAND="rg -i -l"
+RG_DEFAULT_COMMAND="rg -i -l --hidden --no-ignore-vcs"
+
+selected=$(
+FZF_DEFAULT_COMMAND="rg --files" fzf \
+  -m \
+  -e \
+  --ansi \
+  --disabled \
+  --reverse \
+  --bind "ctrl-a:select-all" \
+  --bind "f12:execute-silent:(subl -b {})" \
+  --bind "change:reload:$RG_DEFAULT_COMMAND {q} || true" \
+  --preview "rg -i --pretty --context 2 {q} {}" | cut -d":" -f1,2
+)
+
+[[ -n $selected ]] && subl $selected # open multiple files in editor
+}
+
+# fh - repeat history and add selection back on to history command stack
+fh() {
+      print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
+}

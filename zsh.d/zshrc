@@ -145,10 +145,19 @@ zsh_custom_libs(){
 zsh_custom_patches(){
   # custom patches
   echo "Sourcing custom patch files"
+  IGNORE_PATTERNS=( '^exp\.' '\.gig$' 'test')
   ZSH_CUST_PATCHES="$HOME/dotfiles/zsh.d/custom/patches"
   for zshf in $(find $ZSH_CUST_PATCHES -type f -name "*zshrc" );
   do 
-    echo "zshf is $zshf"
+    echo "zshf is $zshf" 
+
+    for ignore in ${IGNORE_PATTERNS[@]}; do
+      if [ $(echo "$zshf" | grep -c "$ignore") -ge 1 ]; then
+        echo "$zshf matches ignore pattern $ignore and will be not be sourced"
+        continue
+        echo "ignore continue test"
+      fi
+    done
     source "$zshf" #&& echo "$x" sourced successfully 
   done
 }

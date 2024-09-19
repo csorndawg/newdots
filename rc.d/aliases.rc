@@ -123,7 +123,9 @@ alias gdm="git diff $(git branch --show-current) main"
 alias gf="git fetch"
 
 ## log
-alias glg="git log "
+
+alias glg="git log --pretty=oneline"
+alias glgg="git log "
 alias glgn="git log -n "
 alias glgo="git log --oneline"
 alias glga="git log -all"
@@ -204,3 +206,7 @@ alias pta="pomodoro ammend"
 alias feh="cd && fe"
 alias weather='curl "wttr.in/New+York+City?2nq"'
 alias ch777="chmod 777 -R"
+
+# keybind references 
+alias kbv="bat $HOME/.cheatlib/resources/keybindings-zc-cheatsheet.txt"
+

@@ -11,8 +11,9 @@ return {
             "shfmt",
             "pyright",
             "flake8",
-
-
+            "stylua",
+            "luacheck",
+            "shellcheck",
         },
     },
 

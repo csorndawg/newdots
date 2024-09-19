@@ -44,47 +44,8 @@ export EDITOR=nvim
 ###   Plugins
 ### ------------------------------
 
-## ZVM must be sourced BEFORE "plugins" and AUTOSUGGESTIONS/key binds must 
-## come AFTER "plugins". FZF key bindings must be sourced AFTER 
-## AUTOSUGGESTIONS key bindings
-
-## Color hexcodes source: https://github.com/AlexvZyl/nordic.nvim/blob/main/assets/palette.png
-
-##  ZSH-VI-MODE
-#ZVM_KEYTIMEOUT=0.4
-ZVM_ESCAPE_KEYTIMEOUT=0.25        # escape key timeout default is 0.3
-#ZVM_VI_INSERT_ESCAPE_BINDKEY='^[b'  # <ALT>b switch from Insert to Normal  
-#ZVM_VI_INSERT_ESCAPE_BINDKEY='^C'
-
-# remap <CTRL-c> to kill signal to <Ctrl-q> so we can bind <Ctrl-c> to
-# ZVM_ESCAPE to mirror vim
-stty intr ^Q
-ZVM_VI_ESCAPE_BINDKEY="^C"  # <Ctrl-c> to escape modes
-#ZVM_VI_VISUAL_ESCAPE_BINDKEY='^[v'  # <ALT>v switch from Insert to Visual
-ZVM_VI_HIGHLIGHT_BACKGROUND="#60728A"   # prettier visual mode highlighting 
-
 # plugins (has both custom and default ohmyzsh plugins)
 plugins=(git colored-man-pages zsh-autosuggestions zsh-vi-mode git-extras tldr z zsh-syntax-highlighting)
-
-## ZSH AUTOSUGGESTIONS (must set key bindings after ZVM)
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#60728A"    # gray5
-
-# <Ctrl><Space> accepts and executes suggestion
-bindkey '^ ' autosuggest-accept
-
-# <Alt>x accepts but doesnt execute suggestion
-bindkey '^[x' autosuggest-execute 
-
-# <Alt>m acts like <RIGHT> arrow key and can partial accept suggestions
-bindkey '^[m' forward-word
-
-# <Alt>, clear suggestion
-#bindkey '^[,' autosuggest-clear
-
-# WIP
-# Extra binds
-#bindkey '^X^E' # open $EDITOR 
 
 # source ohmyzsh for default behaviors
 #export KEYTIMEOUT=3
@@ -148,49 +109,65 @@ alias lvim="$HOME/.local/bin/lvim"
 ###     SOURCE DOTFILE CONFIG SUBMODULES
 ### ========================================
 
-# runtime/shell-agnostic config files
-source_runtime_configs(){
+# @ NOTE: sourcing functions only cover simplest cases - might need to add
+#         filtering logic to control what files and in what sequence are sourced 
+
+# runtime configs sourcing function
+rc_configs(){
     DIRPATH="$HOME/dotfiles/rc.d"
     for x in $(find $DIRPATH -type f | egrep "\.rc$");
     do
-        source "$x" && echo "$x sourced successfully"  
-
+        source "$x" #&& echo "$x sourced successfully"  
     done
 }
 
-source_shell_configs(){
-    if [ "$(basename $SHELL)" = "zsh" ]; then 
-        # add custom completions 
-        ZSH_CUSTOM_COMPLETIONS="$ZSH_CUSTOM/completions"
-        fpath=($ZSH_CUSTOM_COMPLETIONS \\$fpath)
-        autoload -Uz compinit
-        compinit
-        echo "Added custom ZSH completions"
-
-        # source custom zshrc configuration files
-        for x in $(find "$HOME/dotfiles/zsh.d" -type f -name "*.zshrc" );
-        do
-            source "$x" && echo "$x" sourced successfully 
-        done
-    else
-        # uncommenting since this clutters file atm
-        #find "$HOME/dotfiles/bash.d" -type f | egrep "*.bashrc$" | xargs -I "{}" echo source {} && xargs -I "{}" "sourced {} succesfully" \;
-        echo "Source bash-only files if exists"
-    fi
-    return 0
+# custom zsh sourcing function
+zsh_custom_completers(){
+  # source completions
+  echo "Sourcing zsh completions"
+  ZSH_CUSTOM_COMPLETIONS="$HOME/dotfiles/zsh.d/custom/completions"
+  fpath=($ZSH_CUSTOM_COMPLETIONS \\$fpath)
+  autoload -Uz compinit
+  compinit
 }
 
+zsh_custom_libs(){
+  
+  # custom libraries
+  echo "Sourcing zsh/custom lib files"
+  ZSH_CUST_LIB="$HOME/dotfiles/zsh.d/custom/lib"
+  for zshf in $(find $ZSH_CUST_LIB -type f -name "*zshrc" );
+  do 
+    source "$zshf" #&& echo "$x" sourced successfully 
+  done
+}
 
+zsh_custom_patches(){
+  # custom patches
+  echo "Sourcing custom patch files"
+  ZSH_CUST_PATCHES="$HOME/dotfiles/zsh.d/custom/patches"
+  for zshf in $(find $ZSH_CUST_PATCHES -type f -name "*zshrc" );
+  do 
+    echo "zshf is $zshf"
+    source "$zshf" #&& echo "$x" sourced successfully 
+  done
+}
 
 # source custom configuration files
-source_runtime_configs > /dev/null 2>&1
-source $ZSH_CUSTOM/patches/you-should-use-patch.zshrc > /dev/null 2>&1
-source_shell_configs > /dev/null 2>&1
+echo ""
+# runtime
+rc_configs > /dev/null 2>&1
+zsh_custom_completers > /dev/null 2>&1
+zsh_custom_libs > /dev/null 2>&1
+zsh_custom_patches
+
+# zsh
+#zsh_custom_configs  #> /dev/null 2>&1
 
 ## @TODO: cleanup and consolidate into function or submodule
 ## ONEOFF SOURCING FILES
-echo source "$HOME/dotfiles/utils.d/symlink_helper.sh"
-source "$HOME/dotfiles/utils.d/symlink_helper.sh"
+#echo source "$HOME/dotfiles/utils.d/symlink_helper.sh"
+#source "$HOME/dotfiles/utils.d/symlink_helper.sh"
 
 ## fzf 
 # @FIXNEEDED: shell flag tab-completion broken, key bindings for history 
@@ -245,15 +222,3 @@ function pet-select() {
   CURSOR=$#BUFFER
   zle redisplay
 }
-#zle -N pet-select
-#stty -ixon
-#bindkey '^[g' pet-select    # <Alt-g> keybind
-##
-
-
-# EXPERIMENTAL: TESTING FZFxGIT
-##gco() {
-##  _fzf_git_each_ref --no-multi | xargs git checkout
-##}
-export KEYTIMEOUT=3
-#export ZVM_KEYTIMEOUT=3

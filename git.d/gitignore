@@ -205,3 +205,4 @@ tags
 *.sqlite3
 **/lazy-lock.json
 exps/
+.WIPs/

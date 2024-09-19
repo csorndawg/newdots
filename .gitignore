@@ -145,14 +145,9 @@ tmux.d/plugins
 nvim.d/lazy-lock.json
 config.d/task/taskchampion.sqlite3
 *.BROKEN
-<<<<<<< HEAD
 
 # taskwarrior temp
 config.d/task/taskchampion.sqlite3
-||||||| parent of 434b95b (Update gitignore and clear git new gitignore patterns from existing git index cache)
-=======
-<<<<<<< Updated upstream
-||||||| Stash base
 
 # taskwarrior temp
 config.d/task/taskchampion.sqlite3
@@ -163,5 +158,5 @@ config.d/task/taskchampion.sqlite3
 
 # ignore original pre-patch files 
 **.orig
->>>>>>> Stashed changes
->>>>>>> 434b95b (Update gitignore and clear git new gitignore patterns from existing git index cache)
+
+.WIPs/

@@ -168,7 +168,8 @@ echo ""
 rc_configs > /dev/null 2>&1
 zsh_custom_completers > /dev/null 2>&1
 zsh_custom_libs > /dev/null 2>&1
-zsh_custom_patches
+zsh_custom_patches > /dev/null 2>&1
+
 
 # zsh
 #zsh_custom_configs  #> /dev/null 2>&1

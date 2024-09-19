@@ -95,7 +95,7 @@ alias gbslr="git branch --sort=committerdate"   # sort oldest -> newest
 
 ## commit 
 alias gc="git commit"
-alias gcma="git commit --amend"
+alias gca="git commit --amend"
 alias gcmf="git commit --fixup "
 alias gcm="git commit -m"
 alias gcmsg="git commit -m"

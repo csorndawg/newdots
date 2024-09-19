@@ -15,3 +15,11 @@ sshrc_symlink() {
 	#echo ln -sf '$HOME/dotfiles/rc.d/ssh.rc' '$HOME/.ssh/rc'
 	ln -sf "$HOME/dotfiles/rc.d/ssh.rc" "$HOME/.ssh/rc"
 }
+
+# TMUX
+#   -- use to re-source tmux.rc functions on-the-fly within session
+tmuxrc_symlink() {
+	echo "Refreshing tmuxrc symlink"
+	#echo ln -sf '$HOME/dotfiles/rc.d/ssh.rc' '$HOME/.ssh/rc'
+	ln -sf "$HOME/dotfiles/rc.d/tmux.rc" "$HOME/.toolbox/TMUX_HELPERS"
+}

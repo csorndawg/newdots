@@ -52,19 +52,10 @@ require("config.keymaps")
 
 
 -- set Nord theme for colorscheme/lualine/bufferline to Nord
-vim.cmd("colorscheme nord")
+--vim.cmd("colorscheme nord")
 
-require('lualine').setup({
-  options = { theme = 'nord' }
-})
-
-require("bufferline").setup({
-    options = {
-        separator_style = "thin",
-        theme = 'nord',
-    },
-})
-
+-- source colorscheme from custom lua/after module
+require("after.colorscheme")
 
 require("mason").setup({
     ui = {

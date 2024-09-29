@@ -143,9 +143,9 @@ Plug 'xero/miasma.nvim'
 
 " neovim
 " For ultisnips users.
-Plug 'SirVer/ultisnips'
-Plug 'quangnguyen30192/cmp-nvim-ultisnips'
-Plug 'shaunsingh/nord.nvim'
+"Plug 'SirVer/ultisnips'
+"Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+"Plug 'shaunsingh/nord.nvim'
 Plug 'neanias/everforest-nvim'
 Plug 'AlexvZyl/nordic.nvim'
 Plug 'vim-airline/vim-airline'

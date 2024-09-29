@@ -59,7 +59,7 @@ export MANPATH="/usr/local/man:$MANPATH"
 # 	THEME
 # ========================================================================
 
-fpath+=(/home/nukk/dotfiles/zsh.d/custom/themes/pure)
+fpath+=($HOME/dotfiles/zsh.d/custom/themes/pure)
 autoload -U promptinit; promptinit
 
 # options
@@ -191,9 +191,17 @@ ff(){
     # sources:
     #   - fzf-git:  https://github.com/junegunn/fzf-git.sh
     #   - completions: /usr/share/zsh/site-functions/fzf
-    source /usr/share/fzf/shell/key-bindings.zsh
-    source $XDG_BIN_HOME/fzf_completion.zsh
-    source fzf-git.sh     
+
+    ## below only needed if using centOS 
+    #source /usr/share/fzf/shell/key-bindings.zsh
+    #source $XDG_BIN_HOME/fzf_completion.zsh
+
+    # if not using CentOS just source FZF repo shell scripts directly
+    source "$HOME/dotfiles/utils.d/fzf-completion.zsh"
+    source "$HOME/dotfiles/utils.d/fzf-key-bindings.zsh"
+
+    # source custom fzf-git utils.d script
+    source "$HOME/dotfiles/utils.d/fzf-git.sh"     
 
     # rebind <Ctrl-x><Ctrl-r>
 		fzf-history-widget-accept() {

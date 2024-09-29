@@ -1,20 +1,9 @@
-#**/**/
-zsh-syntax-highlighting/*
-!zsh-syntax-highlighting/*.zsh
-#!zsh-syntax-highlighting/highlighters/main/
-#!zsh-syntax-highlighting/highlighters/*/*-highlighter.zsh
-#!zsh-syntax-highlighting/highlighters/main/*-highlighter.zsh
-
-
-#zsh-syntax-highlighting/**/
-#!zsh-syntax-highlighting/highlighters/regexp/regexp-highlighter.zsh
-#!zsh-syntax-highlighting/highlighters/line/line-highlighter.zsh
-#!zsh-syntax-highlighting/highlighters/brackets/brackets-highlighter.zsh
-#!zsh-syntax-highlighting/highlighters/main/main-highlighter.zsh
-#!zsh-syntax-highlighting/highlighters/root/root-highlighter.zsh
-#!zsh-syntax-highlighting/highlighters/cursor/cursor-highlighter.zsh
-#!zsh-syntax-highlighting/highlighters/pattern/pattern-highlighter.zsh
-
-# zsh-vi-mode
 LICENSE
 README.md
+zsh-syntax-highlighting/*
+!zsh-syntax-highlighting/*.zsh
+!zsh-syntax-highlighting/.revision
+zsh-syntax-highlighting/**/
+!zsh-syntax-highlighting/**/highlighters/
+!zsh-syntax-highlighting/**/tests/
+#!zsh-syntax-highlighting/**/highlighters/**/*.zsh

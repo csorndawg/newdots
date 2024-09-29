@@ -206,3 +206,4 @@ tags
 **/lazy-lock.json
 exps/
 .WIPs/
+.staging/

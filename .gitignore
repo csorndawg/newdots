@@ -160,3 +160,4 @@ config.d/task/taskchampion.sqlite3
 **.orig
 
 .WIPs/
+.staging/

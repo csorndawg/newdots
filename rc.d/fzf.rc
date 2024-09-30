@@ -14,12 +14,17 @@
 ## PERSONAL 
 ##############################
 
-
 ## @VALIDATED
 function activate-venv() {
-    LOCAL_VENVS_DIR="$XDG_STATE_HOME/python/virtualEnvs"
+    LOCAL_VENVS_DIR="$XDG_STATE_HOME/python/venvs"
     echo venv: $LOCAL_VENVS_DIR
     source "$(find $LOCAL_VENVS_DIR -type f -path '*activate' | fzf)"
+ }
+
+## @VALIDATED
+function activate-venv-cwd() {
+    echo venv: $LOCAL_VENVS_DIR
+    source "$(find  -type f -ipath '*env/bin/activate' | fzf)"
  }
 
 # run FZF from home 

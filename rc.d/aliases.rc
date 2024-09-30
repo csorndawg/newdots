@@ -59,10 +59,11 @@ alias tmshb="tmux show-buffer"
 alias tmsk="tmux send-keys "
 alias tmstb="tmux set-buffer"
 alias tmsvb="tmux save-buffer"
-alias tmk="tmux kill-session -t"
+alias tmks="tmux kill-session -t"
 alias tmka="tmux kill-session -a -t"
-#
-#
+alias tlk="tmux list-keys"
+alias tlkg="tmux list-keys  | egrep -i "
+
 #
 ## GIT ALIASES 
 alias g="git"

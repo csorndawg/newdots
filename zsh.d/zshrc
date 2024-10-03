@@ -179,6 +179,15 @@ zsh_custom_patches > /dev/null 2>&1
 #echo source "$HOME/dotfiles/utils.d/symlink_helper.sh"
 #source "$HOME/dotfiles/utils.d/symlink_helper.sh"
 
+# source fzf shell script
+if [[  $(echo "$SHELL"  | egrep zsh -ci) -ge 1 ]]; then
+  echo "ZSH shell"
+  source "$HOME/.fzf.zsh"
+else
+  echo "BASH shell"
+  source "$HOME/.fzf.bash"
+fi
+
 ## fzf 
 # @FIXNEEDED: shell flag tab-completion broken, key bindings for history 
 # @TEMPFIX: run "ff" function to manually resource FZF files

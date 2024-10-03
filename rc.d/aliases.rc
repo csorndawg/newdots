@@ -202,3 +202,8 @@ alias ch777="chmod 777 -R"
 ## keybind references 
 alias kbv="bat $HOME/.cheatlib/resources/keybindings-zc-cheatsheet.txt"
 #
+
+# jrd == Jupyter Root/Remote dir
+# can change from test1 to something more appropriate later
+#alias jrd="/home/shelby-sensation/.local/state/jupyter/test1" 
+alias jrd="$HOME/.local/state/jupyter/test1" 

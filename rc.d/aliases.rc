@@ -1,16 +1,14 @@
 # bash/zsh shared aliases 
 
+
 # inital examples
 alias jc="jupyter-console"
 alias python=python3
-alias fdd="find -type d"
+#alias fdd="find -type d"
 alias gds="git diff --summary"
 alias tdv="vim $HOME/dotfiles/TODO.md"
 alias tdb="bat --theme='Nord' $HOME/dotfiles/TODO.md"
 alias bat="bat --theme='Nord'"
-alias zc="z -c" 
-alias nv="nvim"
-alias n="nvim"
 
 
 # general
@@ -21,30 +19,25 @@ alias a="alias"
 alias ag="alias | egrep "
 alias h="history"
 alias hg="history | egrep "
+alias xargsi='xargs -I "{}"'
+alias trup="tr [:lower:] [:upper:]"
+alias trlow="tr [:upper:] [:lower:]"
 alias t="tldr"
 
-# cheat
-alias c="cheat -c"      # colorize cheat
-alias ce="cheat -e"     # cheat edit
-alias cl="cheat -l"     # cheat edit
-alias cs="cheat -cs"     # cheat edit
-alias clt="cheat -l -t personal"    # list all cheatfiles with 'personal' tag
+## cheat
+#alias c="cheat -c"      # colorize cheat
+#alias ce="cheat -e"     # cheat edit
+#alias cl="cheat -l"     # cheat edit
+#alias cs="cheat -s"     # cheat edit
+#alias cconf="vim $(cheat --conf)"   # edit cheat conf
+#alias clt="cheat -l -t personal"    # list all cheatfiles with 'personal' tag
 
-## pet (cheat meets ultisnips)
-alias pc="pet clip"
-alias pe="pet edit"
-alias px="pet exec"
-alias pl="pet list"
-alias ph="pet help"     # how to use: `ph search` (returns help for search subcommand)
-alias psr="pet search"
-alias pvw="bat $HOME/dotfiles/config.d/pet/snippet.toml"
-#
-#
-## cron
+
+# cron
 alias cte="crontab -e"
 alias ctl="crontab -l"
-#
-## tmux 
+
+# tmux 
 alias tmab="tmux save-buffer -a"
 alias tma="tmux attach"
 alias tmas="tmux attach -t "
@@ -59,22 +52,19 @@ alias tmshb="tmux show-buffer"
 alias tmsk="tmux send-keys "
 alias tmstb="tmux set-buffer"
 alias tmsvb="tmux save-buffer"
-alias tmks="tmux kill-session -t"
-alias tmka="tmux kill-session -a -t"
-alias tlk="tmux list-keys"
-alias tlkg="tmux list-keys  | egrep -i "
 
-#
-## GIT ALIASES 
+
+
+# GIT ALIASES 
 alias g="git"
 alias o="origin"
-#
-### add
+
+## add
 alias gad="git add --dry-run"
 alias ga="git add"
 alias gacm="git add . && git commit -m "
-#
-### branch
+
+## branch
 alias gbl="git branch --list "          # list branches that match glob 
 alias gbc="git branch --contains "      # like -l except for commits
 alias gba="git branch -a"               # list all branchs
@@ -84,21 +74,20 @@ alias gbm="git branch --merged"         # list all branches merged into CURRENT 
 alias gbnm="git branch --no-merged"     # list all branches not merged into CURRENT branch
 alias gbsmr="git branch --sort=-committerdate"   # sort newest -> oldest
 alias gbslr="git branch --sort=committerdate"   # sort oldest -> newest
-#
-### commit 
+
+## commit 
 alias gc="git commit"
-alias gca="git commit --amend"
 alias gcmf="git commit --fixup "
 alias gcm="git commit -m"
 alias gcmsg="git commit -m"
-#
-### checkout
+
+## checkout
 alias gco="git checkout "
 alias gcmn="git checkout main "
 alias gcb="git checkout -b "
-alias gc1="git checkout @{-1}"  # checkout last branch 
-#
-### diff
+alias gcl="git checkout @{-1}"  # checkout last branch 
+
+## diff
 alias gd="git diff "
 alias gdf="git diff "
 alias gdfc="git diff --compact-summary"
@@ -110,95 +99,69 @@ alias gdfom="git diff --stat origin/main"
 alias gdfs="git diff --stat "
 alias gdfss="git diff --staged "
 alias gdm="git diff $(git branch --show-current) main"
-#
-### fetch
+
+## fetch
 alias gf="git fetch"
-#
-### log
-#
-alias glg="git log --pretty=oneline"
-alias glgg="git log "
+
+## log
+alias glg="git log "
 alias glgn="git log -n "
 alias glgo="git log --oneline"
 alias glga="git log -all"
 alias glga_graph="git log --oneline --decorate --graph --all"
-#
-### merge
+
+## merge
 alias gm="git merge "
 alias gmmn="git merge main"      # merge main into branch to ensure branch always in-sync with main
 alias gml="git merge @{-1}"     # merge last checkout branch
-#
-### push
+
+## push
 alias gpf="git push --force "
 alias gp="git push "
-#
-### pull
+
+## pull
 alias gpl="git pull "
-#
-### rebase
+
+## rebase
 alias grb="git rebase "
 alias grbi="git rebase -i "
 alias grbsq="git rebase -i --autosquash"
-#
-### restore
+
+## restore
 alias grs="git restore "
 alias grss="git restore --staged "
-#
-### status
+
+## status
 alias gs="git status"
 alias gss="git status -s"
-#
-### stash
+
+## stash
 alias gst="git stash"
 alias gsta="git stash apply "
 alias gstl="git stash list"
 alias gstp="git stash push -m"
 alias gstpu="git stash push -u -m"
 alias gsts="git stash show -p "
-#
-#
-#
-## miscellaneous 
+
+
+
+# miscellaneous 
+alias learn="vim $HOME/git/ongoing/learning"
 alias tree="tree -C"  # colorize output by default
-alias t1="tail -n1"
 alias t10="tail -n10"
 alias t30="tail -n30"
-alias h1="head -n1"
 alias h10="head -n10"
 alias h30="head -n30"
 alias hist10="history | tail -n 10"
 alias hist30="history | tail -n 30"
-#
-#
-## view custom shell scripts/functions/completions on the fly
+
+
+# view custom shell scripts/functions/completions on the fly
 alias help_fzf="bat $HOME/dotfiles/rc.d/fzf.rc"
 alias help_rc_functs="bat $HOME/dotfiles/rc.d/functions.rc"
-alias gw="cd $HOME/gitwork"
-#
-## taskwarrior
-alias ta="task add"
-alias tl="task list"
-#
-## misc.
-alias fdh="fd -H"
-alias fdi="fd -I"
-alias fdhi="fd -HI"
-alias rgp="rg -p"
-alias rgc="rg -c"
-alias rg_bare="rg -NI"  # --no-line-number --no-filename
-alias debuggy_on="activate $HOME/.venv/bin/activate"
-#
-## pomodoro 
-alias pt="pomodoro"
-alias ptn="pomodoro start"
-alias pts='pomodoro status --format "Time Remaining: %R  Timer: %L"'
-alias pta="pomodoro ammend"
-#
-## FZF fe only runs from CWD 
-alias feh="cd && fe"
-alias weather='curl "wttr.in/New+York+City?2nq"'
-alias ch777="chmod 777 -R"
-#
-## keybind references 
-alias kbv="bat $HOME/.cheatlib/resources/keybindings-zc-cheatsheet.txt"
-#
+ssh_cache_pp='eval SSH_AUTH_SOCK=/tmp/ssh-VBkERzxTvE0d/agent.4123; export SSH_AUTH_SOCK;
+SSH_AGENT_PID=4124; export SSH_AGENT_PID;
+echo Agent pid 4124; && ssh-add /home/zcsor/.ssh/id_rsa'
+ssh_cache_pp='eval SSH_AUTH_SOCK=/tmp/ssh-xxHaLf6iESsS/agent.1757; export SSH_AUTH_SOCK;
+SSH_AGENT_PID=1758; export SSH_AGENT_PID;
+echo Agent pid 1758; && ssh-add /home/zcsor/.ssh/id_rsa'

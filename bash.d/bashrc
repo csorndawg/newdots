@@ -122,17 +122,23 @@ fi
 # source rc modules
 for x in $(find $HOME/dotfiles/rc.d -type f -name "*.rc");
 do
-    echo source "$x"
-    source "$x"
+    # FZF not installed on Cygwin - skip for now
+    if [[ $(echo $x | egrep "config|fzf" ) ]];
+    then
+        continue
+    fi
+    # skip fzf
+    #echo source "$x" 2>&1 /dev/null
+    source "$x" #2>&1 /dev/null
 done
 
 # TODO: migrate all non-bash only exports, and functions files to rc.d
 #   aliases have been migrated
 # source bash submodules
 #source $HOME/dotfiles/bash.d/aliases.bashrc
-source $HOME/dotfiles/bash.d/exports.bashrc
-source $HOME/dotfiles/bash.d/functions.bashrc
-source $HOME/dotfiles/bash.d/completions.bashrc
+#source $HOME/dotfiles/bash.d/exports.bashrc
+#source $HOME/dotfiles/bash.d/functions.bashrc
+#source $HOME/dotfiles/bash.d/completions.bashrc
 
 # NOTE: Sourcing directly for now. If this gets too messy replace
 # with a bash function/script to source all config files 
@@ -148,23 +154,58 @@ echo ""
 ## source dotfile configuration submodules
 
 
-# runtime/shell-agnostic
-for x in $(find $HOME/dotfiles/rc.d -type f -name "*.rc");
-do
-    echo source "$x"
-    source "$x"
-done
 
-# bash.d submodules
-for x in $(find $HOME/dotfiles/bash.d -type f -name "*.bashrc");
-do
-    echo source "$x"
-    source "$x"
-done
+
 
 # runtime/shell-agnostic
-for x in $(find $HOME/dotfiles/rc.d -type f -name "*.rc");
-do
-    echo source "$x"
-    source "$x"
-done
+#for x in $(find $HOME/dotfiles/rc.d -type f -name "*.rc");
+#do
+#    echo source "$x"
+#    source "$x"
+#done
+
+
+export DOWNLOADS_HOME="/cygdrive/c/Users/zcsor/Downloads"
+export BRAVE_DOWNLOADS_DIR="/cygdrive/c/Users/zcsor/Downloads/Brave"
+PATH="$PATH:$HOME/.local/bin"
+EDITOR=vim
+
+# Cygwin x11
+export DISPLAY=:0.0
+
+# for cygwin only
+CYG_STEM="/cygdrive/c/Users/zcsor/Cygwin"
+CYG_BIN="$CYG_STEM/bin"
+CYG_LBIN="$CYG_STEM/bin"
+CYG_SBIN="$CYG_STEM/usr/sbin"
+PATH="$PATH:$CYG_BIN:$CYG_SBIN"
+
+# add absolute path for ~/.local/bin
+CYG_HOME_BIN="$CYG_STEM/home/zcsor/.local/bin"
+PATH="$CYG_HOME_BIN:$PATH"
+PATH="$PATH:~/.local/usr/bin"
+
+# ssh stuff
+ssh_cache_pp='eval SSH_AUTH_SOCK=/tmp/ssh-H4TxgnRe83LD/agent.4107; export SSH_AUTH_SOCK;
+SSH_AGENT_PID=4108; export SSH_AGENT_PID;
+echo Agent pid 4108; && ssh-add /home/zcsor/.ssh/id_rsa'
+alias qod="cd $HOME/zac2024/projects/quote-of-the-day"
+alias jh="cd $HOME/GIT/jobhunt"
+
+# separate aliases needed for passing a filepath variable since 
+# find throws an error if filepath is not the 1st arg when passed  
+#echo 'alias fdfn="find $FPATH -type f"' 
+#echo 'alias fddn="find $FPATH -type d"' 
+#alias fdf="find -type f "
+
+
+####### CYGWIN ONLY ########
+## WORKAROUND FOR BASH FUNCTIONS SOURCING ISSUE  
+source "$HOME/dotfiles/bash.d/functions.bash"
+
+testFunction(){
+    echo 'Testing for flag $1' "$1"
+}
+
+# ex: git clone git@github.com:csorndawg/cheatbook.git
+export gh_url_stem="git@github.com:csorndawg"

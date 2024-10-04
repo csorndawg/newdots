@@ -4,7 +4,7 @@
 # inital examples
 alias jc="jupyter-console"
 alias python=python3
-alias fdd="find -type d"
+#alias fdd="find -type d"
 alias gds="git diff --summary"
 alias tdv="vim $HOME/dotfiles/TODO.md"
 alias tdb="bat --theme='Nord' $HOME/dotfiles/TODO.md"
@@ -24,13 +24,13 @@ alias trup="tr [:lower:] [:upper:]"
 alias trlow="tr [:upper:] [:lower:]"
 alias t="tldr"
 
-# cheat
-alias c="cheat -c"      # colorize cheat
-alias ce="cheat -e"     # cheat edit
-alias cl="cheat -l"     # cheat edit
-alias cs="cheat -s"     # cheat edit
-alias cconf="vim $(cheat --conf)"   # edit cheat conf
-alias clt="cheat -l -t personal"    # list all cheatfiles with 'personal' tag
+## cheat
+#alias c="cheat -c"      # colorize cheat
+#alias ce="cheat -e"     # cheat edit
+#alias cl="cheat -l"     # cheat edit
+#alias cs="cheat -s"     # cheat edit
+#alias cconf="vim $(cheat --conf)"   # edit cheat conf
+#alias clt="cheat -l -t personal"    # list all cheatfiles with 'personal' tag
 
 
 # cron
@@ -159,3 +159,9 @@ alias hist30="history | tail -n 30"
 # view custom shell scripts/functions/completions on the fly
 alias help_fzf="bat $HOME/dotfiles/rc.d/fzf.rc"
 alias help_rc_functs="bat $HOME/dotfiles/rc.d/functions.rc"
+ssh_cache_pp='eval SSH_AUTH_SOCK=/tmp/ssh-VBkERzxTvE0d/agent.4123; export SSH_AUTH_SOCK;
+SSH_AGENT_PID=4124; export SSH_AGENT_PID;
+echo Agent pid 4124; && ssh-add /home/zcsor/.ssh/id_rsa'
+ssh_cache_pp='eval SSH_AUTH_SOCK=/tmp/ssh-xxHaLf6iESsS/agent.1757; export SSH_AUTH_SOCK;
+SSH_AGENT_PID=1758; export SSH_AGENT_PID;
+echo Agent pid 1758; && ssh-add /home/zcsor/.ssh/id_rsa'

@@ -111,7 +111,7 @@ function ysu_message() {
     MESSAGE="${MESSAGE//\%command/$command_arg}"
     MESSAGE="${MESSAGE//\%alias/$alias_arg}"
 
-    _write_ysu_buffer "$MESSAGE\n\n"
+    _write_ysu_buffer "$MESSAGE\n"
 }
 
 

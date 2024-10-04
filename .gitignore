@@ -2,13 +2,26 @@
 utils/
 **.temp
 **.tmp
+tmp.**
+temp.**
+temp_**
+temp-**
+
+example.**
 temp/
 tmp/
+.tmp/
 test/*
 **/test/
 testing/*
 **/testing/*
 *.test
+ref.*
+ref_**
+ref-**
+**-ref.*    # ex. filename-ref.txt, kickstart_nvim_ref.lua
+**_ref.*    # ex. filename-ref.txt, kickstart_nvim_ref.lua
+
 
 # ignore all idea folders except "*.d" (e.g. "bash.d") folders top level files 
 # ex: copy `ohmybash/lib/history.sh` (file from ohmybash repo) 
@@ -95,3 +108,56 @@ config.d/dircolors/nord/
 **/todo.*.md
 todo.*.md
 */todo.*.md
+
+# ignore all files with Git IGnore prefix/suffix
+**.gig
+gig.**
+**.ref
+**.exp
+exp-**
+exp.**
+exp_**
+*/**/**examples.md
+
+exp.**
+**.exp
+
+**/**-tempconfig.d/task/taskchampion.sqlite3
+**/**_temp
+**/**.temp
+**/temp.**
+**/temp-**
+**/temp_**
+**/todo/**
+
+IGNOREME/
+
+# temporary until core of nvim plugins setup
+nvim.d/**/config.d
+vim.d/
+!vim.d/vimrc
+
+# ignore plugin/submodules .git folders
+tmux.d/plugins
+.git/modules   
+
+# temp
+nvim.d/lazy-lock.json
+config.d/task/taskchampion.sqlite3
+*.BROKEN
+
+# taskwarrior temp
+config.d/task/taskchampion.sqlite3
+
+# taskwarrior temp
+config.d/task/taskchampion.sqlite3
+=======
+
+# taskwarrior temp
+config.d/task/taskchampion.sqlite3
+
+# ignore original pre-patch files 
+**.orig
+
+.WIPs/
+.staging/

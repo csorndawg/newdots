@@ -16,9 +16,7 @@ export XDG_VAR_TMP_HOME="$HOME/.local/var/tmp"
 # local venvs
 export VENVS_HOME="$XDG_STATE_HOME/python/virtualEnvs"
 
-# dotfile related
-# export RETIRED_DOTFILES_HOME="$HOME/.dotfiles" 
-export DOTFILE_HOME="$HOME/dotfiles"
+# dotfile directories
 export DOTFILES_HOME="$HOME/dotfiles"
 export ZSH_CONFD="$HOME/dotfiles/zsh.d"
 export RC_CONFD="$HOME/dotfiles/rc.d"
@@ -30,20 +28,28 @@ export LVIM_CONFD="$HOME/dotfiles/lvim.d"
 export NVIM_CONFD="$HOME/dotfiles/nvim.d"
 export UTILS_CONFD="$HOME/dotfiles/utils.d"
 
+## dotfiles 
+export ZSHRC="$HOME/.zshrc"
+export VIMRC="$HOME/.vimrc"
+export NVIMRC="$HOME/.config/nvim"
+export TMUX_CONF="$HOME/.tmux.conf"
+
+
 # freq. used 
 export CHEATFILES_HOME="$HOME/.config/cheat"
 export CHEATFILES_WORK_HOME="$HOME/.config/cheat/cheatsheets/work"
-export CHEAT_PERSONAL_HOME="$HOME/.config/cheat/cheatsheets/personal"
 export CHEATLIB_HOME="$HOME/.cheatlib"
 export CHEATLIB_CHEATFILES="$HOME/.cheatlib/cheatfiles"
 export CHEATLIB_RESOURCES="$HOME/.cheatlib/resources"
 export SSH_HOME="$HOME/.ssh"
 export TOOLBOX_HOME="$HOME/git/ongoing/toolbox"
+export FORTKNOX_HOME="$HOME/git/ongoing/fortknox"
 
-#
+
 # .local/var and .local/tmp favorites
 # check notes on when to use 'var/tmp' or 'var/tmp/data' 
-# 
+export TMP_WORK="$HOME/.local/work"
+ 
 export VAR_ARCHIVE_DIR="/home/nukk/.local/var/archive"
 export VAR_DATA_DIR="/home/nukk/.local/var/data"
 export VAR_DATA_DIR="/home/nukk/.local/var/data"
@@ -62,3 +68,8 @@ export VIM_BUFFERS="$HOME/.local/state/vim/buffers"
 export NVIM_BUFFERS="$HOME/.local/state/nvim/buffers"
 export LVIM_BUFFERS="$HOME/.local/state/lvim/buffers"
 export DOCKER_CONTAINERS="$HOME/.local/share/docker/containers"
+export KNOWLEDGE_DUMPFILE="$HOME/git/fortknox/knowledge_dumpfile_master.md"
+export SECRETS_DUMPFILE="$HOME/git/fortknox/secrets_dumpfile_master.md"
+export DIFFPATCHES="$HOME/.local/state/diffpatch"
+
+which nvim && export EDITOR="nvim" || export EDITOR="vim"

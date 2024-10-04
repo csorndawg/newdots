@@ -1,0 +1,6 @@
+license
+*.json
+.npmrc
+.editorconfig
+
+arch/

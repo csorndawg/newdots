@@ -1,0 +1,3 @@
+return {
+  -- blank module example
+}

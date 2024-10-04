@@ -201,3 +201,9 @@ tags
 #**/lvim/**/packages/
 **/venv/**
 **/plugged/
+
+*.sqlite3
+**/lazy-lock.json
+exps/
+.WIPs/
+.staging/

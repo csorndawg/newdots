@@ -19,13 +19,6 @@ mcd (){
 }
 
 
-# recache git credentials -- temporary fix until I can find a way to 
-# share $SSH_AUTH b/w tmux windows
-gcc (){
-    eval $(ssh-agent) && ssh-add "$HOME"/.ssh/id_rsa
-    git config credential.helper 'cache --timeout=82800'
-}
-
 # quickly tweak rc shell configs 
 # useage: rce <config file flag>
 # config file flags: {a: alias} {e: exports} {f: functions} {i: idea}
@@ -136,4 +129,62 @@ mk_testdir() {
     cp -r   $TEST_TEMPLATE_DIRPATH $TEST_HOME_DIR/$NEW_DIR_NAME
     echo "cp -rv   $TEST_TEMPLATE_DIRPATH $TEST_HOME_DIR/$NEW_DIR_NAME"
     test "$2" = "y" && cd $TEST_HOME_DIR/$NEW_DIR_NAME
+}
+
+# quickly spinup new venvs
+function venvmake() {
+
+    if [ -z "$1" ];then
+        echo "Error, no venv name argument given."
+        exit 1
+    else
+        NAME="$1"
+    fi
+
+    # ensure no venvs enabled 
+    if [[ "$(which python3 | grep -Ec --ignore-case "virtualenv|venv")" -ge 1 ]]; then
+        echo "which result: $(which python3)"
+        deactivate
+    else
+        echo "No virtual env. enabled, skipping deactivation step."
+    fi
+
+    # make venv path
+    LOCAL_VENVS_DIR="$XDG_STATE_HOME/python/virtualEnvs"
+    NEW_VENV_PATH="$LOCAL_VENVS_DIR/$NAME"
+
+    # make venv
+    python3 -m venv $NEW_VENV_PATH
+
+    # turn on newly created venv 
+    source "$NEW_VENV_PATH/bin/activate"
+
+    # TODO: add logic to handle requirements.txt arg
+    # TODO: add logic to pipstall requirements file if present 
+
+    echo ""
+    echo "Trial Function: Make VENV Automateer"
+ }
+
+# dump either urser text string or url to master dumpfile (not suited for anything more complex than single string)
+quickdump(){
+    # variables
+    DUMPFILE="$$HOME/git/fortknox/knowledge_dumpfile_master.md"
+    BACKUPFILE="$HOME/.local/session/quickdumps/master_dumpfile.bk"
+    DUMPTEXT="$1"
+
+    # smart copy 
+    cp $DUMPFILE $BACKUPFILE
+    echo "" >> $DUMPFILE
+    echo "$DUMPTEXT" >> DUMPFILE
+}
+
+# mkdir+cd
+mcd(){
+	mkdir $1 -p; cd $1; 
+}
+
+
+ssh-cacher(){
+    eval $(ssh-agent) && ssh-add "$HOME/.ssh/id_rsa"
 }

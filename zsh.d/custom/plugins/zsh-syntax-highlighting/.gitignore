@@ -1,0 +1,6 @@
+*.png
+*.md
+*.gitattributes
+*.git/
+*.github/
+images/

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# kill all tmux windows except current window for current session
+tmux_kill_all_other_windows(){
+
+CURRENT_TMUX_WIND="$(tmux list-windows | rg "\*" | cut -f 1 -d ':')"
+echo "tmux kill-window -a -t $CURRENT_TMUX_WIND"
+tmux kill-window -a -t $CURRENT_TMUX_WIND
+}

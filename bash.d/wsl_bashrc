@@ -128,8 +128,12 @@ fi
 ##### SO ANY WSL LOGIC IS NOT OVERWRITEN 
 #####
 
-# @TESTME
-source ~/dotfiles/rc.d/aliases.rc
+# @TESTME: RC -> BASH -> ZSH
+# RC
+source ~/dotfiles/rc.d/aliases.rc 2> /dev/null
+source ~/dotfiles/rc.d/functions.rc 2> /dev/null
+# BASH
+source ~/dotfiles/bash.d/functions.bash 2> /dev/null
 
 #####
 ##### WSL2 BASH SPECIFIC LOGIC/CONFIGURATIONS

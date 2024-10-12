@@ -191,3 +191,17 @@ ssh_tunnel(){
     echo "ssh -L $REMOTE_PORT:localhost:$LOCAL_PORT $SSH_CONN"
     ssh -L $REMOTE_PORT:localhost:$LOCAL_PORT "$SSH_CONN"
 } 
+export DESKTOP_IP="10.255.255.254"
+export WSL_IP="100.8.196.143" 
+export DESKTOP_HOME="/mnt/c/Users/zaccs/Desktop"
+
+PATH="$PATH:/usr/bin"
+PATH="$PATH:$HOME/.toolbox/bin"
+
+# fzf key-bindings and completions
+#source "$HOME/.local/bin/key-bindings.bash"
+#source "$HOME/.local/bin/completions.bash"
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash 2> /dev/null
+
+source "$HOME/.local/bin/key-bindings.windows.bash"
+source "$HOME/.local/bin/completions.windows.bash"

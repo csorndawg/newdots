@@ -205,3 +205,6 @@ PATH="$PATH:$HOME/.toolbox/bin"
 
 source "$HOME/.local/bin/key-bindings.windows.bash"
 source "$HOME/.local/bin/completions.windows.bash"
+
+alias kb="cd $HOME/.Kb2"
+alias kbv="vim $HOME/.Kb2/quicknote_$(date +%Y%m%d_%H%M%S).md"

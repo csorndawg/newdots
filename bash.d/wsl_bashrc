@@ -148,6 +148,10 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
 fi
 ssh-add ~/.ssh/id_rsa < /dev/null 2>/dev/null
 
+# now re-cache ssh pp after clearing with /dev/null
+alias sshAdd="ssh-add ~/.ssh/id_rsa "
+
+# taskwarrior
 alias ta="task add"
 alias tl="task list"
 
@@ -197,14 +201,14 @@ export DESKTOP_HOME="/mnt/c/Users/zaccs/Desktop"
 
 PATH="$PATH:/usr/bin"
 PATH="$PATH:$HOME/.toolbox/bin"
+PATH="$HOME/.local/bin:$PATH"
 
 # fzf key-bindings and completions
-#source "$HOME/.local/bin/key-bindings.bash"
-#source "$HOME/.local/bin/completions.bash"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash 2> /dev/null
-
-source "$HOME/.local/bin/key-bindings.windows.bash"
-source "$HOME/.local/bin/completions.windows.bash"
+#source "$HOME/.local/bin/key-bindings.windows.bash"
+#source "$HOME/.local/bin/completions.windows.bash"
+source "$HOME/.local/bin/key-bindings.bash"
+source "$HOME/.local/bin/completions.bash"
 
 alias kb="cd $HOME/.Kb2"
 alias kbv="vim $HOME/.Kb2/quicknote_$(date +%Y%m%d_%H%M%S).md"

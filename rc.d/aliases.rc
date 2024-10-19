@@ -202,3 +202,5 @@ alias ch777="chmod 777 -R"
 ## keybind references 
 alias kbv="bat $HOME/.cheatlib/resources/keybindings-zc-cheatsheet.txt"
 #
+alias gg="cd $HOME/git/GYM"
+alias VO="source $HOME/.local/state/python/venvs/venv/bin/activate" 

@@ -249,3 +249,10 @@ function pet-select() {
   CURSOR=$#BUFFER
   zle redisplay
 }
+
+ff
+
+# aws completion
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+complete -C '$HOME/.local/bin/aws_completer' aws

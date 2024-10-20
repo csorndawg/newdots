@@ -5,6 +5,7 @@ export GOPATH="$HOME/.local/share/applications/go"
 GO_BIN="$GOPATH/bin"
 export CARGO_BIN="$HOME/.cargo/bin"
 export TOOLBOX_BIN="$HOME/.toolbox/bin"
+# @DELETABLE??
 export UTILS_BIN="$HOME/dotfiles/utils.d"
 
 # neovim mason install bin (needed for LSP+DAP+more)
@@ -182,10 +183,10 @@ zsh_custom_patches > /dev/null 2>&1
 # source fzf shell script
 if [[  $(echo "$SHELL"  | egrep zsh -ci) -ge 1 ]]; then
   echo "ZSH shell"
-  source "$HOME/.fzf.zsh"
+  source "$HOME/.fzf.zsh" 2> /dev/null
 else
   echo "BASH shell"
-  source "$HOME/.fzf.bash"
+  source "$HOME/.fzf.bash" 2> /dev/null
 fi
 
 ## fzf 
@@ -256,3 +257,4 @@ ff
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
 complete -C '$HOME/.local/bin/aws_completer' aws
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh -1>/dev/null

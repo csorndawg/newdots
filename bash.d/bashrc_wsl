@@ -1,0 +1,10 @@
+
+# source fzf shell script
+if [[  $(echo "$SHELL"  | egrep zsh -ci) -ge 1 ]]; then
+  echo "ZSH shell"
+  source "$HOME/.fzf.zsh"
+else
+  echo "BASH shell"
+  source "$HOME/.fzf.bash"
+fi
+

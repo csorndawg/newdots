@@ -124,32 +124,27 @@ endif
 " now that plugin dirs exist, install plugin 
 call plug#begin()
 
+Plug 'AlexvZyl/nordic.nvim'
+Plug 'SirVer/ultisnips'
+Plug 'arcticicestudio/nord-vim'
 Plug 'dense-analysis/ale'
+Plug 'ervandew/supertab'
+Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
+Plug 'neanias/everforest-nvim'
+Plug 'nordtheme/vim'
 Plug 'preservim/vimux'
-Plug 'ervandew/supertab'
-Plug 'honza/vim-snippets'
-
-" revert below if using vim 
-Plug 'arcticicestudio/nord-vim'
-
-" alernate colorschemes
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
 Plug 'xero/miasma.nvim' 
-"Plug 'shaunsingh/nord.nvim'
 
-" neovim
-" For ultisnips users.
-"Plug 'SirVer/ultisnips'
 "Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 "Plug 'shaunsingh/nord.nvim'
-Plug 'neanias/everforest-nvim'
-Plug 'AlexvZyl/nordic.nvim'
-Plug 'vim-airline/vim-airline'
-
+"Plug 'shaunsingh/nord.nvim'
 
 call plug#end()
 

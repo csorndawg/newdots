@@ -163,3 +163,5 @@ config.d/task/taskchampion.sqlite3
 .staging/
 **.artifact
 **.artifact
+
+kickstart.nvim

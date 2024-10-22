@@ -64,16 +64,20 @@ alias tmka="tmux kill-session -a -t"
 alias tlk="tmux list-keys"
 alias tlkg="tmux list-keys  | egrep -i "
 
-#
+
 ## GIT ALIASES 
 alias g="git"
 alias o="origin"
-#
+
 ### add
 alias gad="git add --dry-run"
 alias ga="git add"
 alias gacm="git add . && git commit -m "
-#
+
+# remote 
+alias git_remote_origin="git remote add origin git@github.com:csorndawg"
+alias grmo="git remote add origin git@github.com:csorndawg"
+
 ### branch
 alias gbl="git branch --list "          # list branches that match glob 
 alias gbc="git branch --contains "      # like -l except for commits
@@ -84,14 +88,14 @@ alias gbm="git branch --merged"         # list all branches merged into CURRENT 
 alias gbnm="git branch --no-merged"     # list all branches not merged into CURRENT branch
 alias gbsmr="git branch --sort=-committerdate"   # sort newest -> oldest
 alias gbslr="git branch --sort=committerdate"   # sort oldest -> newest
-#
+
 ### commit 
 alias gc="git commit"
 alias gca="git commit --amend"
 alias gcmf="git commit --fixup "
 alias gcm="git commit -m"
 alias gcmsg="git commit -m"
-#
+
 ### checkout
 alias gco="git checkout "
 alias gcmn="git checkout main "
@@ -155,9 +159,7 @@ alias gstl="git stash list"
 alias gstp="git stash push -m"
 alias gstpu="git stash push -u -m"
 alias gsts="git stash show -p "
-#
-#
-#
+
 ## miscellaneous 
 alias tree="tree -C"  # colorize output by default
 alias t1="tail -n1"

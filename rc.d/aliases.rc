@@ -206,3 +206,13 @@ alias gg="cd $HOME/git/GYM"
 alias VO="source $HOME/.local/state/python/venvs/venv/bin/activate" 
 alias XARGS='/usr/bin/xargs'
 alias xargs=xargs -I "{}"'
+alias xa=xargs -I "{}"'
+
+
+# GIT x FZF ALIASES
+fzf_gco="git branch -v | fzf  | xargs git checkout"
+alias fzf_gd="git branch -v | fzf  | xargs git diff"
+alias fzf_gds="git branch -v | fzf  | xargs git diff --stat"
+alias fzf_gdp="git branch -v | fzf  | xargs git diff --patch {} | tee $HOME/.temp/patchfiles/{}.patch"
+alias fzf_rm="git branch -v | fzf -m -1 | xargs git rm"
+

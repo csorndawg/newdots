@@ -266,3 +266,10 @@ alias kvim='NVIM_APPNAME="kickstart-nvim" nvim'
 # adhoc
 alias XARGS='/usr/bin/xargs'
 alias xargs='xargs -I "{}"'
+
+# @TODO - move to its own module in custom (final location TBD)
+# Better movement keybindings
+bindkey "^[h" backward-word         # <ALT-h> keybind
+bindkey "^[l" forward-word          # <ALT-l> keybind
+bindkey "^[f" end-of-line           # <ALT-f:> keybind
+bindkey "^[a" beginning-of-line     # <ALT-a:> keybind

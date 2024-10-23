@@ -216,3 +216,8 @@ alias fzf_gds="git branch -v | fzf  | xargs git diff --stat"
 alias fzf_gdp="git branch -v | fzf  | xargs git diff --patch {} | tee $HOME/.temp/patchfiles/{}.patch"
 alias fzf_rm="git branch -v | fzf -m -1 | xargs git rm"
 
+
+# POTENTIAL GIT ALIASES
+#gd "$(git branch --show-current)" "origin/$(git branch --show-current)"
+#gd --stat"$(git branch --show-current)" "origin/$(git branch --show-current)"
+

@@ -136,25 +136,18 @@ IGNOREME/
 nvim.d/**/config.d
 vim.d/
 !vim.d/vimrc
+vim.d/
+!vim.d/global_extra_conf.py
 
 # ignore plugin/submodules .git folders
 tmux.d/plugins
 .git/modules   
 
 # temp
-nvim.d/lazy-lock.json
+#nvim.d/lazy-lock.json
 config.d/task/taskchampion.sqlite3
 *.BROKEN
 
-# taskwarrior temp
-config.d/task/taskchampion.sqlite3
-
-# taskwarrior temp
-config.d/task/taskchampion.sqlite3
-=======
-
-# taskwarrior temp
-config.d/task/taskchampion.sqlite3
 
 # ignore original pre-patch files 
 **.orig

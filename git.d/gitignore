@@ -203,7 +203,7 @@ tags
 **/plugged/
 
 *.sqlite3
-**/lazy-lock.json
+#**/lazy-lock.json
 exps/
 .WIPs/
 .staging/

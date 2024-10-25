@@ -21,7 +21,7 @@ alias a="alias"
 alias ag="alias | egrep "
 alias h="history"
 alias hg="history | egrep "
-alias t="tldr"
+alias tt="tldr"
 
 # cheat
 alias c="cheat -c"      # colorize cheat
@@ -38,12 +38,12 @@ alias pl="pet list"
 alias ph="pet help"     # how to use: `ph search` (returns help for search subcommand)
 alias psr="pet search"
 alias pvw="bat $HOME/dotfiles/config.d/pet/snippet.toml"
-#
-#
+
+
 ## cron
 alias cte="crontab -e"
 alias ctl="crontab -l"
-#
+
 ## tmux 
 alias tmab="tmux save-buffer -a"
 alias tma="tmux attach"
@@ -155,9 +155,9 @@ alias gstl="git stash list"
 alias gstp="git stash push -m"
 alias gstpu="git stash push -u -m"
 alias gsts="git stash show -p "
-#
-#
-#
+
+
+
 ## miscellaneous 
 alias tree="tree -C"  # colorize output by default
 alias t1="tail -n1"
@@ -168,17 +168,18 @@ alias h10="head -n10"
 alias h30="head -n30"
 alias hist10="history | tail -n 10"
 alias hist30="history | tail -n 30"
-#
-#
+
+
 ## view custom shell scripts/functions/completions on the fly
 alias help_fzf="bat $HOME/dotfiles/rc.d/fzf.rc"
 alias help_rc_functs="bat $HOME/dotfiles/rc.d/functions.rc"
 alias gw="cd $HOME/gitwork"
-#
+
 ## taskwarrior
+alias t="task"
 alias ta="task add"
 alias tl="task list"
-#
+
 ## misc.
 alias fdh="fd -H"
 alias fdi="fd -I"
@@ -187,21 +188,21 @@ alias rgp="rg -p"
 alias rgc="rg -c"
 alias rg_bare="rg -NI"  # --no-line-number --no-filename
 alias debuggy_on="activate $HOME/.venv/bin/activate"
-#
+
 ## pomodoro 
 alias pt="pomodoro"
 alias ptn="pomodoro start"
 alias pts='pomodoro status --format "Time Remaining: %R  Timer: %L"'
 alias pta="pomodoro ammend"
-#
+
 ## FZF fe only runs from CWD 
 alias feh="cd && fe"
 alias weather='curl "wttr.in/New+York+City?2nq"'
 alias ch777="chmod 777 -R"
-#
+
 ## keybind references 
 alias kbv="bat $HOME/.cheatlib/resources/keybindings-zc-cheatsheet.txt"
-#
+
 alias gg="cd $HOME/git/GYM"
 alias VO="source $HOME/.local/state/python/venvs/venv/bin/activate" 
 alias XARGS='/usr/bin/xargs'

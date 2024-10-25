@@ -204,7 +204,24 @@ else
   source "$HOME/.fzf.bash"
 fi
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash 
+alias ff2="source ~/.fzf.bash"
 
 # symlink dotfile bootstrap script to LOCAL_BIN incase anything needs bootstraping
 ln -sr "$HOME/dotfiles/utils.d/bootstrap-dotfiles-core" "$HOME/.local/bin/" 2> /dev/null
+
+
+# freq. repos aliases
+alias jh="cd $HOME/git/jobhunt"
+alias dot="cd $HOME/dotfiles"
+alias clb="cd $HOME/git/cheatbook"
+alias tbx="cd $HOME/git/toolbox"
+alias kb="cd $HOME/git/kb2"
+alias fkx="cd $HOME/git/fortknox"
+# freq. repos quick actions
+alias jhv="vim $HOME/git/jobhunt/unsorted/quickadd-$(date +%Y%m%d-%H%M%S).md"
+alias dotv="vim $HOME/git/newdots/unsorted/quickadd-$(date +%Y%m%d-%H%M%S).md"
+alias clbv="vim $HOME/git/cheatlib/unsorted/quickadd-$(date +%Y%m%d-%H%M%S).md"
+alias fkxv="vim $HOME/git/fortknox/unsorted/quickadd-$(date +%Y%m%d-%H%M%S).md"
+alias tbxv="vim $HOME/git/toolbox/unsorted/quickadd-$(date +%Y%m%d-%H%M%S).md"
+alias kbv="vim $HOME/git/kb2/unsorted/quickadd-$(date +%Y%m%d-%H%M%S).md"

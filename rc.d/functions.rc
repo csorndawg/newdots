@@ -188,3 +188,24 @@ mcd(){
 ssh-cacher(){
     eval $(ssh-agent) && ssh-add "$HOME/.ssh/id_rsa"
 }
+
+## ====================================
+##  HELPER FUNCTIONS
+## ====================================
+
+# FZF branch checkout tool
+gcof(){  
+    # verbose flag passed, needed for checking origin/<BRANCH>
+    if [[ $1 = "v" ]]; then
+        echo "Verbose flag passed, included origin/remote branches as well."
+        echo ""
+        git branch -va | awk -F' ' '{print $1}' | rg -v "\*" \
+            | fzf -1  | awk -F 'remotes/' '{print $2}' \
+            | xargs -I "{}" git checkout "{}"
+
+    else
+        echo "No flag passed, only local branches will be used."
+        git branch -v | awk -F' ' '{print $1}' | rg -v "\*" \
+            | fzf -1 | xargs -I "{}" git checkout "{}"
+    fi
+}

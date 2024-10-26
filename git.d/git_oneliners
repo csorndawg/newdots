@@ -1,0 +1,11 @@
+# Handy Git Oneliners
+
+# diff current branch with its origin ((1) actual changes and (2) change summary)
+gd "$(git branch --show-current)" "origin/$(git branch --show-current)"
+gd --stat"$(git branch --show-current)" "origin/$(git branch --show-current)"
+
+# create origin/BRANCH_NAME on remote and use current work from Local as first push
+gp -u origin "$(git branch --show-current)" 
+
+# check out FZF selected branch
+git branch -v  | awk -F' ' '{print $1}' | rg -v "\*" | fzf -1 | xargs git checkout "{}"  >> ~/do

@@ -21,6 +21,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set complete-=i
+set nu
 set rnu
 set smartcase
 set colorcolumn=80
@@ -142,9 +143,20 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'xero/miasma.nvim' 
 
-"Plug 'quangnguyen30192/cmp-nvim-ultisnips'
-"Plug 'shaunsingh/nord.nvim'
-"Plug 'shaunsingh/nord.nvim'
+" Experimental.
+" If you have nodejs
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
+
+"" ------------------------------------------------------
+"" Ultisnips/Completion Engine 
+"" source:  https://git.entwicklerseite.de/vim/diff/?id2=45c3e3581b74060dae453ac097e5a4d629603393
+""
+"" ------------------------------------------------------
+
+Plug 'preservim/tagbar'
+Plug 'ycm-core/YouCompleteMe'
+
+" ------------------------------------------------------
 
 call plug#end()
 
@@ -215,53 +227,54 @@ endfunction
 set statusline+=%=
 set statusline+=\ %{LinterStatus()}
 
-"" ultisnip super-tab enhanced TAB COMPLETE
-"" better key bindings for UltiSnipsExpandTrigger
-let g:SuperTabDefaultCompletionType = '<tab>'
-"let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpOrExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:UltiSnipsListSnippets="<leader>lus"
-let g:UltiSnipsEditSplit="vertical"		" default is horizontal
-" for custom snippets create <snip type>_custom.<snip file extension>`
+"OUTDATED--"" ultisnip super-tab enhanced TAB COMPLETE
+"OUTDATED--"" better key bindings for UltiSnipsExpandTrigger
+"OUTDATED--let g:SuperTabDefaultCompletionType = '<tab>'
+"OUTDATED--"let g:UltiSnipsExpandTrigger="<tab>"
+"OUTDATED--let g:UltiSnipsJumpOrExpandTrigger="<tab>"
+"OUTDATED--let g:UltiSnipsJumpForwardTrigger="<tab>"
+"OUTDATED--let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+"OUTDATED--let g:UltiSnipsListSnippets="<leader>lus"
+"OUTDATED--let g:UltiSnipsEditSplit="vertical"		" default is horizontal
+"OUTDATED--" for custom snippets create <snip type>_custom.<snip file extension>`
+"OUTDATED--
+"OUTDATED--
+"OUTDATED--function! g:UltiSnips_Complete()
+"OUTDATED--  call UltiSnips#ExpandSnippet()
+"OUTDATED--  if g:ulti_expand_res == 0
+"OUTDATED--    if pumvisible()
+"OUTDATED--      return "\<C-n>"
+"OUTDATED--    else
+"OUTDATED--      call UltiSnips#JumpForwards()
+"OUTDATED--      if g:ulti_jump_forwards_res == 0
+"OUTDATED--        return "\<TAB>"
+"OUTDATED--      endif
+"OUTDATED--    endif
+"OUTDATED--  endif
+"OUTDATED--  return ""
+"OUTDATED--endfunction
+"OUTDATED--
+"OUTDATED--function! g:UltiSnips_Reverse()
+"OUTDATED--  call UltiSnips#JumpBackwards()
+"OUTDATED--  if g:ulti_jump_backwards_res == 0
+"OUTDATED--    return "\<C-P>"
+"OUTDATED--  endif
+"OUTDATED--
+"OUTDATED--  return ""
+"OUTDATED--endfunction
+"OUTDATED--
+"OUTDATED--
+"OUTDATED--if !exists("g:UltiSnipsJumpForwardTrigger")
+"OUTDATED--  let g:UltiSnipsJumpForwardTrigger = "<tab>"
+"OUTDATED--endif
+"OUTDATED--
+"OUTDATED--if !exists("g:UltiSnipsJumpBackwardTrigger")
+"OUTDATED--  let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+"OUTDATED--endif
+"OUTDATED--
+"OUTDATED--"let g:UltiSnipsSnippetDirectories = ['~/.vim/mysnippets', 'UltiSnips']
+"OUTDATED--"let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'vimsnips']
 
-
-function! g:UltiSnips_Complete()
-  call UltiSnips#ExpandSnippet()
-  if g:ulti_expand_res == 0
-    if pumvisible()
-      return "\<C-n>"
-    else
-      call UltiSnips#JumpForwards()
-      if g:ulti_jump_forwards_res == 0
-        return "\<TAB>"
-      endif
-    endif
-  endif
-  return ""
-endfunction
-
-function! g:UltiSnips_Reverse()
-  call UltiSnips#JumpBackwards()
-  if g:ulti_jump_backwards_res == 0
-    return "\<C-P>"
-  endif
-
-  return ""
-endfunction
-
-
-if !exists("g:UltiSnipsJumpForwardTrigger")
-  let g:UltiSnipsJumpForwardTrigger = "<tab>"
-endif
-
-if !exists("g:UltiSnipsJumpBackwardTrigger")
-  let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-endif
-
-"let g:UltiSnipsSnippetDirectories = ['~/.vim/mysnippets', 'UltiSnips']
-let g:UltiSnipsSnippetDirectories = ['UltiSnips','$HOME/.vim/MySnippets2']
 
 
 " fzf.vim 
@@ -300,3 +313,56 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 set foldmethod=indent
+
+
+" ------------------------------------------------------------
+"" ULTISNIPS 
+
+" quickstart/experimental configuration
+"let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'vimsnips']
+
+"TODO
+"UltisnipsEdit ALIAS
+ 
+" ------------------------------------------------------------
+" Misc. Plugins Configuartions
+"
+
+" 	tagbar
+"let g:tagbar_autoclose   = 0
+"let g:tagbar_autofocus   = 1
+"let g:tagbar_autoshowtag = 0
+let g:tagbar_compact     = 1
+let g:tagbar_indent      = 0
+let g:tagbar_foldlevel   = 99
+"nnoremap <F9> :TagbarToggle<CR>| " bind TagBar to hotkey F9
+
+
+" ------------------------------------------------------------
+""  YCM 
+
+""  Python 
+let g:ycm_python_interpreter_path = ''
+let g:ycm_python_sys_path = []
+let g:ycm_extra_conf_vim_data = [
+  \  'g:ycm_python_interpreter_path',
+  \  'g:ycm_python_sys_path'
+  \]
+"let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/dotfiles/vim.d/global_extra_conf.py'
+
+
+
+" ------------------------------------------------------------
+
+""  FZF.VIM 
+nnoremap <silent> <leader>f :Files<CR>
+nnoremap <silent> <leader>g :GFiles<CR>
+nnoremap <silent> <leader>b :Buffers<CR>
+nnoremap <C-f> :Rg!
+
+
+" ------------------------------------------------------------
+
+""  VIM-SLIME

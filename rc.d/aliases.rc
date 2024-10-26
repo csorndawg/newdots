@@ -93,7 +93,8 @@ alias gcm="git commit -m"
 alias gcmsg="git commit -m"
 #
 ### checkout
-alias gco="git checkout "
+#alias gco="git checkout "
+alias GCO="git checkout "
 alias gcmn="git checkout main "
 alias gcb="git checkout -b "
 alias gc1="git checkout @{-1}"  # checkout last branch 
@@ -216,4 +217,13 @@ alias fzf_gd="git branch -v | fzf  | xargs git diff"
 alias fzf_gds="git branch -v | fzf  | xargs git diff --stat"
 alias fzf_gdp="git branch -v | fzf  | xargs git diff --patch {} | tee $HOME/.temp/patchfiles/{}.patch"
 alias fzf_rm="git branch -v | fzf -m -1 | xargs git rm"
+
+
+# POTENTIAL GIT ALIASES
+#gd "$(git branch --show-current)" "origin/$(git branch --show-current)"
+#gd --stat"$(git branch --show-current)" "origin/$(git branch --show-current)"
+
+# kickstart-modular alias/concurrent configs
+alias kickstart-nvim='NVIM_APPNAME="kickstart-nvim" nvim'
+alias kvim='NVIM_APPNAME="kickstart-nvim" nvim'
 

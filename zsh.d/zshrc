@@ -257,7 +257,7 @@ ff
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
 complete -C '$HOME/.local/bin/aws_completer' aws
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh -1>/dev/null
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh 2>/dev/null
 
 # kickstart-modular alias/concurrent configs
 alias kickstart-nvim='NVIM_APPNAME="kickstart-nvim" nvim'

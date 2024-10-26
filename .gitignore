@@ -151,7 +151,6 @@ config.d/task/taskchampion.sqlite3
 
 # taskwarrior temp
 config.d/task/taskchampion.sqlite3
-=======
 
 # taskwarrior temp
 config.d/task/taskchampion.sqlite3
@@ -165,3 +164,4 @@ config.d/task/taskchampion.sqlite3
 **.artifact
 
 kickstart.nvim
+**/ignoreme/

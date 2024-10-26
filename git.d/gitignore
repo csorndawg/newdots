@@ -230,3 +230,7 @@ ignore/
 staging/
 temp/
 scratch/
+node_modules/
+package-lock.json
+package.json
+

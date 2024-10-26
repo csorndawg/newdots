@@ -136,7 +136,6 @@ IGNOREME/
 nvim.d/**/config.d
 vim.d/
 !vim.d/vimrc
-vim.d/
 !vim.d/global_extra_conf.py
 
 # ignore plugin/submodules .git folders
@@ -158,3 +157,9 @@ config.d/task/taskchampion.sqlite3
 **.artifact
 
 kickstart.nvim
+**/ignoreme/
+
+node_modules/
+package-lock.json
+package.json
+

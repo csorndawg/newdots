@@ -93,7 +93,8 @@ alias gcm="git commit -m"
 alias gcmsg="git commit -m"
 #
 ### checkout
-alias gco="git checkout "
+#alias gco="git checkout "
+alias GCO="git checkout "
 alias gcmn="git checkout main "
 alias gcb="git checkout -b "
 alias gc1="git checkout @{-1}"  # checkout last branch 

@@ -21,6 +21,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set complete-=i
+set nu
 set rnu
 set smartcase
 set colorcolumn=80
@@ -141,6 +142,10 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'xero/miasma.nvim' 
+
+" Experimental.
+" If you have nodejs
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
 
 "" ------------------------------------------------------
 "" Ultisnips/Completion Engine 
@@ -310,12 +315,18 @@ nnoremap <C-l> <C-w>l
 set foldmethod=indent
 
 
-" ULTISNIPS quickstart/experimental configuration
+" ------------------------------------------------------------
+"" ULTISNIPS 
+
+" quickstart/experimental configuration
 "let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'vimsnips']
+
+"TODO
+"UltisnipsEdit ALIAS
  
 " ------------------------------------------------------------
-" Plugin configuartion for completion eng. plugin 
+" Misc. Plugins Configuartions
 "
 
 " 	tagbar
@@ -326,7 +337,6 @@ let g:tagbar_compact     = 1
 let g:tagbar_indent      = 0
 let g:tagbar_foldlevel   = 99
 "nnoremap <F9> :TagbarToggle<CR>| " bind TagBar to hotkey F9
-
 
 
 " ------------------------------------------------------------
@@ -341,3 +351,18 @@ let g:ycm_extra_conf_vim_data = [
   \]
 "let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py'
 let g:ycm_global_ycm_extra_conf = '~/dotfiles/vim.d/global_extra_conf.py'
+
+
+
+" ------------------------------------------------------------
+
+""  FZF.VIM 
+nnoremap <silent> <leader>f :Files<CR>
+nnoremap <silent> <leader>g :GFiles<CR>
+nnoremap <silent> <leader>b :Buffers<CR>
+nnoremap <C-f> :Rg!
+
+
+" ------------------------------------------------------------
+
+""  VIM-SLIME

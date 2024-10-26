@@ -158,3 +158,4 @@ config.d/task/taskchampion.sqlite3
 **.artifact
 
 kickstart.nvim
+**/ignoreme/

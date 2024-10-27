@@ -222,28 +222,23 @@ edot(){
     fi
 
     case $1 in
-
     # bashrc
     b)
         echo "BASHRC argument passed"
         vim "$HOME/.bashrc"
         ;;
-
     t)
         echo "TMUX.CONF argument passed"
         vim "$HOME/.tmux.conf"
         ;;
-
     v)
         echo "VIMRC argument passed"
         vim "$HOME/.vimrc"
         ;;
-
     z)
         echo "TMUX.CONF argument passed"
         vim "$HOME/.zshrc"
         ;;
-
     *)
         echo "Required argument missing. Valid arguments are b, t, v, z."
         ;;

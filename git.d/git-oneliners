@@ -1,5 +1,0 @@
-gd "$(git branch --show-current)" "origin/$(git branch --show-current)"
-gd --stat"$(git branch --show-current)" "origin/$(git branch --show-current)"
-
-# create origin/BRANCH_NAME on remote and use current work from Local as first push
-gp -u origin "$(git branch --show-current)" 

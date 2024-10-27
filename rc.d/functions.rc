@@ -209,3 +209,44 @@ gcof(){
             | fzf -1 | xargs -I "{}" git checkout "{}"
     fi
 }
+
+# @TODO - add nvim/kickstart/git[ignore/config] handling
+# edit dotfiles (each maps to dotfile tech)
+# args: z,v,k,n,t,gi,gc,b
+edot(){
+
+    # validate input
+    if [[ -z "$1" ]]; then
+        echo "Error - required argument missing."
+        exit 1
+    fi
+
+    case $1 in
+
+    # bashrc
+    b)
+        echo "BASHRC argument passed"
+        vim "$HOME/.bashrc"
+        ;;
+
+    t)
+        echo "TMUX.CONF argument passed"
+        vim "$HOME/.tmux.conf"
+        ;;
+
+    v)
+        echo "VIMRC argument passed"
+        vim "$HOME/.vimrc"
+        ;;
+
+    z)
+        echo "TMUX.CONF argument passed"
+        vim "$HOME/.zshrc"
+        ;;
+
+    *)
+        echo "Required argument missing. Valid arguments are b, t, v, z."
+        ;;
+    esac
+
+}

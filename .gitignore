@@ -161,3 +161,7 @@ config.d/task/taskchampion.sqlite3
 
 kickstart.nvim
 **/ignoreme/
+node_modules/
+package-lock.json
+package.json
+

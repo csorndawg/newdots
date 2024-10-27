@@ -195,8 +195,10 @@ tags
 
 
 ## cli tools 
-**/node_modules/
+**/node_modules
+node_modules/
 **/go/pkg/
+go/pkg/
 **/ctags/Units
 #**/lvim/**/packages/
 **/venv/**
@@ -218,6 +220,7 @@ ignore/
 staging/
 temp/
 scratch/
+.scratch/
 
 ignoreme/
 ignore/

@@ -352,6 +352,25 @@ let g:tagbar_foldlevel   = 99
 " Initialize configuration dictionary
 let g:fzf_vim = {}
 
+" FZF.VIM colorscheme
+
+" NORD.NVIM colorscheme
+let g:terminal_ansi_colors = [
+            \ '#2E3440', '#3B4252', '#434C5E', '#616E88',
+            \ '#D8DEE9', '#E5E9F0', '#ECEFF4', '#8FBCBB',
+            \ '#88C0D0', '#81A1C1', '#5E81AC', '#BF616A',
+            \ '#D08770', '#EBCB8B', '#A3BE8C', '#B48EAD'
+            \ ]
+
+" NORDBONES FZF.VIM colorschme
+"let g:terminal_ansi_colors = [
+"            \ '#2F3541', '#C1616A', '#A4BE8D', '#CF866F',
+"            \ '#8FBCBA', '#B38DAC', '#87BFCE', '#EBEEF3',
+"            \ '#475063', '#D6787F', '#A8CC86', '#E09680',
+"            \ '#89CAC8', '#CF97C5', '#82CCE0', '#A5B4CD'
+"            \ ]
+
+
 " Preview window is hidden by default. You can toggle it with ctrl-/.
 " It will show on the right with 50% width, but if the width is smaller
 " than 70 columns, it will show above the candidate list

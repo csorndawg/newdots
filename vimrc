@@ -20,7 +20,7 @@ set smartindent
 set tabstop=4 
 set softtabstop=4
 set shiftwidth=4
-set complete-=i
+"set complete-=i
 set nu
 set rnu
 set smartcase
@@ -85,9 +85,16 @@ nnoremap <C-l> <C-w>l
 
 "" Mode switching remaps
 
-" switch b/w imo/nmo with <space>, and <Alt-,>
+" toggle Normal/Insert mode with <Alt>,
 inoremap <A-,> <ESC>
-nnoremap <leader>, i
+nnoremap <A-,> i
+"nnoremap <leader>, i
+
+
+" toggle Normal/Command mode with <SPACE>, and <Alt>, 
+nnoremap <leader>, :
+cnoremap <A-,> <C-c>
+" fallback: cnoremap <A-,> <ESC>
 
 
 " use arrows keys for additionally mode switching method
@@ -193,7 +200,10 @@ noremap <leader>u :UndotreeShow<CR>
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 0  " disable fixer 
-let g:ale_virtualtext_cursor = 'current'
+
+" disable virtualtext, as Linter warning/error described in statusline
+let g:ale_virtualtext_cursor = 0
+"let g:ale_virtualtext_cursor = 'current'
 
 " error symbols
 let g:ale_sign_error = '●'
@@ -516,18 +526,21 @@ let g:ycm_key_list_previous_completion = ['<C-Tab>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:SuperTabContextDefaultCompletionType = 'context'
 
-" Set up UltiSnips for snippets support
+" ULTISNIPS snippet completion configuration
+" let g:UltiSnipsExpandTrigger = '<Tab>'
+" let g:UltiSnipsJumpForwardTrigger = '<Tab>'
+" let g:UltiSnipsJumpBackwardTrigger = '<C-Tab>'
 let g:UltiSnipsExpandTrigger = '<Tab>'
-let g:UltiSnipsJumpForwardTrigger = '<Tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<C-Tab>'
+let g:UltiSnipsJumpForwardTrigger = '<C-n>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-p>'
 let g:UltiSnipsEditSplit = 'vertical'  " Use vertical split for editing snippets
 
 " Conditional mappings for <Tab> key
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : (UltiSnips#CanExpandSnippet() ? "<C-R>=UltiSnips#ExpandSnippet()<CR>" : "\<Tab>")
-inoremap <expr> <C-Tab> pumvisible() ? "\<C-p>" : "<C-Tab>"
+"inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : (UltiSnips#CanExpandSnippet() ? "<C-R>=UltiSnips#ExpandSnippet()<CR>" : "\<Tab>")
+"inoremap <expr> <C-Tab> pumvisible() ? "\<C-p>" : "<C-Tab>"
 
 " Use <CR> (Enter) to confirm completion if the popup menu is visible
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 
 " Automatically start YCM on Vim startup
 autocmd VimEnter * call youcompleteme#Enable()

@@ -205,7 +205,19 @@ else
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash 
-alias ff2="source ~/.fzf.bash"
+#alias ff2="source ~/.fzf.bash"
+
+ff2 (){
+    source ~/.fzf.bash
+    source ~/dotfiles/config.d/fzf.config
+    export FZF_DEFAULT_OPTS="
+      --no-height
+      --color=fg:#e5e9f0,bg:#3b4252,hl:#81a1c1 
+      --color=fg+:#e5e9f0,bg+:#3b4252,hl+:#81a1c1
+      --color=info:#eacb8a,prompt:#bf6069,pointer:#b48dac 
+      --color header:italic
+      --color=marker:#a3be8b,spinner:#b48dac,header:#a3be8b"
+}
 
 # symlink dotfile bootstrap script to LOCAL_BIN incase anything needs bootstraping
 ln -sr "$HOME/dotfiles/utils.d/bootstrap-dotfiles-core" "$HOME/.local/bin/" 2> /dev/null

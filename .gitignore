@@ -136,7 +136,7 @@ IGNOREME/
 nvim.d/**/config.d
 vim.d/
 !vim.d/vimrc
-!vim.d/global_extra_conf.py
+#!vim.d/global_extra_conf.py
 
 # ignore plugin/submodules .git folders
 tmux.d/plugins

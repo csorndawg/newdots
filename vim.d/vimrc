@@ -513,9 +513,14 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 " Automatically start YCM on Vim startup
 autocmd VimEnter * call youcompleteme#Enable()
 
+" @TESTME
 " Set filetypes to automatically load YCM and UltiSnips for Python and Bash
-autocmd FileType python,bash setlocal completefunc=YouCompleteMeComplete
-autocmd FileType python,bash UltiSnipsAddFiletypes python
+autocmd FileType python setlocal completefunc=YouCompleteMeComplete
+autocmd FileType python UltiSnipsAddFiletypes python
+autocmd FileType bash setlocal completefunc=YouCompleteMeComplete
+autocmd FileType bash UltiSnipsAddFiletypes sh
+autocmd FileType sh setlocal completefunc=YouCompleteMeComplete
+autocmd FileType sh UltiSnipsAddFiletypes sh
 
 " ------------------------------------------------------------
 ""  YCM 

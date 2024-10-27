@@ -149,6 +149,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'xero/miasma.nvim' 
+Plug 'davidhalter/jedi-vim'
 
 " Experimental.
 " If you have nodejs
@@ -335,12 +336,20 @@ nnoremap <leader>z za
 
 
 " better formatting for plain-text/markdown
-au BufNewFile,BufRead *.txt *.md *.note
-    \ set tabstop=2
-    \ set softtabstop=2
-    \ set shiftwidth=2
-    \ set expandtab
-    \ set autoindent
+" Create an autocommand group for text files
+augroup TextFileSettings
+    autocmd!
+    
+    " Set filetype to markdown for .txt files (if desired)
+    autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
+    autocmd BufNewFile,BufRead *.txt setlocal filetype=text
+    autocmd BufNewFile,BufRead *.gig setlocal filetype=text
+
+    " Set specific options for .txt files
+    autocmd BufNewFile,BufRead *.txt setlocal wrap
+    autocmd BufNewFile,BufRead *.txt setlocal spell
+    autocmd BufNewFile,BufRead *.txt setlocal tabstop=2 shiftwidth=2 expandtab
+augroup END
 
 
  
@@ -515,43 +524,28 @@ nnoremap <leader>vz :VimuxZoomRunner<CR>
 ""  YCM 
 " ------------------------------------------------------------
 
-
-""  Python 
-let g:ycm_python_interpreter_path = ''
-let g:ycm_python_sys_path = []
-let g:ycm_extra_conf_vim_data = [
-  \  'g:ycm_python_interpreter_path',
-  \  'g:ycm_python_sys_path'
-  \]
-let g:ycm_global_ycm_extra_conf = '~/.local/bin/global_extra_conf.py'
-
-" default=2
-let g:ycm_min_num_of_chars_for_completion = 3
-
-let g:ycm_language_server =
-  \ [
-  \   {
-  \     'name': 'yaml',
-  \     'cmdline': [ '~/.local/share/nvim/mason/bin/yaml-language-server', '--stdio' ],
-  \     'filetypes': [ 'yaml' ]
-  \   },
-  \ ]
-
-let g:ycm_filetype_blacklist = {
-      \ 'tagbar': 1,
-      \ 'notes': 1,
-      \ 'markdown': 1,
-      \ 'netrw': 1,
-      \ 'unite': 1,
-      \ 'text': 1,
-      \ 'vimwiki': 1,
-      \ 'pandoc': 1,
-      \ 'infolog': 1,
-      \ 'leaderf': 1,
-      \ 'mail': 1
-      \}
-
-
+"
+"""  Python 
+"let g:ycm_python_interpreter_path = ''
+"let g:ycm_python_sys_path = []
+"let g:ycm_extra_conf_vim_data = [
+"  \  'g:ycm_python_interpreter_path',
+"  \  'g:ycm_python_sys_path'
+"  \]
+"let g:ycm_global_ycm_extra_conf = '~/.local/bin/global_extra_conf.py'
+"
+"" default=2
+"let g:ycm_min_num_of_chars_for_completion = 3
+"
+"let g:ycm_language_server =
+"  \ [
+"  \   {
+"  \     'name': 'yaml',
+"  \     'cmdline': [ '~/.local/share/nvim/mason/bin/yaml-language-server', '--stdio' ],
+"  \     'filetypes': [ 'yaml' ]
+"  \   },
+"  \ ]
+"
 
 " ------------------------------------------------------------
 ""  Fugitive
@@ -566,9 +560,22 @@ let g:ycm_filetype_blacklist = {
 
 
 " ------------------------------------------------------------
-"" ULTISNIPS 
+"" JEDI
 " ------------------------------------------------------------
 
-"TODO
-"let g:UltiSnipsSnippetDirectories = ['vimsnips', 'UltiSnips']
+" set to 0 to disable GLOBAL keybind overwriting
+" for more info see https://github.com/davidhalter/jedi-vim/blob/master/doc/jedi-vim.txt
+"let g:jedi#auto_initialization = 0
+"let g:jedi#auto_vim_configuration = 0
+"
+"" Using <Leader>. for omnicompletion (with <Ctrl-N> as alternate)
+"inoremap <silent> <buffer> <C-N> <c-x><c-o>
+"inoremap <silent> <buffer> <leader>. <c-x><c-o>
+"" Use <localleader>r (by default <\-r>) for renaming
+"nnoremap <silent> <buffer> <localleader>r :call jedi#rename()<cr>
+"" etc.
 
+" https://redkrieg.com/2012/12/11/writing-python-like-a-jedi/
+" <TAB> after '.' to see completion options
+let g:SuperTabDefaultCompletionType = "context"
+let g:jedi#popup_on_dot = 0

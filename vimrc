@@ -251,7 +251,7 @@ function! LinterStatus() abort
     let l:all_errors = l:counts.error + l:counts.style_error
     let l:all_non_errors = l:counts.total - l:all_errors
     return l:counts.total == 0 ? 'OK' : printf(
-        \   '%d. %d● ',
+        \   '%d- %d● ',
         \   all_non_errors,
         \   all_errors
         \)
@@ -314,8 +314,8 @@ cnoremap <expr> %%  getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " normal-insert mode remaps
 "  switch b/w nmo/cmo with `<space>;` and <ALT-;>
-nnoremap <leader>; :
-cnoremap <A-;> <C-c>
+cnoremap <A-;> <C-c>i
+inoremap <A-;> <C-c>:
 
 " paste toggle
 nnoremap <leader>pp :set paste<CR>
@@ -334,17 +334,10 @@ set foldmethod=indent
 
 
 
-" ------------------------------------------------------------
-"" ULTISNIPS 
-
-"TODO
-let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'vimsnips']
-
-
-
  
 " ------------------------------------------------------------
 " Misc. Plugins Configuartions
+" ------------------------------------------------------------
 
 " 	tagbar
 "let g:tagbar_autoclose   = 0
@@ -358,6 +351,7 @@ let g:tagbar_foldlevel   = 99
 
 " ------------------------------------------------------------
 ""  FZF.VIM 
+" ------------------------------------------------------------
 
 " Initialize configuration dictionary
 let g:fzf_vim = {}
@@ -474,9 +468,9 @@ autocmd! FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
 
-
 " ------------------------------------------------------------
 ""  VIMUX
+" ------------------------------------------------------------
 
 " prompt for a command to run
 nnoremap <Leader>vp :VimuxPromptCommand<CR>
@@ -507,250 +501,11 @@ nnoremap <leader>vz :VimuxZoomRunner<CR>
 " IDEAS.TODO 
 " <VIMUX REMAP/KEYBIND for activating python VENV (needs to work for
 " non-default VO VENVS)
-
-
-" ------------------------------------------------------------
-"" YCM/ULTISNIPS CMP CONFIGURATION
-
-
-" @ME
-" @P1
-" @TODO - FIX CMP bug and have this play nicely alongside ULTISNIPS for BASH/PYTHON
-
-"" Load YouCompleteMe and UltiSnips
-let g:ycm_auto_trigger = 1
-let g:ycm_key_list_select_completion = ['<Tab>']
-let g:ycm_key_list_previous_completion = ['<C-Tab>']
-
-" Configure SuperTab to work with YCM and UltiSnips
-let g:SuperTabDefaultCompletionType = '<C-n>'
-let g:SuperTabContextDefaultCompletionType = 'context'
-
-" ULTISNIPS snippet completion configuration
-" let g:UltiSnipsExpandTrigger = '<Tab>'
-" let g:UltiSnipsJumpForwardTrigger = '<Tab>'
-" let g:UltiSnipsJumpBackwardTrigger = '<C-Tab>'
-let g:UltiSnipsExpandTrigger = '<Tab>'
-let g:UltiSnipsJumpForwardTrigger = '<C-n>'
-let g:UltiSnipsJumpBackwardTrigger = '<C-p>'
-let g:UltiSnipsEditSplit = 'vertical'  " Use vertical split for editing snippets
-
-" Conditional mappings for <Tab> key
-"inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : (UltiSnips#CanExpandSnippet() ? "<C-R>=UltiSnips#ExpandSnippet()<CR>" : "\<Tab>")
-"inoremap <expr> <C-Tab> pumvisible() ? "\<C-p>" : "<C-Tab>"
-
-" Use <CR> (Enter) to confirm completion if the popup menu is visible
-"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-
-" Automatically start YCM on Vim startup
-autocmd VimEnter * call youcompleteme#Enable()
-
-" @TESTME
-" Set filetypes to automatically load YCM and UltiSnips for Python and Bash
-autocmd FileType python setlocal completefunc=YouCompleteMeComplete
-autocmd FileType python UltiSnipsAddFiletypes python
-autocmd FileType bash setlocal completefunc=YouCompleteMeComplete
-autocmd FileType bash UltiSnipsAddFiletypes sh
-autocmd FileType sh setlocal completefunc=YouCompleteMeComplete
-autocmd FileType sh UltiSnipsAddFiletypes sh
-
-" ------------------------------------------------------------
-""  FZF.VIM 
-
-" Initialize configuration dictionary
-let g:fzf_vim = {}
-
-" FZF.VIM colorscheme
-
-" NORD.NVIM colorscheme
-let g:terminal_ansi_colors = [
-            \ '#2E3440', '#3B4252', '#434C5E', '#616E88',
-            \ '#D8DEE9', '#E5E9F0', '#ECEFF4', '#8FBCBB',
-            \ '#88C0D0', '#81A1C1', '#5E81AC', '#BF616A',
-            \ '#D08770', '#EBCB8B', '#A3BE8C', '#B48EAD'
-            \ ]
-
-" NORDBONES FZF.VIM colorschme
-"let g:terminal_ansi_colors = [
-"            \ '#2F3541', '#C1616A', '#A4BE8D', '#CF866F',
-"            \ '#8FBCBA', '#B38DAC', '#87BFCE', '#EBEEF3',
-"            \ '#475063', '#D6787F', '#A8CC86', '#E09680',
-"            \ '#89CAC8', '#CF97C5', '#82CCE0', '#A5B4CD'
-"            \ ]
-
-
-" Preview window is hidden by default. You can toggle it with ctrl-/.
-" It will show on the right with 50% width, but if the width is smaller
-" than 70 columns, it will show above the candidate list
-let g:fzf_vim.preview_window = ['hidden,right,50%,<70(up,40%)', 'ctrl-/']
-
-" [[B]Commits] Customize the options used by 'git log':
-let g:fzf_vim.commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
-
-" [Buffers] Jump to the existing window if possible (default: 0)
-let g:fzf_vim.buffers_jump = 1
-let g:fzf_vim.listproc = { list -> fzf#vim#listproc#quickfix(list) }
-
-" FZF.VIM Commands
-nnoremap <C-f> :Rg!<CR>
-nnoremap <silent> <leader>b :Buffers<CR>
-nnoremap <silent> <leader>f :Files<CR>
-" search for files under $HOME `~`
-nnoremap <silent> <leader>fh :Files ~<CR>
-nnoremap <silent> <leader>gf :GFiles<CR>
-" search for git files under $HOME `~`
-nnoremap <silent> <leader>gs :GFiles?<CR>
-nnoremap <silent> <leader>gsh :GFiles?<CR>
-nnoremap <silent> <leader>gc :Commits<CR>
-nnoremap <silent> <leader>s :Snippets<CR>
-nnoremap <silent> <leader>m :Marks<CR>
-nnoremap <silent> <leader>nm :Maps<CR>
-"nnoremap <silent> <leader>t :Tags<CR>      "@TODO
-
-
-" Ex-Mode Command History
-nnoremap <silent> <leader>ch :History:<CR>
-" Ex-Mode Search History
-nnoremap <silent> <leader>sh :History/:<CR>
-
-
-" Mapping selecting mappings
-"nmap <leader><tab> <plug>(fzf-maps-n)
-"xmap <leader><tab> <plug>(fzf-maps-x)
-"omap <leader><tab> <plug>(fzf-maps-o)
-
-" Insert mode completion
-inoremap <leader><leader>w <plug>(fzf-complete-word)
-inoremap <leader><leader>l <plug>(fzf-complete-line)
-inoremap <expr> <leader><leader>p fzf#vim#complete#path('rg --files')
-"inoremap <expr> <leader><leader>p fzf#vim#complete#path('fd')
-
-
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-v': 'vsplit' }
-
-" Customize fzf colors to match your color scheme
-" - fzf#wrap translates this to a set of `--color` options
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-" Enable per-command history
-" - History files will be stored in the specified directory
-" - When set, CTRL-N and CTRL-P will be bound to 'next-history' and
-"   'previous-history' instead of 'down' and 'up'.
-let g:fzf_history_dir = '~/.local/share/fzf-history'
-
-" The query history for this command will be stored as 'ls' inside g:fzf_history_dir.
-" The name is ignored if g:fzf_history_dir is not defined.
-
-command! -bang -complete=dir -nargs=? LS
-    \ call fzf#run(fzf#wrap({'source': 'ls', 'dir': <q-args>}, <bang>0))
-
-
-" Global line completion (not just open buffers. ripgrep required.)
-"inoremap <expr> <c-x><c-l> fzf#vim#complete(fzf#wrap({
-"  \ 'prefix': '^.*$',
-"  \ 'source': 'rg -n ^ --color always',
-"  \ 'options': '--ansi --delimiter : --nth 3..',
-"  \ 'reducer': { lines -> join(split(lines[0], ':\zs')[2:], '') }}))
-
-" Hide statusline for FZF terminal buffers
-autocmd! FileType fzf set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-
-
-
-" ------------------------------------------------------------
-""  VIMUX
-
-" prompt for a command to run
-nnoremap <Leader>vp :VimuxPromptCommand<CR>
-
-" run last command executed by VimuxRunCommand
-nnoremap <Leader>vl :VimuxRunLastCommand<CR>
-
-" inspect runner pane
-nnoremap <Leader>vi :VimuxInspectRunner<CR>
-
-" zoom the tmux runner pane
-nnoremap <leader>vz :VimuxZoomRunner<CR>
-
-
-"" VIMUX CUSTOM - BASH/PYTHON REPL
-
-" PYTHON REPL-like functionality    (vrp= Vimux Run/REPL Python)
-"nnoremap <Leader>vpp :call VimuxRunCommand("clear; python " . bufname("%"))<CR>
-
-" TODO 
-" <LOGIC TO CHECK IF PYTHON OR BASH> 
-" <LOGIC THAT RUNS FOR PYTHON FILE>
-" <PYTHON ALSO REQUIRES VIRTUAL ENV. ACTIVATED>  --- VO='source /home/shelby-sensation/.local/state/python/venvs/venv/bin/activate'
-"nnoremap <Leader>vpp :call VimuxRunCommand("clear; python " . bufname("%"))<CR>
-" <LOGIC THAT RUNS FOR BASH FILE>
-"nnoremap <Leader>vb :call VimuxRunCommand("clear; bash " . bufname("%"))<CR>
-
-" IDEAS.TODO 
-" <VIMUX REMAP/KEYBIND for activating python VENV (needs to work for
-" non-default VO VENVS)
-
-
-" ------------------------------------------------------------
-"" YCM/ULTISNIPS CMP CONFIGURATION
-
-
-" @ME
-" @P1
-" @TODO - FIX CMP bug and have this play nicely alongside ULTISNIPS for BASH/PYTHON
-
-"" Load YouCompleteMe and UltiSnips
-let g:ycm_auto_trigger = 1
-let g:ycm_key_list_select_completion = ['<Tab>']
-let g:ycm_key_list_previous_completion = ['<C-Tab>']
-
-" Configure SuperTab to work with YCM and UltiSnips
-let g:SuperTabDefaultCompletionType = '<C-n>'
-let g:SuperTabContextDefaultCompletionType = 'context'
-
-" Set up UltiSnips for snippets support
-let g:UltiSnipsExpandTrigger = '<Tab>'
-let g:UltiSnipsJumpForwardTrigger = '<Tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<C-Tab>'
-let g:UltiSnipsEditSplit = 'vertical'  " Use vertical split for editing snippets
-
-" Conditional mappings for <Tab> key
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : (UltiSnips#CanExpandSnippet() ? "<C-R>=UltiSnips#ExpandSnippet()<CR>" : "\<Tab>")
-inoremap <expr> <C-Tab> pumvisible() ? "\<C-p>" : "<C-Tab>"
-
-" Use <CR> (Enter) to confirm completion if the popup menu is visible
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-
-" Automatically start YCM on Vim startup
-autocmd VimEnter * call youcompleteme#Enable()
-
-" @TESTME
-" Set filetypes to automatically load YCM and UltiSnips for Python and Bash
-autocmd FileType python setlocal completefunc=YouCompleteMeComplete
-autocmd FileType python UltiSnipsAddFiletypes python
-autocmd FileType bash setlocal completefunc=YouCompleteMeComplete
-autocmd FileType bash UltiSnipsAddFiletypes sh
-autocmd FileType sh setlocal completefunc=YouCompleteMeComplete
-autocmd FileType sh UltiSnipsAddFiletypes sh
 
 " ------------------------------------------------------------
 ""  YCM 
+" ------------------------------------------------------------
+
 
 ""  Python 
 let g:ycm_python_interpreter_path = ''
@@ -759,8 +514,6 @@ let g:ycm_extra_conf_vim_data = [
   \  'g:ycm_python_interpreter_path',
   \  'g:ycm_python_sys_path'
   \]
-"let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py'
-"let g:ycm_global_ycm_extra_conf = '~/dotfiles/vim.d/global_extra_conf.py'
 let g:ycm_global_ycm_extra_conf = '~/.local/bin/global_extra_conf.py'
 
 " default=2
@@ -801,4 +554,12 @@ let g:ycm_filetype_blacklist = {
 "diffget //2 //3
 " Gwrite[!]
 " Gstatus
+
+
+" ------------------------------------------------------------
+"" ULTISNIPS 
+" ------------------------------------------------------------
+
+"TODO
+"let g:UltiSnipsSnippetDirectories = ['vimsnips', 'UltiSnips']
 

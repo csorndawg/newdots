@@ -329,9 +329,18 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 set foldmethod=indent
+set foldlevel=99
+" <Space>z to fold/unfold
+nnoremap <leader>z za
 
 
-
+" better formatting for plain-text/markdown
+au BufNewFile,BufRead *.txt *.md *.note
+    \ set tabstop=2
+    \ set softtabstop=2
+    \ set shiftwidth=2
+    \ set expandtab
+    \ set autoindent
 
 
  

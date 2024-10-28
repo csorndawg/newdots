@@ -46,7 +46,7 @@ export EDITOR=nvim
 ### ------------------------------
 
 # plugins (has both custom and default ohmyzsh plugins)
-plugins=(git colored-man-pages zsh-autosuggestions zsh-vi-mode git-extras tldr z zsh-syntax-highlighting)
+plugins=(git colored-man-pages zsh-autosuggestions zsh-vi-mode kube-ps1 git-extras tldr z zsh-syntax-highlighting)
 
 # source ohmyzsh for default behaviors
 #export KEYTIMEOUT=3
@@ -228,6 +228,9 @@ ff(){
     bindkey "^[e" list-expand
 }
 
+## ZSH kube prompt plugin
+#echo "PROMPT:  $PROMPT" | tee $HOME/.local/var/zsh_pure_patched_prompt.out
+PROMPT='$(kube_ps1)'$PROMPT # or RPROMPT='$(kube_ps1)'
 
 
 ###########################################
@@ -273,3 +276,10 @@ bindkey "^[h" backward-word         # <ALT-h> keybind
 bindkey "^[l" forward-word          # <ALT-l> keybind
 bindkey "^[f" end-of-line           # <ALT-f:> keybind
 bindkey "^[a" beginning-of-line     # <ALT-a:> keybind
+
+
+## kubectl comp
+# Load the kubectl completion code for zsh[1] into the current shell
+source <(kubectl completion zsh)
+# Set the kubectl completion code for zsh[1] to autoload on startup
+kubectl completion zsh > "${fpath[1]}/_kubectl"

@@ -331,17 +331,6 @@ nnoremap <C-l> <C-w>l
 set foldmethod=indent
 
 
-
-
-
-" ------------------------------------------------------------
-"" ULTISNIPS 
-
-"TODO
-let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'vimsnips']
-
-
-
  
 " ------------------------------------------------------------
 " Misc. Plugins Configuartions
@@ -508,52 +497,6 @@ nnoremap <leader>vz :VimuxZoomRunner<CR>
 " <VIMUX REMAP/KEYBIND for activating python VENV (needs to work for
 " non-default VO VENVS)
 
-
-" ------------------------------------------------------------
-"" YCM/ULTISNIPS CMP CONFIGURATION
-
-
-" @ME
-" @P1
-" @TODO - FIX CMP bug and have this play nicely alongside ULTISNIPS for BASH/PYTHON
-
-"" Load YouCompleteMe and UltiSnips
-let g:ycm_auto_trigger = 1
-let g:ycm_key_list_select_completion = ['<Tab>']
-let g:ycm_key_list_previous_completion = ['<C-Tab>']
-
-" Configure SuperTab to work with YCM and UltiSnips
-let g:SuperTabDefaultCompletionType = '<C-n>'
-let g:SuperTabContextDefaultCompletionType = 'context'
-
-" ULTISNIPS snippet completion configuration
-" let g:UltiSnipsExpandTrigger = '<Tab>'
-" let g:UltiSnipsJumpForwardTrigger = '<Tab>'
-" let g:UltiSnipsJumpBackwardTrigger = '<C-Tab>'
-let g:UltiSnipsExpandTrigger = '<Tab>'
-let g:UltiSnipsJumpForwardTrigger = '<C-n>'
-let g:UltiSnipsJumpBackwardTrigger = '<C-p>'
-let g:UltiSnipsEditSplit = 'vertical'  " Use vertical split for editing snippets
-
-" Conditional mappings for <Tab> key
-"inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : (UltiSnips#CanExpandSnippet() ? "<C-R>=UltiSnips#ExpandSnippet()<CR>" : "\<Tab>")
-"inoremap <expr> <C-Tab> pumvisible() ? "\<C-p>" : "<C-Tab>"
-
-" Use <CR> (Enter) to confirm completion if the popup menu is visible
-"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-
-" Automatically start YCM on Vim startup
-autocmd VimEnter * call youcompleteme#Enable()
-
-" @TESTME
-" Set filetypes to automatically load YCM and UltiSnips for Python and Bash
-autocmd FileType python setlocal completefunc=YouCompleteMeComplete
-autocmd FileType python UltiSnipsAddFiletypes python
-autocmd FileType bash setlocal completefunc=YouCompleteMeComplete
-autocmd FileType bash UltiSnipsAddFiletypes sh
-autocmd FileType sh setlocal completefunc=YouCompleteMeComplete
-autocmd FileType sh UltiSnipsAddFiletypes sh
-
 " ------------------------------------------------------------
 ""  FZF.VIM 
 
@@ -706,93 +649,22 @@ nnoremap <leader>vz :VimuxZoomRunner<CR>
 " <VIMUX REMAP/KEYBIND for activating python VENV (needs to work for
 " non-default VO VENVS)
 
-
-" ------------------------------------------------------------
-"" YCM/ULTISNIPS CMP CONFIGURATION
-
-
-" @ME
-" @P1
-" @TODO - FIX CMP bug and have this play nicely alongside ULTISNIPS for BASH/PYTHON
-
-"" Load YouCompleteMe and UltiSnips
-let g:ycm_auto_trigger = 1
-let g:ycm_key_list_select_completion = ['<Tab>']
-let g:ycm_key_list_previous_completion = ['<C-Tab>']
-
-" Configure SuperTab to work with YCM and UltiSnips
-let g:SuperTabDefaultCompletionType = '<C-n>'
-let g:SuperTabContextDefaultCompletionType = 'context'
-
-" Set up UltiSnips for snippets support
-let g:UltiSnipsExpandTrigger = '<Tab>'
-let g:UltiSnipsJumpForwardTrigger = '<Tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<C-Tab>'
-let g:UltiSnipsEditSplit = 'vertical'  " Use vertical split for editing snippets
-
-" Conditional mappings for <Tab> key
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : (UltiSnips#CanExpandSnippet() ? "<C-R>=UltiSnips#ExpandSnippet()<CR>" : "\<Tab>")
-inoremap <expr> <C-Tab> pumvisible() ? "\<C-p>" : "<C-Tab>"
-
-" Use <CR> (Enter) to confirm completion if the popup menu is visible
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-
-" Automatically start YCM on Vim startup
-autocmd VimEnter * call youcompleteme#Enable()
-
-" @TESTME
-" Set filetypes to automatically load YCM and UltiSnips for Python and Bash
-autocmd FileType python setlocal completefunc=YouCompleteMeComplete
-autocmd FileType python UltiSnipsAddFiletypes python
-autocmd FileType bash setlocal completefunc=YouCompleteMeComplete
-autocmd FileType bash UltiSnipsAddFiletypes sh
-autocmd FileType sh setlocal completefunc=YouCompleteMeComplete
-autocmd FileType sh UltiSnipsAddFiletypes sh
-
 " ------------------------------------------------------------
 ""  YCM 
-
-""  Python 
-let g:ycm_python_interpreter_path = ''
-let g:ycm_python_sys_path = []
-let g:ycm_extra_conf_vim_data = [
-  \  'g:ycm_python_interpreter_path',
-  \  'g:ycm_python_sys_path'
-  \]
-"let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py'
-"let g:ycm_global_ycm_extra_conf = '~/dotfiles/vim.d/global_extra_conf.py'
-let g:ycm_global_ycm_extra_conf = '~/.local/bin/global_extra_conf.py'
-
-" default=2
-let g:ycm_min_num_of_chars_for_completion = 3
-
-let g:ycm_language_server =
-  \ [
-  \   {
-  \     'name': 'yaml',
-  \     'cmdline': [ '~/.local/share/nvim/mason/bin/yaml-language-server', '--stdio' ],
-  \     'filetypes': [ 'yaml' ]
-  \   },
-  \ ]
-
-let g:ycm_filetype_blacklist = {
-      \ 'tagbar': 1,
-      \ 'notes': 1,
-      \ 'markdown': 1,
-      \ 'netrw': 1,
-      \ 'unite': 1,
-      \ 'text': 1,
-      \ 'vimwiki': 1,
-      \ 'pandoc': 1,
-      \ 'infolog': 1,
-      \ 'leaderf': 1,
-      \ 'mail': 1
-      \}
-
+"""
+"""""  Python 
+"""let g:ycm_python_interpreter_path = ''
+"""let g:ycm_python_sys_path = []
+"""let g:ycm_extra_conf_vim_data = [
+"""  \  'g:ycm_python_interpreter_path',
+"""  \  'g:ycm_python_sys_path'
+"""  \]
+""""let g:ycm_global_ycm_extra_conf = '~/.local/bin/global_extra_conf.py'
 
 
 " ------------------------------------------------------------
 ""  Fugitive
+" ------------------------------------------------------------
 
 " TODO: remap below
 "Gdiffsplit!
@@ -802,3 +674,29 @@ let g:ycm_filetype_blacklist = {
 " Gwrite[!]
 " Gstatus
 
+" All FUGITIVE mappings will begin with <Leader>f (f for Fugitive)
+" Example: <leader>fd   >> Fugitive Diff split
+
+" Fugitive Diff
+nnoremap <leader>fd :Gvdiffsplit!<CR>
+
+" Fugitive put
+nnoremap <leader>fp :diffput
+
+" Fugitive get
+nnoremap <leader>fg :diffget
+
+
+" Fugitive write
+nnoremap <leader>fw :Gwrite!<CR>
+
+" Fugitive status
+nnoremap <leader>fs :Gstatus<CR>
+"nnoremap <leader>f :<CR>
+
+
+" ------------------------------------------------------------
+" WINCENT AUTOCOMP HACK FOR ULTISNIPS and YCM
+" ------------------------------------------------------------
+
+source ~/dotfiles/vim.d/autocomp.vim

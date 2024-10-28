@@ -241,3 +241,8 @@ alias kbv="vim $HOME/git/kb2/unsorted/quickadd-$(date +%Y%m%d-%H%M%S).md"
 # @TODO - move to rc.d/ 
 alias XARGS="$(which xargs)"
 alias xargs='xargs -I "{}"'
+
+
+# KUBE PS1 Prompt String (note: uncomment below if kube-ps1 is not installed)
+source $HOME/.local/bin/kube-ps1
+PS1='[\u@\h \W $(kube_ps1)]\$ '

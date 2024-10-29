@@ -700,3 +700,43 @@ nnoremap <leader>fs :Gstatus<CR>
 " ------------------------------------------------------------
 
 source ~/dotfiles/vim.d/autocomp.vim
+
+
+" ------------------------------------------------------------
+" EXPERIMENTAL
+" ------------------------------------------------------------
+
+
+nnoremap <leader>h :tabnew<CR>:help<CR><C-w><C-w>:quit<CR>
+
+" CTAGS
+" Set `<Space>ct` to generate tags for non-markdown/txt files
+augroup NonMarkdownTxtTags
+    autocmd!
+    autocmd FileType markdown,txt let b:non_c_tags=1
+augroup end
+if !exists("b:non_c_tags")
+    "nnoremap <f5> :!ctags -R<CR>
+    nnoremap <leader>ct :!ctags -R<CR>
+endif
+
+" tell VIM where to find/search for Ctags 
+set tags=./.tags;$HOME
+
+
+" <Leader><Leader> -- Open last buffer.
+nnoremap <Leader>lb <C-^>
+
+nnoremap <Leader>o :only<CR>
+
+" <Leader>p -- Show the path of the current file (mnemonic: path; useful when
+" you have a lot of splits and the status line gets truncated).
+nnoremap <Leader>ep :echo expand('%')<CR>
+
+nnoremap <Leader>w :write<CR>
+nnoremap <Leader>x :xit<CR>
+
+
+" <Leader>e -- Edit file, starting in same directory as current file.
+"nnoremap <LocalLeader>e :edit <C-R>=expand('%:p:h') . '/'<CR>
+nnoremap <Leader>e :edit <C-R>=expand('%:p:h') . '/'<CR>

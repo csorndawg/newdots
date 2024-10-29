@@ -280,6 +280,13 @@ bindkey "^[a" beginning-of-line     # <ALT-a:> keybind
 
 ## kubectl comp
 # Load the kubectl completion code for zsh[1] into the current shell
-source <(kubectl completion zsh)
+#source <(kubectl completion zsh)
 # Set the kubectl completion code for zsh[1] to autoload on startup
-kubectl completion zsh > "${fpath[1]}/_kubectl"
+#kubectl completion zsh > "${fpath[1]}/_kubectl"
+
+
+
+# @BROKEN
+# Add extra keybind (<Ctrl-v> '^V') for EDITOR oneline session enabler
+#autoload edit-command-line; zle -N edit-command-line
+#bindkey '^V' edit-command-line

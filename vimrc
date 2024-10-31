@@ -149,22 +149,31 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'xero/miasma.nvim' 
-
-" Experimental.
-" If you have nodejs
-"Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
 Plug 'sheerun/vim-polyglot'
-
-"" ------------------------------------------------------
-"" Ultisnips/Completion Engine 
-"" source:  https://git.entwicklerseite.de/vim/diff/?id2=45c3e3581b74060dae453ac097e5a4d629603393
-""
-"" ------------------------------------------------------
-
 Plug 'preservim/tagbar'
 Plug 'ycm-core/YouCompleteMe'
 
-" ------------------------------------------------------
+
+" Experimental Plugins
+" ======================
+
+" wilder.nvim
+Plug 'gelguy/wilder.nvim'
+""  wilder.nvim dependencies
+""  allows use of Python remote plugin features in Vim, can be skipped
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+
+" codi.vim
+Plug 'metakirby5/codi.vim'
+
+"" If you have nodejs
+""Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
+
+
+
+
+
 
 call plug#end()
 
@@ -680,11 +689,21 @@ nnoremap <leader>vz :VimuxZoomRunner<CR>
 " Fugitive Diff
 nnoremap <leader>fd :Gvdiffsplit!<CR>
 
-" Fugitive put
-nnoremap <leader>fp :diffput
+" Fugitive Merge Conflict diffput/diffget
+"
+" Fugitive put Left (h) hand buffer
+nnoremap <leader>fph :diffput //2<CR>
+nnoremap <leader>dp2 :diffput //2<CR>
+" Fugitive put Right (l) hand buffer
+nnoremap <leader>fpl :diffput //3<CR>
+nnoremap <leader>dp3 :diffput //3<CR>
 
-" Fugitive get
-nnoremap <leader>fg :diffget
+" Fugitive get left (h)
+nnoremap <leader>fgh :diffget //2<CR>
+nnoremap <leader>fg2 :diffget //2<CR>
+" Fugitive get right (l)
+nnoremap <leader>fgl :diffget //3<CR>
+nnoremap <leader>fg3 :diffget //3<CR>
 
 
 " Fugitive write
@@ -707,7 +726,7 @@ source ~/dotfiles/vim.d/autocomp.vim
 " ------------------------------------------------------------
 
 
-nnoremap <leader>h :tabnew<CR>:help<CR><C-w><C-w>:quit<CR>
+nnoremap <leader>vh :tabnew<CR>:help<CR><C-w><C-w>:quit<CR>
 
 " CTAGS
 " Set `<Space>ct` to generate tags for non-markdown/txt files
@@ -740,3 +759,35 @@ nnoremap <Leader>x :xit<CR>
 " <Leader>e -- Edit file, starting in same directory as current file.
 "nnoremap <LocalLeader>e :edit <C-R>=expand('%:p:h') . '/'<CR>
 nnoremap <Leader>e :edit <C-R>=expand('%:p:h') . '/'<CR>
+
+
+" ------------------------------------------------------------
+" wilder.nvim    
+" ------------------------------------------------------------
+
+" Default keys
+call wilder#setup({
+      \ 'modes': [':', '/', '?'],
+      \ 'next_key': '<Tab>',
+      \ 'previous_key': '<S-Tab>',
+      \ 'accept_key': '<Down>',
+      \ 'reject_key': '<Up>',
+      \ })
+
+call wilder#setup({
+      \ 'modes': [':', '/', '?'],
+      \ 'enable_cmdline_enter': 0,
+      \ })
+
+" ------------------------------------------------------------
+" codi.vim (python scratchpad)
+" ------------------------------------------------------------
+
+let g:codi#interpreters = {
+     \ 'python': {
+         \ 'bin': 'python',
+         \ 'prompt': '^\(>>>\|\.\.\.\) ',
+         \ },
+     \ }
+" uncomment if errors occurr with ZSH default
+"let $SHELL='/bin/sh'

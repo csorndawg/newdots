@@ -290,3 +290,19 @@ bindkey "^[a" beginning-of-line     # <ALT-a:> keybind
 # Add extra keybind (<Ctrl-v> '^V') for EDITOR oneline session enabler
 #autoload edit-command-line; zle -N edit-command-line
 #bindkey '^V' edit-command-line
+
+# @EXPERIMENTAL
+##  codi.vim
+# Codi
+# Usage: codi [filetype] [filename]
+codi() {
+  local syntax="${1:-python}"
+  shift
+  vim -c \
+    "let g:startify_disable_at_vimenter = 1 |\
+    set bt=nofile ls=0 noru nonu nornu |\
+    hi ColorColumn ctermbg=NONE |\
+    hi VertSplit ctermbg=NONE |\
+    hi NonText ctermfg=0 |\
+    Codi $syntax" "$@"
+}

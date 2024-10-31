@@ -1,0 +1,11 @@
+# config.yml
+---
+api_key: ~
+limit: 10
+#lucky: false
+lucky: true
+sites:
+  - serverfault
+  - unix
+# default: google
+search_engine: stackexchange

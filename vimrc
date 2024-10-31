@@ -164,8 +164,9 @@ Plug 'gelguy/wilder.nvim'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 
+" @FIXME
 " codi.vim
-Plug 'metakirby5/codi.vim'
+"Plug 'metakirby5/codi.vim'
 
 "" If you have nodejs
 ""Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
@@ -779,15 +780,17 @@ call wilder#setup({
       \ 'enable_cmdline_enter': 0,
       \ })
 
+" @FIXME
 " ------------------------------------------------------------
 " codi.vim (python scratchpad)
 " ------------------------------------------------------------
 
-let g:codi#interpreters = {
-     \ 'python': {
-         \ 'bin': 'python',
-         \ 'prompt': '^\(>>>\|\.\.\.\) ',
-         \ },
-     \ }
-" uncomment if errors occurr with ZSH default
+"let g:codi#interpreters = {
+"     \ 'python': {
+"         \ 'bin': 'python',
+"         \ 'prompt': '^\(>>>\|\.\.\.\) ',
+"         \ },
+"     \ }
+"" \ 'bin': '/usr/bin/python3',
+"" uncomment if errors occurr with ZSH default
 "let $SHELL='/bin/sh'

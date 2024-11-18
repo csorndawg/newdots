@@ -85,22 +85,29 @@ nnoremap <C-l> <C-w>l
 
 " Mode switching remaps
 
-" toggle Normal/Insert mode with <Alt>,
+"" `<ALT>,` normal mode mapping is broken
+""  using <Leader>, (<SPACE>,) as workaround
+" `<Alt>,` toggles Normal/Insert mode 
 inoremap <A-,> <ESC>
-nnoremap <A-,> i
-"nnoremap <leader>, i
+inoremap <A-,> <C-c>
+nnoremap <Leader>, i
 
 
 " toggle Normal/Command mode with <SPACE>: and <Alt>; 
-nnoremap <leader>, :
-cnoremap <A-,> <C-c>
+"nnoremap <leader>, :
+"cnoremap <A-,> <C-c>
 " fallback: cnoremap <A-,> <ESC>
 " shortcut back to Normal mode from 'Search' mode
 "cnoremap <A-/> <C-c>
-cnoremap <A-/> <ESC>
-cnoremap <A-/> <ESC>
+"cnoremap <A-/> <ESC>
+"cnoremap <A-/> <ESC>
 
 
+"" use arrows keys for additionally mode switching method
+
+" Insert/Command Mode switching
+imap <leader><up> <ESC>:
+cmap <leader><up> <C-c>i
 
 " use arrows keys for additionally mode switching method
 imap <leader><down> <ESC>
@@ -330,10 +337,15 @@ set statusline+=\ %{LinterStatus()}
 cnoremap <expr> %%  getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 
+" =============================================
+"   BELOW REMAPS <ALT>; KEY SUCESSFULLY to `:`
+" =============================================
+
 " normal-insert mode remaps
 "  switch b/w nmo/cmo with `<space>;` and <ALT-;>
 nnoremap <leader>; :
 cnoremap <A-;> <C-c>
+
 
 " paste toggle
 nnoremap <leader>pp :set paste<CR>
@@ -778,11 +790,22 @@ nnoremap <Leader>e :edit <C-R>=expand('%:p:h') . '/'<CR>
 " =======================================================
 " ULTISNIPS V2
 " =======================================================
+"
+"let g:UltiSnipsEditSplit="vertical"
+"let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+"let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+"let g:SuperTabDefaultCompletionType = '<C-n>'
+"let g:UltiSnipsExpandTrigger = '"<tab>"
+"let g:UltiSnipsJumpForwardTrigger = '"<tab>"
+"let g:UltiSnipsJumpBackwardTrigger = '"<s-tab>"
 
-let g:UltiSnipsEditSplit="vertical"
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+" YouCompleteMe and UltiSnips compatibility, with the helper of supertab
+" (via http://stackoverflow.com/a/22253548/1626737)
+let g:SuperTabDefaultCompletionType    = '<C-n>'
+let g:SuperTabCrMapping                = 0
+let g:UltiSnipsExpandTrigger           = '<tab>'
+let g:UltiSnipsJumpForwardTrigger      = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
+let g:ycm_key_list_select_completion   = ['<C-j>', '<C-j>', '<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-k>', '<A>', '<C-p>', '<Up>']

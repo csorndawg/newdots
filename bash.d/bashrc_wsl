@@ -765,3 +765,5 @@ alias gke='\gitk --all $(git log --walk-reflogs --pretty=%h)'
 ### alias gke='\gitk --all $(git log --walk-reflogs --pretty=%h) &!'
 ###compdef _git gk='command gitk'
 ###compdef _git gke='command gitk'
+alias nv="nvim"
+alias neovim="nvim"

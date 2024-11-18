@@ -1,6 +1,6 @@
-"" ------------------------
-""  GENERAL 
-"" ------------------------
+" ------------------------
+"  GENERAL 
+" ------------------------
 
 " remap leader to <space>
 let mapleader= " "
@@ -83,7 +83,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l      
 
 
-"" Mode switching remaps
+" Mode switching remaps
 
 " toggle Normal/Insert mode with <Alt>,
 inoremap <A-,> <ESC>
@@ -91,10 +91,15 @@ nnoremap <A-,> i
 "nnoremap <leader>, i
 
 
-" toggle Normal/Command mode with <SPACE>, and <Alt>, 
+" toggle Normal/Command mode with <SPACE>: and <Alt>; 
 nnoremap <leader>, :
 cnoremap <A-,> <C-c>
 " fallback: cnoremap <A-,> <ESC>
+" shortcut back to Normal mode from 'Search' mode
+"cnoremap <A-/> <C-c>
+cnoremap <A-/> <ESC>
+cnoremap <A-/> <ESC>
+
 
 
 " use arrows keys for additionally mode switching method
@@ -105,9 +110,9 @@ nmap <leader><down> i
 cmap <leader><left> <ESC>
 nmap <leader><left> :
  
-"" ------------------------
-"" REMAPS
-"" ------------------------
+" ------------------------
+" REMAPS
+" ------------------------
 " recover accidentally deleted text with undo (`u` in normal mode)
 inoremap <C-U> <C-G>u<C-U>
 inoremap <C-W> <C-G>u<C-W>
@@ -118,9 +123,9 @@ set completeopt+=preview
 set completeopt+=menuone
 set completeopt+=longest
 
-"" ------------------------
-""  VIM-PLUG
-"" ------------------------
+" ------------------------
+"  VIM-PLUG
+" ------------------------
 
 
 " install vim-plug if not found
@@ -141,7 +146,7 @@ Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree'
-Plug 'neanias/everforest-nvim'
+"Plug 'neanias/everforest-nvim'
 Plug 'nordtheme/vim'
 Plug 'preservim/vimux'
 Plug 'tpope/vim-fugitive'
@@ -152,39 +157,37 @@ Plug 'xero/miasma.nvim'
 Plug 'sheerun/vim-polyglot'
 Plug 'preservim/tagbar'
 Plug 'ycm-core/YouCompleteMe'
+Plug 'tpope/vim-commentary'
+
 
 
 " Experimental Plugins
 " ======================
 
 " wilder.nvim
-Plug 'gelguy/wilder.nvim'
-""  wilder.nvim dependencies
-""  allows use of Python remote plugin features in Vim, can be skipped
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
+"Plug 'gelguy/wilder.nvim'
+"  wilder.nvim dependencies
+"  allows use of Python remote plugin features in Vim, can be skipped
+"Plug 'roxma/nvim-yarp'
+"Plug 'roxma/vim-hug-neovim-rpc'
 
 " @FIXME
 " codi.vim
 "Plug 'metakirby5/codi.vim'
 
-"" If you have nodejs
-""Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
-
-
-
-
+" If you have nodejs
+"Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
 
 
 call plug#end()
 
 
-"" ------------------------
-"" PLUGIN CONFIG/REMAP
-"" ------------------------
+" ------------------------
+" PLUGIN CONFIG/REMAP
+" ------------------------
 
 
-"" colorscheme
+" colorscheme
 set t_Co=256
 set background=dark
 let g:nord_cursor_line_number_background = 1
@@ -192,21 +195,26 @@ let g:nord_bold_vertical_split_line = 1
 let g:nord_uniform_diff_background = 1
 let g:nord_italic = 1
 let g:nord_underline = 1
-""let g:nord_italic_comments = 1
+"let g:nord_italic_comments = 1
 colorscheme nord
 
 " airline
+"let g:airline#extensions#tabline#enabled = 1   " enable tabline buffer list
+
+" custom airline 
 let g:airline_section_y=''
 let g:airline_section_z=''
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#branch#empty_message = ''
 
+
 " undodir
 noremap <leader>u :UndotreeShow<CR>
 
-"" ale
+" ale
 
 " lint on save only 
+let g:ale_disable_lsp = 1
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 0  " disable fixer 
@@ -356,7 +364,7 @@ let g:tagbar_foldlevel   = 99
 
 
 " ------------------------------------------------------------
-""  FZF.VIM 
+"  FZF.VIM 
 
 " Initialize configuration dictionary
 let g:fzf_vim = {}
@@ -475,7 +483,7 @@ autocmd! FileType fzf set laststatus=0 noshowmode noruler
 
 
 " ------------------------------------------------------------
-""  VIMUX
+"  VIMUX
 
 " prompt for a command to run
 nnoremap <Leader>vp :VimuxPromptCommand<CR>
@@ -490,7 +498,7 @@ nnoremap <Leader>vi :VimuxInspectRunner<CR>
 nnoremap <leader>vz :VimuxZoomRunner<CR>
 
 
-"" VIMUX CUSTOM - BASH/PYTHON REPL
+" VIMUX CUSTOM - BASH/PYTHON REPL
 
 " PYTHON REPL-like functionality    (vrp= Vimux Run/REPL Python)
 "nnoremap <Leader>vpp :call VimuxRunCommand("clear; python " . bufname("%"))<CR>
@@ -508,7 +516,7 @@ nnoremap <leader>vz :VimuxZoomRunner<CR>
 " non-default VO VENVS)
 
 " ------------------------------------------------------------
-""  FZF.VIM 
+"  FZF.VIM 
 
 " Initialize configuration dictionary
 let g:fzf_vim = {}
@@ -627,7 +635,7 @@ autocmd! FileType fzf set laststatus=0 noshowmode noruler
 
 
 " ------------------------------------------------------------
-""  VIMUX
+"  VIMUX
 
 " prompt for a command to run
 nnoremap <Leader>vp :VimuxPromptCommand<CR>
@@ -642,7 +650,7 @@ nnoremap <Leader>vi :VimuxInspectRunner<CR>
 nnoremap <leader>vz :VimuxZoomRunner<CR>
 
 
-"" VIMUX CUSTOM - BASH/PYTHON REPL
+" VIMUX CUSTOM - BASH/PYTHON REPL
 
 " PYTHON REPL-like functionality    (vrp= Vimux Run/REPL Python)
 "nnoremap <Leader>vpp :call VimuxRunCommand("clear; python " . bufname("%"))<CR>
@@ -660,20 +668,26 @@ nnoremap <leader>vz :VimuxZoomRunner<CR>
 " non-default VO VENVS)
 
 " ------------------------------------------------------------
-""  YCM 
-"""
-"""""  Python 
-"""let g:ycm_python_interpreter_path = ''
-"""let g:ycm_python_sys_path = []
-"""let g:ycm_extra_conf_vim_data = [
-"""  \  'g:ycm_python_interpreter_path',
-"""  \  'g:ycm_python_sys_path'
-"""  \]
-""""let g:ycm_global_ycm_extra_conf = '~/.local/bin/global_extra_conf.py'
+"  YCM 
+"
+"  Python 
+let g:ycm_python_interpreter_path = ''
+let g:ycm_python_sys_path = []
+let g:ycm_extra_conf_vim_data = [
+  \  'g:ycm_python_interpreter_path',
+  \  'g:ycm_python_sys_path'
+  \]
+let g:ycm_global_ycm_extra_conf = '~/.local/bin/global_extra_conf.py'
+
+
+" clear comp menu after selection
+let g:ycm_autoclose_preview_window_after_insertion=1
+let g:ycm_autoclose_preview_window_after_completion=1
+"let g:ycm_disable_signature_help = 1
 
 
 " ------------------------------------------------------------
-""  Fugitive
+"  Fugitive
 " ------------------------------------------------------------
 
 " TODO: remap below
@@ -761,36 +775,14 @@ nnoremap <Leader>x :xit<CR>
 "nnoremap <LocalLeader>e :edit <C-R>=expand('%:p:h') . '/'<CR>
 nnoremap <Leader>e :edit <C-R>=expand('%:p:h') . '/'<CR>
 
+" =======================================================
+" ULTISNIPS V2
+" =======================================================
 
-" ------------------------------------------------------------
-" wilder.nvim    
-" ------------------------------------------------------------
-
-" Default keys
-call wilder#setup({
-      \ 'modes': [':', '/', '?'],
-      \ 'next_key': '<Tab>',
-      \ 'previous_key': '<S-Tab>',
-      \ 'accept_key': '<Down>',
-      \ 'reject_key': '<Up>',
-      \ })
-
-call wilder#setup({
-      \ 'modes': [':', '/', '?'],
-      \ 'enable_cmdline_enter': 0,
-      \ })
-
-" @FIXME
-" ------------------------------------------------------------
-" codi.vim (python scratchpad)
-" ------------------------------------------------------------
-
-"let g:codi#interpreters = {
-"     \ 'python': {
-"         \ 'bin': 'python',
-"         \ 'prompt': '^\(>>>\|\.\.\.\) ',
-"         \ },
-"     \ }
-"" \ 'bin': '/usr/bin/python3',
-"" uncomment if errors occurr with ZSH default
-"let $SHELL='/bin/sh'
+let g:UltiSnipsEditSplit="vertical"
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"

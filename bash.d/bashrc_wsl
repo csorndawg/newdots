@@ -830,3 +830,32 @@ edf(){
 
 
 alias gcm="git commit -m "
+
+# PyCharm WSL configurations
+alias charm="/mnt/c/Users/zaccs/AppData/Local/JetBrains/Toolbox/apps/PyCharm-P/ch-0/<version>/bin/pycharm64.exe"
+export PyCharmPath="/mnt/c/Users/zaccs/PycharmProjects/"
+export XDG_PYCHARM_HOME="/mnt/c/Users/zaccs/PycharmProjects/"
+alias pycharm_homedir="cd /mnt/c/Users/zaccs/PycharmProjects/"
+alias pychh="cd /mnt/c/Users/zaccs/PycharmProjects/"
+
+
+## pycharm ssh
+if [ -z "$SSH_AUTH_SOCK" ]; then
+    # Check for a currently running instance of the agent
+    RUNNING_AGENT="`ps -ax | grep 'ssh-agent -s' | grep -v grep | wc -l | tr -d '[:space:]'`"
+    if [ "$RUNNING_AGENT" = "0" ]; then
+        # Launch a new instance of the agent
+        ssh-agent -s  > $HOME/.ssh/ssh-agent
+    fi
+    eval `cat $HOME/.ssh/ssh-agent` > /dev/null
+    ssh-add $HOME/.ssh/id_rsa 2> /dev/null
+fi
+
+#alias sshCachePP="eval $(ssh-agent) && ssh-add $HOME/.ssh/id_rsa"
+sshCachePP(){
+    eval $(ssh-agent) && ssh-add "$HOME/.ssh/id_rsa"
+}
+
+
+## Add Git branch info to BASH prompt (source: https://bash-prompt-generator.org/)
+PROMPT_COMMAND='PS1_CMD1=$(ip route get 1.1.1.1 | awk -F"src " '"'"'NR == 1{ split($2, a," ");print a[1]}'"'"'); PS1_CMD2=$(git branch --show-current 2>/dev/null)'; PS1='\n\[\e[38;5;150m\]\u@${PS1_CMD1}\n\[\e[38;5;110m\]\w\[\e[0m\]  \[\e[38;5;223;3m\]${PS1_CMD2}\n\[\e[0m\] \[\e[38;5;139;3m\]>\[\e[0m\] '

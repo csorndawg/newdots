@@ -3,6 +3,13 @@
 # for examples
 
 
+### BASH shell >> SH shell
+#if  [ ! -z "/bin/bash" ]; then
+#	echo 'BASH installed on current machine. Current shell will be changed to BASH if currently set to SH'
+#	SHELL="/bin/bash"
+#fi
+#
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -18,10 +25,6 @@ shopt -s histappend
 
 # PRESET
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
-
-# CUSTOM
 HISTSIZE=1000
 HISTFILESIZE=2000
 
@@ -147,10 +150,10 @@ PATH="$PATH:$HOME/.local/lib/bash:$HOME/.local/lib/misc:$HOME/.local/lib/python:
 alias python=python3
 
 # cache ssh pp
-if [ -z "$SSH_AUTH_SOCK" ]; then
-    eval $(ssh-agent -s)
-fi
-ssh-add ~/.ssh/id_rsa < /dev/null 2>/dev/null
+#if [ -z "$SSH_AUTH_SOCK" ]; then
+#    eval $(ssh-agent -s)
+#fi
+#ssh-add ~/.ssh/id_rsa < /dev/null 2>/dev/null
 
 alias ta="task add"
 alias tl="task list"
@@ -250,7 +253,7 @@ alias WSL_CDRIVE="/mnt/c/Users"
 alias WSL_ZACCS="/mnt/c/Users/zaccs"
 alias WSL_ZCSOR="/mnt/c/Users/zcsor"
 
-alias sshpp="eval $(ssh-agent) && ssh-add ~/.ssh/id_rsa"
+#alias sshpp="eval $(ssh-agent) && ssh-add ~/.ssh/id_rsa"
 export BAT_THEME="Nord"
 
 
@@ -839,16 +842,18 @@ alias pycharm_homedir="cd /mnt/c/Users/zaccs/PycharmProjects/"
 alias pychh="cd /mnt/c/Users/zaccs/PycharmProjects/"
 
 
-## pycharm ssh
-if [ -z "$SSH_AUTH_SOCK" ]; then
-    # Check for a currently running instance of the agent
-    RUNNING_AGENT="`ps -ax | grep 'ssh-agent -s' | grep -v grep | wc -l | tr -d '[:space:]'`"
-    if [ "$RUNNING_AGENT" = "0" ]; then
-        # Launch a new instance of the agent
-        ssh-agent -s  > $HOME/.ssh/ssh-agent
-    fi
-    eval `cat $HOME/.ssh/ssh-agent` > /dev/null
-    ssh-add $HOME/.ssh/id_rsa 2> /dev/null
+## pycharm ssh - only run if on local machine
+if [[ "$(echo $HOSTNAME | egrep -ci 'DESKTOP')" -ge 1 ]]; then
+	if [ -z "$SSH_AUTH_SOCK" ]; then
+	    # Check for a currently running instance of the agent
+	    RUNNING_AGENT="`ps -ax | grep 'ssh-agent -s' | grep -v grep | wc -l | tr -d '[:space:]'`"
+	    if [ "$RUNNING_AGENT" = "0" ]; then
+		# Launch a new instance of the agent
+		ssh-agent -s  > $HOME/.ssh/ssh-agent
+	    fi
+	    eval `cat $HOME/.ssh/ssh-agent` > /dev/null
+	    ssh-add $HOME/.ssh/id_rsa 2> /dev/null
+	fi
 fi
 
 #alias sshCachePP="eval $(ssh-agent) && ssh-add $HOME/.ssh/id_rsa"
@@ -868,3 +873,6 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_BIN_HOME="$HOME/.local/bin"
 export XDG_DOWNLOADS_HOME="$HOME/.local/var/data/downloads"
+
+# @TEMPFIX
+alias gpunb="gp -u origin $(git branch --show-current)"

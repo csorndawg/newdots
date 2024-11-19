@@ -12,7 +12,7 @@ export UTILS_BIN="$HOME/dotfiles/utils.d"
 export MASON_BIN="$HOME/.local/share/nvim/mason/bin"
 
 # standard bins
-export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:/usr/local/bin:$HOME/.local/opt/bin:$PATH
 
 # non-standard bins
 export PATH=$MASON_BIN:$UTILS_BIN:$GO_BIN:$CARGO_BIN:$TOOLBOX_BIN:$PATH

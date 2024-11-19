@@ -1,4 +1,0 @@
-PROMPT_COMMAND='PS1_CMD1=$(ip route get 1.1.1.1 | awk -F"src " '"'"'NR == 1{ split($2, a," ");print a[1]}'"'"'); PS1_CMD2=$(git branch --show-current 2>/dev/null)'; PS1='\[\e[38;5;150;1m\]\u@${PS1_CMD1}\n\[\e[38;5;159;2m\]\W\[\e[0m\]  \[\e[38;5;222;3m\]${PS1_CMD2}\n\[\e[0m\]  >> '
-
-
-

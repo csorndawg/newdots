@@ -179,7 +179,14 @@ export EDITOR="vim"
 alias VO="source $HOME/.local/state/python/venvs/venv/bin/activate"
 alias cht='cht.sh'
 alias jc="jupyter console"
-~/.local/bin/lib/comp/bash/cht.sh
+
+# dont source if missing
+if [ ! -z "$HOME/.local/bin/lib/comp/bash/cht.sh" ]; then
+	#echo "Binary missing for cht.sh, sourcing will be skipped."
+	echo "Binary for cht.sh exists, and will be sourced."
+	source "$HOME/.local/bin/lib/comp/bash/cht.sh"
+fi
+
 
 # ssh tunneling funct
 ssh_tunnel(){

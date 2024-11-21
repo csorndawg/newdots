@@ -179,30 +179,46 @@ Plug 'vim-airline/vim-airline'
 Plug 'xero/miasma.nvim' 
 Plug 'sheerun/vim-polyglot'
 Plug 'preservim/tagbar'
-Plug 'ycm-core/YouCompleteMe'
+"Plug 'ycm-core/YouCompleteMe'
 Plug 'tpope/vim-commentary'
 
+"function! BuildYCM(info)
+  " @TODO
+  " install OS dependencies
+  "silent ! sudo apt upgrade -y 
+  "silent ! sudo apt install cmake
+  "if a:info.status == 'installed' || a:info.force
+    " !./install.py"
+  " endif
+  " endfunction
+"Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM') }
 
 
-" Experimental Plugins
-" ======================
+"" Experimental
 
 " wilder.nvim
 "Plug 'gelguy/wilder.nvim'
 "  wilder.nvim dependencies
 "  allows use of Python remote plugin features in Vim, can be skipped
-"Plug 'roxma/nvim-yarp'
-"Plug 'roxma/vim-hug-neovim-rpc'
-
-" @FIXME
-" codi.vim
-"Plug 'metakirby5/codi.vim'
-
-" If you have nodejs
-"Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
-
 
 call plug#end()
+
+
+" auto install plugins
+"" system() capture shell command output as vimscript variable
+"" execute() runs Command Mode command in vimscript
+let dir_count = trim(system('find ' . expand('$HOME/.vim/plugged') . ' -type d | wc -l'))
+"echo dir_count
+if dir_count < 5
+    echo "Running intial vim-plug install"
+    execute("silent! PlugInstall")
+    " below simulates hitting <Enter> for Command Mode prompt
+    execute "normal! \<CR>"
+    execute "q"
+    "echo \"Done with auto install"
+endif
+
+
 
 
 " ------------------------
@@ -219,7 +235,7 @@ let g:nord_uniform_diff_background = 1
 let g:nord_italic = 1
 let g:nord_underline = 1
 "let g:nord_italic_comments = 1
-colorscheme nord
+silent! colorscheme nord
 
 " airline
 "let g:airline#extensions#tabline#enabled = 1   " enable tabline buffer list

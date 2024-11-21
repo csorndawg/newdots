@@ -952,3 +952,5 @@ bashcomps(){
     done
 }
 bashcomps
+
+alias gmnf="git merge --no-ff"

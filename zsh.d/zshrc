@@ -307,3 +307,5 @@ bindkey "^[a" beginning-of-line     # <ALT-a:> keybind
 #    hi NonText ctermfg=0 |\
 #    Codi $syntax" "$@"
 #}
+
+alias gmnf="git merge --no-ff"

@@ -3,9 +3,8 @@
 # tmux.conf dependencies && preconfig setup
 echo ""
 
-# symlink tmux.conf, if DNE
-if [[ ! -z "$HOME/dotfiles/tmux.d/tmux.conf" && -z "$HOME/.tmux.conf" ]]; then 
-    echo ''
+# create symlink to dotfiles tmux.conf if it doesnt already exist
+if [[ ! -z "$HOME/dotfiles/tmux.d/tmux.conf" ]]; then 
     echo 'No tmux.conf file found. Creating dotfile symlink.'
     ln -sr "$HOME/dotfiles/tmux.d/tmux.conf" "$HOME/.tmux.conf" 2> /dev/null
 fi

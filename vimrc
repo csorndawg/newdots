@@ -1,3 +1,19 @@
+" MONOLITHIC VIMRC
+" 
+" @TODO - Refactor into modular VIMRC files. Use the tags (col1 in modular tag
+" table) to easily find and move certain VIMRC logic to its dedicated config file (col3 in below modular tag table).
+"
+"
+" MODULAR VIMRC TAGS 
+"   OPTSS ; core vim options (eg. `set rnu`) ; opts.vimrc
+"   PLUGG ; vim plugin remaps (eg. `colorscheme nord`) ; plugg.vimrc
+"   REMAPP ; core vim remaps (eg. `nnoremap <Leader>, i`) ; remaps.vimrc
+"   FUNCTSS ; core vim vimscript functions (see: https://learnvim.irian.to/vimscript/vimscript_functions) ; functs.vimrc
+"   MISCC ; anything else that isnt covered by above 4 tags ; misc.vimrc
+"   EXPP ; experimental changes for the above 5 tags ; experimental.vimrc
+"
+
+" @OPTSS
 " ------------------------
 "  GENERAL 
 " ------------------------
@@ -753,8 +769,10 @@ source ~/dotfiles/vim.d/autocomp.vim
 " ------------------------------------------------------------
 
 
+" @REMAPP
 nnoremap <leader>vh :tabnew<CR>:help<CR><C-w><C-w>:quit<CR>
 
+" @FUNCTSS
 " CTAGS
 " Set `<Space>ct` to generate tags for non-markdown/txt files
 augroup NonMarkdownTxtTags
@@ -787,6 +805,8 @@ nnoremap <Leader>x :xit<CR>
 "nnoremap <LocalLeader>e :edit <C-R>=expand('%:p:h') . '/'<CR>
 nnoremap <Leader>e :edit <C-R>=expand('%:p:h') . '/'<CR>
 
+
+" @PLUGG
 " =======================================================
 " ULTISNIPS V2
 " =======================================================
@@ -809,3 +829,7 @@ let g:UltiSnipsJumpForwardTrigger      = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
 let g:ycm_key_list_select_completion   = ['<C-j>', '<C-j>', '<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-k>', '<A>', '<C-p>', '<Up>']
+
+
+" @REMAP
+cnoremap terminal vert terminal<CR>

@@ -2,42 +2,44 @@
 # VIMIUM CUSTOM MAPPINGS
 # ============================================
 
-
 # Insert your preferred key mappings here.
 
-## 
+##
 ## Remapping Syntax
 ## <map> <trigger> <action>
-## 
+##
 ## After new remap, DONT FORGET to unmap old chord
 ##
 
 
 # make scroll down/up keys more vim-like
-# unmap d ; unmap u ; unmap J ; unmap K
-map J scrollPageDown
-map K scrollPageUp
 unmap d
+unmap j
+unmap J
+map j scrollPageDown
+map J scrollDown
+map d scrollLeft
+
 unmap u
+unmap k
+unmap K
+map k scrollPageUp
+map K scrollUp
+map u scrollRight
 
 
 # cycle back/forward thru tabs with <h/l>
-map h previousTab
-map l scrollRight 
 unmap h
 unmap l
+map h previousTab
+map l nextTab
 
 # remap <d/u> to scroll left/right
 map d scrollLeft
-map u scrollRight 
-unmap d 
-unmap u
-
-
-# more Tab cycling remaps
-map <left> previousTab
-map <right> nextTab
-
+map u scrollRight
 
 #  <ALT>.  acts as <Escape>
 mapkey  <a-.> <c-[>
+
+# <Space>f  opens multiple URLs in new tabs
+map <space>f LinkHints.activateModeWithQueue

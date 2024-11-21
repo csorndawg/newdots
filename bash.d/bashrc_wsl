@@ -836,7 +836,7 @@ edf(){
 
 
 alias gc="git commit"
-alias gca="git commit --ammend"
+alias gca="git commit --amend"
 alias gcm="git commit -m "
 alias glg="git log --graph --pretty --abbrev-commit"
 alias glgg="git log"
@@ -850,6 +850,7 @@ alias gco="git checkout"
 alias gst="git stash"
 alias gstl="git stash --list"
 alias gsts="git stash --show"
+alias gstd="git stash --show --patch"
 alias gsta="git stash --apply"
 alias gstp="git stash --push --message"
 alias gstpp="git stash --push"
@@ -862,10 +863,8 @@ alias gbc="git branch --show-current"
 alias grm="git remove"
 alias gpf="git push -f"
 alias gp="git push"
-alias grbii="git rebase --interactive"
-alias grbi="git rebase --interactive HEAD~"
-alias grba="git rebase "
-alias grbc="git rebase "
+alias gpu="git push -u origin $(git branch --show-current)"
+alias grbi="git rebase --interactive"
 
 # page/peak when status too long for terminal
 alias gsh="git status | head -n25"
@@ -922,3 +921,18 @@ export XDG_DOWNLOADS_HOME="$HOME/.local/var/data/downloads"
 
 # @TEMPFIX
 alias gpunb="gp -u origin $(git branch --show-current)"
+
+# recursive symlink lister
+llr(){
+	# use CWD if no path specified
+	if [ -z $1 ]; then
+		DIRROOT="$(pwd)"
+	else
+		DIRROOT="$1"
+	fi
+	#echo "ECHO TEST: ls -lR $DIRROOT | grep '^l' "
+	ls -lR $DIRROOT | grep '^l' 
+	
+}
+export XDG_ASUS_HOME="/mnt/c/Users/zaccs/Desktop"
+alias jdesktoppersonal="cd /mnt/c/Users/zaccs/Desktop/Personal"

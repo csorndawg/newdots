@@ -927,6 +927,18 @@ export XDG_DOWNLOADS_HOME="$HOME/.local/var/data/downloads"
 # @TEMPFIX
 alias gpunb="gp -u origin $(git branch --show-current)"
 
+llr(){
+	# use CWD if no path specified
+	if [ -z $1 ]; then
+		DIRROOT="$(pwd)"
+	else
+		DIRROOT="$1"
+	fi
+	#echo "ECHO TEST: ls -lR $DIRROOT | grep '^l' "
+	ls -lR $DIRROOT | grep '^l' 
+	
+}
+
 # recursive symlink lister
 llr(){
 	# use CWD if no path specified

@@ -36,10 +36,32 @@ map l nextTab
 
 # remap <d/u> to scroll left/right
 map d scrollLeft
+<<<<<<< HEAD
+map u scrollRight 
+#unmap d 
+#unmap u
+
+
+# more Tab cycling remaps
+map <left> previousTab
+map <right> nextTab
+
+map u scrollRight 
+unmap d 
+unmap u
+
+
+# more Tab cycling remaps
+map <left> previousTab
+map <right> nextTab
+
 map u scrollRight
 
 #  <ALT>.  acts as <Escape>
 mapkey  <a-.> <c-[>
+
+# <Space>f  opens multiple URLs in new tabs 
+map <space>f LinkHints.activateModeWithQueue
 
 # <Space>f  opens multiple URLs in new tabs
 map <space>f LinkHints.activateModeWithQueue

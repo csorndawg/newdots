@@ -898,7 +898,8 @@ if [[ "$(echo $HOSTNAME | egrep -ci 'DESKTOP')" -ge 1 ]]; then
 	    RUNNING_AGENT="`ps -ax | grep 'ssh-agent -s' | grep -v grep | wc -l | tr -d '[:space:]'`"
 	    if [ "$RUNNING_AGENT" = "0" ]; then
 		# Launch a new instance of the agent
-		ssh-agent -s  > $HOME/.ssh/ssh-agent
+        echo '# test below:'
+		ssh-agent -s  | tee $HOME/.ssh/ssh-agent
 	    fi
 	    eval `cat $HOME/.ssh/ssh-agent` > /dev/null
 	    ssh-add $HOME/.ssh/id_rsa 2> /dev/null
@@ -912,7 +913,7 @@ sshCachePP(){
 
 
 ## Add Git branch info to BASH prompt (source: https://bash-prompt-generator.org/)
-PROMPT_COMMAND='PS1_CMD1=$(ip route get 1.1.1.1 | awk -F"src " '"'"'NR == 1{ split($2, a," ");print a[1]}'"'"'); PS1_CMD2=$(git branch --show-current 2>/dev/null)'; PS1='\n\[\e[38;5;150m\]\u@${PS1_CMD1}\n\[\e[38;5;110m\]\w\[\e[0m\]  \[\e[38;5;223;3m\]${PS1_CMD2}\n\[\e[0m\] \[\e[38;5;139;3m\]>\[\e[0m\] '
+PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'; PS1='\n\[\e[38;5;115m\]\u@\h\n\[\e[38;5;152m\]\w\[\e[0m\]  \[\e[38;5;223;3m\]${PS1_CMD1}\[\e[0m\]  \n \[\e[38;5;139;3m\]>\[\e[0m\] '
 
 
 ## XDG Exports

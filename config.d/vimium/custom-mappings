@@ -4,10 +4,10 @@
 
 # Insert your preferred key mappings here.
 
-## 
+##
 ## Remapping Syntax
 ## <map> <trigger> <action>
-## 
+##
 ## After new remap, DONT FORGET to unmap old chord
 ##
 
@@ -29,13 +29,14 @@ map u scrollRight
 
 
 # cycle back/forward thru tabs with <h/l>
-map h previousTab
-map l scrollRight 
 unmap h
 unmap l
+map h previousTab
+map l nextTab
 
 # remap <d/u> to scroll left/right
 map d scrollLeft
+<<<<<<< HEAD
 map u scrollRight 
 #unmap d 
 #unmap u
@@ -45,9 +46,22 @@ map u scrollRight
 map <left> previousTab
 map <right> nextTab
 
+map u scrollRight 
+unmap d 
+unmap u
+
+
+# more Tab cycling remaps
+map <left> previousTab
+map <right> nextTab
+
+map u scrollRight
 
 #  <ALT>.  acts as <Escape>
 mapkey  <a-.> <c-[>
 
 # <Space>f  opens multiple URLs in new tabs 
+map <space>f LinkHints.activateModeWithQueue
+
+# <Space>f  opens multiple URLs in new tabs
 map <space>f LinkHints.activateModeWithQueue

@@ -163,3 +163,4 @@ package-lock.json
 package.json
 
 .Ignore**
+**/**.swp

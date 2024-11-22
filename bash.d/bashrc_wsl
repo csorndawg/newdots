@@ -179,7 +179,10 @@ export EDITOR="vim"
 alias VO="source $HOME/.local/state/python/venvs/venv/bin/activate"
 alias cht='cht.sh'
 alias jc="jupyter console"
-~/.local/bin/lib/comp/bash/cht.sh
+if [ -f "$HOME/.local/bin/lib/comp/bash/cht.sh" ]; then
+    source "$HOME/.local/bin/lib/comp/bash/cht.sh"
+fi
+
 
 # ssh tunneling funct
 ssh_tunnel(){
@@ -206,13 +209,13 @@ if [[  $(echo "$SHELL"  | egrep zsh -ci) -ge 1 ]]; then
 else
   echo "BASH shell"
   # symlink fzf.bash script if DNE
-  if [[ -z "$HOME/.fzf.bash" ]]; then
+  if [[ -f "$HOME/.fzf.bash" ]]; then
       ln -sr "$HOME/dotfiles/utils.d/fzf.bash"
+      source "$HOME/.fzf.bash"
   fi
-  source "$HOME/.fzf.bash"
 fi
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash 
+#[ -f ~/.fzf.bash ] && source ~/.fzf.bash 
 #alias ff2="source ~/.fzf.bash"
 
 ff2 (){
@@ -397,14 +400,14 @@ alias duf='du -sh *'                        # Short and human-readable file list
 ### Functions
 ###
 
-### The name of the current branch
-### Back-compatibility wrapper for when this function was defined here in
-### the plugin, before being pulled in to core lib/git.zsh as git_current_branch()
-### to fix the core -> git plugin dependency.
+## The name of the current branch
+## Back-compatibility wrapper for when this function was defined here in
+## the plugin, before being pulled in to core lib/git.zsh as git_current_branch()
+## to fix the core -> git plugin dependency.
 function current_branch() {
   git_current_branch
 }
-#
+
 ### The list of remotes
 function current_repository() {
   if ! $_omb_git_git_cmd rev-parse --is-inside-work-tree &> /dev/null; then
@@ -836,7 +839,7 @@ edf(){
 
 
 alias gc="git commit"
-alias gca="git commit --ammend"
+alias gca="git commit --amend"
 alias gcm="git commit -m "
 alias glg="git log --graph --pretty --abbrev-commit"
 alias glgg="git log"
@@ -850,6 +853,7 @@ alias gco="git checkout"
 alias gst="git stash"
 alias gstl="git stash --list"
 alias gsts="git stash --show"
+alias gstd="git stash --show --patch"
 alias gsta="git stash --apply"
 alias gstp="git stash --push --message"
 alias gstpp="git stash --push"
@@ -862,10 +866,9 @@ alias gbc="git branch --show-current"
 alias grm="git remove"
 alias gpf="git push -f"
 alias gp="git push"
-alias grbii="git rebase --interactive"
-alias grbi="git rebase --interactive HEAD~"
-alias grba="git rebase "
-alias grbc="git rebase "
+#alias gpu="git push -u origin $(git branch --show-current)"
+alias gpu="git push -u origin"
+alias grbi="git rebase --interactive"
 
 # page/peak when status too long for terminal
 alias gsh="git status | head -n25"
@@ -934,3 +937,36 @@ llr(){
 	ls -lR $DIRROOT | grep '^l' 
 	
 }
+
+# recursive symlink lister
+llr(){
+	# use CWD if no path specified
+	if [ -z $1 ]; then
+		DIRROOT="$(pwd)"
+	else
+		DIRROOT="$1"
+	fi
+	#echo "ECHO TEST: ls -lR $DIRROOT | grep '^l' "
+	ls -lR $DIRROOT | grep '^l' 
+	
+}
+export XDG_ASUS_HOME="/mnt/c/Users/zaccs/Desktop"
+alias jdesktoppersonal="cd /mnt/c/Users/zaccs/Desktop/Personal"
+
+# BASH COMPLETION SCRIPTS
+bashcomps(){
+    COMP_DIR="$HOME/dotfiles/bash.d/completers"
+    # ignore broken/experimental completers
+    IGNORE_REGX="git|tmux"
+    for x in $(find $COMP_DIR -type f); do
+        # skip if True
+        if [ $(echo $x | egrep -ci "$IGNORE_REGX") -ge 1 ]; then
+            continue
+        fi
+        #echo "source $x"
+        source "$x"
+    done
+}
+bashcomps
+
+alias gmnf="git merge --no-ff"

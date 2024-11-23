@@ -75,6 +75,9 @@ set history=1500
 set tabpagemax=50
 set nohlsearch
 
+" disable auto code folding
+set nofoldenable
+
 
 " autocomplete settings
 set completeopt+=preview
@@ -849,3 +852,8 @@ let g:ycm_key_list_previous_completion = ['<C-k>', '<A>', '<C-p>', '<Up>']
 
 " @REMAP
 cnoremap terminal vert terminal<CR>
+
+
+" smoother buffer navi
+nnoremap <leader>l :bn<Cr>
+nnoremap <leader>h :bp<Cr>

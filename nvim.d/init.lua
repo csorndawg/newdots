@@ -19,6 +19,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- @NOTE
 -- must set leader/local leader before loading lazy
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
@@ -36,11 +37,10 @@ require("lazy").setup({
 --  source custom nvim config submodules
 -- ---------------------------------------------------
 
---require("config.opts")
---require("config.keymaps")
+require("user.opts")
+require("user.keymaps")
 --require("config.autocmds")
 
 -- load colorscheme from nvim.d/lua/extra/colorscheme.lua
 require("extra.colorscheme")
 require("extra.lsp")
-

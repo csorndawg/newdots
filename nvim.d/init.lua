@@ -37,6 +37,10 @@ require("lazy").setup({
 --  source custom nvim config submodules
 -- ---------------------------------------------------
 
+-- EXPERIMENTAL/DEV configs (comment out below if breaking changes occur)
+require("extra.cmp-test")
+
+
 require("user.opts")
 require("user.keymaps")
 --require("config.autocmds")

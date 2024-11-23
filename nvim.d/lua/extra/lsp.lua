@@ -35,6 +35,11 @@ local on_attach = function(client,bufnr)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
+-- set capabilities for ??
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+
 for _, lsp in ipairs(servers) do
 
 	-- nvimd_lsp[lsp].setup {}	-- installs LSP server, but will not be recognized unless manually referenced/called
@@ -42,7 +47,8 @@ for _, lsp in ipairs(servers) do
 	-- run local on_attach function, which allows files to be
 	-- recognize/picked up by its LSP server (if exists), for each server
 	nvimd_lsp[lsp].setup {
-		on_attach = on_attach
+        capabilities = capabilities,
+		on_attach = on_attach ,
 	}
 end
 

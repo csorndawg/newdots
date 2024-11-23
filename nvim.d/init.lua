@@ -42,3 +42,5 @@ require("lazy").setup({
 
 -- load colorscheme from nvim.d/lua/extra/colorscheme.lua
 require("extra.colorscheme")
+require("extra.lsp")
+

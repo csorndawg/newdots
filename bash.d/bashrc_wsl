@@ -210,7 +210,7 @@ else
   echo "BASH shell"
   # symlink fzf.bash script if DNE
   if [[ -f "$HOME/.fzf.bash" ]]; then
-      ln -sr "$HOME/dotfiles/utils.d/fzf.bash"
+      ln -sr "$HOME/dotfiles/utils.d/fzf.bash" 2> /dev/null # dont overwrite existing
       source "$HOME/.fzf.bash"
   fi
 fi
@@ -899,9 +899,9 @@ if [[ "$(echo $HOSTNAME | egrep -ci 'DESKTOP')" -ge 1 ]]; then
 	    if [ "$RUNNING_AGENT" = "0" ]; then
 		# Launch a new instance of the agent
         echo '# test below:'
-		ssh-agent -s  | tee $HOME/.ssh/ssh-agent
+		ssh-agent -s  | tee $HOME/.ssh/ssh-agent 2>/dev/null
 	    fi
-	    eval `cat $HOME/.ssh/ssh-agent` > /dev/null
+	    eval `cat $HOME/.ssh/ssh-agent 2> /dev/null` > /dev/null
 	    ssh-add $HOME/.ssh/id_rsa 2> /dev/null
 	fi
 fi
@@ -953,21 +953,29 @@ llr(){
 }
 export XDG_ASUS_HOME="/mnt/c/Users/zaccs/Desktop"
 alias jdesktoppersonal="cd /mnt/c/Users/zaccs/Desktop/Personal"
+alias ASUS_ZACCSOR_DESKTOP_PERSONAL="cd /mnt/c/Users/zaccs/Desktop/Personal"
 
-# BASH COMPLETION SCRIPTS
+# SOURCE DOTFILES BASH COMPLETION SCRIPTS 
 bashcomps(){
     COMP_DIR="$HOME/dotfiles/bash.d/completers"
-    # ignore broken/experimental completers
-    IGNORE_REGX="git|tmux"
+
+    # ignore patterns for broken/experimental completion scripts
+    # need to add place holder pattern if no patterns are currently
+    # being ignored as temp. workaround
+    IGNORE_REGX="fallback"
+
     for x in $(find $COMP_DIR -type f); do
-        # skip if True
+        # skip sourcing if matches ignore regex
         if [ $(echo $x | egrep -ci "$IGNORE_REGX") -ge 1 ]; then
             continue
         fi
-        #echo "source $x"
         source "$x"
     done
 }
 bashcomps
 
 alias gmnf="git merge --no-ff"
+alias nv="nvim"
+alias v="vim"
+alias vi="vim"
+

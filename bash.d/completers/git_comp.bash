@@ -1,3 +1,20 @@
+## @TODO - Cleanup makeshift util.sh sourcing code. Remove testing code, and
+##         add sourcing logic to bashrc for scalability.
+##
+## Added below to OMB git_completion.bash OMB script
+## Sourcing single, script now with potential for other bash.d/lib/omb 
+## scripts later so avoid hardcoding values when possible.
+##
+## source dependency functions from local OMB util.sh script in bash.d/lib 
+BASHD_DOT_HOME="$HOME/dotfiles/bash.d"
+SRC_PATH="lib/util.sh"
+SRC_ABSPATH="$BASHD_DOT_HOME/$SRC_PATH"
+
+#echo "SRC_ABSPATH:  $SRC_ABSPATH"
+#echo "source $SRC_ABSPATH" 
+source $SRC_ABSPATH || echo 'Error occurred when trying to source bash.d/lib/util.sh'
+
+
 # bash completion support for Git.
 function _omb_completion_git_initialize {
     if ! _omb_util_function_exists __gitdir; then

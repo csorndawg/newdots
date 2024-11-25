@@ -223,6 +223,10 @@ else
 fi
 
 ff2 (){
+    if [ ! -f ~/.fzf.bash ]; then
+        echo "Error - no '~/.fzf.bash' file found"
+        return
+    fi
     source ~/.fzf.bash
     source ~/dotfiles/config.d/fzf.config
     export FZF_DEFAULT_OPTS="

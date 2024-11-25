@@ -13,6 +13,9 @@ vim.opt.number = true -- Print line number
 vim.opt.pumblend = 10 -- Popup blend
 vim.opt.pumheight = 10 -- Maximum number of entries in a popup
 vim.opt.relativenumber = true
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
+
 -- vim.opt.scrolloff = 4 -- Lines of context
 vim.opt.scrolloff = 10
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }

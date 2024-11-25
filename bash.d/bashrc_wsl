@@ -139,8 +139,14 @@ fi
 # RC
 source ~/dotfiles/rc.d/aliases.rc 2> /dev/null
 source ~/dotfiles/rc.d/functions.rc 2> /dev/null
+
 # BASH
 source ~/dotfiles/bash.d/functions.bash 2> /dev/null
+#source ~/dotfiles/bash.d/exports.bash 2> /dev/null    ## @TODO - unsure if uncommenting will break code, need to inspect before uncommenting
+
+# @NOTE - moving to end to ensure not overwritten by other bashrc logic 
+source ~/dotfiles/bash.d/prompt.bashrc 2> /dev/null
+
 
 #####
 ##### WSL2 BASH SPECIFIC LOGIC/CONFIGURATIONS
@@ -203,20 +209,18 @@ ssh_tunnel(){
 } 
 
 # source fzf shell script
+# check if ZSH shell, otherwise assume BASH 
 if [[  $(echo "$SHELL"  | egrep zsh -ci) -ge 1 ]]; then
-  echo "ZSH shell"
-  source "$HOME/.fzf.zsh"
+  #echo "ZSH shell"
+  source "$HOME/.fzf.zsh" || echo "Error occurred when sourcing '$HOME/.fzf.zsh'"
 else
-  echo "BASH shell"
+  #echo "BASH shell"
   # symlink fzf.bash script if DNE
   if [[ -f "$HOME/.fzf.bash" ]]; then
-      ln -sr "$HOME/dotfiles/utils.d/fzf.bash" 2> /dev/null # dont overwrite existing
+      ln -sr "$HOME/dotfiles/utils.d/fzf.bash" "$HOME/.fzf.bash" 2> /dev/null # dont overwrite if exists
       source "$HOME/.fzf.bash"
   fi
 fi
-
-#[ -f ~/.fzf.bash ] && source ~/.fzf.bash 
-#alias ff2="source ~/.fzf.bash"
 
 ff2 (){
     source ~/.fzf.bash
@@ -291,10 +295,11 @@ HISTIGNORE="exit:ls:bg:fg:history:clear"
 ### Enable incremental history search with up/down arrows (also Readline goodness)
 ### Learn more about this here: https://codeinthehole.com/tips/the-most-important-command-line-tip-incremental-history-searching-with-inputrc/
 ### bash4 specific ??
-bind '"\e[A": history-search-backward'
-bind '"\e[B": history-search-forward'
-bind '"\e[C": forward-char'
-bind '"\e[D": backward-char'
+# @FIXME - fix before uncommentting
+#bind '"\e[A": history-search-backward'
+#bind '"\e[B": history-search-forward'
+#bind '"\e[C": forward-char'
+#bind '"\e[D": backward-char'
 
 ### Show history
 ###case $HIST_STAMPS in
@@ -883,28 +888,23 @@ alias gdos="git diff origin --stat"
 alias gdm="git diff origin/main main"
 alias gdms="git diff origin/main main --stat"
 
-# PyCharm WSL configurations
-alias charm="/mnt/c/Users/zaccs/AppData/Local/JetBrains/Toolbox/apps/PyCharm-P/ch-0/<version>/bin/pycharm64.exe"
-export PyCharmPath="/mnt/c/Users/zaccs/PycharmProjects/"
-export XDG_PYCHARM_HOME="/mnt/c/Users/zaccs/PycharmProjects/"
-alias pycharm_homedir="cd /mnt/c/Users/zaccs/PycharmProjects/"
-alias pychh="cd /mnt/c/Users/zaccs/PycharmProjects/"
 
 
+## @FIXME
 ## pycharm ssh - only run if on local machine
-if [[ "$(echo $HOSTNAME | egrep -ci 'DESKTOP')" -ge 1 ]]; then
-	if [ -z "$SSH_AUTH_SOCK" ]; then
-	    # Check for a currently running instance of the agent
-	    RUNNING_AGENT="`ps -ax | grep 'ssh-agent -s' | grep -v grep | wc -l | tr -d '[:space:]'`"
-	    if [ "$RUNNING_AGENT" = "0" ]; then
-		# Launch a new instance of the agent
-        echo '# test below:'
-		ssh-agent -s  | tee $HOME/.ssh/ssh-agent 2>/dev/null
-	    fi
-	    eval `cat $HOME/.ssh/ssh-agent 2> /dev/null` > /dev/null
-	    ssh-add $HOME/.ssh/id_rsa 2> /dev/null
-	fi
-fi
+#if [[ "$(echo $HOSTNAME | egrep -ci 'DESKTOP')" -ge 1 ]]; then
+#	if [ -z "$SSH_AUTH_SOCK" ]; then
+#	    # Check for a currently running instance of the agent
+#	    RUNNING_AGENT="`ps -ax | grep 'ssh-agent -s' | grep -v grep | wc -l | tr -d '[:space:]'`"
+#	    if [ "$RUNNING_AGENT" = "0" ]; then
+#		# Launch a new instance of the agent
+#        echo '# test below:'
+#		ssh-agent -s  | tee $HOME/.ssh/ssh-agent 2>/dev/null
+#	    fi
+#	    eval `cat $HOME/.ssh/ssh-agent 2> /dev/null` > /dev/null
+#	    ssh-add $HOME/.ssh/id_rsa 1> /dev/null
+#	fi
+#fi
 
 #alias sshCachePP="eval $(ssh-agent) && ssh-add $HOME/.ssh/id_rsa"
 sshCachePP(){
@@ -913,7 +913,7 @@ sshCachePP(){
 
 
 ## Add Git branch info to BASH prompt (source: https://bash-prompt-generator.org/)
-PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'; PS1='\n\[\e[38;5;115m\]\u@\h\n\[\e[38;5;152m\]\w\[\e[0m\]  \[\e[38;5;223;3m\]${PS1_CMD1}\[\e[0m\]  \n \[\e[38;5;139;3m\]>\[\e[0m\] '
+#PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'; PS1='\n\[\e[38;5;115m\]\u@\h\n\[\e[38;5;152m\]\w\[\e[0m\]  \[\e[38;5;223;3m\]${PS1_CMD1}\[\e[0m\]  \n \[\e[38;5;139;3m\]>\[\e[0m\] '
 
 
 ## XDG Exports
@@ -979,3 +979,13 @@ alias nv="nvim"
 alias v="vim"
 alias vi="vim"
 
+if [[ "$HOSTNAME" = "DESKTOP-FPDD922" ]]; then
+    #echo "Working on local WSL machine. Adding Pycharm bashrc configurations."
+    # @TODO - make sourcing more scalable 
+    WSL_DOTFILES_HOME="$HOME/dotfiles/wsl"
+    #find $WSL_DOTFILES_HOME -type f  -exec echo source {} \;
+    source "$WSL_DOTFILES_HOME/pycharm/pycharm_bashrc_extras.bash"
+fi
+
+# @NOTE - moving to end to ensure not overwritten by other bashrc logic 
+#source ~/dotfiles/bash.d/prompt.bashrc && echo "Bash prompt succesfully sourced" #2> /dev/null

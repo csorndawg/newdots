@@ -1,0 +1,7 @@
+## WSL SHELL EXPORTS (assumes BASH SHELL)
+
+export EDITOR="nvim"
+export PYCHARM_HOME_DIR="/mnt/c/Users/zaccs/PycharmProjects"
+export PyCharmPath="/mnt/c/Users/zaccs/PycharmProjects/"
+export VENV_PYCHARM="/mnt/c/Users/zaccs/PycharmProjects/PythonProject2"
+export XDG_PYCHARM_HOME="/mnt/c/Users/zaccs/PycharmProjects/"

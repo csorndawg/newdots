@@ -141,8 +141,8 @@ source ~/dotfiles/rc.d/aliases.rc 2> /dev/null
 source ~/dotfiles/rc.d/functions.rc 2> /dev/null
 
 # BASH
-source ~/dotfiles/bash.d/functions.bash 2> /dev/null
-#source ~/dotfiles/bash.d/exports.bash 2> /dev/null    ## @TODO - unsure if uncommenting will break code, need to inspect before uncommenting
+source ~/dotfiles/bash.d/functions.bashrc 2> /dev/null
+#source ~/dotfiles/bash.d/exports.bashrc 2> /dev/null    ## @TODO - unsure if uncommenting will break code, need to inspect before uncommenting
 
 # @NOTE - moving to end to ensure not overwritten by other bashrc logic 
 source ~/dotfiles/bash.d/prompt.bashrc 2> /dev/null
@@ -983,13 +983,11 @@ alias nv="nvim"
 alias v="vim"
 alias vi="vim"
 
-if [[ "$HOSTNAME" = "DESKTOP-FPDD922" ]]; then
-    #echo "Working on local WSL machine. Adding Pycharm bashrc configurations."
-    # @TODO - make sourcing more scalable 
-    WSL_DOTFILES_HOME="$HOME/dotfiles/wsl"
-    #find $WSL_DOTFILES_HOME -type f  -exec echo source {} \;
-    source "$WSL_DOTFILES_HOME/pycharm/pycharm_bashrc_extras.bash"
-fi
 
-# @NOTE - moving to end to ensure not overwritten by other bashrc logic 
-#source ~/dotfiles/bash.d/prompt.bashrc && echo "Bash prompt succesfully sourced" #2> /dev/null
+# Source WSL configs if working on local machine
+if [[ "$HOSTNAME" = "DESKTOP-FPDD922" ]]; then
+    WSL_DOTFILES_HOME="$HOME/dotfiles/wsl"
+    for srcfile in $(find "$WSL_DOTFILES_HOME/lib" -type f -name '*.wsl'); do
+        source "$srcfile" || echo 'Error unable to source: ' "$srcfile" 
+    done
+fi

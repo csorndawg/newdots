@@ -1,0 +1,3 @@
+export ASUS_USERS_HOME_DIR="/mnt/c/Users"
+export ZCSOR_HOME_DIR="/mnt/c/Users/zcsor"
+export ZACCS_HOME_DIR="/mnt/c/Users/zaccs"

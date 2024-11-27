@@ -4,7 +4,7 @@ news.version=3.1.0
 # XDG compliant dirs
 #data.location=~/.local/share/task       # Current WSL taskwarrior data directory
 #data.location=~/.local/share/task      # Current shelby taskwarrior data directory
-data.location=~/git/taskwarra/task      # @experimental Git repo for syncing taskwarrior data across multiple hosts
+data.location=~/git/taskwarra/task_data      # @experimental Git repo for syncing taskwarrior data across multiple hosts
 #hooks.location=~/.config/task/hooks
 
 # Color theme (uncomment one to use)

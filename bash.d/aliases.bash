@@ -14,7 +14,7 @@
 ##
 alias gmnf="git merge --no-ff"
 alias gm="git merge"
-alias gpsu="git push --set-upstream origin"
+#alias gpsu="git push --set-upstream origin"
 alias gbd="git branch --delete"
 alias nv="nvim"
 alias v="vim"

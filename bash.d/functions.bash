@@ -137,3 +137,12 @@ qxs(){
             $EDITOR "$SANDBOXES_HOME_DIR/all/all_scratch_$(date +%Y%m%d-%H%M%S).all"
     esac
 }
+
+
+# TODO
+#gpsu (){
+#    CWB="$(git branch --show-current)"
+#    #git push --set-upstream origin $(git branch --show-current)
+#    echo git push --set-upstream origin "$CWB"
+#
+#}

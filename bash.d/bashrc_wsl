@@ -141,11 +141,10 @@ source ~/dotfiles/rc.d/aliases.rc 2> /dev/null
 source ~/dotfiles/rc.d/functions.rc 2> /dev/null
 
 # BASH
-source ~/dotfiles/bash.d/functions.bashrc 2> /dev/null
-source ~/dotfiles/bash.d/exports.bashrc 2> /dev/null
-
-# @NOTE - moving to end to ensure not overwritten by other bashrc logic 
-source ~/dotfiles/bash.d/prompt.bashrc 2> /dev/null
+source ~/dotfiles/bash.d/functions.bash 1> /dev/null
+source ~/dotfiles/bash.d/exports.bash 2> /dev/null
+source ~/dotfiles/bash.d/prompt.bash 2> /dev/null
+source ~/dotfiles/bash.d/aliases.bash 2> /dev/null
 
 
 #####
@@ -977,15 +976,6 @@ bashcomps(){
     done
 }
 bashcomps
-
-alias gmnf="git merge --no-ff"
-alias gm="git merge"
-alias gpsu="git push --set-upstream origin fix-vim-dependencies-script"
-
-alias nv="nvim"
-alias v="vim"
-alias vi="vim"
-
 
 # Source WSL configs if working on local machine
 if [[ "$HOSTNAME" = "DESKTOP-FPDD922" ]]; then

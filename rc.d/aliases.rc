@@ -174,7 +174,7 @@ alias hist30="history | tail -n 30"
 ## view custom shell scripts/functions/completions on the fly
 alias help_fzf="bat $HOME/dotfiles/rc.d/fzf.rc"
 alias help_rc_functs="bat $HOME/dotfiles/rc.d/functions.rc"
-alias gw="cd $HOME/gitwork"
+alias gw="cd $HOME/git"
 
 ## taskwarrior
 alias t="task"

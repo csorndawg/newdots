@@ -991,3 +991,48 @@ if [[ "$HOSTNAME" = "DESKTOP-FPDD922" ]]; then
         source "$srcfile" || echo 'Error unable to source: ' "$srcfile" 
     done
 fi
+
+# on-the-fly sourcing for experimental bash configurations
+bashexpr(){
+	# TODO - Improve logic to accept/source some but not all experimental
+	# configuration file FLAGS.
+	#
+	# Function accepts 1 (at the moment) CLI ARG, if given it 
+	# checks which experimental bashconfig matches flag and
+	# sources the file. Otherwise if no FLAG is given 
+	# all bashconfig experimental files are sourced.
+	#
+
+	BASHD_EXPERIMENTAL_HOME="$HOME/dotfiles/bash.d/lib/expr"
+	case $1 in 
+		a|alias)
+			# use bash if "source" returns error when calling after shell login initaliziation
+			#bash "$BASHD_EXPERIMENTAL_HOME/alias.bash"
+			source "$BASHD_EXPERIMENTAL_HOME/alias.bash"
+			echo "The experimental alias.bash has been successfully sourced"
+			;;
+
+		f|funct|functs|function|F)
+			#bash "$BASHD_EXPERIMENTAL_HOME/functs.bash"
+			source "$BASHD_EXPERIMENTAL_HOME/functs.bash"
+			echo "The experimental functs.bash has been successfully sourced"
+			;;
+
+		e|export|exports|E)
+			#bash "$BASHD_EXPERIMENTAL_HOME/exports.bash"
+			source "$BASHD_EXPERIMENTAL_HOME/exports.bash"
+			echo "The experimental exports.bash has been successfully sourced"
+			;;
+
+		p|prompt|P)
+			#bash "$BASHD_EXPERIMENTAL_HOME/prompt.bash"
+			source "$BASHD_EXPERIMENTAL_HOME/prompt.bash"
+			echo "The experimental prompt.bash has been successfully sourced"
+			;;
+		**)
+			for expr_file in $(find "$BASHD_EXPERIMENTAL_HOME" -type f); do 
+				source $expr_file
+			done
+			;;
+	esac
+}

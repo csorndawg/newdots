@@ -979,6 +979,9 @@ bashcomps(){
 bashcomps
 
 alias gmnf="git merge --no-ff"
+alias gm="git merge"
+alias gpsu="git push --set-upstream origin fix-vim-dependencies-script"
+
 alias nv="nvim"
 alias v="vim"
 alias vi="vim"

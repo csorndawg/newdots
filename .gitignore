@@ -166,3 +166,5 @@ package.json
 **/**.swp
 artifacts**
 **.syml
+
+!ideas.d/

@@ -142,7 +142,7 @@ source ~/dotfiles/rc.d/functions.rc 2> /dev/null
 
 # BASH
 source ~/dotfiles/bash.d/functions.bashrc 2> /dev/null
-#source ~/dotfiles/bash.d/exports.bashrc 2> /dev/null    ## @TODO - unsure if uncommenting will break code, need to inspect before uncommenting
+source ~/dotfiles/bash.d/exports.bashrc 2> /dev/null
 
 # @NOTE - moving to end to ensure not overwritten by other bashrc logic 
 source ~/dotfiles/bash.d/prompt.bashrc 2> /dev/null
@@ -815,10 +815,10 @@ edf(){
 
     # DOTFILE path depends on host machine
     if [[ "$(echo $HOSTNAME | egrep -ci 'DESKTOP')" -ge 1 ]]; then
-        DOTFILE_HOME_DIR="/home/zc/.local/work/git/newdots"
+        DOTFILE_HOME_DIR="$HOME/dotfile"
         echo "Current session is running on my Local machine - $HOSTNAME"
     else
-        DOTFILE_HOME_DIR="/home/nukk/git/ongoing/newdots"
+        DOTFILE_HOME_DIR="$HOME/dotfiles"
     fi
 
     echo "DOTFILE_HOME_DIR:  $DOTFILE_HOME_DIR"

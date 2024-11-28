@@ -39,7 +39,7 @@ require("lazy").setup({
 
 -- EXPERIMENTAL/DEV configs (comment out below if breaking changes occur)
 require("extra.cmp-test")
-require("extra.mason-lspconfig-expr")	-- sensitive to loading order ; might need to be first "required" module ; needs to be before "extra.lsp"
+require("extra.mason-lspconfig")	-- sensitive to loading order ; might need to be first "required" module ; needs to be before "extra.lsp"
 
 
 require("user.opts")

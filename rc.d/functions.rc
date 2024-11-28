@@ -265,10 +265,10 @@ edf(){
 
     # DOTFILE path depends on host machine
     if [[ "$(echo $HOSTNAME | egrep -ci 'DESKTOP')" -ge 1 ]]; then
-        DOTFILE_HOME_DIR="/home/zc/.local/work/git/newdots"
+        DOTFILE_HOME_DIR="$HOME/dotfiles"
         echo "Current session is running on my Local machine - $HOSTNAME"
     else
-        DOTFILE_HOME_DIR="/home/nukk/git/ongoing/newdots"
+        DOTFILE_HOME_DIR="$HOME/dotfiles"
     fi
 
     echo "DOTFILE_HOME_DIR:  $DOTFILE_HOME_DIR"
@@ -286,7 +286,7 @@ edf(){
         vim "$DOTFILE_HOME_DIR/tmux.d/tmux.conf"
 
     elif [[ "$1" = "v" ]]; then
-        vim "$DOTFILE_HOME_DIR/vimrc"
+        vim "$DOTFILE_HOME_DIR/vim.d/vimrc"
 
     elif [[ "$1" = "g" ]]; then
         vim "$DOTFILE_HOME_DIR/git.d/gitconfig"

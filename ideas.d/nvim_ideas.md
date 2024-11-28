@@ -29,6 +29,10 @@
 
 ### PLUGIN REMAPS
 - whichkey
+- treesitter extensions
+    - markdown/marksman
+    - ungrammar
+    - writegood
 
 
 ### AUTOCMDS

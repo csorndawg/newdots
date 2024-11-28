@@ -86,6 +86,12 @@ qxs(){
         mkdir -p $varx
     done
 
+    ## make subdirs first 
+    SUBDIRS=(bash python dotfiles git sql junk testing all)
+    for sd in ${SUBDIRS[@]}; do
+        mkdir -p "$SANDBOXES_HOME_DIR/$sd"
+    done
+
 
     # @TODO - Add upper/lower case variations to CASE statement for existing flags
     # create scratchfile from CASE statement flag input
@@ -93,47 +99,55 @@ qxs(){
 
         b|B|bash|sh|shell)
             echo -n "Bash/Shell sandbox FLAG passed"
-            # @TODO - Add separate logic for reopening recent/existing scratch file use case
+            mkdir -p "$SANDBOXES_HOME_DIR/bash"
             $EDITOR "$SANDBOXES_HOME_DIR/bash/bash_scratch_$(date +%Y%m%d-%H%M%S).sh"
         ;;
 
         p|P|python)
             echo -n "Python sandbox FLAG passed"
-            $EDITOR "$SANDBOXES_HOME_DIR/python/_scratch_$(date +%Y%m%d-%H%M%S).py"
+            mkdir -p "$SANDBOXES_HOME_DIR/python"
+            $EDITOR "$SANDBOXES_HOME_DIR/python/python_scratch_$(date +%Y%m%d-%H%M%S).py"
         ;;
         
         d|dotfiles)
             echo -n "Dotfile sandbox FLAG passed. Append extension manually if filetype extention needed."
-            $EDITOR "$SANDBOXES_HOME_DIR/dotfile/dotfile_scratch_$(date +%Y%m%d-%H%M%S).dotfile"
+            mkdir -p "$SANDBOXES_HOME_DIR/dotfiles"
+            $EDITOR "$SANDBOXES_HOME_DIR/dotfiles/dotfile_scratch_$(date +%Y%m%d-%H%M%S).dotfile"
         ;;
         
         g|git)
             echo -n "Git sandbox FLAG passed"
+            mkdir -p "$SANDBOXES_HOME_DIR/git"
             $EDITOR "$SANDBOXES_HOME_DIR/git/git_scratch_$(date +%Y%m%d-%H%M%S).git"
         ;;
         
         j|junk|temp|tmp|quick|q|J)
             echo -n "Junk/Quick/Temp sandbox FLAG passed. Append extension manually if filetype extention needed."
+            mkdir -p "$SANDBOXES_HOME_DIR/junk"
             $EDITOR "$SANDBOXES_HOME_DIR/junk/junk_scratch_$(date +%Y%m%d-%H%M%S).junk"
         ;;
 
         t|test|explore|experiment|exp)
             echo -n "Test/Experiment/Explore sandbox FLAG passed. Append extension manually if filetype extention needed."
+            mkdir -p "$SANDBOXES_HOME_DIR/testing"
             $EDITOR "$SANDBOXES_HOME_DIR/testing/test_scratch_$(date +%Y%m%d-%H%M%S).test"
         ;;
 
         s|sql)
             echo -n " sandbox FLAG passed"
+            mkdir -p "$SANDBOXES_HOME_DIR/sql"
             $EDITOR "$SANDBOXES_HOME_DIR/sql/sql_scratch_$(date +%Y%m%d-%H%M%S).sql"
         ;;
 
         w|h)
             echo -n "Written/Help FLAG passed"
-            $EDITOR "$TEXTFILES_HOME_DIR/doc_scratch_$(date +%Y%m%d-%H%M%S).md"
+            mkdir -p "$TEXTFILES_HOME_DIR/qxs"
+            $EDITOR "$TEXTFILES_HOME_DIR/qxs/doc_scratch_$(date +%Y%m%d-%H%M%S).md"
         ;;
 
         *)
             echo -n "Unknown/Unspecified which defaults to ALL"
+            mkdir -p "$TEXTFILES_HOME_DIR/all"
             $EDITOR "$SANDBOXES_HOME_DIR/all/all_scratch_$(date +%Y%m%d-%H%M%S).all"
     esac
 }

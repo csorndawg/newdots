@@ -9,6 +9,7 @@ sudo apt install nodejs
 sudo apt install npm
 sudo apt install unzip
 sudo apt install fzf
+sudo apt install python3.10-venv
 
 ## apt with post-install conf
 

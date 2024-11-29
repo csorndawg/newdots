@@ -83,6 +83,9 @@ vim.keymap.set('n', '<C-n>', function()
 end, { noremap = true, silent = true })
 
 
+-- <Leader>r Redo change 
+remapp('n', '<leader>r', '<C-r>', {noremap = true})
+
 -- add description later
 --
 -- @kickstarter
@@ -91,7 +94,14 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- Normal/Terminal
 remapp('n', '<Leader>t', ':terminal<Cr>iclear<CR>', {noremap = true })
 
+-- Normal/Visual
+remapp("n", "<leader>v","v", {noremap = true})
 
+-- Normal/Visual Line
+remapp("n", "<leader><leader>v","<S-v>", {noremap = true})
+
+
+--
 -- Insert Mode 
 --
 
@@ -121,6 +131,16 @@ remapp("v", "<A-j>", ":m '>+1<CR>gv=gv", opts)
 remapp("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
 remapp("v", "p", '"_dP', opts)
 
+-- mirror tmux Visual/Copy mode keybinds
+-- switch to normal mode/kill current selection
+remapp("v", "<leader>.","<C-c>", {noremap = true})
+remapp("v", "..","<C-c>", {noremap = true})
+--remapp("v", ",,","<C-c>", {noremap = true})
+
+
+-- @experimental
+-- visual mode copy alt.
+remapp("v", "//", "y", {noremap = true})
 
 --
 -- Visual Block Mode

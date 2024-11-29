@@ -73,3 +73,4 @@ export SECRETS_DUMPFILE="$HOME/git/fortknox/secrets_dumpfile_master.md"
 export DIFFPATCHES="$HOME/.local/state/diffpatch"
 
 which nvim && export EDITOR="nvim" || export EDITOR="vim"
+export ANSIBLE_LOCAL_HOME="$HOME/.ansible"

@@ -23,3 +23,42 @@ vim.opt.shiftround = true -- Round indent
 vim.opt.shiftwidth = 2 -- Size of an indent
 vim.opt.shortmess:append({ W = true, I = true, c = true, C = true })
 vim.opt.showmode = false
+
+-- 
+-- Lua Locals 
+--
+local option = vim.opt
+
+
+--
+-- Custom Local Opts 
+--
+
+-- case-insensitive search unless \C or search includes multiple capital letters 
+option.ignorecase = true
+option.smartcase = true 
+
+-- decrease updatetime (ms)
+option.updatetime = 250
+
+-- decrease mapped sequence latency
+option.timeoutlen = 300
+
+option.splitright = true 
+option.splitbelow = true 
+
+-- preview substitutions live
+option.inccommand = 'split'
+
+-- highlight current cursor line
+vim.opt.cursorline = true
+
+-- min. number of screen lines above/below cursor 
+vim.opt.scrolloff = 10
+
+option.breakindent = true
+option.undofile = true
+
+-- @TODO
+-- Uncomment once I figure out how to exclude Python files (need 4 not 2 spaces)  from below
+-- vim: ts=2 sts=2 sw=2 et

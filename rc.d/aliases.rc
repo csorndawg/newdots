@@ -226,4 +226,4 @@ alias fzf_rm="git branch -v | fzf -m -1 | xargs git rm"
 # kickstart-modular alias/concurrent configs
 alias kickstart-nvim='NVIM_APPNAME="kickstart-nvim" nvim'
 alias kvim='NVIM_APPNAME="kickstart-nvim" nvim'
-
+alias gpu="git push -u origin"

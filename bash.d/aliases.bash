@@ -19,4 +19,5 @@ alias gbd="git branch --delete"
 alias nv="nvim"
 alias v="vim"
 alias vi="vim"
+alias gpu="git push -u origin"
 

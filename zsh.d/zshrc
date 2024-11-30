@@ -312,4 +312,4 @@ alias gmnf="git merge --no-ff"
 alias gmn="git merge --no-ff"
 alias gdmo="git diff origin/main main"
 alias gdmos="git diff --stat origin/main main"
-
+alias gpu="git push -u origin"

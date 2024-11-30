@@ -111,8 +111,11 @@ remapp('n', '<leader>r', '<C-r>', {noremap = true})
 -- show path of current file
 remapp("n", "<Leader>ep", ":echo expand('%')<Cr>", {noremap = true})
 
--- add description later
 
+-- add description later
+-- run (p)ython/(b)ash buffer
+remapp("n", "<leader>rp", ":w !python3 %<Tab><Cr>", {noremap = true} )
+remapp("n", "<leader>rb", ":w !bash  %<Tab><Cr>", opts)
 
 --
 -- Insert Mode 

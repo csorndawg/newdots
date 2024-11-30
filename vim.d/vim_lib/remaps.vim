@@ -120,3 +120,6 @@ nnoremap <leader>jj <Ctrl-d>
 nnoremap <leader>kk <Ctrl-u>
 
 
+" run (p)ython/(b)ash buffer
+nnoremap <leader>rp :w !python3 %<Tab><Cr>
+nnoremap <leader>rb :w !bash %<Tab><Cr>

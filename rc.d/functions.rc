@@ -259,7 +259,12 @@ edf(){
     #   - bashrc (b)
     #   - bashrc_wsl (bw)
     #   - vimrc (v)
+    #   - vim_lib (vl)
     #   - init.lua (n)
+    #   - neovim lsp (nl)
+    #   - neovim plugins (np)
+    #   - neovim opts (no)
+    #   - neovim keymaps (nk)
     #   - tmux.conf (t)
     #   - gitconfig (g)
 
@@ -270,30 +275,46 @@ edf(){
     else
         DOTFILE_HOME_DIR="$HOME/dotfiles"
     fi
-
     echo "DOTFILE_HOME_DIR:  $DOTFILE_HOME_DIR"
-    # TODO: convert to CASE statement
-    if [[ -z "$1" ]]; then
-        vim "$DOTFILE_HOME_DIR"
 
-    elif [[ "$1" = "b" ]]; then
-        vim "$DOTFILE_HOME_DIR/bash.d/bashrc"
-
-    elif [[ "$1" = "bw" ]]; then
-        vim "$DOTFILE_HOME_DIR/bash.d/bashrc_wsl"
-
-    elif [[ "$1" = "t" ]]; then
-        vim "$DOTFILE_HOME_DIR/tmux.d/tmux.conf"
-
-    elif [[ "$1" = "v" ]]; then
-        vim "$DOTFILE_HOME_DIR/vim.d/vimrc"
-
-    elif [[ "$1" = "g" ]]; then
-        vim "$DOTFILE_HOME_DIR/git.d/gitconfig"
-
-    elif [[ "$1" = "n" ]]; then
-        vim "$DOTFILE_HOME_DIR/nvim.d/init.lua"
-    fi
+    case $1 in 
+        b)
+            vim "$DOTFILE_HOME_DIR/bash.d/bashrc"
+            ;;
+        bw)
+            vim "$DOTFILE_HOME_DIR/bash.d/bashrc_wsl"
+            ;;
+        t)
+            vim "$DOTFILE_HOME_DIR/tmux.d/tmux.conf"
+            ;;
+        g)
+            vim "$DOTFILE_HOME_DIR/git.d/gitconfig"
+            ;;
+        ni)
+            vim "$DOTFILE_HOME_DIR/nvim.d/init.lua"
+            ;;
+        no)
+            vim "$DOTFILE_HOME_DIR/nvim.d/lua/user/opts.lua"
+            ;;
+        nk)
+            vim "$DOTFILE_HOME_DIR/nvim.d/lua/user/keymaps.lua"
+            ;;
+        np)
+            vim "$DOTFILE_HOME_DIR/nvim.d/lua/plugins"
+            ;;
+        nl)
+            vim "$DOTFILE_HOME_DIR/nvim.d/lua/extra/lsp.lua"
+            ;;
+        v)
+            vim "$DOTFILE_HOME_DIR/vim.d/vimrc"
+            ;;
+        vl)
+            vim "$DOTFILE_HOME_DIR/vim.d/vim_lib"
+            ;;
+        **)
+            echo 'Unrecognized $ARG passed' 
+            ;;
+    esac
 }
 
 ## qxs - (Q)ui(X) (S)cratch file genertor

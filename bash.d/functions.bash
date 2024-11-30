@@ -160,3 +160,70 @@ qxs(){
 #    echo git push --set-upstream origin "$CWB"
 #
 #}
+
+edf(){
+
+    # function must be given an ARG when called
+    # ARG must map to one of the below "file flags" 
+    #
+    # function edits:
+    #   - bashrc (b)
+    #   - bashrc_wsl (bw)
+    #   - vimrc (v)
+    #   - vim_lib (vl)
+    #   - init.lua (n)
+    #   - neovim lsp (nl)
+    #   - neovim plugins (np)
+    #   - neovim opts (no)
+    #   - neovim keymaps (nk)
+    #   - tmux.conf (t)
+    #   - gitconfig (g)
+
+    # DOTFILE path depends on host machine
+    if [[ "$(echo $HOSTNAME | egrep -ci 'DESKTOP')" -ge 1 ]]; then
+        DOTFILE_HOME_DIR="$HOME/dotfiles"
+        echo "Current session is running on my Local machine - $HOSTNAME"
+    else
+        DOTFILE_HOME_DIR="$HOME/dotfiles"
+    fi
+    echo "DOTFILE_HOME_DIR:  $DOTFILE_HOME_DIR"
+
+    case $1 in 
+        b)
+            vim "$DOTFILE_HOME_DIR/bash.d/bashrc"
+            ;;
+        bw)
+            vim "$DOTFILE_HOME_DIR/bash.d/bashrc_wsl"
+            ;;
+        t)
+            vim "$DOTFILE_HOME_DIR/tmux.d/tmux.conf"
+            ;;
+        g)
+            vim "$DOTFILE_HOME_DIR/git.d/gitconfig"
+            ;;
+        ni)
+            vim "$DOTFILE_HOME_DIR/nvim.d/init.lua"
+            ;;
+        no)
+            vim "$DOTFILE_HOME_DIR/nvim.d/lua/user/opts.lua"
+            ;;
+        nk)
+            vim "$DOTFILE_HOME_DIR/nvim.d/lua/user/keymaps.lua"
+            ;;
+        np)
+            vim "$DOTFILE_HOME_DIR/nvim.d/lua/plugins"
+            ;;
+        nl)
+            vim "$DOTFILE_HOME_DIR/nvim.d/lua/extra/lsp.lua"
+            ;;
+        v)
+            vim "$DOTFILE_HOME_DIR/vim.d/vimrc"
+            ;;
+        vl)
+            vim "$DOTFILE_HOME_DIR/vim.d/vim_lib"
+            ;;
+        **)
+            echo 'Unrecognized $ARG passed' 
+            ;;
+    esac
+}

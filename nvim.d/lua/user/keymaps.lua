@@ -22,6 +22,7 @@ local remapp = vim.api.nvim_set_keymap	-- shorten NVIM remap function call
 -- Normal Mode 
 --
 
+
 -- better window navigation
 remapp("n", "<C-h>", "<C-w>h", opts)
 remapp("n", "<C-j>", "<C-w>j", opts)
@@ -45,11 +46,12 @@ remapp("n", "<Leader>bd", ":blast<CR>", opts)
 remapp("n", "<A-j>", ":m .+1<CR>==", opts)
 remapp("n", "<A-k>", ":m .-2<CR>==", opts)
 
--- Normal/Command mode switch
+-- Normal/Command mode switch 	(Cycle b/w two modes with `;;`)
 remapp("n", "<Leader>;", ":", {silent = false} ) --  dont pass "opts" b/c we want to see CMD prompt
-remapp("n", ";;", ":", {silent = false} ) -- opts)
+remapp("n", "<Leader>;;", ":", {silent = false} ) --  dont pass "opts" b/c we want to see CMD prompt
+--remapp("n", ";;", ":", {silent = false} ) -- opts)  -- @TODO: Find suitable alternate, since this interfers with '[fF]/[tT]' cycling
 
--- Normal/Insert mode switch
+-- Normal/Insert mode switch 	(Cycle b/w two modes with `,,`)
 remapp("n", "<Leader>,", "i", opts)
 remapp("n", "<Leader>jj", "i", opts)  -- @experimental
 remapp("n", ",,", "i", opts)  -- @experimental
@@ -83,11 +85,6 @@ vim.keymap.set('n', '<C-n>', function()
 end, { noremap = true, silent = true })
 
 
--- <Leader>r Redo change 
-remapp('n', '<leader>r', '<C-r>', {noremap = true})
-
--- add description later
---
 -- @kickstarter
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
@@ -99,6 +96,22 @@ remapp("n", "<leader>v","v", {noremap = true})
 
 -- Normal/Visual Line
 remapp("n", "<leader><leader>v","<S-v>", {noremap = true})
+
+
+-- Cursor Movement within current screen
+remapp("n", "<leader><leader>h", "H", {silent = true} )
+remapp("n", "<leader><leader>m", "M", {silent = true} )
+remapp("n", "<leader><leader>l:", "L", {silent = true} )
+
+-- undo/redo 
+remapp("n", "<leader>u", "<C-u>", opts)
+remapp('n', '<leader>r', '<C-r>', {noremap = true})
+
+
+-- show path of current file
+remapp("n", "<Leader>ep", ":echo expand('%')<Cr>", {noremap = true})
+
+-- add description later
 
 
 --
@@ -176,10 +189,38 @@ vim.keymap.set('t', '<C-x>', '<C-c> exit<CR>', { desc = 'Exit terminal mode' })
 remapp("c", ";;", "<Esc>", opts)
 remapp("c", "<A-;>", "<Esc>", opts)
 
--- command/insert mode switch
+-- command/insert mode switch  (continue with comma `,` theme remaps linked with Insert Mode) 
 remapp("c", "<A-,>", "<Esc>i", opts)
 remapp("c", ",,", "<Esc>i", opts)
 --remapp("c", "<A-;;>", "<Esc>", opts)
+
+
+
+-- @TODO - Try out <CTRL><key> vs. <key><key> movement remaps, and pick one method
+-- to keep moving forward and remove other method after to free up binding.
+-- CMD mode command line cursor movement remaps
+
+-- <key><key> CMD movement remaps
+remapp("c", "HH", "<Home>", {noremap = true})
+remapp("c", "EE", "<End>", {noremap = true})
+remapp("c", "bb", "<C-Left>", {noremap = true})
+remapp("c", "ww", "<C-Right>", {noremap = true})
+remapp("c", "hh", "<Left>", {noremap = true})
+remapp("c", "ll", "<Right>", {noremap = true})
+
+-- CMD history cycling remaps
+remapp("c", "<C-,>", "<Up>", {noremap = true})
+remapp("c", "<C-.>", "<Down>", {noremap = true})
+
+-- <Ctrl><key> CMD movement remaps
+--remapp("c", "<C-l>", <Right>, {noremap = true})
+--remapp("c", "<C-b>", <C-Left>, {noremap = true})
+--remapp("c", "<C-w>", <C-Right>, {noremap = true})
+--remapp("c", "<C-b>", <C-Right>, {noremap = true})
+--remapp("c", "ww", <C-Right>, {noremap = true})
+---- remap <Ctrl-h> (delete previous key) to new keymap before overwriting
+--remapp("c", "<C-x>", <C-h>, {noremap = true})
+--remapp("c", "<C-h>", <Left>, {noremap = true})
 
 
 --

@@ -13,11 +13,14 @@ nnoremap <Leader>q :q<CR>
 
 "move to cursor to middle of screen with `<space><space>m`
 nnoremap <Leader><Leader>m M 
+nnoremap <Leader><Leader>h H 
+nnoremap <Leader><Leader>l L 
 
 
 " smoother buffer navi
-nnoremap <leader>l :bn<Cr>
-nnoremap <leader>h :bp<Cr>
+nnoremap <S-l> :bn<Cr>
+nnoremap <S-h> :bp<Cr>
+nnoremap <leader>bd :bd<Cr>
 
 "  tmux-like commands for better window navigation remaps (change to mirror tmux)
 nnoremap <C-h> <C-w>h      
@@ -65,9 +68,28 @@ nnoremap <Leader>ep :echo expand('%')<CR>
 
 
 " <Alt> h/e moves Cmd cursor to start/end of cmdline
-cnoremap <Alt-h> <kHome>
-cnoremap <Alt-e> <kEnd>
+"cnoremap <Alt-h> <kHome>
 "cnoremap <Alt-h> <Home>
+cnoremap hh <Home>
+cnoremap ee <End>
+cnoremap <F7> <kEnd>
+cnoremap <F8> <End>
+"cnoremap <Alt-e> <kEnd>
+"cnoremap <Alt-h> <Home>
+
+" @ TODO - Remap <C-Arrow Key> to its vim movement equivalent. Eg. map 
+" FORWARD WORD (<C-Right Arrow>) to <C-w> in command mode. Using Up/Down for 
+" beginning/end of line movements.
+cnoremap <C-w> <C-Right>
+cnoremap <C-b> <C-Left>
+cnoremap <C-k> <kEnd>
+cnoremap <C-j> <kHome>
+
+" Remap command mode history cycling
+" <Ctrl>, to cycle through history 
+" <Ctrl>. to reverse (back) cycle
+cnoremap <C-,> <Up>
+cnoremap <C-.> <Down>
 
 " @TODO - Move to first word in cmdline command. Repeat logic for last word as
 " well. Intended use cases: appending '!' to cmd (first word); changing 
@@ -96,4 +118,5 @@ nnoremap <leader>J <Ctrl-f>
 nnoremap <leader>K <Ctrl-b>
 nnoremap <leader>jj <Ctrl-d>
 nnoremap <leader>kk <Ctrl-u>
+
 

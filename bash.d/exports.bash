@@ -13,3 +13,6 @@ export XDG_VAR_HOME="$HOME/.local/var"
 
 
 export GH_USERNAME="csorndawg"
+export SANDBOXES_HOME_DIR="$HOME/.local/var/temp/sandboxes"
+export ANSIBLE_LOCAL_HOME="$HOME/.ansible"
+export EDITOR="nvim" || export EDITOR="vim"

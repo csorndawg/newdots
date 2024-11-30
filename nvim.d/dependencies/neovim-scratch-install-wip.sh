@@ -24,7 +24,7 @@ chk_localbin(){
 	# add ".local/bin" to PATH if missing
 	USHELL="bash"	# makes changing b/w bash/zsh shells easier
 	USER_SHELL_RC="$HOME/.$USHELLrc"	
-	LOCAL_BIN_PATH_CHECK=$(echo "$PATH" | sed 's/:/\n/g' | egrep '^\/.+\.local.bin$')
+	LOCAL_BIN_PATH_CHECK=$(echo "$PATH" | sed 's/:/\n/g' | egrep -c '^\/.+\.local.bin$')
 
 	if [[ $(($LOCAL_BIN_PATH_CHECK)) -lt 1 ]]; then
 		echo 'PATH="$PATH:$HOME/.local/bin"' >> "$USER_SHELL_RC"
@@ -73,7 +73,7 @@ mk_dotfile_syml() {
 	DOTFILE_NVIM_HOME="$HOME/dotfiles/nvim.d"
 	
 	# @TODO - Add logic to backup non-symlink existing directory, if exists
-	echo ln -sr "$DOTFILE_NVIM_HOME" "$HOME/.config/nvim" '2> /dev/null'
+	echo "ln -sr" "$DOTFILE_NVIM_HOME" "$HOME/.config/nvim" '2> /dev/null'
 	ln -sr "$DOTFILE_NVIM_HOME" "$HOME/.config/nvim" 2> /dev/null
 }
 

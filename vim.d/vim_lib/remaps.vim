@@ -123,3 +123,59 @@ nnoremap <leader>kk <Ctrl-u>
 " run (p)ython/(b)ash buffer
 nnoremap <leader>rp :w !python3 %<Tab><Cr>
 nnoremap <leader>rb :w !bash %<Tab><Cr>
+
+
+" MODAL Remaps
+
+""  normal --> insert
+nnoremap <Leader>, i
+""  normal --> cmd
+nnoremap <Leader>; :
+""  normal --> V-Block 
+nnoremap <Leader>v <C-v>
+
+"" @TESTME - remove if leads to difficulty w/ fF/tT cycling
+nnoremap ;; :
+nnoremap ,, i
+
+
+""  normal --> V-Line 
+"nnoremap <Leader>v <S-v>
+""  normal --> V-Block 
+"nnoremap <Leader>vv <S-v>
+
+"" insert --> normal
+inoremap ,, <Esc>
+"" insert --> command
+inoremap ;; <C-c>:
+
+" insert --> Visual Block
+inoremap <C-v> <C-c><C-v>
+
+"" cmd --> insert
+cnoremap ,, <C-c>i
+"" cmd --> normal
+cnoremap ;; <C-c>
+
+
+"" cmd mode line navigation
+cnoremap hh <Left>
+cnoremap ll <Right>
+cnoremap ww <C-Right>
+cnoremap bb <C-Left>
+
+
+" @TODO
+" Switch Normal Mode logic b/w ',' and ':' keys 
+"   - Goal: ';/:' can be used to cycle fF/tT matches
+"
+" store original functionality of ':' mapping in ':::'
+"nnoremap ,,, ,
+"nnoremap ::: :
+"nmap : ,
+
+
+"" terminal mode
+nnoremap <Leader>t :vertical terminal<Cr>
+
+nnoremap <leader><leader>x :q!<cr>

@@ -1,4 +1,6 @@
+--
 -- IDE-LIKE CONFIG LOGIC - LSP, CMP, DAP, ETC.
+--
 
 
 -- LSPCONFIG
@@ -74,6 +76,8 @@ cmp.setup {
         ['<Tab>'] = function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
+            elseif luasnip.expand_or_locally_jumpable() then
+	      luasnip.expand_or_jump()
             elseif luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
             else
@@ -93,6 +97,22 @@ cmp.setup {
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
         },
+
+	-- @EXPERIMENTAL - Change to smoother keybinding after confirming this 
+	-- will not break anything.
+	--
+	-- <c-f> will move you (f)orward (to the right) of each expansion locations
+	-- <c-b> is similar, except moving you (b)ackwards.
+	['<C-f>'] = cmp.mapping(function()
+		if luasnip.expand_or_locally_jumpable() then
+			luasnip.expand_or_jump()
+		end
+	end, { 'i', 's' }),
+	['<C-b>'] = cmp.mapping(function()
+		if luasnip.locally_jumpable(-1) then
+			luasnip.jump(-1)
+		end
+	end, { 'i', 's' }),
     },
     snippet = {
         expand = function(args)
@@ -105,7 +125,5 @@ cmp.setup {
         { name = 'buffer' },
         { name = 'path' },
         { name = 'cmdline' },
-
-
     },
 }

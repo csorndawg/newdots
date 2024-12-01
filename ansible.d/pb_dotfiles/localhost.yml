@@ -1,0 +1,4 @@
+---
+localhost:
+  - ansible_host_ip: 127.0.0.1
+  - localhost_ssh_key: ~/.ssh/id_rsa

@@ -1,0 +1,34 @@
+---
+- hosts: localhost
+  vars:
+    - usertest: tlop
+  tasks:
+    - name: Echo User Test
+      ansible.builtin.command: echo {{ usertest |quote }}
+
+    - name: add apt key for nodesource
+      apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+
+    - name: add repo for nodesource
+      apt_repo:
+        repo: 'deb https://deb.nodesource.com/node_0.10 {{ ansible_distribution_release }} main'
+        upadte_cache: yes
+
+    - name: install nodejs
+      apt:
+        name: nodejs
+        state: present
+
+    - name: install npm
+      shell: npm i
+
+    - name: Install Node Modules
+      shell: npm i "{{item}}"
+      become: true
+      with_items:
+        - yarn
+        - bash-language-server
+        - pyright
+        - vim-language-server
+        - vscode-langservers-extracted
+        - tldr

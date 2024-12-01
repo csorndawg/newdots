@@ -1,0 +1,38 @@
+---
+- name: Setup Node.js, npm, Yarn, and npm packages
+  hosts: all
+  become: true
+  tasks:
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: yes
+
+    - name: Install prerequisites for Node.js
+      ansible.builtin.apt:
+        name:
+          - curl
+          - software-properties-common
+        state: present
+
+    - name: Add Node.js PPA
+      ansible.builtin.command: curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+      args:
+        warn: false
+
+    - name: Install Node.js and npm
+      ansible.builtin.apt:
+        name: nodejs
+        state: present
+
+    - name: Install Yarn package manager
+      ansible.builtin.command: npm install -g yarn
+      args:
+        creates: /usr/local/bin/yarn
+
+    - name: Install npm packages globally
+      ansible.builtin.command:
+        cmd: npm install -g pyright tldr bash-language-server
+        creates: /usr/local/lib/node_modules/pyright
+      environment:
+        PATH: "{{ ansible_env.PATH }}:/usr/local/bin"
+

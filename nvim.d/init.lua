@@ -4,17 +4,17 @@
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-  if vim.v.shell_error ~= 0 then
-    vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
-      { "\nPress any key to exit..." },
-    }, true, {})
-    vim.fn.getchar()
-    os.exit(1)
-  end
+	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	if vim.v.shell_error ~= 0 then
+		vim.api.nvim_echo({
+			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+			{ out, "WarningMsg" },
+			{ "\nPress any key to exit..." },
+		}, true, {})
+		vim.fn.getchar()
+		os.exit(1)
+	end
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -25,11 +25,11 @@ vim.g.maplocalleader = "\\"
 
 -- lazy.nvim setup
 require("lazy").setup({
-  spec = {
-    -- import all plugins (plus their configurations) defined
-    -- in nvim/lua/plugins.lua
-    { import = "plugins" },
-  },
+	spec = {
+		-- import all plugins (plus their configurations) defined
+		-- in nvim/lua/plugins.lua
+		{ import = "plugins" },
+	},
 })
 
 -- ---------------------------------------------------
@@ -38,8 +38,7 @@ require("lazy").setup({
 
 -- EXPERIMENTAL/DEV configs (comment out below if breaking changes occur)
 require("extra.cmp-test")
-require("extra.mason-lspconfig")	-- sensitive to loading order ; might need to be first "required" module ; needs to be before "extra.lsp"
-
+require("extra.mason-lspconfig") -- sensitive to loading order ; might need to be first "required" module ; needs to be before "extra.lsp"
 
 require("user.opts")
 require("user.keymaps")
@@ -51,4 +50,4 @@ require("extra.lsp")
 
 --nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>
 require("extra.experimental")
-
+require("extra.lazy_remaps")

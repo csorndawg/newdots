@@ -197,11 +197,12 @@ tags
 ## cli tools 
 **/node_modules
 node_modules/
-**/go/pkg**
+**/go/pkg/
+go/pkg/
 **/ctags/Units
 #**/lvim/**/packages/
 **/venv/**
-**/plugged**
+**/plugged/
 
 *.sqlite3
 #**/lazy-lock.json
@@ -237,5 +238,3 @@ package-lock.json
 package.json
 
 **.syml
-npm/
-.npm/

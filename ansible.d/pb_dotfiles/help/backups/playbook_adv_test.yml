@@ -1,0 +1,29 @@
+--
+hosts: all
+tasks:
+  name: Update apt package list example
+  apt: update_cache=yes cache_valid_time=36000
+
+  name: Install apt packages
+  apt: name={{item}} state=present
+  with_items:
+    rlwrap
+    ripgrep
+    make
+    python3-pip
+    npm
+    nodejs
+    unzip
+    fzf
+
+hosts: dbservers
+vars:
+  fixture_name: usda.sql
+
+  tasks:
+    name: Install MySQL
+    apt: mysql-server state=present
+
+    name: Copy fixture
+    copy: src={{fixture_name}}
+      dest=/opt/{{fixture_name}}

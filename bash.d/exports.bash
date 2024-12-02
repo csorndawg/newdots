@@ -11,8 +11,17 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_BIN_HOME="$HOME/.local/bin"
 export XDG_VAR_HOME="$HOME/.local/var"
 
-
 export GH_USERNAME="csorndawg"
 export SANDBOXES_HOME_DIR="$HOME/.local/var/temp/sandboxes"
-export ANSIBLE_LOCAL_HOME="$HOME/.ansible"
+
+# set EDITOR to NVIM, otherwise use VIM as fallback
 export EDITOR="nvim" || export EDITOR="vim"
+export ANSIBLE_LOCAL_HOME="$HOME/.ansible"
+export SANDBOXES_HOME_DIR="$HOME/.local/var/temp/sandboxes"
+export LOCAL_CHEATLIB_HOME="$HOME/git/cheatbook"
+export LOCAL_DATAOPS_BIBLE_HOME="$HOME/git/dataops_bible"
+export LOCAL_SECRETS_HOME="$HOME/git/fortknox"
+export LOCAL_TASKWARRIOR_HOME="$HOME/git/taskwarra"
+export LOCAL_KB2_HOME="$HOME/git/kb2"
+export LOCAL_DOTFILES_HOME="$HOME/git/newdots"
+export LOCAL_ZXPLORE_HOME="$HOME/git/zxp"

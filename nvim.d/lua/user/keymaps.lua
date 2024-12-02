@@ -123,6 +123,10 @@ remapp("i", "kk", "<ESC>", opts)
 remapp("i", ";;", "<ESC>:", opts_loud) -- dont pass opts b/c we want to see CMD prompt
 remapp("i", "<Alt-;>", "<ESC>:", opts_loud)
 
+-- immediately tab upon insert
+remapp("n", "<leader>,,", "i<Tab>", opts)
+remapp("i", "<A-,>", "i<Tab>", opts)
+
 --
 -- Visual Mode
 --

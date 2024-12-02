@@ -243,10 +243,9 @@ edf() {
 	#   - vimrc (v)
 	#   - vim_lib (vl)
 	#   - init.lua (n)
-	#   - neovim lsp (nl)
 	#   - neovim plugins (np)
-	#   - neovim opts (no)
-	#   - neovim keymaps (nk)
+	#   - neovim extras (nx)
+	#   - neovim users (nu)
 	#   - tmux.conf (t)
 	#   - gitconfig (g)
 
@@ -275,17 +274,14 @@ edf() {
 	ni)
 		vim "$DOTFILE_HOME_DIR/nvim.d/init.lua"
 		;;
-	no)
-		vim "$DOTFILE_HOME_DIR/nvim.d/lua/user/opts.lua"
+	nx)
+		vim "$DOTFILE_HOME_DIR/nvim.d/lua/extra"
 		;;
-	nk)
-		vim "$DOTFILE_HOME_DIR/nvim.d/lua/user/keymaps.lua"
+	nu)
+		vim "$DOTFILE_HOME_DIR/nvim.d/lua/user"
 		;;
 	np)
 		vim "$DOTFILE_HOME_DIR/nvim.d/lua/plugins"
-		;;
-	nl)
-		vim "$DOTFILE_HOME_DIR/nvim.d/lua/extra/lsp.lua"
 		;;
 	v)
 		vim "$DOTFILE_HOME_DIR/vim.d/vimrc"

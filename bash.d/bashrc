@@ -161,3 +161,5 @@ do
     echo source "$x"
     source "$x"
 done
+
+alias gstp="git stash push"

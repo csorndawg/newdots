@@ -1,0 +1,22 @@
+# Tmux Custom Rebindings 
+
+## Add to tmux.conf before sourcing TPM
+## RE: bind r source-file ~/.tmux.conf \; display "RELOADED TMUX-CONFIG..."
+
+
+## CUSTOM REBIND SOURCE TEST
+## overwriting 'clock-mode' keybind to test - switch back once done
+## original keybinding:  bind-key -T prefix t clock-mode
+unbind t
+bind t source-file ~/.tmux.conf \; display "RELOADED TMUX-CONFIG..."
+bind C-t clock-mode
+
+# rebind pane layout cycling to <Prefix>~ 
+# since <Space> will be overwritten by 
+# tmux_whichkey plugin
+bind -T prefix ~ next-layout
+
+
+## exit copy mode alternate 
+## og kb:  bind-key -T copy-mode-vi C-c send-keys -X cancel
+bind -T copy-mode-vi C-Space  send -X cancel

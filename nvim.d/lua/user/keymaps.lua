@@ -36,7 +36,8 @@ remapp("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 remapp("n", "<S-l>", ":bnext<CR>", opts)
 remapp("n", "<S-h>", ":bprev<CR>", opts)
 remapp("n", "<Leader>bl", ":blast<CR>", opts)
-remapp("n", "<Leader>bd", ":blast<CR>", opts)
+remapp("n", "<Leader>bd", ":bd<CR>", opts)
+remapp("n", "<Leader>b", ":buffers<CR>", opts)
 
 -- move text up and down w/ <ALT>j/<ALT>k
 remapp("n", "<A-j>", ":m .+1<CR>==", opts)
@@ -167,6 +168,9 @@ remapp("x", "J", ":m '>+1<CR>gv=gv", opts)
 remapp("x", "K", ":m '<-2<CR>gv=gv", opts)
 remapp("x", "<A-j>", ":m '>+1<CR>gv=gv", opts)
 remapp("x", "<A-k>", ":m '<-2<CR>gv=gv", opts)
+
+-- rerun last CMD command
+remapp("n", "<Leader><Up>", ":<Up><CR>", opts)
 
 --
 -- Terminal Mode

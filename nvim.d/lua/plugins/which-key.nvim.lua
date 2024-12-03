@@ -19,9 +19,27 @@ return {
 			-- @TODO: Replicate below logic to add individual keymaps. For nested keymaps see "d" debug whichmap
 			{ "<leader>bb", "<cmd>BufferLineCyclePrev<cr>", "Previous Buffer" },
 			{ "<leader>bn", "<cmd>BufferLineCycleNext<cr>", "Next Buffer" },
+			{ "<leader>bd", "<cmd>bd<cr>", "Delete Buffer" },
 			{ "<leader>gs", "<cmd>Git <cr>", "Git Status" },
 			{ "<leader>gd", "<cmd>Gvdiffsplit! <cr>", "Git 3-Way Vertical Split" },
 			{ "<leader>ga", "<cmd>Git add <cr>", "Git add current file" },
+
+			-- DAP/DEBUG which-keys
+			-- @experimental
+			--{ "<leader>db ", "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
+			--{ "<leader>di ", "<cmd>lua require'dap'.step_into()<cr>", "Step Into" },
+			--{ "<leader>do ", "<cmd>lua require'dap'.step_over()<cr>", "Step Over" },
+			--{ "<leader>dq ", "<cmd>dap'.close()<cr>", "Quit" },
+			{ "<leader>dr ", "<cmdlua require'dap'.repl.toggle()<cr>", "Toggle Repl" },
+			--{ "<leader>dt ", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
+			--{ "<leader>du ", "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
+			-- C = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run To Cursor" },
+			-- U = { "<cmd>lua require'dapui'.toggle({reset = true})<cr>", "Toggle UI" },
+			-- c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
+			-- d = { "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect" },
+			-- g = { "<cmd>lua require'dap'.session()<cr>", "Get Session" },
+			-- p = { "<cmd>lua require'dap'.pause()<cr>", "Pause" },
+			-- s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
 
 			--
 			-- LUNARVIM COPYPASTA

@@ -35,9 +35,11 @@ remapp("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 -- buffer navigation
 remapp("n", "<S-l>", ":bnext<CR>", opts)
 remapp("n", "<S-h>", ":bprev<CR>", opts)
+remapp("n", "<leader>bn", ":bnext<CR>", opts)
+remapp("n", "<leader>bp", ":bprev<CR>", opts)
 remapp("n", "<Leader>bl", ":blast<CR>", opts)
 remapp("n", "<Leader>bd", ":bd<CR>", opts)
-remapp("n", "<Leader>b", ":buffers<CR>", opts)
+remapp("n", "<Leader>bb", ":buffers<CR>", opts)
 
 -- move text up and down w/ <ALT>j/<ALT>k
 remapp("n", "<A-j>", ":m .+1<CR>==", opts)
@@ -83,7 +85,8 @@ end, { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 -- Normal/Terminal
-remapp("n", "<Leader>t", ":terminal<Cr>iclear<CR>", { noremap = true })
+remapp("n", "<Leader>tt", ":terminal<Cr>iclear<CR>", { noremap = true })
+remapp("n", "<S-t>", ":terminal<Cr>iclear<CR>", { noremap = true })
 
 -- Normal/Visual
 remapp("n", "<leader>v", "v", { noremap = true })
@@ -171,6 +174,12 @@ remapp("x", "<A-k>", ":m '<-2<CR>gv=gv", opts)
 
 -- rerun last CMD command
 remapp("n", "<Leader><Up>", ":<Up><CR>", opts)
+
+-- quick Lua block comments
+remapp("v", "<leader>-", ":s/^/--&/ <CR>", { noremap = true })
+
+-- quick Python block comments
+remapp("v", "<leader>#", ":s/^/#&/ <CR>", { noremap = true })
 
 --
 -- Terminal Mode

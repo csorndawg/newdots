@@ -47,7 +47,8 @@ require("user.autocmds")
 -- load colorscheme from nvim.d/lua/extra/colorscheme.lua
 require("extra.colorscheme")
 require("extra.lsp")
-
---nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>
-require("extra.experimental")
 require("extra.lazy_remaps")
+require("extra.custom_luasnips")
+
+-- experimental post-install configurations
+require("extra.experimental")

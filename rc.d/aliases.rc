@@ -227,3 +227,10 @@ alias fzf_rm="git branch -v | fzf -m -1 | xargs git rm"
 alias kickstart-nvim='NVIM_APPNAME="kickstart-nvim" nvim'
 alias kvim='NVIM_APPNAME="kickstart-nvim" nvim'
 alias gpu="git push -u origin"
+
+# git repo folder jumping
+alias dob="cd $HOME/git/dataops_bible"
+alias gwh="cd $HOME/git"
+alias dot="cd $HOME/git/newdots"
+alias zxp="cd $HOME/git/zxp"
+

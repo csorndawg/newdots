@@ -202,6 +202,7 @@ edf() {
 		vim "$DOTFILE_HOME_DIR/nvim.d/lua/user"
 		;;
 	np)
+		echo vim "$DOTFILE_HOME_DIR/nvim.d/lua/plugins"
 		vim "$DOTFILE_HOME_DIR/nvim.d/lua/plugins"
 		;;
 	nx)

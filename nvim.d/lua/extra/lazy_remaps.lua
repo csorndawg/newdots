@@ -6,6 +6,9 @@ local opts_loud = { noremap = true, silent = false }
 local term_opts = { silent = true }
 local remapp = vim.api.nvim_set_keymap -- shorten NVIM remap function call
 
+-- Lua Imports
+require('user.autocmds')
+
 -- sample
 --nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>
 
@@ -28,3 +31,8 @@ remapp = { "n", "<leader>dq ", "<cmd>lua require'dap'.close()<cr>", noremap = tr
 remapp = { "n", "<leader>dr ", "<cmd>lua require'dap'.repl.toggle()<cr>", noremap = true }
 remapp = { "n", "<leader>dt ", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", noremap = true }
 remapp = { "n", "<leader>du ", "<cmd>lua require'dap'.step_out()<cr>", noremap = true }
+
+-- @FIXME: Remap failed when tested
+-- nvim-conform: auto (f)ormat (d)isable/(e)nable autocmds
+--remapp = { "n", "<leader>fd", "<cmd>FormatDisable<cr>", noremap = true }
+--remapp = { "n", "<leader>fe", "<cmd>FormatEnable <cr>", noremap = true }

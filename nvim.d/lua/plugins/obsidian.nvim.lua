@@ -20,13 +20,21 @@ return {
   opts = {
     workspaces = {
       {
-        name = "personal",
-        path = "~/vaults/personal",
+        -- NOTE: WSL usage has dependency on wsl-open (https://gitlab.com/4U6U57/wsl-open)
+        name = "WSL ASUS",
+        -- WSL Path
+        path = "/mnt/c/Users/zaccs/Documents/Obsidian-Vault",
+
+        -- WSL subdirs
+        --path = "/mnt/c/Users/zaccs/Documents/Obsidian-Vault/Clippings",
+        --path = "/mnt/c/Users/zaccs/Documents/Obsidian-Vault/Mobile",
       },
-      {
-        name = "work",
-        path = "~/vaults/work",
-      },
+
+-- Additional workspace ex. configuration
+--      {
+--        name = "work",
+--        path = "~/vaults/work",
+--      },
     },
 
     -- see below for full list of options 👇

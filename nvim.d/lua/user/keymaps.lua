@@ -39,9 +39,23 @@ remapp("n", "<Leader>bl", ":blast<CR>", opts)
 remapp("n", "<Leader>bd", ":bd<CR>", opts)
 remapp("n", "<Leader>b", ":buffers<CR>", opts)
 
--- move text up and down w/ <ALT>j/<ALT>k
-remapp("n", "<A-j>", ":m .+1<CR>==", opts)
-remapp("n", "<A-k>", ":m .-2<CR>==", opts)
+-- move text up and down w/ <ALT-j><ALT-j>/<ALT-k><ALT-k>
+--remapp("n", "<A-j>", ":m .+1<CR>==", opts)
+--remapp("n", "<A-k>", ":m .-2<CR>==", opts)
+--
+-- (m)ove text up/down
+remapp("n", "mj", ":m .+1<CR>==", opts)
+remapp("n", "mk", ":m .-2<CR>==", opts)
+
+-- @TODO: review NVIM docs to see if existing mapping exists for other Normal
+-- Mode like actions within Insert Mode (ex. delete current word, but stay 
+-- in Insert mode whole time)
+--
+-- insert mode arrow key cursor navigation 
+remapp("i", "<A-h>", "<Left>", opts)
+remapp("i", "<A-l>", "<Right>", opts)
+remapp("i", "<A-j>", "<Up>", opts)
+remapp("i", "<A-k>", "<Down>", opts)
 
 -- Normal/Command mode switch 	(Cycle b/w two modes with `;;`)
 remapp("n", "<Leader>;", ":", { silent = false }) --  dont pass "opts" b/c we want to see CMD prompt

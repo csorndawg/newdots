@@ -20,14 +20,19 @@ return {
   opts = {
     workspaces = {
       {
-        -- NOTE: WSL usage has dependency on wsl-open (https://gitlab.com/4U6U57/wsl-open)
+        -- NOTE: obsidian usage on WSL has dependency 
+        -- on wsl-open (https://gitlab.com/4U6U57/wsl-open)
         name = "WSL ASUS",
+
         -- WSL Path
-        path = "/mnt/c/Users/zaccs/Documents/Obsidian-Vault",
+        --path = "/mnt/c/Users/zaccs/Documents/Obsidian-Vault",
 
         -- WSL subdirs
         --path = "/mnt/c/Users/zaccs/Documents/Obsidian-Vault/Clippings",
         --path = "/mnt/c/Users/zaccs/Documents/Obsidian-Vault/Mobile",
+
+        -- Vault dedicated for nvim-created notes only
+        path = "/mnt/c/Users/zaccs/Documents/Obsidian-Vault/Nvim",
       },
 
 -- Additional workspace ex. configuration

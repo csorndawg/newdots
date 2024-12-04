@@ -179,3 +179,5 @@ cnoremap bb <C-Left>
 nnoremap <Leader>t :vertical terminal<Cr>
 
 nnoremap <leader><leader>x :q!<cr>
+nnoremap <leader>p :set paste<cr>
+nnoremap <leader>pp :set nopaste<r>

@@ -14,7 +14,7 @@ bind C-t clock-mode
 # rebind pane layout cycling to <Prefix>~ 
 # since <Space> will be overwritten by 
 # tmux_whichkey plugin
-bind -T prefix ~ next-layout
+bind -r -T prefix '~' next-layout
 
 
 ## exit copy mode alternate 

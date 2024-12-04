@@ -154,10 +154,19 @@ remapp("v", "<C-/>", "y", { noremap = true })
 -- @experimental
 -- visual mode copy alt.
 remapp("v", "//", "y", { noremap = true })
+--remapp("v", ",,", "y", { noremap = true })
+remapp("v", "<leader>c", "y", { noremap = true })
 
--- Selection Mode Only
--- 'x' deletes selection
+-- easier pasting
+remapp("n", "<Alt-v>", "p", { noremap = true })
+
+-- 'x' deletes visual selection
 remapp("v", "x", "d", { noremap = true })
+
+-- easier switch from Visual to Normal
+remapp("v","<leader><leader>", "<C-c>", opts)
+remapp("v","<leader>n", "<C-c>", opts)
+
 
 --
 -- Visual Block Mode

@@ -1,7 +1,8 @@
 return {
 	{
 		"ggandor/leap.nvim",
-		name = "leap",
+		lazy = false,
+		--name = "leap",
 		config = function()
 			require("leap").add_default_mappings()
 		end,

@@ -1,14 +1,14 @@
--- NVIM OPTIONS CONFIG 
--- 
--- @TODO: View kickstarter (kickstart.nvim/lua/options.lua), LunarVim, 
+-- NVIM OPTIONS CONFIG
+--
+-- @TODO: View kickstarter (kickstart.nvim/lua/options.lua), LunarVim,
 -- vimrc (needs lua translation), etc. for ideas and add to below.
 --
 
--- some test/example opts 
+-- some test/example opts
 vim.opt.linebreak = true -- Wrap lines at convenient points
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-vim.opt.mouse = ''  -- turn mouse off
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.opt.mouse = "" -- turn mouse off
 vim.opt.number = true -- Print line number
 vim.opt.pumblend = 10 -- Popup blend
 vim.opt.pumheight = 10 -- Maximum number of entries in a popup
@@ -24,19 +24,18 @@ vim.opt.shiftwidth = 2 -- Size of an indent
 vim.opt.shortmess:append({ W = true, I = true, c = true, C = true })
 vim.opt.showmode = false
 
--- 
--- Lua Locals 
+--
+-- Lua Locals
 --
 local option = vim.opt
 
-
 --
--- Custom Local Opts 
+-- Custom Local Opts
 --
 
--- case-insensitive search unless \C or search includes multiple capital letters 
+-- case-insensitive search unless \C or search includes multiple capital letters
 option.ignorecase = true
-option.smartcase = true 
+option.smartcase = true
 
 -- decrease updatetime (ms)
 option.updatetime = 250
@@ -44,16 +43,16 @@ option.updatetime = 250
 -- decrease mapped sequence latency
 option.timeoutlen = 300
 
-option.splitright = true 
-option.splitbelow = true 
+option.splitright = true
+option.splitbelow = true
 
 -- preview substitutions live
-option.inccommand = 'split'
+option.inccommand = "split"
 
 -- highlight current cursor line
 vim.opt.cursorline = true
 
--- min. number of screen lines above/below cursor 
+-- min. number of screen lines above/below cursor
 vim.opt.scrolloff = 10
 
 option.breakindent = true

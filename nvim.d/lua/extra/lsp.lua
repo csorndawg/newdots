@@ -128,9 +128,9 @@ cmp.setup({
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
+		{ name = "dadbod" },
 		{ name = "buffer" },
 		{ name = "path" },
-		{ name = "dadbod" },
 		{ name = "cmdline" },
 	},
 })

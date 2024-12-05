@@ -23,7 +23,9 @@ local types = require("luasnip.util.types")
 local conds = require("luasnip.extras.conditions")
 local conds_expand = require("luasnip.extras.conditions.expand")
 
--- TODO: Add custom Python, SQL, BASH, and other snippets for workflow
+-- TODO: Add custom Python, SQL, BASH, and other snippets for workflow. Try and find more
+-- scalable solution where each FT has its own file within a snippets folder.
+-- Also integrating this with nvim-scissors would be the most optimal setup.
 
 -- NOTE: Below snippet works as expected. Continue adding other snippets
 -- before removing.

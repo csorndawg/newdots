@@ -1,0 +1,208 @@
+{
+  "document header": {
+    "prefix": "header",
+    "body": [
+      "= ${1:${TM_FILENAME_BASE:Document Title}}",
+      "${2:Author} <${3:author@email.com}>",
+      "${4:version}, ${5:${CURRENT_YEAR:year}-${CURRENT_MONTH:month}-${CURRENT_DATE:day}}${6:: remark}",
+      "${7::attributes:}",
+      "",
+      "$0"
+    ],
+    "description": "Insert document header"
+  },
+  "document title": {
+    "prefix": ["h1", "document title"],
+    "body": ["= ${1:${TM_FILENAME_BASE:Document Title}}", "$0"],
+    "description": "Insert header level 1"
+  },
+  "document title 2": {
+    "prefix": ["h1", "document title+"],
+    "body": ["= ${1:${TM_FILENAME_BASE:Document Title}}: ${2:subtitle}", "$0"],
+    "description": "Insert header level 1 with subtitle"
+  },
+
+  "document attributes": {
+    "prefix": "document attributes",
+    "body": ["${1:author} <${2:email}>", "{localdatetime}", ":toc:", "$0"],
+    "description": "Insert document attributes"
+  },
+  "document attributes 2": {
+    "prefix": "document attributes+",
+    "body": [
+      "${1:author} <${2:email}>; ${3:author} <${4:email}>",
+      "{localdatetime}",
+      ":doctype: ${5:article}",
+      ":toc:",
+      ":toclevels: ${6:3}",
+      ":sectnums:",
+      ":xrefstyle: ${7:full}",
+      ":icons: font",
+      ":source-highlighter: ${8:highlight.js}",
+      ":experimental:",
+      ":imagesdir: ${9:images}",
+      "$0"
+    ],
+    "description": "Insert document attributes"
+  },
+  "section 1": {
+    "prefix": ["h2", "section 1"],
+    "body": ["== ${1:title}", "$0"],
+    "description": "Insert section level 1 (h2)"
+  },
+  "section 2": {
+    "prefix": ["h3", "section 2"],
+    "body": ["=== ${1:title}", "$0"],
+    "description": "Insert section level 2 (h3)"
+  },
+  "section 3": {
+    "prefix": ["h4", "section 3"],
+    "body": ["==== ${1:title}", "$0"],
+    "description": "Insert section level 3 (h4)"
+  },
+  "section 4": {
+    "prefix": ["h5", "section 4"],
+    "body": ["===== ${1:title}", "$0"],
+    "description": "Insert section level 4 (h5)"
+  },
+  "section 5": {
+    "prefix": ["h6", "section 5"],
+    "body": ["====== ${1:title}", "$0"],
+    "description": "Insert section level 5 (h6)"
+  },
+
+  "custom id": {
+    "prefix": ["custom id"],
+    "body": "[#${1:id}]$0",
+    "description": "Insert custom id"
+  },
+  "custom id 2": {
+    "prefix": ["custom id"],
+    "body": "[#${1:id},reftext=${2:text}]$0",
+    "description": "Insert custom id with reference text"
+  },
+
+  "thematic break": {
+    "prefix": ["thematic break", "horizontal rule"],
+    "body": ["'''", "$0"],
+    "description": "Insert thematic break (horizontal rule)"
+  },
+  "thematic break 2": {
+    "prefix": ["thematic break", "horizontal rule"],
+    "body": ["---", "$0"],
+    "description": "Insert thematic break (horizontal rule) in Markdown style"
+  },
+  "page break": {
+    "prefix": "page break",
+    "body": ["<<<", "$0"],
+    "description": "Insert page break"
+  },
+
+  "bold text": {
+    "prefix": ["bold", "b"],
+    "body": "*${1}* $0",
+    "description": "Insert bold text"
+  },
+  "italic text": {
+    "prefix": ["italic", "i"],
+    "body": "_${1}_ $0",
+    "description": "Insert italic text"
+  },
+  "monospace text": {
+    "prefix": ["monospace", "code"],
+    "body": "`${1}` $0",
+    "description": "Insert monospace text"
+  },
+  "bold and italic text": {
+    "prefix": ["bold and italic", "bi"],
+    "body": "*_${1}_* $0",
+    "description": "Insert bold and italic text"
+  },
+  "marked text": {
+    "prefix": ["mark"],
+    "body": "#${1}# $0",
+    "description": "Insert marked text"
+  },
+  "strikethrough text": {
+    "prefix": "strikethrough",
+    "body": "[.line-through]#${1}# $0",
+    "description": "Insert strikethrough text"
+  },
+  "underline text": {
+    "prefix": "underline",
+    "body": "[.underline]#${1}# $0",
+    "description": "Insert underline text"
+  },
+  "overline text": {
+    "prefix": "overline",
+    "body": "[.overline]#${1}# $0",
+    "description": "Insert overline text"
+  },
+  "small text": {
+    "prefix": "small",
+    "body": "[.small]#${1}# $0",
+    "description": "Insert small text"
+  },
+  "big text": {
+    "prefix": "big",
+    "body": "[.big]#${1}# $0",
+    "description": "Insert big text"
+  },
+  "superscript text": {
+    "prefix": "superscript",
+    "body": "^${1}^$0",
+    "description": "Insert superscript text"
+  },
+  "subscript text": {
+    "prefix": "subscript",
+    "body": "~${1}~$0",
+    "description": "Insert subscript text"
+  },
+
+  "unordered list": {
+    "prefix": "unordered list",
+    "body": ["* ${1:first}", "* ${2:second}", "* ${3:third}", "$0"],
+    "description": "Insert unordered list"
+  },
+  "ordered list": {
+    "prefix": "ordered list",
+    "body": [". ${1:first}", ". ${2:second}", ". ${3:third}", "$0"],
+    "description": "Insert ordered list"
+  },
+  "check list": {
+    "prefix": "check list",
+    "body": [
+      "* [${1: }] ${2:first}",
+      "* [${3: }] ${4:second}",
+      "* [${5: }] ${6:third}",
+      "$0"
+    ],
+    "description": "Insert check list"
+  },
+  "description list": {
+    "prefix": "description list",
+    "body": [
+      "${1:term}:: ${2:description}",
+      "${3:term}:: ${4:description}",
+      "${5:term}:: ${6:description}",
+      "$0"
+    ],
+    "description": "Insert description list"
+  },
+  "comment": {
+    "prefix": ["/", "comment"],
+    "body": "// $0",
+    "description": "Insert comment"
+  },
+  "comment block": {
+    "prefix": ["/", "comment block"],
+    "body": ["////", "$1", "////", "$0"],
+    "description": "Insert comment"
+  },
+
+  "include directive": {
+    "prefix": "include directive",
+    "body": ["include::${1:filepath}[]", "$0"],
+    "description": "Include content from file or URL"
+  }
+}

@@ -11,6 +11,7 @@ require("luasnip.loaders.from_vscode").lazy_load({
             "$HOME/.local/share/nvim/lazy/friendly-snippets/",
 
             -- custom snippets
-            "/home/zc/git/newdots/nvim.d/lua/extra/zsnips/",
+            --"/home/zc/git/newdots/nvim.d/lua/extra/zsnips/",
+            "/home/zc/git/newdots/nvim.d/snippets/",
         },
 })

@@ -1,0 +1,54 @@
+{
+    "Assert equal": {
+        "prefix": "ase_ZAC",
+        "body": "self.assertEqual(${1:expected}, ${2:actual}${3:, '${4:message}'})$0"
+    },
+    "Assert not equal": {
+        "prefix": "asne_ZAC",
+        "body": "self.assertNotEqual(${1:expected}, ${2:actual}${3:, '${4:message}'})$0"
+    },
+    "Assert raises": {
+        "prefix": "asr_ZAC",
+        "body": "self.assertRaises(${1:exception}, ${2:callable}, ${3:args})$0"
+    },
+    "Assert True": {
+        "prefix": "ast_ZAC",
+        "body": "self.assertTrue(${1:actual}${2:, '${3:message}'})$0"
+    },
+    "Assert False": {
+        "prefix": "asf_ZAC",
+        "body": "self.assertFalse(${1:actual}${2:, '${3:message}'})$0"
+    },
+    "Assert is": {
+        "prefix": "asi_ZAC",
+        "body": "self.assertIs(${1:expected}, ${2:actual}${3:, '${4:message}'})$0"
+    },
+    "Assert is not": {
+        "prefix": "asint_ZAC",
+        "body": "self.assertIsNot(${1:expected}, ${2:actual}${3:, '${4:message}'})$0"
+    },
+    "Assert is None": {
+        "prefix": "asino_ZAC",
+        "body": "self.assertIsNone(${1:actual}${2:, '${3:message}'})$0"
+    },
+    "Assert is not None": {
+        "prefix": "asinno_ZAC",
+        "body": "self.assertIsNotNone(${1:actual}${2:, '${3:message}'})$0"
+    },
+    "Assert in": {
+        "prefix": "asin_ZAC",
+        "body": "self.assertIn(${1:needle}, ${2:haystack}${3:, '${4:message}'})$0"
+    },
+    "Assert not in": {
+        "prefix": "asni_ZAC",
+        "body": "self.assertNotIn(${1:needle}, ${2:haystack}${3:, '${4:message}'})$0"
+    },
+    "Assert": {
+        "prefix": "as_ZAC",
+        "body": "self.assert_(${1:boolean expression}${2:, '${3:message}'})$0"
+    },
+    "Fail (a test)": {
+        "prefix": "fail_ZAC",
+        "body": "self.fail('${1:message}')$0"
+    }
+}

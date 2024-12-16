@@ -54,8 +54,8 @@ remapp("n", "mk", ":m .-2<CR>==", opts)
 -- insert mode arrow key cursor navigation 
 remapp("i", "<A-h>", "<Left>", opts)
 remapp("i", "<A-l>", "<Right>", opts)
-remapp("i", "<A-j>", "<Up>", opts)
-remapp("i", "<A-k>", "<Down>", opts)
+remapp("i", "<A-k>", "<Up>", opts)
+remapp("i", "<A-j>", "<Down>", opts)
 
 -- Normal/Command mode switch 	(Cycle b/w two modes with `;;`)
 remapp("n", "<Leader>;", ":", { silent = false }) --  dont pass "opts" b/c we want to see CMD prompt

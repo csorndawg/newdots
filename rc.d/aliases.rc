@@ -236,3 +236,4 @@ alias zxp="cd $HOME/git/zxp"
 
 # terminal json formatter
 alias prettyjson='python -m json.tool'
+

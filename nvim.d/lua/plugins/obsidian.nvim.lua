@@ -33,13 +33,16 @@ return {
 
 				-- Vault dedicated for nvim-created notes only
 				path = "/mnt/c/Users/zaccs/Documents/Obsidian-Vault/Nvim",
+				path = "/mnt/c/Users/zaccs/Documents/Obsidian-Vault/remotes_zzzz",
+				path = "~/git/dataops_bible/obsid/remote",
+				path = "~/git/dataops_bible/obsiddy/remoteWork",
 			},
 
 			-- Remote machine notes/workspace
-			{
-				name = "remote-repo",
-				path = "~/git/dataops_bible/obsidian/remotes",
-			},
+			--			{
+			--				name = "remote-repo",
+			--				path = "~/git/dataops_bible/obsidian/remotes",
+			--			},
 		},
 
 		-- see below for full list of options 👇

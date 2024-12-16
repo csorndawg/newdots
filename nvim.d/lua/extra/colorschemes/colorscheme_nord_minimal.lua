@@ -1,22 +1,17 @@
--- Colorscheme++ Configurations
+-- Colorscheme Configurations
 
--- Colorscheme: Nordbones
+-- Colorscheme
+-- set colorscheme configs before colorscheme itself
+vim.g.nord_contrast = false
+vim.g.nord_borders = true
+vim.g.nord_disable_background = false
+vim.g.nord_italic = true
+vim.g.nord_uniform_diff_background = true
+vim.g.nord_bold = true
 
--- enable dark background before enabling zenbones
-vim.o.termguicolors = true
-vim.o.background = dark
---vim.cmd.colorscheme("forestbones")
---vim.cmd.colorscheme("zenburned")
-vim.cmd.colorscheme("nordbones")
-
--- @TESTME
--- Nordbones Configuration Options
---vim.g.nordbones = {
-vim.g.zenburned = {
-	solid_line_nr = true,
-	darken_comments = 45,
-	-- lighten_cursor_line = 8,
-}
+-- enable colorscheme after its configs set
+vim.cmd.colorscheme("nord")
+--vim.cmd.colorscheme('nordic')
 
 -- Bufferline
 -- <CODE HERE>
@@ -37,9 +32,7 @@ require("bufferline").setup({
 -- copying default configuration as starting point
 require("lualine").setup({
 	options = {
-		--theme == "zenburned",
-		--theme == "nord",
-		theme == "nordbones",
+		theme == "nord",
 		icons_enabled = true,
 		theme = "auto",
 		component_separators = { left = "", right = "" },

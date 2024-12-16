@@ -234,3 +234,5 @@ alias gwh="cd $HOME/git"
 alias dot="cd $HOME/git/newdots"
 alias zxp="cd $HOME/git/zxp"
 
+# terminal json formatter
+alias prettyjson='python -m json.tool'

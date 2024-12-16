@@ -135,12 +135,11 @@ fi
 ##### SO ANY WSL LOGIC IS NOT OVERWRITEN 
 #####
 
-# @TESTME: RC -> BASH -> ZSH
-# RC
+# RC - SHARED BASH/ZSH CONFIGURATIONS
 source ~/dotfiles/rc.d/aliases.rc 2> /dev/null
 source ~/dotfiles/rc.d/functions.rc 2> /dev/null
 
-# BASH
+# BASH ONLY CONFIGS
 source ~/dotfiles/bash.d/functions.bash 1> /dev/null
 source ~/dotfiles/bash.d/exports.bash 2> /dev/null
 source ~/dotfiles/bash.d/prompt.bash 2> /dev/null

@@ -34,8 +34,7 @@ return {
 				-- Vault dedicated for nvim-created notes only
 				path = "/mnt/c/Users/zaccs/Documents/Obsidian-Vault/Nvim",
 				path = "/mnt/c/Users/zaccs/Documents/Obsidian-Vault/remotes_zzzz",
-				path = "~/git/dataops_bible/obsid/remote",
-				path = "~/git/dataops_bible/obsiddy/remoteWork",
+				path = "~/git/obsiddy/remoteWork",
 			},
 
 			-- Remote machine notes/workspace

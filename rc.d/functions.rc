@@ -425,3 +425,92 @@ mk_venv() {
 	fi
 
 }
+
+# FZF broken keybinding workaround
+fzz() {
+	# Accepts 1 required ARG which matches one of the expected CASE statement
+	# conditionals, and allows a 2nd optional ARG.
+	#   Required $ARG1 indicates what action the user wants to do with the FZF selection(s).
+	#   Optional $ARG2 specifies if FZF will allow for MULTIPLE (default) or SINGLE selection/FZF output
+
+	# FZF single X. multiple output handling
+#	if [[ -n "$2" ]]; then
+#		echo "No additional arguments were passed, therefore all selections will be returned."
+#		allowsMultipleSelectionsFlag="True"
+#	else
+#		echo "The 'single selection' flag was passed, therefore only 1 FZF selection will be returned."
+#		allowsMultipleSelectionsFlag="False"
+#	fi
+
+	# pre/post FZF command logic
+	## @TODO: Below are list of starter ARGS for function
+	## TODO: Add logic to chechk for optional SingleSelect flag and update matched CASE commands below
+	## move FZF selection files
+	## delete FZF selection files
+	## output FZF selections to terminal (usage: to easily TMUX copy list of files for some BULK task)
+	## GIT checkout FZF output
+	## GIT merge FZF output
+	## GIT  FZF output
+	## GIT  FZF output
+
+	case $1 in
+
+	# open FZF selections in EDITOR
+	"open" | o | n | N | v | V)
+		echo "All FZF selections will be opened with '$EDITOR' "
+		selected_files=$(fzf --multi --preview "cat {}" --bind 'ctrl-a:select-all' --prompt="Select files: " --exit-0)
+
+		if [[ -n "$selected_files" ]]; then
+			# open selected files with the system $EDITOR
+			printf "%s\0" "$selected_files" && xargs -0 -o ${EDITOR:-vim}
+		else
+			echo "No files selected."
+		fi
+		;;
+
+	# echo selected files to STDOUT
+	"print" | "echo" | e | E | P)
+		selected_files=$(fzf --multi --preview "cat {}" --bind 'ctrl-a:select-all' --prompt="Select files: " --exit-0)
+		if [[ ! -n "$selected_files" ]]; then 
+		  echo "No files selected"
+		  exit 
+		  fi 
+		for sf in $selected_files;
+		do 
+		  echo "sf: $sf"
+		  done
+		;;
+
+	"remove" | "delete" | del | d | D | r | R)
+		selected_files=$(fzf --multi --preview "cat {}" --bind 'ctrl-a:select-all' --prompt="Select files: " --exit-0)
+
+		if [[ -n "$selected_files" ]]; then
+			# delete selected files with the system $EDITOR
+			printf "%s\0" "$selected_files" | xargs -0 -n1 rm -v
+		else
+			echo "No files selected."
+		fi
+		;;
+
+	# GIT SUBCOMMANDS
+
+	## GIT CHECKOUT
+	"gco" | "gc" | "checkout" | GC | GCO)
+	  fzf_gbr_selection="$(git branch -la | fzf -s --exit-0)"
+	  echo "git checkout $(echo "$fzf_gbr_selection")"
+	  git checkout $(echo "$fzf_gbr_selection" )
+	;;
+
+
+
+	## GIT MERGE
+	"gmg" | "gm" | "[gGmMgG]" | "merge")
+	  fzf_gbr_selection="$(git branch -la | fzf -s --exit-0)"
+	  echo "git checkout $(echo "$fzf_gbr_selection")"
+	  git merge $(echo "$fzf_gbr_selection" ) || echo "An error occurred when merging $fzf_gbr_selection"
+		;;
+	*)
+		echo "Invalid '$ARG' provided. Please rerun."
+		;;
+	esac
+}

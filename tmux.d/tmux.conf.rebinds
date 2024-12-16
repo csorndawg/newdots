@@ -4,12 +4,13 @@
 ## RE: bind r source-file ~/.tmux.conf \; display "RELOADED TMUX-CONFIG..."
 
 
-## CUSTOM REBIND SOURCE TEST
-## overwriting 'clock-mode' keybind to test - switch back once done
+## CUSTOM REBIND SOURCE EXAMPLE
+## overwriting 'clock-mode' keybind to "Reload TMUX CONFIG"
 ## original keybinding:  bind-key -T prefix t clock-mode
-unbind t
-bind t source-file ~/.tmux.conf \; display "RELOADED TMUX-CONFIG..."
-bind C-t clock-mode
+## 
+##unbind t
+##bind t source-file ~/.tmux.conf \; display "RELOADED TMUX-CONFIG..."
+##bind C-t clock-mode
 
 # rebind pane layout cycling to <Prefix>~ 
 # since <Space> will be overwritten by 
@@ -20,3 +21,27 @@ bind -r -T prefix '~' next-layout
 ## exit copy mode alternate 
 ## og kb:  bind-key -T copy-mode-vi C-c send-keys -X cancel
 bind -T copy-mode-vi C-Space  send -X cancel
+
+
+#
+# TMUX/SYSTEM CLIPBOARD INTEGRATIONS
+#
+
+
+## send current PASTE-BUFFER register to system clipboard 
+## 
+##  OLD BINDING: <PREFIX><Ctrl-C> 
+##  OLD BINDING CONF: bind C-c run "tmux save-buffer - | xclip -sel clip -i"
+## 
+## NEW BINDING: <Prefix>t
+## COMMENTS/NOTES: Requires unbinding existing "clock" mode binding.
+##                 Existing binding remapped to <Prefix><C-t>
+##
+unbind t
+bind t run "tmux save-buffer - | xclip -sel clip -i"
+bind C-t clock-mode
+
+## Send copy mode SELECTION to system clipboard
+## `y` in copy mode sends selection to system clipboard via xclip
+bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -sel clip -i"
+

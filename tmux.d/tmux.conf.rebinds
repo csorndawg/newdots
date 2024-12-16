@@ -20,3 +20,15 @@ bind -r -T prefix '~' next-layout
 ## exit copy mode alternate 
 ## og kb:  bind-key -T copy-mode-vi C-c send-keys -X cancel
 bind -T copy-mode-vi C-Space  send -X cancel
+
+
+## smoother search cycling
+#bind-key    -T copy-mode-vi N                      send-keys -X search-reverse
+#bind-key    -T copy-mode-vi n                      send-keys -X search-again
+
+
+# ";" jumps to next regex search match in copy mode
+bind -T copy-mode-vi ';' send -X search-again
+
+# "," jumps to previous regex search match in copy mode
+bind -T copy-mode-vi ',' send -X search-reverse

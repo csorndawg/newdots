@@ -6,7 +6,8 @@ GO_BIN="$GOPATH/bin"
 export CARGO_BIN="$HOME/.cargo/bin"
 export TOOLBOX_BIN="$HOME/.toolbox/bin"
 # @DELETABLE??
-export UTILS_BIN="$HOME/dotfiles/utils.d"
+export UTILS_BIN="$HOME/dotfiles/utils.d/zbin"
+export DATAOPS_BIN="$HOME/git/dataops_bible/scripts"
 
 # neovim mason install bin (needed for LSP+DAP+more)
 export MASON_BIN="$HOME/.local/share/nvim/mason/bin"
@@ -15,7 +16,7 @@ export MASON_BIN="$HOME/.local/share/nvim/mason/bin"
 export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 
 # non-standard bins
-export PATH=$MASON_BIN:$UTILS_BIN:$GO_BIN:$CARGO_BIN:$TOOLBOX_BIN:$PATH
+export PATH=$MASON_BIN:$GO_BIN:$CARGO_BIN:$TOOLBOX_BIN:$PATH:$UTILS_BIN:$DATAOPS_BIN
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"

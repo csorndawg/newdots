@@ -151,6 +151,8 @@ source ~/dotfiles/bash.d/aliases.bash 2> /dev/null
 #####
 
 PATH="$PATH:$HOME/.local/lib/bash:$HOME/.local/lib/misc:$HOME/.local/lib/python:$HOME/.local/bin:$HOME/.local/bin/cronjobs:$HOME/git/toolbox/bin:"
+PATH_ADDONS="$HOME/git/dataops_bible/scripts:$HOME/git/newdots/utils.d/zbin"
+PATH="$PATH:$PATH_ADDONS"
 alias python=python3
 
 # cache ssh pp

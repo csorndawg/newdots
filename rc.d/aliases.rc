@@ -47,6 +47,7 @@ alias ctl="crontab -l"
 ## tmux 
 alias tmab="tmux save-buffer -a"
 alias tma="tmux attach"
+alias tmkw="tmux kill-window"
 alias tmas="tmux attach -t "
 alias tmcb="tmux choose-buffer"
 alias tmds="tmux detach"

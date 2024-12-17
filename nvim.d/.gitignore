@@ -1,3 +1,6 @@
 help**
 **.help
 
+# remove from gitignore until initial done with research/configurations for plugins
+lazy-lock.json
+

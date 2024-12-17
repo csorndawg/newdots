@@ -61,3 +61,10 @@ option.undofile = true
 -- @TODO
 -- Uncomment once I figure out how to exclude Python files (need 4 not 2 spaces)  from below
 -- vim: ts=2 sts=2 sw=2 et
+
+-- better CMD wildmenu/mode completion
+-- :set wildmode=list:longest,full
+vim.opt.wildmode = { "list:longest", "full" }
+
+-- do not show below file types in wildmenu
+vim.opt.wildignore = "*.o,*.obj,*.dll,*.exe,*.pyc,*.swp,*node_modules/**,*venv**,*.gig,*.IgnoreMe**,*.patch"

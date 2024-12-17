@@ -910,3 +910,6 @@ bashexpr(){
 			;;
 	esac
 }
+
+# shellGPT setup
+source "~/git/newdots/bash.d/lib/shellGPT_conf.bash"

@@ -35,6 +35,7 @@ return {
 				path = "/mnt/c/Users/zaccs/Documents/Obsidian-Vault/Nvim",
 				path = "/mnt/c/Users/zaccs/Documents/Obsidian-Vault/remotes_zzzz",
 				path = "~/git/obsiddy/remoteWork",
+				path = "~/git/dataops_bible/obsiddy",
 			},
 
 			-- Remote machine notes/workspace

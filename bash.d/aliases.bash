@@ -32,6 +32,7 @@ alias tbx="cd $HOME/git/toolbox"
 alias kb="cd $HOME/git/kb2"
 alias fkx="cd $HOME/git/fortknox"
 alias gwh="cd $HOME/git"
+alias wkd="cd $HOME/work/scratch"
 
 # freq. repos quick actions
 alias jhv="vim $HOME/git/jh/unsorted/quickadd-$(date +%Y%m%d-%H%M%S).md"

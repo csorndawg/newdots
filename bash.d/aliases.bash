@@ -23,8 +23,10 @@ alias gpu="git push -u origin"
 # z-like aliases for filesystem jumping
 alias jh="cd $HOME/git/jh"
 alias zxp="cd $HOME/git/zxp"
+alias twa="cd $HOME/git/taskwarra"
 alias dob="cd $HOME/git/dataops_bible"
 alias dot="cd $HOME/git/newdots"
+alias obb="cd $HOME/git/obsiddy"
 alias clb="cd $HOME/git/cheatbook"
 alias tbx="cd $HOME/git/toolbox"
 alias kb="cd $HOME/git/kb2"
@@ -45,7 +47,6 @@ alias xargs='xargs -I "{}"'
 alias WSL_CDRIVE="/mnt/c/Users"
 alias WSL_ZACCS="/mnt/c/Users/zaccs"
 alias WSL_ZCSOR="/mnt/c/Users/zcsor"
-
 
 ## Git Aliases
 alias gc="git commit"
@@ -92,4 +93,3 @@ alias gdo="git diff origin"
 alias gdos="git diff origin --stat"
 alias gdm="git diff origin/main main"
 alias gdms="git diff origin/main main --stat"
-

@@ -5,8 +5,10 @@
 "" -----------
 
 nnoremap <Leader>w :write<CR>
-nnoremap <Leader>x :xit<CR>
-nnoremap <Leader>q :q<CR>
+nnoremap <Leader>ww :write!<CR>
+nnoremap <Leader>x :q<CR>
+nnoremap <Leader>xx :q!<CR>
+"nnoremap <Leader>q :q<CR>
 
 "" Better Movement/Scrolling
 "" ------------------------------
@@ -70,8 +72,8 @@ nnoremap <Leader>ep :echo expand('%')<CR>
 " <Alt> h/e moves Cmd cursor to start/end of cmdline
 "cnoremap <Alt-h> <kHome>
 "cnoremap <Alt-h> <Home>
-cnoremap hh <Home>
-cnoremap ee <End>
+"cnoremap hh <Home>
+"cnoremap ee <End>
 cnoremap <F7> <kEnd>
 cnoremap <F8> <End>
 "cnoremap <Alt-e> <kEnd>
@@ -158,11 +160,18 @@ cnoremap ,, <C-c>i
 cnoremap ;; <C-c>
 
 
+"" @TODO: Add remaps to NVIM config
 "" cmd mode line navigation
 cnoremap hh <Left>
 cnoremap ll <Right>
-cnoremap ww <C-Right>
+cnoremap ee <C-Right>
 cnoremap bb <C-Left>
+cnoremap <Leader>0 <Home>
+cnoremap <Leader>4 <End>
+
+"" cmd mode char editing
+cnoremap <Leader>x <Delete>
+cnoremap <A-x> <Delete>
 
 
 " @TODO

@@ -23,3 +23,4 @@ function configure_taplo {
   # verify Installation: Check if Taplo is installed correctly by running:
     taplo-lsp --version
 }
+configure_taplo

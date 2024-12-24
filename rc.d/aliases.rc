@@ -39,31 +39,41 @@ alias ph="pet help"     # how to use: `ph search` (returns help for search subco
 alias psr="pet search"
 alias pvw="bat $HOME/dotfiles/config.d/pet/snippet.toml"
 
-
 ## cron
 alias cte="crontab -e"
 alias ctl="crontab -l"
 
 ## tmux 
-alias tmab="tmux save-buffer -a"
 alias tma="tmux attach"
-alias tmkw="tmux kill-window"
 alias tmas="tmux attach -t "
-alias tmcb="tmux choose-buffer"
 alias tmds="tmux detach"
 alias tmls='tmux ls'
-alias tmns="tmux new-session -t "     
-alias tmnw="tmux new-window -t"     # new window default name
-alias tmnwn="tmux new-window -n "   # new window with name flag
-alias tmpb="tmux paste-buffer"
-alias tmshb="tmux show-buffer"
 alias tmsk="tmux send-keys "
-alias tmstb="tmux set-buffer"
-alias tmsvb="tmux save-buffer"
-alias tmks="tmux kill-session -t"
-alias tmka="tmux kill-session -a -t"
 alias tlk="tmux list-keys"
 alias tlkg="tmux list-keys  | egrep -i "
+
+## Tmux Session Mngmnt
+alias tmns="tmux new-session -t "     
+alias tmks="tmux kill-session -t"
+alias tmka="tmux kill-session -a -t"
+
+## Tmux Window Mngmnt
+alias tmkw="tmux kill-window"
+alias tmnw="tmux new-window -t"     # new window default name
+alias tmnwn="tmux new-window -n "   # new window with name flag
+
+## Tmux Pane Mngmnt
+alias tmkp="tmux kill-pane"
+alias tmkpa="tmux kill-pane -a -t"	# kill all panes except for target
+
+## Tmux Buffer Mngmnt
+alias tmab="tmux save-buffer -a"
+alias tmcb="tmux choose-buffer"
+alias tmsvb="tmux save-buffer"
+alias tmpb="tmux paste-buffer"
+alias tmshb="tmux show-buffer"
+alias tmstb="tmux set-buffer"
+
 
 ## GIT ALIASES 
 alias g="git"

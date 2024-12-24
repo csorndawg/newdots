@@ -181,29 +181,6 @@ tags
 **/.ssh/*_id_*
 **/.ssh/known_hosts
 
-#### Filetype Core
-
-## python
-
-
-## rust 
-**/rustup/**
-**/cargo**
-
-
-## go 
-
-
-## cli tools 
-**/node_modules
-node_modules/
-**/go/pkg/
-go/pkg/
-**/ctags/Units
-#**/lvim/**/packages/
-**/venv/**
-**/plugged/
-
 *.sqlite3
 #**/lazy-lock.json
 exps/
@@ -237,4 +214,33 @@ node_modules/
 package-lock.json
 package.json
 
+
+
+## 
+## CUSTOM IGNORES
+## 
 **.syml
+.IgnoreMe**
+.patches**
+**.patch
+## node
+**/node_modules
+node_modules/
+## ctags
+**/ctags/Units
+## rust 
+**/rustup/**
+**/cargo**
+
+## @TESTME
+#.go/pkg/
+go/
+!go/bin
+syml**
+**/syml**
+**/**.syml
+**/venv/**
+**/venvs/**
+
+## Try below, if above fails
+#**/go/pkg/

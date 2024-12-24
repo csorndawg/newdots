@@ -912,4 +912,5 @@ bashexpr(){
 }
 
 # shellGPT setup
-source "~/git/newdots/bash.d/lib/shellGPT_conf.bash"
+#source "$HOME/git/newdots/bash.d/lib/shellGPT_conf.bash"
+source "$HOME/dotfiles/bash.d/lib/shellGPT_conf.bash"

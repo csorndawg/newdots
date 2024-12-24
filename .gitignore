@@ -49,14 +49,6 @@ wips/*
 # Tmux Plugins
 tmux.d/plugins/
 
-# Vim Plugins
-vim.d/plugins/
-#!vim.d/vimrc
-#!vim.d/rt/
-
-# neovim plugins
-nvim.d/plugs
-
 # Bash Plugins
 .temp/
 **/temp/
@@ -132,11 +124,12 @@ exp.**
 
 IGNOREME/
 
-# temporary until core of nvim plugins setup
-nvim.d/**/config.d
-vim.d/
-!vim.d/vimrc
-#!vim.d/global_extra_conf.py
+# @TESTME
+vim.d/.netrwhist
+vim.d/autoload
+vim.d/plugged
+vim.d/undodir
+vim.d/scratch
 
 # ignore plugin/submodules .git folders
 tmux.d/plugins

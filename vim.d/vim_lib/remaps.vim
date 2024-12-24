@@ -126,41 +126,7 @@ nnoremap <leader>kk <Ctrl-u>
 nnoremap <leader>rp :w !python3 %<Tab><Cr>
 nnoremap <leader>rb :w !bash %<Tab><Cr>
 
-
-" MODAL Remaps
-
-""  normal --> insert
-nnoremap <Leader>, i
-""  normal --> cmd
-nnoremap <Leader>; :
-""  normal --> V-Block 
-nnoremap <Leader>v <C-v>
-
-"" @TESTME - remove if leads to difficulty w/ fF/tT cycling
-nnoremap ;; :
-nnoremap ,, i
-
-
-""  normal --> V-Line 
-"nnoremap <Leader>v <S-v>
-""  normal --> V-Block 
-"nnoremap <Leader>vv <S-v>
-
-"" insert --> normal
-inoremap ,, <Esc>
-"" insert --> command
-inoremap ;; <C-c>:
-
-" insert --> Visual Block
-inoremap <C-v> <C-c><C-v>
-
-"" cmd --> insert
-cnoremap ,, <C-c>i
-"" cmd --> normal
-cnoremap ;; <C-c>
-
-
-"" @TODO: Add remaps to NVIM config
+" @TODO: Add remaps to NVIM config
 "" cmd mode line navigation
 cnoremap hh <Left>
 cnoremap ll <Right>

@@ -11,3 +11,15 @@ sudo npm i -g pyright
 sudo npm i -g vim-language-server
 sudo npm i -g vscode-langservers-extracted  #json
 sudo yarn global add yaml-language-server #yaml
+
+function configure_taplo {
+   # install Rust: Taplo is written in Rust, so you'll need to have Rust installed. You can install it using rustup:
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    source $HOME/.cargo/env
+
+ 	# install Taplo: Use Cargo, Rust's package manager, to install Taplo:
+    cargo install taplo-cli --features lsp
+
+  # verify Installation: Check if Taplo is installed correctly by running:
+    taplo-lsp --version
+}

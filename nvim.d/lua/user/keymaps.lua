@@ -48,10 +48,10 @@ remapp("n", "mj", ":m .+1<CR>==", opts)
 remapp("n", "mk", ":m .-2<CR>==", opts)
 
 -- @TODO: review NVIM docs to see if existing mapping exists for other Normal
--- Mode like actions within Insert Mode (ex. delete current word, but stay 
+-- Mode like actions within Insert Mode (ex. delete current word, but stay
 -- in Insert mode whole time)
 --
--- insert mode arrow key cursor navigation 
+-- insert mode arrow key cursor navigation
 remapp("i", "<A-h>", "<Left>", opts)
 remapp("i", "<A-l>", "<Right>", opts)
 remapp("i", "<A-k>", "<Up>", opts)
@@ -178,9 +178,8 @@ remapp("n", "<Alt-v>", "p", { noremap = true })
 remapp("v", "x", "d", { noremap = true })
 
 -- easier switch from Visual to Normal
-remapp("v","<leader><leader>", "<C-c>", opts)
-remapp("v","<leader>n", "<C-c>", opts)
-
+remapp("v", "<leader><leader>", "<C-c>", opts)
+remapp("v", "<leader>n", "<C-c>", opts)
 
 --
 -- Visual Block Mode

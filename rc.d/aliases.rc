@@ -65,16 +65,13 @@ alias tmka="tmux kill-session -a -t"
 alias tlk="tmux list-keys"
 alias tlkg="tmux list-keys  | egrep -i "
 
-#
 ## GIT ALIASES 
 alias g="git"
 alias o="origin"
-#
 ### add
 alias gad="git add --dry-run"
 alias ga="git add"
 alias gacm="git add . && git commit -m "
-#
 ### branch
 alias gbl="git branch --list "          # list branches that match glob 
 alias gbc="git branch --contains "      # like -l except for commits
@@ -85,71 +82,71 @@ alias gbm="git branch --merged"         # list all branches merged into CURRENT 
 alias gbnm="git branch --no-merged"     # list all branches not merged into CURRENT branch
 alias gbsmr="git branch --sort=-committerdate"   # sort newest -> oldest
 alias gbslr="git branch --sort=committerdate"   # sort oldest -> newest
-#
 ### commit 
 alias gc="git commit"
 alias gca="git commit --amend"
 alias gcmf="git commit --fixup "
 alias gcm="git commit -m"
 alias gcmsg="git commit -m"
-#
 ### checkout
 #alias gco="git checkout "
 alias GCO="git checkout "
 alias gcmn="git checkout main "
 alias gcb="git checkout -b "
 alias gc1="git checkout @{-1}"  # checkout last branch 
-#
 ### diff
 alias gd="git diff "
 alias gdf="git diff "
 alias gdfc="git diff --compact-summary"
 alias gdfcs="git diff --compact-summary --staged "
 alias gdfh="git diff HEAD~1"
-alias gdfo="git diff origin"
+
+### current branch diffs
+alias gdo="git diff origin"
+alias gdos="git diff origin"
+alias gdom="git diff origin --stat"
+alias gdoms="git diff origin --stat"
+
+### ONLY main origin/main diffs
+alias gdmo="git diff origin/main main"
+alias gdmos="git diff origin/main main --stat"
+
+
+### other git diffs
 alias gdfo="git diff --stat origin $(git branch --show-current)"    # experimental
 alias gdfom="git diff --stat origin/main"
 alias gdfs="git diff --stat "
 alias gdfss="git diff --staged "
 alias gdm="git diff $(git branch --show-current) main"
-#
+
 ### fetch
 alias gf="git fetch"
-#
 ### log
-#
 alias glg="git log --pretty=oneline"
 alias glgg="git log "
 alias glgn="git log -n "
 alias glgo="git log --oneline"
 alias glga="git log -all"
 alias glga_graph="git log --oneline --decorate --graph --all"
-#
 ### merge
 alias gm="git merge "
 alias gmmn="git merge main"      # merge main into branch to ensure branch always in-sync with main
 alias gml="git merge @{-1}"     # merge last checkout branch
-#
 ### push
 alias gpf="git push --force "
 alias gp="git push "
-#
 ### pull
 alias gpl="git pull "
-#
 ### rebase
 alias grb="git rebase "
 alias grbi="git rebase -i "
 alias grbsq="git rebase -i --autosquash"
-#
 ### restore
 alias grs="git restore "
 alias grss="git restore --staged "
-#
 ### status
 alias gs="git status"
 alias gss="git status -s"
-#
 ### stash
 alias gst="git stash"
 alias gsta="git stash apply "

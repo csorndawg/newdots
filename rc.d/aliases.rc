@@ -211,7 +211,6 @@ alias ch777="chmod 777 -R"
 
 ## keybind references 
 alias kbv="bat $HOME/.cheatlib/resources/keybindings-zc-cheatsheet.txt"
-
 alias gg="cd $HOME/git/GYM"
 alias VO="source $HOME/.local/state/python/venvs/venv/bin/activate" 
 alias VO_SGPT="source $HOME/.shellGPT/shellGPT_venv/bin/activate"
@@ -246,5 +245,4 @@ alias zxp="cd $HOME/git/zxp"
 # terminal json formatter
 alias prettyjson='python -m json.tool'
 
-# mongodb
-alias mongo="mongosh"
+# @NOTE: Add new aliases from aliases_experimental.rc below after evaluating 

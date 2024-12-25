@@ -1,0 +1,15 @@
+# Experimental runtime config aliases. Move to `aliases.rc` if no issues occurr during evaluation.
+
+# mongodb
+alias mongo="mongosh"
+
+# clickhouse
+
+
+# @TODO: Make bash/cli function to handle mixing/matching multiple flags on-the-fly
+# fd + common flags
+alias fdcw="fd --changed-within"
+alias fdca="fd --changed-after "
+alias fdcb="fd --changed-before"
+alias fda="fd -HI"
+alias fdt="fd -e"

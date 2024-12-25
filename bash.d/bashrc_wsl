@@ -137,6 +137,8 @@ fi
 
 # RC - SHARED BASH/ZSH CONFIGURATIONS
 source ~/dotfiles/rc.d/aliases.rc 2> /dev/null
+source ~/dotfiles/rc.d/aliases_experimental.rc 2> /dev/null
+source ~/dotfiles/rc.d/exports.rc 2> /dev/null
 source ~/dotfiles/rc.d/functions.rc && echo "Sourced rc.d/functions file" #2> /dev/null
 
 # BASH ONLY CONFIGS

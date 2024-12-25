@@ -161,3 +161,4 @@ artifacts**
 **.syml
 
 !ideas.d/
+.tests/

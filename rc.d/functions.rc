@@ -511,3 +511,22 @@ fzz() {
 		;;
 	esac
 }
+
+# return git repo if CWD belongs to a git repo folder 
+function whichGitRepo {
+	if git_top_level=$(git rev-parse --show-toplevel 2>/dev/null); then
+		# Print the basename of the top-level directory
+		basename "$git_top_level"
+	fi
+}
+
+# ------------------------------------------------
+# automate ssh passphrase prompts
+# ------------------------------------------------
+
+# automates ssh key passphrase prompts for Git and SSHing across machines
+function add_ssh_key_pp {
+  SECRETS_EXPECT_SCRIPT_PATH="$HOME/git/fortknox/bin/run_add_key"
+  bash "$SECRETS_EXPECT_SCRIPT_PATH"
+}
+add_ssh_key_pp

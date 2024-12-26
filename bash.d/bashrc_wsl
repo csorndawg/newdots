@@ -152,8 +152,14 @@ source ~/dotfiles/bash.d/aliases.bash 2> /dev/null
 ##### WSL2 BASH SPECIFIC LOGIC/CONFIGURATIONS
 #####
 
+# Linux/OS type folders to add to $PATH
 PATH="$PATH:$HOME/.local/lib/bash:$HOME/.local/lib/misc:$HOME/.local/lib/python:$HOME/.local/bin:$HOME/.local/bin/cronjobs:$HOME/git/toolbox/bin:"
-PATH_ADDONS="$HOME/git/dataops_bible/scripts:$HOME/git/newdots/utils.d/zbin"
+
+# personal/custom type folders to add to $PATH
+SECRETS_BIN="$HOME/git/fortknox/bin"
+DOTFILE_UTILS_BIN="$HOME/git/newdots/utils.d/zbin"
+MY_DEVENV_BIN="$HOME/git/dataops_bible/scripts"
+PATH_ADDONS="$MY_DEVENV_BIN:$SECRETS_BIN:$DOTFILE_UTILS_BIN"
 PATH="$PATH:$PATH_ADDONS"
 alias python=python3
 
@@ -916,3 +922,24 @@ bashexpr(){
 # shellGPT setup
 #source "$HOME/git/newdots/bash.d/lib/shellGPT_conf.bash"
 source "$HOME/dotfiles/bash.d/lib/shellGPT_conf.bash"
+
+
+# @FIXME: SSH-AGENT is not being activated upon startup even though it runs from the "secrets" script and seems like it works from the echoes. As of now after manually running "eval $(ssh-agent)" in shell then running the below "add_ssh_key_pp" function, all ssh passphrases are automatically cached/authenticated. 
+# TLDR: Fix ssh-agent code to be activated BEFORE run_add_key script executred. 
+# SSH-ADD/EXPECT CONFIGURE AUTOMATE STUFF
+
+# run `add_key` expect script from secrets repo
+function add_ssh_key_pp {
+  echo ""
+  echo "Running ssh-add automation function"
+  SECRETS_EXPECT_SCRIPT_PATH="$HOME/git/fortknox/bin/run_add_key"
+  #./"$SECRETS_EXPECT_SCRIPT_PATH"
+  bash "$SECRETS_EXPECT_SCRIPT_PATH"
+}
+#source add_ssh_key_pp
+#bash add_ssh_key_pp
+#./add_ssh_key_pp
+echo ""
+echo "Workaround attempt 1"
+eval $(ssh-agent)
+add_ssh_key_pp

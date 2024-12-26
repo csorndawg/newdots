@@ -317,3 +317,11 @@ alias gpu="git push -u origin"
 
 #source "$HOME/git/newdots/zsh.d/custom/lib/shellGPT_conf.zsh"
 source "$HOME/dotfiles/zsh.d/custom/lib/shellGPT_conf.zsh"
+
+# automate ssh passphrase prompt input
+function add_ssh_key_pp {
+  SECRETS_EXPECT_SCRIPT_PATH="$HOME/git/fortknox/bin/run_add_key"
+  #echo "bash $SECRETS_EXPECT_SCRIPT_PATH"
+  bash "$SECRETS_EXPECT_SCRIPT_PATH"
+}
+add_ssh_key_pp

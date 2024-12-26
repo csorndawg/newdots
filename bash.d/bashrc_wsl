@@ -916,3 +916,14 @@ bashexpr(){
 # shellGPT setup
 #source "$HOME/git/newdots/bash.d/lib/shellGPT_conf.bash"
 source "$HOME/dotfiles/bash.d/lib/shellGPT_conf.bash"
+
+
+# @FIXME: STILL TESTING BELOW 
+# SSH-ADD/EXPECT CONFIGURE AUTOMATE STUFF
+
+# run `add_key` expect script from secrets repo
+function add_ssh_key_pp {
+  SECRETS_EXPECT_SCRIPT_PATH="$HOME/git/fortknox/bin/run_add_key"
+  bash "$SECRETS_EXPECT_SCRIPT_PATH"
+}
+add_ssh_key_pp

@@ -446,7 +446,7 @@ fzz() {
 	case $1 in
 
 	# open FZF selections in EDITOR
-	"open" | o | n | N | v | V)
+	"open" | o | "edit" | "ed")
 		echo "All FZF selections will be opened with '$EDITOR' "
 		selected_files=$(fzf --multi --preview "cat {}" --bind 'ctrl-a:select-all' --prompt="Select files: " --exit-0)
 
@@ -454,19 +454,47 @@ fzz() {
 			echo "No files selected."
 			exit 0
 		fi
-		#
-		echo "" && echo "Files selected within FZF picker session:"
+
+		# add selected files to var
 		SF_STR=""
 		for sf in $selected_files; do
 			SF_STR="$SF_STR $sf"
 		done
-		echo "SF_STR:  $SF_STR"
-		echo nvim $(echo $SF_STR)
-		nvim $(echo $SF_STR)
+
+		echo "" && echo "Selected Files:  $SF_STR"
+		echo $EDITOR $(echo $SF_STR)
+		$EDITOR $(echo $SF_STR)
+		;;
+
+	# view FZF selections in system pager
+	"view" | vw | v | V)
+		echo "All FZF selections will be opened with '$EDITOR' "
+		selected_files=$(fzf --multi --preview "cat {}" --bind 'ctrl-a:select-all' --prompt="Select files: " --exit-0)
+
+		if [[ -z "$selected_files" ]]; then
+			echo "No files selected."
+			exit 0
+		fi
+
+		SF_STR=""
+		for sf in $selected_files; do
+			SF_STR="$SF_STR $sf"
+		done
+		echo "" && echo "Selected Files:  $SF_STR"
+
+		# @NOTE: For now running default "bat" if present. Adding extra logic to pass various flags on
+		# the fly might be useful.
+		# Use LESS if BAT not available
+		if [[ ! -e "$(which bat)" ]]; then
+			echo "BAT not installed on system, falling back to LESS"
+			less -R $(echo $SF_STR)
+		else
+			bat $(echo $SF_STR)
+		fi
 		;;
 
 	# echo selected files to STDOUT
-	"print" | "echo" | e | E | P)
+	"print" | "echo" | e | E | p | P)
 		selected_files=$(fzf --multi --preview "cat {}" --bind 'ctrl-a:select-all' --prompt="Select files: " --exit-0)
 		if [[ ! -n "$selected_files" ]]; then
 			echo "No files selected"
@@ -512,7 +540,7 @@ fzz() {
 	esac
 }
 
-# return git repo if CWD belongs to a git repo folder 
+# return git repo if CWD belongs to a git repo folder
 function whichGitRepo {
 	if git_top_level=$(git rev-parse --show-toplevel 2>/dev/null); then
 		# Print the basename of the top-level directory
@@ -526,7 +554,7 @@ function whichGitRepo {
 
 # automates ssh key passphrase prompts for Git and SSHing across machines
 function add_ssh_key_pp {
-  SECRETS_EXPECT_SCRIPT_PATH="$HOME/git/fortknox/bin/run_add_key"
-  bash "$SECRETS_EXPECT_SCRIPT_PATH"
+	SECRETS_EXPECT_SCRIPT_PATH="$HOME/git/fortknox/bin/run_add_key"
+	bash "$SECRETS_EXPECT_SCRIPT_PATH"
 }
 add_ssh_key_pp

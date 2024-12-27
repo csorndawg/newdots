@@ -927,10 +927,14 @@ source "$HOME/dotfiles/bash.d/lib/shellGPT_conf.bash"
 function add_ssh_key_pp {
   # raise error if depedency dir/file missing
   SECRETS_DIRPATH="$HOME/git/fortknox"
-  if [[ ! -d "$SECRETS_DIRPATH" ]]; then 
+	SECRETS_EXPECT_SCRIPT_PATH="$SECRETS_DIRPATH/bin/run_add_key"
+
+  if [[ ! -e "$SECRETS_EXPECT_SCRIPT_PATH" ]]; then 
       echo "SECRET ~/git/fortknox repo does not exist, clone or git pull main to fix"
       exit 0
   fi
+
+	bash "$SECRETS_EXPECT_SCRIPT_PATH"
   echo "SSH passphrase has been cached"
 }
 eval $(ssh-agent)

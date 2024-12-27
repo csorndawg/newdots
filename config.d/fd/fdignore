@@ -56,4 +56,13 @@ Backup of *.doc*
 **/plugged/**
 
 
+
+# @NOTE: Need to review/test. End goal is to have FD ignore ".git/(logs|refs|obj)" subfolders, but still show things like ".git/hooks" by default
+# Ignore Git Repo clutter
+#"\.git.(logs|refs|obj)"
+**/.git/logs/
+**/.git/refs/
+**/.git/obj**
+
+
 # GitIgnore Templates CopyPasta

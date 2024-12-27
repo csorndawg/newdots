@@ -1,29 +1,23 @@
 #!/bin/bash 
 
 # tmux.conf dependencies && preconfig setup
-echo ""
-
-# create symlink to dotfiles tmux.conf if it doesnt already exist
-if [[ ! -z "$HOME/dotfiles/tmux.d/tmux.conf" ]]; then 
-    echo 'No tmux.conf file found. Creating dotfile symlink.'
-    ln -sr "$HOME/dotfiles/tmux.d/tmux.conf" "$HOME/.tmux.conf" 2> /dev/null
-fi
-
-# dependency variables 
-XDG_CONF_HOME_DIR="$HOME/.config" 
-XDG_CONF_TMUX_DIR="$XDG_CONF_HOME_DIR/tmux"
-DOTFILES_TMUX_DIR="$HOME/dotfiles/tmux.d"
-
-# make XDG dependency symlink
-#echo "mkdir -p $XDG_CONF_HOME_DIR" 
-#echo ln -sr "$DOTFILES_TMUX_DIR" "$XDG_CONF_TMUX_DIR"
-mkdir -p "$XDG_CONF_HOME_DIR" 
-ln -sr "$DOTFILES_TMUX_DIR" "$XDG_CONF_TMUX_DIR" 2> /dev/null
+TMUX_CONF_DIR="$HOME/.config/tmux"
 
 # cleanup nested symlink, if present
-rm -v "$XDG_CONF_TMUX_DIR/tmux.d" 2>/dev/null
+rm -v "$TMUX_CONF_DIR/tmux.d" 2>/dev/null
 
 # clone TPM into tmux/plugin location
-mkdir -p "$XDG_CONF_TMUX_DIR/plugins"
-echo "git clone https://github.com/tmux-plugins/tpm  $XDG_CONF_TMUX_DIR/plugins/tpm"
-git clone https://github.com/tmux-plugins/tpm  "$XDG_CONF_TMUX_DIR/plugins/tpm" 2> /dev/null
+mkdir -pv "$TMUX_CONF_DIR/plugins"
+
+# clone TPM repo and move to TMUX_CONF if not present
+if [[ "$(find "$HOME/dotfiles/tmux.d" -type d | egrep -c "\btpm\b")" -eq 0 ]]; then
+  echo "TPM folder missing from TMUX_CONF directory, starting setup now."
+  echo "git clone https://github.com/tmux-plugins/tpm  $TMUX_CONF_DIR/plugins/tpm"
+
+  TEMPDIR="$(pwd)/.tempDir" 
+  mkdir -p $TEMPDIR && cd $TEMPDIR
+  git clone https://github.com/tmux-plugins/tpm  2> /dev/null #"$TMUX_CONF_DIR/plugins/tpm" 2> /dev/null
+  mv -vn tpm "$TMUX_CONF_DIR/plugins/tpm"
+else
+  echo "TPM folder exists in TMUX_CONF"
+fi

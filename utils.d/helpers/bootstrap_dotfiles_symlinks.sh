@@ -60,6 +60,9 @@ function config_vimd {
 function config_tmuxd {
 	ln -sr "$TMUXD_DIR" "$HOME/.config/tmux" 2>/dev/null
 	ln -srf "$TMUXD_DIR/tmux.conf" "$HOME/.tmux.conf" 2>/dev/null
+
+	# handle tpm setup automatically
+	bash "$HOME/dotfiles/tmux.d/tmux_conf_dependencies.sh" || echo "Error occured while running tmux_conf_dependencies script"
 }
 
 ## ========================================

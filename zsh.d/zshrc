@@ -315,21 +315,20 @@ alias gdmo="git diff origin/main main"
 alias gdmos="git diff --stat origin/main main"
 alias gpu="git push -u origin"
 
-#source "$HOME/git/newdots/zsh.d/custom/lib/shellGPT_conf.zsh"
+# SHELL-GPT configuration sourcing
 source "$HOME/dotfiles/zsh.d/custom/lib/shellGPT_conf.zsh"
 
 # automate ssh passphrase prompt input
 function add_ssh_key_pp {
-  echo "Running ssh-add automation function"
+
+  SECRETS_DIRPATH="$HOME/git/fortknox"
+  SECRETS_EXPECT_SCRIPT_PATH="$SECRETS_DIRPATH/bin/run_add_key"
 
   # raise error if depedency dir/file missing
-  SECRETS_DIRPATH="$HOME/git/fortknox"
   if [[ ! -d "$SECRETS_DIRPATH" ]]; then 
       echo "SECRET ~/git/fortknox repo does not exist, clone or git pull main to fix"
       exit 0
   fi
-
-  SECRETS_EXPECT_SCRIPT_PATH="$HOME/git/fortknox/bin/run_add_key"
   bash "$SECRETS_EXPECT_SCRIPT_PATH"
   echo "SSH passphrase has been cached"
 }

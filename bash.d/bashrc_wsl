@@ -920,18 +920,11 @@ bashexpr(){
 }
 
 # shellGPT setup
-#source "$HOME/git/newdots/bash.d/lib/shellGPT_conf.bash"
 source "$HOME/dotfiles/bash.d/lib/shellGPT_conf.bash"
 
 
-# @FIXME: SSH-AGENT is not being activated upon startup even though it runs from the "secrets" script and seems like it works from the echoes. As of now after manually running "eval $(ssh-agent)" in shell then running the below "add_ssh_key_pp" function, all ssh passphrases are automatically cached/authenticated. 
-# TLDR: Fix ssh-agent code to be activated BEFORE run_add_key script executred. 
-# SSH-ADD/EXPECT CONFIGURE AUTOMATE STUFF
-
 # run `add_key` expect script from secrets repo
 function add_ssh_key_pp {
-  echo "Running ssh-add automation function"
-
   # raise error if depedency dir/file missing
   SECRETS_DIRPATH="$HOME/git/fortknox"
   if [[ ! -d "$SECRETS_DIRPATH" ]]; then 
@@ -940,6 +933,5 @@ function add_ssh_key_pp {
   fi
   echo "SSH passphrase has been cached"
 }
-#source add_ssh_key_pp
 eval $(ssh-agent)
 add_ssh_key_pp

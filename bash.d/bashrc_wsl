@@ -2,7 +2,6 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-
 ### BASH shell >> SH shell
 #if  [ ! -z "/bin/bash" ]; then
 #	echo 'BASH installed on current machine. Current shell will be changed to BASH if currently set to SH'
@@ -12,8 +11,8 @@
 
 # If not running interactively, don't do anything
 case $- in
-    *i*) ;;
-      *) return;;
+*i*) ;;
+*) return ;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -41,12 +40,12 @@ shopt -s checkwinsize
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+	debian_chroot=$(cat /etc/debian_chroot)
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
+xterm-color | *-256color) color_prompt=yes ;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -55,42 +54,41 @@ esac
 #force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
+	if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+		# We have color support; assume it's compliant with Ecma-48
+		# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+		# a case would tend to support setf rather than setaf.)
+		color_prompt=yes
+	else
+		color_prompt=
+	fi
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+	PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
+xterm* | rxvt*)
+	PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+	;;
+*) ;;
 esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+	alias ls='ls --color=auto'
+	#alias dir='dir --color=auto'
+	#alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+	alias grep='grep --color=auto'
+	alias fgrep='fgrep --color=auto'
+	alias egrep='egrep --color=auto'
 fi
 
 # colored GCC warnings and errors
@@ -111,42 +109,40 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+	. ~/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
+	if [ -f /usr/share/bash-completion/bash_completion ]; then
+		. /usr/share/bash-completion/bash_completion
+	elif [ -f /etc/bash_completion ]; then
+		. /etc/bash_completion
+	fi
 fi
 
-
 ##################################################
-###	ADDITONAL EDITS 
+###	ADDITONAL EDITS
 ##################################################
 
 #####
-##### SOURCE STANDARD DOTFILE RC/BASH.D CONFIGURATIONS FIRST 
-##### SO ANY WSL LOGIC IS NOT OVERWRITEN 
+##### SOURCE STANDARD DOTFILE RC/BASH.D CONFIGURATIONS FIRST
+##### SO ANY WSL LOGIC IS NOT OVERWRITEN
 #####
 
 # RC - SHARED BASH/ZSH CONFIGURATIONS
-source ~/dotfiles/rc.d/aliases.rc 2> /dev/null
-source ~/dotfiles/rc.d/aliases_experimental.rc 2> /dev/null
-source ~/dotfiles/rc.d/exports.rc 2> /dev/null
-source ~/dotfiles/rc.d/functions.rc && echo "Sourced rc.d/functions file" #2> /dev/null
+source ~/dotfiles/rc.d/aliases.rc 2>/dev/null
+source ~/dotfiles/rc.d/aliases_experimental.rc 2>/dev/null
+source ~/dotfiles/rc.d/exports.rc 2>/dev/null
+source ~/dotfiles/rc.d/functions.rc || echo "Error occurred while sourcing rc.d/functions file"
 
 # BASH ONLY CONFIGS
-source ~/dotfiles/bash.d/functions.bash 2> /dev/null
-source ~/dotfiles/bash.d/exports.bash 2> /dev/null
-source ~/dotfiles/bash.d/prompt.bash 2> /dev/null
-source ~/dotfiles/bash.d/aliases.bash 2> /dev/null
-
+source ~/dotfiles/bash.d/functions.bash 2>/dev/null
+source ~/dotfiles/bash.d/exports.bash 2>/dev/null
+source ~/dotfiles/bash.d/prompt.bash 2>/dev/null
+source ~/dotfiles/bash.d/aliases.bash 2>/dev/null
 
 #####
 ##### WSL2 BASH SPECIFIC LOGIC/CONFIGURATIONS
@@ -163,25 +159,19 @@ PATH_ADDONS="$MY_DEVENV_BIN:$SECRETS_BIN:$DOTFILE_UTILS_BIN"
 PATH="$PATH:$PATH_ADDONS"
 alias python=python3
 
-# cache ssh pp
-#if [ -z "$SSH_AUTH_SOCK" ]; then
-#    eval $(ssh-agent -s)
-#fi
-#ssh-add ~/.ssh/id_rsa < /dev/null 2>/dev/null
-
 alias ta="task add"
 alias tl="task list"
 
 # quick backup function
-# works with all files and dumps them to an unsorted directory 
+# works with all files and dumps them to an unsorted directory
 # note this dir should be monitored so it doesnt ballon in size
 # as of now no protective logic exists, but plan on adding logic or
 # cronjob to delete stale versions (>5 copies AND older than 1month) --> TODO
-mk_artifact(){
+mk_artifact() {
 	TARG="$1"
 	TARG_NAME="$(basename $TARG)"
 	TIMESTAMP=$"(date +%Y%m%d_%H%M%S_%Z)"
-	# TODO - logic to check if abs or relative path ; for now assume relativee 
+	# TODO - logic to check if abs or relative path ; for now assume relativee
 	ART_DIR="$HOME/.local/var/backups/auto"
 
 	# TODO - handle directories logic
@@ -194,50 +184,49 @@ alias VO="source $HOME/.local/state/python/venvs/venv/bin/activate"
 alias cht='cht.sh'
 alias jc="jupyter console"
 if [ -f "$HOME/.local/bin/lib/comp/bash/cht.sh" ]; then
-    source "$HOME/.local/bin/lib/comp/bash/cht.sh"
+	source "$HOME/.local/bin/lib/comp/bash/cht.sh"
 fi
-
 
 # ssh tunneling funct
-ssh_tunnel(){
-    # optional local port
-    REMOTE_PORT="$1"
-    if [[ -z "$2" ]]; then
-        LOCAL_PORT="$1"
-    else
-        LOCAL_PORT="$2"
-    fi
-    # default ssh user/host
-    SSH_CONN="$3"
-    if [[ -z "$3" ]]; then
-        SSH_CONN="shelby"
-    fi
-    echo "ssh -L $REMOTE_PORT:localhost:$LOCAL_PORT $SSH_CONN"
-    ssh -L $REMOTE_PORT:localhost:$LOCAL_PORT "$SSH_CONN"
-} 
+ssh_tunnel() {
+	# optional local port
+	REMOTE_PORT="$1"
+	if [[ -z "$2" ]]; then
+		LOCAL_PORT="$1"
+	else
+		LOCAL_PORT="$2"
+	fi
+	# default ssh user/host
+	SSH_CONN="$3"
+	if [[ -z "$3" ]]; then
+		SSH_CONN="shelby"
+	fi
+	echo "ssh -L $REMOTE_PORT:localhost:$LOCAL_PORT $SSH_CONN"
+	ssh -L $REMOTE_PORT:localhost:$LOCAL_PORT "$SSH_CONN"
+}
 
 # source fzf shell script
-# check if ZSH shell, otherwise assume BASH 
-if [[  $(echo "$SHELL"  | egrep zsh -ci) -ge 1 ]]; then
-  #echo "ZSH shell"
-  source "$HOME/.fzf.zsh" || echo "Error occurred when sourcing '$HOME/.fzf.zsh'"
+# check if ZSH shell, otherwise assume BASH
+if [[ $(echo "$SHELL" | egrep zsh -ci) -ge 1 ]]; then
+	#echo "ZSH shell"
+	source "$HOME/.fzf.zsh" || echo "Error occurred when sourcing '$HOME/.fzf.zsh'"
 else
-  #echo "BASH shell"
-  # symlink fzf.bash script if DNE
-  if [[ -f "$HOME/.fzf.bash" ]]; then
-      ln -sr "$HOME/dotfiles/utils.d/fzf.bash" "$HOME/.fzf.bash" 2> /dev/null # dont overwrite if exists
-      source "$HOME/.fzf.bash"
-  fi
+	#echo "BASH shell"
+	# symlink fzf.bash script if DNE
+	if [[ -f "$HOME/.fzf.bash" ]]; then
+		ln -sr "$HOME/dotfiles/utils.d/fzf.bash" "$HOME/.fzf.bash" 2>/dev/null # dont overwrite if exists
+		source "$HOME/.fzf.bash"
+	fi
 fi
 
-ff2 (){
-    if [ ! -f ~/.fzf.bash ]; then
-        echo "Error - no '~/.fzf.bash' file found"
-        return
-    fi
-    source ~/.fzf.bash
-    source ~/dotfiles/config.d/fzf.config
-    export FZF_DEFAULT_OPTS="
+ff2() {
+	if [ ! -f ~/.fzf.bash ]; then
+		echo "Error - no '~/.fzf.bash' file found"
+		return
+	fi
+	source ~/.fzf.bash
+	source ~/dotfiles/config.d/fzf.config
+	export FZF_DEFAULT_OPTS="
       --no-height
       --color=fg:#e5e9f0,bg:#3b4252,hl:#81a1c1 
       --color=fg+:#e5e9f0,bg+:#3b4252,hl+:#81a1c1
@@ -247,17 +236,16 @@ ff2 (){
 }
 
 # symlink dotfile bootstrap script to LOCAL_BIN incase anything needs bootstraping
-ln -sr "$HOME/dotfiles/utils.d/bootstrap-dotfiles-core" "$HOME/.local/bin/" 2> /dev/null
+ln -sr "$HOME/dotfiles/utils.d/bootstrap-dotfiles-core" "$HOME/.local/bin/" 2>/dev/null
 
 #alias sshpp="eval $(ssh-agent) && ssh-add ~/.ssh/id_rsa"
 export BAT_THEME="Nord"
-
 
 # BASH-IT/OH-MY-BASH IDEAS
 
 ## HISTORY
 
-### increase shell history 
+### increase shell history
 HISTSIZE=100000
 HISTFILESIZE=100000
 
@@ -298,24 +286,21 @@ HISTIGNORE="exit:ls:bg:fg:history:clear"
 ###  "yyyy-mm-dd"|*) HISTTIMEFORMAT='%F %T ' ;;
 ###esac
 
-HISTTIMEFORMAT=$'\033[31m[%F] \033[36m[%T]\033[0m ' 
-
-
+HISTTIMEFORMAT=$'\033[31m[%F] \033[36m[%T]\033[0m '
 
 ## ALIAS/FUNCTIONS
 
 ### core
-alias ll='ls -lAFh'                         # Preferred 'ls' implementation
-alias less='less -FSRXc'                    # Preferred 'less' implementation
-alias wget='wget -c'                        # Preferred 'wget' implementation (resume download)
-alias c='clear'                             # c:            Clear terminal display
-alias path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
-alias show_options='shopt'                  # Show_options: display bash options settings
-alias fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up
-alias fix_term='echo -e "\033c"'            # fix_term:     Reset the conosle.  Similar to the reset command
+alias ll='ls -lAFh'                              # Preferred 'ls' implementation
+alias less='less -FSRXc'                         # Preferred 'less' implementation
+alias wget='wget -c'                             # Preferred 'wget' implementation (resume download)
+alias c='clear'                                  # c:            Clear terminal display
+alias path='echo -e ${PATH//:/\\n}'              # path:         Echo all executable Paths
+alias show_options='shopt'                       # Show_options: display bash options settings
+alias fix_stty='stty sane'                       # fix_stty:     Restore terminal settings when screwed up
+alias fix_term='echo -e "\033c"'                 # fix_term:     Reset the conosle.  Similar to the reset command
 alias cic='bind "set completion-ignore-case on"' # cic:          Make tab-completion case-insensitive
-alias src='source ~/.bashrc'                # src:          Reload .bashrc file
-
+alias src='source ~/.bashrc'                     # src:          Reload .bashrc file
 
 ### date aliases
 alias bdate="date '+%a, %b %d %Y %T %Z'"
@@ -329,7 +314,6 @@ alias stamp='date "+%Y%m%d%a%H%M"'
 alias timestamp='date "+%Y%m%dT%H%M%S"'
 alias today='date +"%A, %B %-d, %Y"'
 alias weeknum='date +%V'
-
 
 ### docker aliases
 ### This is a direct copy of https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/docker/docker.plugin.zsh
@@ -383,8 +367,8 @@ alias lt='ls -ltr'              # sort by date
 alias lu='ls -lur'              # sort by access time
 
 ### DU util
-alias dud='du -d 1 -h'                      # Short and human-readable directory listing
-alias duf='du -sh *'                        # Short and human-readable file listing
+alias dud='du -d 1 -h' # Short and human-readable directory listing
+alias duf='du -sh *'   # Short and human-readable file listing
 
 ### GIT
 
@@ -397,48 +381,48 @@ alias duf='du -sh *'                        # Short and human-readable file list
 ## the plugin, before being pulled in to core lib/git.zsh as git_current_branch()
 ## to fix the core -> git plugin dependency.
 function current_branch() {
-  git_current_branch
+	git_current_branch
 }
 
 ### The list of remotes
 function current_repository() {
-  if ! $_omb_git_git_cmd rev-parse --is-inside-work-tree &> /dev/null; then
-    return
-  fi
-  _omb_util_print $($_omb_git_git_cmd remote -v | cut -d':' -f 2)
+	if ! $_omb_git_git_cmd rev-parse --is-inside-work-tree &>/dev/null; then
+		return
+	fi
+	_omb_util_print $($_omb_git_git_cmd remote -v | cut -d':' -f 2)
 }
 
 ### Warn if the current branch is a WIP
 function work_in_progress() {
-  if $(git log -n 1 2>/dev/null | grep -q -c "\-\-wip\-\-"); then
-    _omb_util_print "WIP!!"
-  fi
+	if $(git log -n 1 2>/dev/null | grep -q -c "\-\-wip\-\-"); then
+		_omb_util_print "WIP!!"
+	fi
 }
 
 ### Check for develop and similarly named branches
 function git_develop_branch() {
-  command git rev-parse --git-dir &>/dev/null || return
-  local branch
-  for branch in dev devel development; do
-    if command git show-ref -q --verify refs/heads/"$branch"; then
-      _omb_util_print "$branch"
-      return
-    fi
-  done
-  _omb_util_print develop
+	command git rev-parse --git-dir &>/dev/null || return
+	local branch
+	for branch in dev devel development; do
+		if command git show-ref -q --verify refs/heads/"$branch"; then
+			_omb_util_print "$branch"
+			return
+		fi
+	done
+	_omb_util_print develop
 }
 
 ### Check if main exists and use instead of master
 function git_main_branch() {
-  command git rev-parse --git-dir &>/dev/null || return
-  local ref
-  for ref in refs/{heads,remotes/{origin,upstream}}/{main,trunk,mainline,default}; do
-    if command git show-ref -q --verify "$ref"; then
-      _omb_util_print "${ref##*/}"
-      return
-    fi
-  done
-  _omb_util_print master
+	command git rev-parse --git-dir &>/dev/null || return
+	local ref
+	for ref in refs/{heads,remotes/{origin,upstream}}/{main,trunk,mainline,default}; do
+		if command git show-ref -q --verify "$ref"; then
+			_omb_util_print "${ref##*/}"
+			return
+		fi
+	done
+	_omb_util_print master
 }
 
 ###
@@ -781,7 +765,6 @@ export FZF_DEFAULT_OPTS="
   --color=marker:#a3be8b,spinner:#b48dac,header:#a3be8b"
 export WINHOME="/mnt/c/Users/zaccs/"
 
-
 ## @FIXME
 ## pycharm ssh - only run if on local machine
 #if [[ "$(echo $HOSTNAME | egrep -ci 'DESKTOP')" -ge 1 ]]; then
@@ -799,14 +782,12 @@ export WINHOME="/mnt/c/Users/zaccs/"
 #fi
 
 #alias sshCachePP="eval $(ssh-agent) && ssh-add $HOME/.ssh/id_rsa"
-sshCachePP(){
-    eval $(ssh-agent) && ssh-add "$HOME/.ssh/id_rsa"
+sshCachePP() {
+	eval $(ssh-agent) && ssh-add "$HOME/.ssh/id_rsa"
 }
-
 
 ## Add Git branch info to BASH prompt (source: https://bash-prompt-generator.org/)
 #PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'; PS1='\n\[\e[38;5;115m\]\u@\h\n\[\e[38;5;152m\]\w\[\e[0m\]  \[\e[38;5;223;3m\]${PS1_CMD1}\[\e[0m\]  \n \[\e[38;5;139;3m\]>\[\e[0m\] '
-
 
 ## XDG Exports
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -819,7 +800,7 @@ export XDG_DOWNLOADS_HOME="$HOME/.local/var/data/downloads"
 # @TEMPFIX
 alias gpunb="gp -u origin $(git branch --show-current)"
 
-llr(){
+llr() {
 	# use CWD if no path specified
 	if [ -z $1 ]; then
 		DIRROOT="$(pwd)"
@@ -827,12 +808,12 @@ llr(){
 		DIRROOT="$1"
 	fi
 	#echo "ECHO TEST: ls -lR $DIRROOT | grep '^l' "
-	ls -lR $DIRROOT | grep '^l' 
-	
+	ls -lR $DIRROOT | grep '^l'
+
 }
 
 # recursive symlink lister
-llr(){
+llr() {
 	# use CWD if no path specified
 	if [ -z $1 ]; then
 		DIRROOT="$(pwd)"
@@ -840,102 +821,87 @@ llr(){
 		DIRROOT="$1"
 	fi
 	#echo "ECHO TEST: ls -lR $DIRROOT | grep '^l' "
-	ls -lR $DIRROOT | grep '^l' 
-	
+	ls -lR $DIRROOT | grep '^l'
+
 }
 export XDG_ASUS_HOME="/mnt/c/Users/zaccs/Desktop"
 alias jdesktoppersonal="cd /mnt/c/Users/zaccs/Desktop/Personal"
 alias ASUS_ZACCSOR_DESKTOP_PERSONAL="cd /mnt/c/Users/zaccs/Desktop/Personal"
 
-# SOURCE DOTFILES BASH COMPLETION SCRIPTS 
-bashcomps(){
-    COMP_DIR="$HOME/dotfiles/bash.d/completers"
+# SOURCE DOTFILES BASH COMPLETION SCRIPTS
+bashcomps() {
+	COMP_DIR="$HOME/dotfiles/bash.d/completers"
 
-    # ignore patterns for broken/experimental completion scripts
-    # need to add place holder pattern if no patterns are currently
-    # being ignored as temp. workaround
-    IGNORE_REGX="fallback"
+	# ignore patterns for broken/experimental completion scripts
+	# need to add place holder pattern if no patterns are currently
+	# being ignored as temp. workaround
+	IGNORE_REGX="fallback"
 
-    for x in $(find $COMP_DIR -type f); do
-        # skip sourcing if matches ignore regex
-        if [ $(echo $x | egrep -ci "$IGNORE_REGX") -ge 1 ]; then
-            continue
-        fi
-        source "$x"
-    done
+	for x in $(find $COMP_DIR -type f); do
+		# skip sourcing if matches ignore regex
+		if [ $(echo $x | egrep -ci "$IGNORE_REGX") -ge 1 ]; then
+			continue
+		fi
+		source "$x"
+	done
 }
 bashcomps
 
 # Source WSL configs if working on local machine
 if [[ "$HOSTNAME" = "DESKTOP-FPDD922" ]]; then
-    WSL_DOTFILES_HOME="$HOME/dotfiles/wsl"
-    for srcfile in $(find "$WSL_DOTFILES_HOME/lib" -type f -name '*.wsl'); do
-        source "$srcfile" || echo 'Error unable to source: ' "$srcfile" 
-    done
+	WSL_DOTFILES_HOME="$HOME/dotfiles/wsl"
+	for srcfile in $(find "$WSL_DOTFILES_HOME/lib" -type f -name '*.wsl'); do
+		source "$srcfile" || echo 'Error unable to source: ' "$srcfile"
+	done
 fi
 
 # on-the-fly sourcing for experimental bash configurations
-bashexpr(){
+bashexpr() {
 	# TODO - Improve logic to accept/source some but not all experimental
 	# configuration file FLAGS.
 	#
-	# Function accepts 1 (at the moment) CLI ARG, if given it 
+	# Function accepts 1 (at the moment) CLI ARG, if given it
 	# checks which experimental bashconfig matches flag and
-	# sources the file. Otherwise if no FLAG is given 
+	# sources the file. Otherwise if no FLAG is given
 	# all bashconfig experimental files are sourced.
 	#
 
 	BASHD_EXPERIMENTAL_HOME="$HOME/dotfiles/bash.d/lib/expr"
-	case $1 in 
-		a|alias)
-			# use bash if "source" returns error when calling after shell login initaliziation
-			#bash "$BASHD_EXPERIMENTAL_HOME/alias.bash"
-			source "$BASHD_EXPERIMENTAL_HOME/alias.bash"
-			echo "The experimental alias.bash has been successfully sourced"
-			;;
+	case $1 in
+	a | alias)
+		# use bash if "source" returns error when calling after shell login initaliziation
+		#bash "$BASHD_EXPERIMENTAL_HOME/alias.bash"
+		source "$BASHD_EXPERIMENTAL_HOME/alias.bash"
+		echo "The experimental alias.bash has been successfully sourced"
+		;;
 
-		f|funct|functs|function|F)
-			#bash "$BASHD_EXPERIMENTAL_HOME/functs.bash"
-			source "$BASHD_EXPERIMENTAL_HOME/functs.bash"
-			echo "The experimental functs.bash has been successfully sourced"
-			;;
+	f | funct | functs | function | F)
+		#bash "$BASHD_EXPERIMENTAL_HOME/functs.bash"
+		source "$BASHD_EXPERIMENTAL_HOME/functs.bash"
+		echo "The experimental functs.bash has been successfully sourced"
+		;;
 
-		e|export|exports|E)
-			#bash "$BASHD_EXPERIMENTAL_HOME/exports.bash"
-			source "$BASHD_EXPERIMENTAL_HOME/exports.bash"
-			echo "The experimental exports.bash has been successfully sourced"
-			;;
+	e | export | exports | E)
+		#bash "$BASHD_EXPERIMENTAL_HOME/exports.bash"
+		source "$BASHD_EXPERIMENTAL_HOME/exports.bash"
+		echo "The experimental exports.bash has been successfully sourced"
+		;;
 
-		p|prompt|P)
-			#bash "$BASHD_EXPERIMENTAL_HOME/prompt.bash"
-			source "$BASHD_EXPERIMENTAL_HOME/prompt.bash"
-			echo "The experimental prompt.bash has been successfully sourced"
-			;;
-		**)
-			for expr_file in $(find "$BASHD_EXPERIMENTAL_HOME" -type f); do 
-				source $expr_file
-			done
-			;;
+	p | prompt | P)
+		#bash "$BASHD_EXPERIMENTAL_HOME/prompt.bash"
+		source "$BASHD_EXPERIMENTAL_HOME/prompt.bash"
+		echo "The experimental prompt.bash has been successfully sourced"
+		;;
+	**)
+		for expr_file in $(find "$BASHD_EXPERIMENTAL_HOME" -type f); do
+			source $expr_file
+		done
+		;;
 	esac
 }
 
 # shellGPT setup
 source "$HOME/dotfiles/bash.d/lib/shellGPT_conf.bash"
 
-
-# run `add_key` expect script from secrets repo
-function add_ssh_key_pp {
-  # raise error if depedency dir/file missing
-  SECRETS_DIRPATH="$HOME/git/fortknox"
-	SECRETS_EXPECT_SCRIPT_PATH="$SECRETS_DIRPATH/bin/run_add_key"
-
-  if [[ ! -e "$SECRETS_EXPECT_SCRIPT_PATH" ]]; then 
-      echo "SECRET ~/git/fortknox repo does not exist, clone or git pull main to fix"
-      exit 0
-  fi
-
-	bash "$SECRETS_EXPECT_SCRIPT_PATH"
-  echo "SSH passphrase has been cached"
-}
-eval $(ssh-agent)
-add_ssh_key_pp
+# @NOTE: Uncomment below if ssh-add passphrase caching issues arise
+add_ssh_key_pp # must be called after sourcing rc.d/functions file

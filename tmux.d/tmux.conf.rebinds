@@ -3,14 +3,12 @@
 ## Add to tmux.conf before sourcing TPM
 ## RE: bind r source-file ~/.tmux.conf \; display "RELOADED TMUX-CONFIG..."
 
-## REBIND prefix `clock-mode` functionality
+## Rebind layout cycling to <Prefix-t> and rebind existing (clock-mode) binding to <Prefix-T>
 unbind t
-bind t source-file ~/.tmux.conf \; display "RELOADED TMUX-CONFIG..."
-bind C-t clock-mode
+#bind -r -T prefix t next-layout
+bind -r -T prefix t next-layout
+bind T clock-mode
 
-# rebind pane layout cycling to <Prefix><Ctrl-n> 
-# since <Space> will be overwritten by tmux_whichkey plugin
-bind -r -T prefix C-n next-layout
 
 ## exit copy mode alternate 
 ## og kb:  bind-key -T copy-mode-vi C-c send-keys -X cancel

@@ -318,19 +318,6 @@ alias gpu="git push -u origin"
 # SHELL-GPT configuration sourcing
 source "$HOME/dotfiles/zsh.d/custom/lib/shellGPT_conf.zsh"
 
-# automate ssh passphrase prompt input
-function add_ssh_key_pp {
 
-  SECRETS_DIRPATH="$HOME/git/fortknox"
-  SECRETS_EXPECT_SCRIPT_PATH="$SECRETS_DIRPATH/bin/run_add_key"
-
-  # raise error if depedency dir/file missing
-  if [[ ! -d "$SECRETS_DIRPATH" ]]; then 
-      echo "SECRET ~/git/fortknox repo does not exist, clone or git pull main to fix"
-      exit 0
-  fi
-  bash "$SECRETS_EXPECT_SCRIPT_PATH"
-  echo "SSH passphrase has been cached"
-}
-eval $(ssh-agent)
-add_ssh_key_pp
+# cache ssh-add passphrase when starting new shell session
+add_ssh_key_pp # must be called after sourcing rc.d/functions.rc file

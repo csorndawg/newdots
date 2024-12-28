@@ -318,6 +318,14 @@ alias gpu="git push -u origin"
 # SHELL-GPT configuration sourcing
 source "$HOME/dotfiles/zsh.d/custom/lib/shellGPT_conf.zsh"
 
+# cache ssh-add passphrase when new session starts up
+function add_ssh_pp {
 
-# cache ssh-add passphrase when starting new shell session
-add_ssh_key_pp # must be called after sourcing rc.d/functions.rc file
+	if [[ -z "$SSH_AGENT_PID" ]]; then 
+		#echo "" && echo "No active SSH_AGENT present"
+		eval $(ssh-agent) 1> /dev/null
+	fi
+	# add_ssh_key_pp defined in functions.rc, and must be called after its been sourced
+	add_ssh_key_pp
+}
+add_ssh_pp

@@ -8,6 +8,7 @@ nnoremap <Leader>w :write<CR>
 nnoremap <Leader>ww :write!<CR>
 nnoremap <Leader>x :q<CR>
 nnoremap <Leader>xx :q!<CR>
+nnoremap <C-x> :qa!<CR>
 "nnoremap <Leader>q :q<CR>
 
 "" Better Movement/Scrolling
@@ -156,3 +157,10 @@ nnoremap <Leader>t :vertical terminal<Cr>
 nnoremap <leader><leader>x :q!<cr>
 nnoremap <leader>p :set paste<cr>
 nnoremap <leader>pp :set nopaste<r>
+
+" bash/python bulk comment all selected text with <Leader>c
+vnoremap <Leader>c :s/^[0-z]/# &/<CR>
+
+"" bash/python bulk uncomment all selected commented text w/ <Leader>u
+vnoremap <silent> <Leader>u :s/^# //<CR>
+"vnoremap <silent> <Leader>cc :s/^# //<CR>

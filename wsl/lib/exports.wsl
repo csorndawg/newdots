@@ -1,8 +1,19 @@
 ## WSL SHELL EXPORTS (assumes BASH SHELL)
 
-export EDITOR="nvim"
+# set EDITOR to NVIM, otherwise use VIM as fallback
+if [[ $(which nvim | wc --chars) -le 0 ]]; then
+	export EDITOR="vim" 
+else
+		export EDITOR="nvim"
+fi
+
+## Pycharm Env. Variables
 export PYCHARM_HOME_DIR="/mnt/c/Users/zaccs/PycharmProjects"
 export PyCharmPath="/mnt/c/Users/zaccs/PycharmProjects/"
 export VENV_PYCHARM="/mnt/c/Users/zaccs/PycharmProjects/PythonProject2"
 export XDG_PYCHARM_HOME="/mnt/c/Users/zaccs/PycharmProjects/"
-export XDG_OBSIDIAN_HOME='/mnt/c/Users/zaccs/Documents/Obsidian-Vault'
+
+## Obsidian Env. Variables
+#export XDG_OBSIDIAN_HOME='/mnt/c/Users/zaccs/Documents/Obsidian-Vault'
+export XDG_OBSIDIAN_HOME="$HOME/git/obsiddy"
+export XDG_OBSIDIAN_WSL_HOME='/mnt/c/Users/zaccs/Documents/Obsidian-Vault'

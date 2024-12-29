@@ -313,7 +313,7 @@ qxs() {
 	#
 
 	## variables
-	SANDBOXES_HOME_DIR="$HOME/.local/var/temp/sandboxes"
+	SANDBOXES_HOME_DIR="$HOME/.local/var/sandboxes"
 	TEXTFILES_HOME_DIR="$HOME/git/kb2/quick/autostash" # diff location for written notes/docs
 
 	mkdir -p $SANDBOXES_HOME_DIR

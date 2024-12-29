@@ -69,11 +69,8 @@ qxs() {
 	#
 
 	## variables
-	SANDBOXES_HOME_DIR="$HOME/.local/var/temp/sandboxes"
+	SANDBOXES_HOME_DIR="$HOME/.local/var/sandboxes"
 	TEXTFILES_HOME_DIR="$HOME/git/kb2/quick/autostash" # diff location for written notes/docs
-
-	# set EDITOR to vim as fallback if DNE
-	#[ -z "$EDITOR" ] && EDITOR=vim
 
 	# scalably add/remove/modify variables dirpaths
 	VAR_LIST=($SANDBOXES_HOME_DIR $TEXTFILES_HOME_DIR)

@@ -1,5 +1,4 @@
 ## BASHRC env. variables
-#export VISUAL=nvim
 export python=python3
 #export VIMCONFIG="~/.config/nvim"
 #export VIMDATA="~/.local/share/nvim"
@@ -12,12 +11,17 @@ export XDG_BIN_HOME="$HOME/.local/bin"
 export XDG_VAR_HOME="$HOME/.local/var"
 
 export GH_USERNAME="csorndawg"
-export SANDBOXES_HOME_DIR="$HOME/.local/var/temp/sandboxes"
+export SANDBOXES_HOME_DIR="$HOME/.local/var/sandboxes"
 
 # set EDITOR to NVIM, otherwise use VIM as fallback
-export EDITOR="nvim" || export EDITOR="vim"
+if [[ $(which nvim | wc --chars) -le 0 ]]; then
+	export EDITOR="vim" 
+else
+	export EDITOR="nvim"
+fi
+#echo "EDITOR = $EDITOR"
 export ANSIBLE_LOCAL_HOME="$HOME/.ansible"
-export SANDBOXES_HOME_DIR="$HOME/.local/var/temp/sandboxes"
+export SANDBOXES_HOME_DIR="$HOME/.local/var/sandboxes"
 export LOCAL_CHEATLIB_HOME="$HOME/git/cheatbook"
 export LOCAL_DATAOPS_BIBLE_HOME="$HOME/git/dataops_bible"
 export LOCAL_SECRETS_HOME="$HOME/git/fortknox"

@@ -22,21 +22,14 @@ return {
 			{
 				-- NOTE: obsidian usage on WSL has dependency
 				-- on wsl-open (https://gitlab.com/4U6U57/wsl-open)
-				name = "WSL ASUS",
+				--name = "WSL ASUS",
+				name = "Version Control",
 
 				-- WSL Path
-				--path = "/mnt/c/Users/zaccs/Documents/Obsidian-Vault",
+				path = "/mnt/c/Users/zaccs/Documents/Obsidian-Vault/obsiddy",
 
-				-- WSL subdirs
-				--path = "/mnt/c/Users/zaccs/Documents/Obsidian-Vault/Clippings",
-				--path = "/mnt/c/Users/zaccs/Documents/Obsidian-Vault/Mobile",
-
-				-- Vault dedicated for nvim-created notes only
-				path = "/mnt/c/Users/zaccs/Documents/Obsidian-Vault/Nvim",
-				path = "/mnt/c/Users/zaccs/Documents/Obsidian-Vault/remotes_zzzz",
-				path = "~/git/obsiddy/remoteWork",
+				-- Git Repo/Version Controlled Path
 				path = "~/git/obsiddy",
-				path = "~/git/dataops_bible/obsiddy2",
 			},
 
 			-- Remote machine notes/workspace

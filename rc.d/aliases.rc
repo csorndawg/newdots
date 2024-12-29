@@ -146,7 +146,9 @@ alias gml="git merge @{-1}"     # merge last checkout branch
 alias gpf="git push --force "
 alias gp="git push "
 ### pull
-alias gpl="git pull "
+alias gpl="git pull"
+alias gplr="git pull --rebase"
+alias gplf="git pull --ff-only"
 ### rebase
 alias grb="git rebase "
 alias grbi="git rebase -i "

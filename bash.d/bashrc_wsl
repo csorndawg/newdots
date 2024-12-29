@@ -178,8 +178,6 @@ mk_artifact() {
 	echo rsync -azvh $TARG "$ART_DIR/$TARG_NAME_$TIMESTAMP"
 	rsync -azvh $TARG "$ART_DIR/$TARG_NAME_$TIMESTAMP"
 }
-export CRONLOGS_HOME="$HOME/.local/share/cron/logs"
-export EDITOR="vim"
 alias VO="source $HOME/.local/state/python/venvs/venv/bin/activate"
 alias cht='cht.sh'
 alias jc="jupyter console"
@@ -914,3 +912,6 @@ function add_ssh_pp {
 	add_ssh_key_pp
 }
 add_ssh_pp
+
+
+# @EXERIMENTAL

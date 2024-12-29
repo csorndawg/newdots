@@ -13,6 +13,11 @@ export XDG_TMP_HOME="$HOME/.local/tmp"
 export XDG_VAR_HOME="$HOME/.local/var"
 export XDG_VAR_TMP_HOME="$HOME/.local/var/tmp"
 
+# @DEPENDENCIES: XDG base/custom dir
+# XDG DEPENDENCIES/SUBDIRS
+export CRONTAB_LOGS_HOME="$XDG_VAR_HOME/log/cron"
+
+
 # local venvs
 export VENVS_HOME="$XDG_STATE_HOME/python/virtualEnvs"
 

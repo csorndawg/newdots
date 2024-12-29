@@ -25,11 +25,11 @@ return {
 				--name = "WSL ASUS",
 				name = "Version Control",
 
-				-- WSL Path
-				path = "/mnt/c/Users/zaccs/Documents/Obsidian-Vault/obsiddy",
-
 				-- Git Repo/Version Controlled Path
 				path = "~/git/obsiddy",
+
+				-- WSL Path
+				--path = "/mnt/c/Users/zaccs/Documents/Obsidian-Vault/obsiddy",
 			},
 
 			-- Remote machine notes/workspace

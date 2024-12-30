@@ -20,25 +20,9 @@ return {
 	opts = {
 		workspaces = {
 			{
-				-- NOTE: obsidian usage on WSL has dependency
-				-- on wsl-open (https://gitlab.com/4U6U57/wsl-open)
-				--name = "WSL ASUS",
-				name = "Version Control",
-
-				-- Git Repo/Version Controlled Path
+				name = "versionControl",
 				path = "~/git/obsiddy",
-
-				-- WSL Path
-				--path = "/mnt/c/Users/zaccs/Documents/Obsidian-Vault/obsiddy",
 			},
-
-			-- Remote machine notes/workspace
-			--			{
-			--				name = "remote-repo",
-			--				path = "~/git/dataops_bible/obsidian/remotes",
-			--			},
 		},
-
-		-- see below for full list of options 👇
 	},
 }

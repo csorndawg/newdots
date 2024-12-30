@@ -696,6 +696,7 @@ let g:ycm_key_list_previous_completion = ['<C-k>', '<A>', '<C-p>', '<Up>']
 
 " Always source 'autocomp' last to avoid accidentally overwriting
 source ~/dotfiles/vim.d/vim_lib/remaps.vim
+source ~/dotfiles/vim.d/vim_lib/plug.vim
 source ~/dotfiles/vim.d/vim_lib/plugg.vim
 
 " @IMPORTANT

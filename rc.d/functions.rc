@@ -485,7 +485,7 @@ fzz() {
 		# @NOTE: For now running default "bat" if present. Adding extra logic to pass various flags on
 		# the fly might be useful.
 		# Use LESS if BAT not available
-		if [[ ! -e "$(which bat)" ]]; then
+		if [[ "$(whereis bat | egrep -c 'bat\b')" -le 0 ]]; then
 			echo "BAT not installed on system, falling back to LESS"
 			less -R $(echo $SF_STR)
 		else

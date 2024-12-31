@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Bash Tab-Completion configuration setup for git aliases (git aliases from 
+# rc.d/aliases.rc and bash.d/aliases.bash)
+
+# alias gco="git checkout" tab completion
+__git_complete gco _git_checkout

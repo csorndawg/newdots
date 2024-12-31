@@ -888,3 +888,12 @@ add_ssh_pp
 source "$HOME/dotfiles/config.d/fzf/fzf.config"
 
 # @EXERIMENTAL
+
+## @TODO: Expand on basic git checkoutexample
+## Bash Tab-Completion for custom aliases, functions, and (possibly??) scripts
+
+# git aliases that have tab-completion awareness
+source "$HOME/dotfiles/bash.d/lib/completions/custom/aliases/git.comp"
+
+# custom bash function w/ tab-completion awareness (stricly example)
+source "$HOME/dotfiles/bash.d/lib/completions/custom/functs/customFunctionSample.comp"

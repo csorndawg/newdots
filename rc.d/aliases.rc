@@ -153,6 +153,7 @@ alias gplf="git pull --ff-only"
 alias grb="git rebase "
 alias grbi="git rebase -i "
 alias grbsq="git rebase -i --autosquash"
+alias grbm="git rebase main"
 ### restore
 alias grs="git restore "
 alias grss="git restore --staged "
@@ -194,7 +195,11 @@ alias tl="task list"
 ## misc.
 alias fdh="fd -H"
 alias fdi="fd -I"
+alias fde="fd -e"
 alias fdhi="fd -HI"
+alias fdcw="fd --changed-within"
+alias fdcb="fd --changed-before"
+
 alias rgp="rg -p"
 alias rgc="rg -c"
 alias rg_bare="rg -NI"  # --no-line-number --no-filename
@@ -217,6 +222,7 @@ alias gg="cd $HOME/git/GYM"
 alias VO="source $HOME/.local/state/python/venvs/venv/bin/activate" 
 alias VO_SGPT="source $HOME/.shellGPT/shellGPT_venv/bin/activate"
 alias XARGS='/usr/bin/xargs'
+alias xargss='/usr/bin/xargs'
 alias xargs=xargs -I "{}"'
 alias xa=xargs -I "{}"'
 
@@ -232,11 +238,6 @@ alias fzf_rm="git branch -v | fzf -m -1 | xargs git rm"
 # POTENTIAL GIT ALIASES
 #gd "$(git branch --show-current)" "origin/$(git branch --show-current)"
 #gd --stat"$(git branch --show-current)" "origin/$(git branch --show-current)"
-
-# kickstart-modular alias/concurrent configs
-alias kickstart-nvim='NVIM_APPNAME="kickstart-nvim" nvim'
-alias kvim='NVIM_APPNAME="kickstart-nvim" nvim'
-alias gpu="git push -u origin"
 
 # git repo folder jumping
 alias dob="cd $HOME/git/dataops_bible"

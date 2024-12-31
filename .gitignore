@@ -162,7 +162,3 @@ artifacts**
 
 !ideas.d/
 .tests/
-
-# ignore all config.d symlinks, actually config files will be written to a 
-# config.d/directory with the apps name (e.g. config.d/bat for bat)
-config.d/*.*

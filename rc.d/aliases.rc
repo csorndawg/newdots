@@ -153,6 +153,7 @@ alias gplf="git pull --ff-only"
 alias grb="git rebase "
 alias grbi="git rebase -i "
 alias grbsq="git rebase -i --autosquash"
+alias grbm="git rebase main"
 ### restore
 alias grs="git restore "
 alias grss="git restore --staged "

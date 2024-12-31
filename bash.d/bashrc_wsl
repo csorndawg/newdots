@@ -763,37 +763,6 @@ export FZF_DEFAULT_OPTS="
   --color=marker:#a3be8b,spinner:#b48dac,header:#a3be8b"
 export WINHOME="/mnt/c/Users/zaccs/"
 
-## @FIXME
-## pycharm ssh - only run if on local machine
-#if [[ "$(echo $HOSTNAME | egrep -ci 'DESKTOP')" -ge 1 ]]; then
-#	if [ -z "$SSH_AUTH_SOCK" ]; then
-#	    # Check for a currently running instance of the agent
-#	    RUNNING_AGENT="`ps -ax | grep 'ssh-agent -s' | grep -v grep | wc -l | tr -d '[:space:]'`"
-#	    if [ "$RUNNING_AGENT" = "0" ]; then
-#		# Launch a new instance of the agent
-#        echo '# test below:'
-#		ssh-agent -s  | tee $HOME/.ssh/ssh-agent 2>/dev/null
-#	    fi
-#	    eval `cat $HOME/.ssh/ssh-agent 2> /dev/null` > /dev/null
-#	    ssh-add $HOME/.ssh/id_rsa 1> /dev/null
-#	fi
-#fi
-
-#alias sshCachePP="eval $(ssh-agent) && ssh-add $HOME/.ssh/id_rsa"
-sshCachePP() {
-	eval $(ssh-agent) && ssh-add "$HOME/.ssh/id_rsa"
-}
-
-## Add Git branch info to BASH prompt (source: https://bash-prompt-generator.org/)
-#PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'; PS1='\n\[\e[38;5;115m\]\u@\h\n\[\e[38;5;152m\]\w\[\e[0m\]  \[\e[38;5;223;3m\]${PS1_CMD1}\[\e[0m\]  \n \[\e[38;5;139;3m\]>\[\e[0m\] '
-
-## XDG Exports
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_STATE_HOME="$HOME/.local/state"
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_BIN_HOME="$HOME/.local/bin"
-export XDG_DOWNLOADS_HOME="$HOME/.local/var/data/downloads"
 
 # @TEMPFIX
 alias gpunb="gp -u origin $(git branch --show-current)"
@@ -901,6 +870,7 @@ bashexpr() {
 # shellGPT setup
 source "$HOME/dotfiles/bash.d/lib/shellGPT_conf.bash"
 
+## @IMPORTANT: DO NOT REMOVE
 # cache ssh-add passphrase when new session starts up
 function add_ssh_pp {
 
@@ -913,5 +883,8 @@ function add_ssh_pp {
 }
 add_ssh_pp
 
+
+## DOTFILE CONFIG.D FILES
+source "$HOME/dotfiles/config.d/fzf/fzf.config"
 
 # @EXERIMENTAL

@@ -40,6 +40,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui' "Optional
+Plug 'kristijanhusak/vim-dadbod-completion'
 
 "Plug 'ycm-core/YouCompleteMe'
 "Plug 'neanias/everforest-nvim'

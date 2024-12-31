@@ -139,3 +139,12 @@ let g:which_key_map['_'] = { 'name': 'which_key_ignore' }
 "        \ 'i' : ['spacevim#lang#util#Implementation()' , 'implementation']  ,
 "        \ },
 "call which_key#register('<Space>', '"g:which_key_map")
+
+
+"" ------------------------------------------------
+"" vim-dadbod
+"" ------------------------------------------------
+let g:vim_dadbod_completion_lowercase_keywords = 1
+
+" Built in omnifunc completion
+autocmd FileType sql setlocal omnifunc=vim_dadbod_completion#omni

@@ -1,0 +1,69 @@
+# NOTE: Add `-HI` flags to ignore any of the below ignore patterns
+
+# File Ignore Patterns
+'*.bak'
+'*.syml'
+'*.fig'
+'*.diff'
+'*.patch'
+'*.swp'
+'*.zip'
+'*.tar.gz'
+'*.gig'
+'*.ztmp'
+*.bak
+*.gho
+*.ori
+*.orig
+*.tmp
+*.orig
+*.rej
+# Word temporary
+~$*.doc*
+
+# Word Auto Backup File
+Backup of *.doc*
+
+# Excel temporary
+~$*.xls*
+
+# Excel Backup File
+*.xlk
+
+# PowerPoint temporary
+~$*.ppt*
+
+# Visio autosave temporary files
+*.~vsd*
+# Path Ignore Patterns
+# Ignore all files with "venv" in their path
+**/venv/**
+
+# Ignore all files in the "go/pkg/" directory
+**/go/pkg/**
+
+# Ignore all files with ".IgnoreMe" in their path
+**/.IgnoreMe/**
+
+# Ignore all files ending with ".fig"
+*.fig
+
+# Ignore all files with specific directories in their path
+**/node_modules/**
+**/undodir/**
+**/.ztmp/**
+**/.cache/**
+**/plugged/**
+
+
+
+# @NOTE: Need to review/test. End goal is to have FD ignore ".git/(logs|refs|obj)" subfolders, but still show things like ".git/hooks" by default
+# Ignore Git Repo clutter
+#"\.git.(logs|refs|obj)"
+**/.git/logs/
+**/.git/refs/
+**/.git/obj**
+
+
+# GitIgnore Templates CopyPasta
+

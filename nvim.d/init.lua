@@ -53,3 +53,6 @@ require("extra.custom_luasnips")
 -- experimental post-install configurations
 require("extra.experimental")
 require("extra.lint")
+
+-- @TESTME: testing
+require("extra/obsidian")

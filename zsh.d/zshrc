@@ -182,23 +182,9 @@ zsh_custom_patches > /dev/null 2>&1
 # zsh
 #zsh_custom_configs  #> /dev/null 2>&1
 
-## @TODO: cleanup and consolidate into function or submodule
-## ONEOFF SOURCING FILES
-#echo source "$HOME/dotfiles/utils.d/symlink_helper.sh"
-#source "$HOME/dotfiles/utils.d/symlink_helper.sh"
 
-# source fzf shell script
-if [[  $(echo "$SHELL"  | egrep zsh -ci) -ge 1 ]]; then
-  echo "ZSH shell"
-  source "$HOME/.fzf.zsh" 2> /dev/null
-else
-  echo "BASH shell"
-  source "$HOME/.fzf.bash" 2> /dev/null
-fi
-
-## fzf 
-# @FIXNEEDED: shell flag tab-completion broken, key bindings for history 
-# @TEMPFIX: run "ff" function to manually resource FZF files
+## @FIXME: Fix FZF key bindings/completion in ZSH shell. Error seems to be
+# caused by "wrapscan" issue, but more debugging needed.
 ff(){
 
     # increase timeout (default 1s) for chained key binds
@@ -208,10 +194,6 @@ ff(){
     # sources:
     #   - fzf-git:  https://github.com/junegunn/fzf-git.sh
     #   - completions: /usr/share/zsh/site-functions/fzf
-
-    ## below only needed if using centOS 
-    #source /usr/share/fzf/shell/key-bindings.zsh
-    #source $XDG_BIN_HOME/fzf_completion.zsh
 
     # if not using CentOS just source FZF repo shell scripts directly
     source "$HOME/dotfiles/utils.d/fzf-completion.zsh"
@@ -234,6 +216,7 @@ ff(){
     bindkey -r "^G" 
     bindkey "^[e" list-expand
 }
+ff
 
 ## ZSH kube prompt plugin
 #echo "PROMPT:  $PROMPT" | tee $HOME/.local/var/zsh_pure_patched_prompt.out
@@ -269,10 +252,6 @@ autoload -Uz compinit && compinit
 complete -C '$HOME/.local/bin/aws_completer' aws
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh 2>/dev/null
 
-# kickstart-modular alias/concurrent configs
-alias kickstart-nvim='NVIM_APPNAME="kickstart-nvim" nvim'
-alias kvim='NVIM_APPNAME="kickstart-nvim" nvim'
-
 # adhoc
 alias XARGS='/usr/bin/xargs'
 alias xargs='xargs -I "{}"'
@@ -290,30 +269,6 @@ bindkey "^[a" beginning-of-line     # <ALT-a:> keybind
 #source <(kubectl completion zsh)
 # Set the kubectl completion code for zsh[1] to autoload on startup
 #kubectl completion zsh > "${fpath[1]}/_kubectl"
-
-
-
-# @BROKEN
-# Add extra keybind (<Ctrl-v> '^V') for EDITOR oneline session enabler
-#autoload edit-command-line; zle -N edit-command-line
-#bindkey '^V' edit-command-line
-
-
-## @BROKEN
-###  codi.vim
-## Codi
-## Usage: codi [filetype] [filename]
-#codi() {
-#  local syntax="${1:-python}"
-#  shift
-#  vim -c \
-#    "let g:startify_disable_at_vimenter = 1 |\
-#    set bt=nofile ls=0 noru nonu nornu |\
-#    hi ColorColumn ctermbg=NONE |\
-#    hi VertSplit ctermbg=NONE |\
-#    hi NonText ctermfg=0 |\
-#    Codi $syntax" "$@"
-#}
 
 alias gmnf="git merge --no-ff"
 alias gmn="git merge --no-ff"

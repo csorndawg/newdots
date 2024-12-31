@@ -1,0 +1,57 @@
+---
+# https://github.com/cheat/cheatsheets
+
+## cheat tool configuration
+# @TODO - revert back to 'nvim' after rebuilding nvim.d v2
+#editor: nvim   
+editor: vim
+colorize: false
+style: nord
+formatter: terminal256
+# TODO: check if bat can be used
+pager: less   
+
+## CHEAT cheatpaths 
+cheatpaths:
+  # Cheatpath properties mean the following:
+  #   'name': the name of the cheatpath (view with 'cheat -d', filter with 'cheat -p')
+  #   'path': the filesystem path of the cheatsheet directory (view with 'cheat -d')
+  #   'tags': tags that should be automatically applied to sheets on this path
+  #   'readonly': shall user-created ('cheat -e') cheatsheets be saved here?
+  - name: community
+    path: /home/shelby-sensation/.config/cheat/cheatsheets/community
+    tags: [ community ]
+    readonly: true
+
+  ############################
+  ## Personal Cheat Dirs 
+  ############################
+
+  ## VERSION CONTROLLED 
+
+  # for new and current cheatfiles, feeds into pristine 
+  - name: work
+    path: /home/shelby-sensation/.cheatlib/tools/cheat/cheatfiles/work
+    tags: [ personal, work ]
+    readonly: false
+
+  # cleaned up "work" cheatfiles
+  - name: pristine
+    path: /home/shelby-sensation/.cheatlib/tools/cheat/cheatfiles/pristine
+    tags: [ readonly personal ]
+    readonly: true
+
+
+  # for special cases that dont follow "cheat" syntax/formatting
+  - name: misc
+    path: /home/shelby-sensation/.cheatlib/tools/cheat/cheatfiles/misc
+    tags: [ personal, misc ]
+    readonly: false
+
+  ## UNTRACKED 
+  # catch-all folder for things like stashing broken cheat 
+  # comamnds, partially completed cheatfiles, etc.
+  - name: quick
+    path: /home/shelby-sensation/.cheatlib/tools/cheat/cheatfiles/quick
+    tags: [ personal, quick ]
+    readonly: false

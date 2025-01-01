@@ -6,6 +6,9 @@
 # `apt install` version < required version, so FZF binary will be 
 # installed from GIT and moved to $PATHs $LOCAL_BIN folder.
 
+# @TODO: Add logic to `apt remove` existing FZF binaries or any 
+# LOCAL_BIN fzf binaries or symlinks before reinstalling
+
 # Exit script on any error
 set -e
 

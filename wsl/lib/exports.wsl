@@ -15,3 +15,10 @@ export WSL_VENV_PYCHARM="/mnt/c/Users/zaccs/PycharmProjects/PythonProject2"
 #export XDG_OBSIDIAN_HOME='/mnt/c/Users/zaccs/Documents/Obsidian-Vault'
 export XDG_OBSIDIAN_HOME="$HOME/git/obsiddy"
 export WSL_OBSIDIAN_HOME='/mnt/c/Users/zaccs/Documents/Obsidian-Vault'
+
+export ASUS_DOWNLOADS_HOME="/mnt/c/Users/zaccs/Downloads"
+export ASUS_DOWNLOADS_CHROME="/mnt/c/Users/zaccs/Downloads/chrome/zaccsorny"
+export ASUS_DESKTOP_ZACCS="/mnt/c/Users/zaccs/Desktop"
+
+# home/base directory for all cloud mounts
+export WSL_CLOUD_MNT_HOME="/mnt/Cloud"

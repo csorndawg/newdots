@@ -164,8 +164,9 @@ alias gss="git status -s"
 alias gst="git stash"
 alias gsta="git stash apply "
 alias gstl="git stash list"
-alias gstp="git stash push -m"
-alias gstpu="git stash push -u -m"
+alias gstp="git stash push"
+alias gstpm="git stash push -m "
+alias gstpu="git stash push -u -m "
 alias gsts="git stash show -p "
 
 
@@ -181,11 +182,6 @@ alias h30="head -n30"
 alias hist10="history | tail -n 10"
 alias hist30="history | tail -n 30"
 
-
-## view custom shell scripts/functions/completions on the fly
-alias help_fzf="bat $HOME/dotfiles/rc.d/fzf.rc"
-alias help_rc_functs="bat $HOME/dotfiles/rc.d/functions.rc"
-alias gw="cd $HOME/git"
 
 ## taskwarrior
 alias t="task"
@@ -203,7 +199,7 @@ alias fdcb="fd --changed-before"
 alias rgp="rg -p"
 alias rgc="rg -c"
 alias rg_bare="rg -NI"  # --no-line-number --no-filename
-alias debuggy_on="activate $HOME/.venv/bin/activate"
+
 
 ## pomodoro 
 alias pt="pomodoro"
@@ -228,11 +224,11 @@ alias xa=xargs -I "{}"'
 
 
 # GIT x FZF ALIASES
-fzf_gco="git branch -v | fzf  | xargs git checkout"
-alias fzf_gd="git branch -v | fzf  | xargs git diff"
-alias fzf_gds="git branch -v | fzf  | xargs git diff --stat"
-alias fzf_gdp="git branch -v | fzf  | xargs git diff --patch {} | tee $HOME/.temp/patchfiles/{}.patch"
-alias fzf_rm="git branch -v | fzf -m -1 | xargs git rm"
+alias fz_gco="git branch -v | fzf  | xargs git checkout"
+alias fz_gd="git branch -v | fzf  | xargs git diff"
+alias fz_gds="git branch -v | fzf  | xargs git diff --stat"
+alias fz_gdp="git branch -v | fzf  | xargs git diff --patch {} | tee $HOME/.temp/patchfiles/{}.patch"
+alias fz_rm="git branch -v | fzf -m -1 | xargs git rm"
 
 
 # POTENTIAL GIT ALIASES
@@ -244,6 +240,10 @@ alias dob="cd $HOME/git/dataops_bible"
 alias gwh="cd $HOME/git"
 alias dot="cd $HOME/git/newdots"
 alias zxp="cd $HOME/git/zxp"
+alias obb="cd $HOME/git/obsiddy"
+alias clb="cd $HOME/git/cheatbook"
+alias twa="cd $HOME/git/taskwarra"
+alias fkx="cd $HOME/git/fortknox"
 
 # terminal json formatter
 alias prettyjson='python -m json.tool'

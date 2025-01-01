@@ -32,9 +32,8 @@ _my_custom_completion_git_diff_aliases() {
     done
 
     GBLA="$(git branch -la | awk -F '\t' '{print $NF}')"
+    GBLA="${GBLA[@]}"   # compile each list element into single "space delimited" string
     # expand git branch list in `compgen -W "<GBLA>"`  ## prob need more debugging
     COMPREPLY=($(compgen -W "$(GBLA)" -- "${COMP_WORDS[1]}"))
 }
-complete -F _my_custom_completion gd
-
-
+complete -F _my_custom_completion_git_diff_aliases  gd

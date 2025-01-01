@@ -392,7 +392,7 @@ function current_repository() {
 
 ### Warn if the current branch is a WIP
 function work_in_progress() {
-	if $(git log -n 1 2>/dev/null | grep -q -c "\-\-wip\-\-"); then
+	if $(git log -n 1 | grep -q -c "\-\-wip\-\-"); then
 		_omb_util_print "WIP!!"
 	fi
 }
@@ -766,7 +766,7 @@ export WINHOME="/mnt/c/Users/zaccs/"
 
 
 # @TEMPFIX
-alias gpunb="gp -u origin $(git branch --show-current)"
+alias gpunb="gp -u origin $(git branch --show-current 2> /dev/null)"
 
 llr() {
 	# use CWD if no path specified
@@ -793,8 +793,7 @@ llr() {
 
 }
 export XDG_ASUS_HOME="/mnt/c/Users/zaccs/Desktop"
-alias jdesktoppersonal="cd /mnt/c/Users/zaccs/Desktop/Personal"
-alias ASUS_ZACCSOR_DESKTOP_PERSONAL="cd /mnt/c/Users/zaccs/Desktop/Personal"
+alias dsktp="cd /mnt/c/Users/zaccs/Desktop/Personal"
 
 # SOURCE DOTFILES BASH COMPLETION SCRIPTS
 bashcomps() {

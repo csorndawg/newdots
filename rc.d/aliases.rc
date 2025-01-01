@@ -76,6 +76,7 @@ alias tmstb="tmux set-buffer"
 
 
 ## GIT ALIASES 
+
 alias g="git"
 alias o="origin"
 ### add
@@ -169,6 +170,53 @@ alias gstpm="git stash push -m "
 alias gstpu="git stash push -u -m "
 alias gsts="git stash show -p "
 
+## @TODO: Refactor below "git aliases" with above "git aliases"
+## BASH.D GIT ALIASES COPYPASTA 
+
+alias gc="git commit"
+alias gca="git commit --amend"
+alias gcm="git commit -m "
+alias gpu="git push -u origin"
+alias glg="git log --graph --pretty --abbrev-commit"
+alias glgg="git log"
+alias grs="git restore"
+alias grss="git restore --staged"
+alias gs="git status"
+alias ga="git add"
+alias gaa="git add ."
+alias gad="git add --dry-run"
+alias gco="git checkout"
+alias gst="git stash"
+alias gsts="git stash --show"
+alias gstd="git stash --show --patch"
+alias gsta="git stash --apply"
+alias gstp="git stash --push --message"
+alias gstpp="git stash --push"
+alias grb="git rebase "
+alias gm="git merge"
+alias gcmn="git checkout main"
+alias gbl="git branch --list"
+alias gbla="git branch --list --all"
+alias gbc="git branch --show-current"
+alias grm="git remove"
+alias gpf="git push -f"
+alias gp="git push"
+#alias gpu="git push -u origin $(git branch --show-current)"
+alias gpu="git push -u origin"
+alias grbi="git rebase --interactive"
+
+# page/peak when status too long for terminal
+alias gsh="git status | head -n25"
+alias gsp="git status | less -RiXj5"
+
+alias gcb="git checkout -b"
+alias gpl="git pull"
+alias gd="git diff"
+alias gds="git diff --stat"
+alias gdo="git diff origin"
+alias gdos="git diff origin --stat"
+alias gdm="git diff origin/main main"
+alias gdms="git diff origin/main main --stat"
 
 
 ## miscellaneous 

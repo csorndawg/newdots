@@ -26,7 +26,9 @@ function smart_bashrc_symlink {
 
 	# symlink
 	l)
-		echo "Bashrc symlink exists, and will not be overwritten"
+		#echo "Bashrc symlink exists, and will not be overwritten"
+		echo ln -sfr "$HOME/dotfiles/bash.d/bashrc_wsl" "$BASHRC_PATH_ARG"
+		ln -sfr "$HOME/dotfiles/bash.d/bashrc_wsl" "$BASHRC_PATH_ARG"
 		;;
 
 	# file
@@ -52,7 +54,12 @@ function smart_bashrc_symlink {
 # check if file or symlink exists for BASHRC
 if [[ -L "$BASHRC_PATH" ]] || [[ -f "$BASHRC_PATH" ]]; then
 	echo "BASHRC exists on system as a file or symlink"
-	smart_bashrc_symlink $BASHRC_PATH
-	echo ""
-	echo "Done with bashrc symlinks"
+	smart_bashrc_symlink $BASHRC_PATH 1> /dev/null
+	echo "" && 	echo "Done with bashrc symlinks"
+else
+    echo "$BASHRC_PATH does not exist on machine. Creating symlink to dotfiles bashrc file"
+    #echo ln -srf "$BASHRC_PATH" "$HOME/.bashrc"
+    ln -srf "$HOME/git/newdots/bash.d/bashrc_wsl" "$HOME/.bashrc"
+    echo "Succesfully created symlink"
 fi
+#echo "Bash symlinks successfully created or already exist"

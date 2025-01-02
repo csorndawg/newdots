@@ -32,7 +32,7 @@ function fzf_remover {
 	fi
 
 	# 2> /dev/null omits apt CLI warning
-	if [ $(sudo apt list --installed 2>&1 /dev/null | egrep -c "\bfzf\b") -ge 1 ]; then
+	if [ $(sudo apt list --installed 2> /dev/null | egrep -c "\bfzf\b") -ge 1 ]; then
 		echo "Removing 'apt' installed FZF binary"
 		sudo apt remove fzf
 		echo "Removed 'apt' installed FZF binary"
@@ -53,7 +53,7 @@ function chk_fzf_version {
 			echo "RELEASE_V: $RELEASE_V"
 			echo "Existing FZF version $FZF_VERSION does not meet version requirements"
 			echo "Existing FZF version will be removed and updated to a version >= 0.48.0"
-			fzf_remover
+			fzf_remover 2> /dev/null
 			echo "Succesfully removed existing FZF binary"
 			echo "" && echo "Starting FZF download"
 			fzf_dwnldr
@@ -103,7 +103,7 @@ function fzf_dwnldr {
 if [ $(which fzf | wc -c) -gt 1 ]; then
 	echo "Existing FZF binary found"
 	echo "Checking if version is sufficient"
-	echo "Running chk_fzf_version"
+	#echo "Running chk_fzf_version"
 	chk_fzf_version 
 else
 	echo "No FZF binary exists"

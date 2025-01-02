@@ -30,7 +30,7 @@ function helper_bat {
 function external_binaries_setup {
 
 	# define dependencies binaries
-	EXTERNAL_DEPENDENCIES_LIST=(tree bat xclip fd)
+	EXTERNAL_DEPENDENCIES_LIST=(jq tree bat xclip fd)
 
 	echo "" && echo "Checking external dependencies"
 	for dpnd in ${EXTERNAL_DEPENDENCIES_LIST[@]}; do
@@ -65,9 +65,13 @@ function external_binaries_setup {
 	echo "" && echo "All external dependencies installed"
 }
 
+
 ## ==================================
 ## MAIN
 ## ==================================
 
 # install external binary dependencies
 external_binaries_setup 1> /dev/null || echo "Issue occurred during FZF dependency setup"
+
+# FZF version >= 0.48  dependency handling
+bash "$HOME/dotfiles/utils.d/helpers/fzf_version_dependency_installer.sh" #2>&1 /dev/null

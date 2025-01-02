@@ -884,4 +884,4 @@ function add_ssh_pp {
 add_ssh_pp
 
 ## DOTFILE CONFIG.D FILES
-source "$HOME/dotfiles/config.d/fzf/fzf.config"
+source "$HOME/dotfiles/config.d/fzf/fzf.config" 2&>1 /dev/null

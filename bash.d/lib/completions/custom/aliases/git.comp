@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+
+# Bash Tab-Completion configuration setup for git aliases (git aliases from 
+# rc.d/aliases.rc and bash.d/aliases.bash)
+
+# alias gco="git checkout" tab completion
+__git_complete gco _git_checkout
+__git_complete gc1 _git_checkout
+
+
+## GIT BRANCH
+
+#alias gb="git branch"          # list branches that match glob-
+#alias gbl="git branch --list "          # list branches that match glob-
+#alias gbc="git branch --contains "      # like -l except for commits
+#alias gba="git branch -a"               # list all branchs
+#alias gbr="git branch -r"               # list remote branchs
+#alias gbshw="git branch --show-current"---
+#alias gbm="git branch --merged"         # list all branches merged into CURRENT branch
+#alias gbnm="git branch --no-merged"     # list all branches not merged into CURRENT branch
+#alias gbsmr="git branch --sort=-committerdate"   # sort newest -> oldest
+#alias gbslr="git branch --sort=committerdate"   # sort oldest -> newest
+
+
+# Git Branch Alias Test
+__git_complete gb _git_branch
+
+
+
+### GIT STASH
+#alias gb="git branch"          # list branches that match glob-
+#alias gbl="git branch --list "          # list branches that match glob-
+#alias gbc="git branch --contains "      # like -l except for commits
+#alias gba="git branch -a"               # list all branchs
+#alias gbr="git branch -r"               # list remote branchs
+#alias gbshw="git branch --show-current"---
+#alias gbm="git branch --merged"         # list all branches merged into CURRENT branch
+#alias gbnm="git branch --no-merged"     # list all branches not merged into CURRENT branch
+#alias gbsmr="git branch --sort=-committerdate"   # sort newest -> oldest
+#alias gbslr="git branch --sort=committerdate"   # sort oldest -> newest
+
+__git_complete gst _git_stash
+
+
+
+# REST OF GIT COMMANDS BASE COMMAND ALIASES (eg. 'gco' for git checkout)
+
+## Git Commit
+__git_complete gc _git_commit
+
+## Git Rebase
+__git_complete grb _git_rebase
+
+
+# REST OF GIT BASE COMMANDS (STILL WIP)
+__git_complete gm _git_merge
+__git_complete gd _git_diff
+
+
+## Git Move
+__git_complete gmv _git_diff
+__git_complete gap _git_apply
+__git_complete gwt _git_worktree
+__git_complete grfl _git_reflog
+__git_complete grm _git_rm
+__git_complete ga _git_add
+__git_complete gst _git_stash
+__git_complete gshw _git_show
+__git_complete gm _git_merge

@@ -148,3 +148,10 @@ let g:vim_dadbod_completion_lowercase_keywords = 1
 
 " Built in omnifunc completion
 autocmd FileType sql setlocal omnifunc=vim_dadbod_completion#omni
+
+
+" @FIXME: Remove unused location from below after testing.
+" *** DO NOT COMMIT CONNECTIONS FILES THEMSELVES TO VERSION CONTROL ***
+" default location for saved DBUI connections  
+let g:db_ui_save_location=expand("$HOME") . "/git/fortknox/creds/dbui/vim"
+let g.db_ui_save_location = "~/git/dataops_bible/runbooks/databases/dbui_queries/vim"

@@ -26,6 +26,12 @@ nnoremap <S-h> :bp<Cr>
 nnoremap <leader>bd :bd<Cr>
 
 "  tmux-like commands for better window navigation remaps (change to mirror tmux)
+"nnoremap <C-h> <C-w>h      
+"nnoremap <C-j> <C-w>j      
+"nnoremap <C-k> <C-w>k      
+"nnoremap <C-l> <C-w>l      
+
+" change from nnoremap to "map" so mapping works in insert, visual and cmd mode as well
 nnoremap <C-h> <C-w>h      
 nnoremap <C-j> <C-w>j      
 nnoremap <C-k> <C-w>k      

@@ -101,7 +101,7 @@ node_modules/**
 **/.git/refs/
 **/.git/obj**
 
-# Custom Ignore patterns
+## Custom Ignore patterns
 **/undo/**
 **/undodir/**
 **/.tmp/**
@@ -112,3 +112,10 @@ node_modules/**
 **/.patches/**
 **/.tmux/plugins/**
 **/jupyter/runtime/**
+
+# XDG_DATA_HOME patterns
+**/lazy/**
+**/mason/**
+**/ycm-core/**
+**/spotify/**
+**/gem**

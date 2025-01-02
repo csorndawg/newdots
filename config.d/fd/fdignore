@@ -1,68 +1,114 @@
 # NOTE: Add `-HI` flags to ignore any of the below ignore patterns
 
-# File Ignore Patterns
-'*.bak'
-'*.syml'
-'*.fig'
-'*.diff'
-'*.patch'
-'*.swp'
-'*.zip'
-'*.tar.gz'
-'*.gig'
-'*.ztmp'
-*.bak
-*.gho
-*.ori
-*.orig
-*.tmp
-*.orig
-*.rej
+# ========================================
+#   File Ignore Patterns
+# ========================================
+
+**.bak
+**.bk
+**.diff
+**.doc
+**.docx
+**.fig
+**.gho
+**.gig
+**.ignore
+**.ipynb
+**.jpeg
+**.jpg
+**.lnk
+**.lock
+**.mp3
+**.mp4
+**.ori
+**.orig
+**.orig
+**.patch
+**.pdf
+**.png
+**.rej
+**.swp
+**.syml
+**.tar.gz
+**.tmp
+**.xlk
+**.xls
+**.xlsx
+**.zip
+**.ztmp
+**/CHANGELOG
+**/CHANGELOG.**
+**:Zone.Identifier
+
+# License UK spelling
+**/LICENSE
+**/LICENSE.**
+**/license
+**/license.**
+
+# License US spelling  US/UK versions
+**/LICENCE
+**/LICENCE.**
+**/licence
+**/licence.**
+
+
+
 # Word temporary
-~$*.doc*
+#~$*.doc*
 
 # Word Auto Backup File
-Backup of *.doc*
+#Backup of *.doc*
 
 # Excel temporary
-~$*.xls*
+#~$*.xls*
 
 # Excel Backup File
-*.xlk
+#*.xlk
 
 # PowerPoint temporary
-~$*.ppt*
+#~$*.ppt*
 
 # Visio autosave temporary files
-*.~vsd*
-# Path Ignore Patterns
-# Ignore all files with "venv" in their path
-**/venv/**
+#*.~vsd*
 
-# Ignore all files in the "go/pkg/" directory
+# ========================================
+#   Path Ignore Patterns
+# ========================================
+
+# GITIGNORE.IO patterns
+
+# Python: ignore all files with "venv" in their path
+**/venv/**
+**/.venv/**
+**/**_venv/**
+
+# Go: ignore all files in the "go/pkg/" directory
 **/go/pkg/**
 
-# Ignore all files with ".IgnoreMe" in their path
-**/.IgnoreMe/**
-
-# Ignore all files ending with ".fig"
-*.fig
-
-# Ignore all files with specific directories in their path
+# Node: ignore all npm/node_modules files
 **/node_modules/**
-**/undodir/**
-**/.ztmp/**
-**/.cache/**
-**/plugged/**
+node_modules/**
+.npm/**
+**/.npm/**
 
-
-
-# @NOTE: Need to review/test. End goal is to have FD ignore ".git/(logs|refs|obj)" subfolders, but still show things like ".git/hooks" by default
+# @NOTE: Need to review/test. End goal is to have FD ignore 
+# ".git/(logs|refs|obj)" subfolders, but still show
+# things like ".git/hooks" by default
+#
 # Ignore Git Repo clutter
-#"\.git.(logs|refs|obj)"
 **/.git/logs/
 **/.git/refs/
 **/.git/obj**
 
-
-# GitIgnore Templates CopyPasta
+# Custom Ignore patterns
+**/undo/**
+**/undodir/**
+**/.tmp/**
+.cache/**
+**/.cache/**
+**/plugged/**
+**/.IgnoreMe/**
+**/.patches/**
+**/.tmux/plugins/**
+**/jupyter/runtime/**

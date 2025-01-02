@@ -150,12 +150,23 @@ alias ..2="cd ../.."
 alias ..3="cd ../../.."
 alias ..4="cd ../../../.."
 alias ..5="cd ../../../../.."
-alias fhome="find $HOME "
+
+# fd aliases
+# use fdignore to filter results by default
+alias fd='fd --ignore-file "$HOME/dotfiles/config.d/fd/fdignore"'
+alias fd_noignore="$(which fd) -I"
+alias fdi="$(which fd) -I"
 alias fdbd='fd  --base-directory="$1"'  # TODO: turn into function and move to rc.d/functions
 alias fdhome='fd  --base-directory="$HOME" '
 alias fdhi='fd -HI '
-alias mnt_cd="cd /mnt/dat || mkdir -p /mnt/dat && cd /mnt/dat"
 
+# find aliases
+alias fhome="find $HOME"
+alias fabs="find ~+"
+alias fabs_sub="find ~+/$1"
+
+# misc aliases
+alias mnt_cd="cd /mnt/dat || mkdir -p /mnt/dat && cd /mnt/dat"
 alias untar='tar -zxvf $1'  # alias untar='tar -zxvf $1'
 alias tar='tar -czvf $1'  # compress folder in tar.gz format
 alias peak_sshconf="bat $HOME/.ssh/config"
@@ -167,7 +178,6 @@ alias peak_dotconfs='vim $(fd --base-directory="$HOME/dotfiles" -t f |  rg "i.((
  
 # timestamp with timezone
 alias dt='date "+%Y%m%d_%H%M%S_%Z"' 
-
 
 ## ---------------------------------------------
 ## ZSH suffix aliases (zsh feature only)

@@ -8,8 +8,11 @@ alias mongo="mongosh"
 
 # @TODO: Make bash/cli function to handle mixing/matching multiple flags on-the-fly
 # fd + common flags
+alias fd='fd --ignore-file "$HOME/dotfiles/config.d/fd/fdignore"'
+alias fd_noignore="$(which fd) -I"
+alias fdi="$(which fd) -I"
 alias fdcw="fd --changed-within"
 alias fdca="fd --changed-after "
 alias fdcb="fd --changed-before"
-alias fda="fd -HI"
+alias fda="which $(fd) -HI"
 alias fdt="fd -e"

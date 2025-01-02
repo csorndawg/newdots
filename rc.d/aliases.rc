@@ -236,14 +236,17 @@ alias t="task"
 alias ta="task add"
 alias tl="task list"
 
-## misc.
+## fd
+alias fd='fd --ignore-file "$HOME/dotfiles/config.d/fd/fdignore"'
+alias fd_noignore="$(which fd) -I"
 alias fdh="fd -H"
-alias fdi="fd -I"
+alias fdi="$(which fd) -I"
 alias fde="fd -e"
 alias fdhi="fd -HI"
 alias fdcw="fd --changed-within"
 alias fdcb="fd --changed-before"
 
+# ripgrep
 alias rgp="rg -p"
 alias rgc="rg -c"
 alias rg_bare="rg -NI"  # --no-line-number --no-filename
@@ -262,13 +265,12 @@ alias ch777="chmod 777 -R"
 
 ## keybind references 
 alias kbv="bat $HOME/.cheatlib/resources/keybindings-zc-cheatsheet.txt"
-alias gg="cd $HOME/git/GYM"
 alias VO="source $HOME/.local/state/python/venvs/venv/bin/activate" 
 alias VO_SGPT="source $HOME/.shellGPT/shellGPT_venv/bin/activate"
 alias XARGS='/usr/bin/xargs'
 alias xargss='/usr/bin/xargs'
-alias xargs=xargs -I "{}"'
-alias xa=xargs -I "{}"'
+alias xargs='xargs -I "{}"'
+alias xa='xargs -I "{}"'
 
 
 # GIT x FZF ALIASES

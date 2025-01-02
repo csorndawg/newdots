@@ -154,4 +154,28 @@ autocmd FileType sql setlocal omnifunc=vim_dadbod_completion#omni
 " *** DO NOT COMMIT CONNECTIONS FILES THEMSELVES TO VERSION CONTROL ***
 " default location for saved DBUI connections  
 let g:db_ui_save_location=expand("$HOME") . "/git/fortknox/creds/dbui/vim"
-let g.db_ui_save_location = "~/git/dataops_bible/runbooks/databases/dbui_queries/vim"
+let g:db_ui_save_location = "~/git/dataops_bible/runbooks/databases/dbui_queries/vim"
+
+
+""
+"" Dadbod-UI Functionality Remaps 
+""
+
+" Use 'v' to open current cursor item from dadbod-ui in a new Vertical split
+autocmd FileType dbui nmap <buffer> v <Plug>(DBUI_SelectLineVsplit)
+
+" @BROKEN
+" <Alt-x> 'Execute Query' (DBUI_ExecuteQuery) Remaps (Normal/Insert/Visual Modes)
+"autocmd FileType dbui imap <A-x> <Plug>DBUI_ExecuteQuery
+"autocmd FileType dbui nmap <A-x> <Plug>DBUI_ExecuteQuery
+
+" <Leader>x 'Execute Query' (DBUI_ExecuteQuery) Remaps (Normal/Insert/Visual Modes)
+"autocmd FileType sql imap  <Leader>x <Plug>DBUI_ExecuteQuery
+"autocmd FileType sql nmap  <Leader>x <Plug>DBUI_ExecuteQuery
+"autocmd FileType sql vmap  <Leader>x <Plug>DBUI_ExecuteQuery
+
+" @FIXME: Below remaps are WORKING remap examples. Update them and any other
+" useful dadbod/dbui remaps, then clean up.
+autocmd FileType sql imap  <C-x> <Plug>(DBUI_ExecuteQuery)
+autocmd FileType sql nmap  <C-x> <Plug>(DBUI_ExecuteQuery)
+autocmd FileType sql vmap  <C-x> <Plug>(DBUI_ExecuteQuery)

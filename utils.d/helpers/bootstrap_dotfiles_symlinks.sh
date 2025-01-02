@@ -11,7 +11,7 @@
 ## Variables
 ## ------------------------------
 
-DOTFILES_DIR="$HOME/dotfiles"
+DOTFILES_DIR="$HOME/git/newdots"
 BASHD_DIR="$DOTFILES_DIR/bash.d"
 GITD_DIR="$DOTFILES_DIR/git.d"
 NVIM_DIR="$DOTFILES_DIR/nvim.d"
@@ -41,13 +41,18 @@ function config_bashd {
 	#	-exec echo source {} \;
 
 	# @TESTME: Productionize after confirming it works
-	source $HOME/dotfiles/utils.d/helpers/bootstrap_bashrc.sh && echo "successfully sourced bashrc bootstrap script"
+	bash $HOME/dotfiles/utils.d/helpers/bootstrap_bashrc.sh && echo "successfully sourced bashrc bootstrap script"
 }
 
 ## git
 function config_gitd {
-	ln -sr "$GITD_DIR/gitignore" "$HOME/.gitignore" 2>/dev/null
+	ln -srf "$GITD_DIR/gitignore" "$HOME/.gitignore" 2>/dev/null
 	ln -srf "$GITD_DIR/gitconfig" "$HOME/.gitconfig" 2>/dev/null
+}
+
+## nvim
+function config_nvimd {
+	ln -srf "$NVIM_DIR" "$HOME/.config/nvim" 2>/dev/null
 }
 
 ## vim
@@ -58,11 +63,25 @@ function config_vimd {
 ## tmux
 # make symlinks for XDG_CONFIG/tmux and tmux.conf
 function config_tmuxd {
-	ln -sr "$TMUXD_DIR" "$HOME/.config/tmux" 2>/dev/null
+	ln -srf "$TMUXD_DIR" "$HOME/.config/tmux" 2>/dev/null
 	ln -srf "$TMUXD_DIR/tmux.conf" "$HOME/.tmux.conf" 2>/dev/null
 
 	# handle tpm setup automatically
 	bash "$HOME/dotfiles/tmux.d/tmux_conf_dependencies.sh" || echo "Error occured while running tmux_conf_dependencies script"
+}
+
+function config_taskwarrior {
+    # vars
+    taskwarrior_repo="$HOME/git/taskwarra"
+    taskwarrior_rc_file="$HOME/git/newdots/config.d/task/taskrc"
+
+    # create symlinks
+    if [ -d "$taskwarrior_repo" ]; then
+        ln -srf $taskwarrior_repo $HOME/.taskwarra
+    fi
+    if [ -f "$taskwarrior_rc_file" ]; then
+        ln -srf $taskwarrior_rc_file $HOME/.taskrc
+    fi
 }
 
 ## ========================================
@@ -75,14 +94,21 @@ config_xdgs && echo "config_xdgs configured successfully"
 #  setup git
 config_gitd
 
-#  setup
+#  setup vim
 config_vimd
+
+#  setup nvim
+config_nvimd
 
 #  setup bash
 config_bashd
 
 # tmux setup
 config_tmuxd echo "config_tmuxd configured successfully"
+
+config_taskwarrior
+
+echo "Configuration setup complete. Setup covered nvim, vim, git, bash, xdg, tmux, and taskwarrior"
 
 #  future @BOILERPLATE
 #  setup

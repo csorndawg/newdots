@@ -6,8 +6,7 @@
 
 -- some test/example opts
 vim.opt.linebreak = true -- Wrap lines at convenient points
-vim.opt.list = true
---vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+
 vim.opt.mouse = "" -- turn mouse off
 vim.opt.number = true -- Print line number
 vim.opt.pumblend = 10 -- Popup blend
@@ -23,6 +22,8 @@ vim.opt.shiftround = true -- Round indent
 vim.opt.shiftwidth = 2 -- Size of an indent
 vim.opt.shortmess:append({ W = true, I = true, c = true, C = true })
 vim.opt.showmode = false
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" } -- define listchars
+vim.opt.list = false -- disable listchars by default
 
 --
 -- Lua Locals

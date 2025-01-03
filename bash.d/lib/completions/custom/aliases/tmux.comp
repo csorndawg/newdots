@@ -56,5 +56,5 @@ complete -F _tmux tmnwn
 complete -F _tmux _tmux_complete_window tmnk
 
 # unsure what _tmux_X function below alias would/should map to
-complete -F _tmux _tmux_expand tmcb
-complete -F _tmux tmstb
+#complete -F _tmux _tmux_expand tmcb
+#complete -F _tmux tmstb

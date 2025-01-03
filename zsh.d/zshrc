@@ -290,3 +290,6 @@ function add_ssh_pp {
 	add_ssh_key_pp
 }
 add_ssh_pp
+
+# Source FZF configuration
+bash "$HOME/dotfiles/config.d/fzf/fzf.config"

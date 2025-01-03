@@ -880,7 +880,7 @@ function add_ssh_pp {
 	# add_ssh_key_pp defined in functions.rc, and must be called after its been sourced
 	add_ssh_key_pp
 }
-add_ssh_pp
+add_ssh_pp 1> /dev/null
 
 ## DOTFILE CONFIG.D FILES
 source "$HOME/dotfiles/config.d/fzf/fzf.config" 2 /dev/null &>1

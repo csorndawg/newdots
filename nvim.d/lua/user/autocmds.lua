@@ -51,3 +51,12 @@ vim.api.nvim_create_user_command("FormatEnable", function()
 end, {
 	desc = "Re-enable autoformat-on-save",
 })
+
+
+-- python venv mangement/switching
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = {"python"},
+    callback = function()
+        require('swenv.api').auto_venv()
+    end
+})

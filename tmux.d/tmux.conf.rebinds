@@ -69,3 +69,9 @@ bind q send-keys 'tmux kill-window' C-m
 #bind -r C-x kill-pane		# @TESTME
 bind -r C-x kill-pane
 bind C-p display-panes
+
+# rebind default 'f' (find window) binding to <C-f> 
+# before unbinding it to free up '<Prefix-f>' 
+# for tmux-fastcopy plugin
+unbind f
+bind-key C-f  command-prompt { find-window -Z "%%" }

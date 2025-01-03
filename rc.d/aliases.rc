@@ -84,6 +84,7 @@ alias gad="git add --dry-run"
 alias ga="git add"
 alias gacm="git add . && git commit -m "
 ### branch
+alias gb="git branch"          # list branches that match glob 
 alias gbl="git branch --list "          # list branches that match glob 
 alias gbc="git branch --contains "      # like -l except for commits
 alias gba="git branch -a"               # list all branchs
@@ -198,7 +199,7 @@ alias gcmn="git checkout main"
 alias gbl="git branch --list"
 alias gbla="git branch --list --all"
 alias gbc="git branch --show-current"
-alias grm="git remove"
+alias grm="git rm"
 alias gpf="git push -f"
 alias gp="git push"
 #alias gpu="git push -u origin $(git branch --show-current)"
@@ -217,6 +218,13 @@ alias gdo="git diff origin"
 alias gdos="git diff origin --stat"
 alias gdm="git diff origin/main main"
 alias gdms="git diff origin/main main --stat"
+
+## Git Other/Oneoffs
+alias gshw="git show"
+alias gmv="git move"
+alias gwt="git worktree"
+alias gap="git apply"
+alias grfl="git reflog"
 
 
 ## miscellaneous 

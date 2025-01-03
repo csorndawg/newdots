@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+# @IMPORTANT
+# @NEXT-STEPS: '_tmux' completion works but its not applicable for certain 
+# aliases (eg. 'tmkw' or 'tmux kill-window"). All other tmux comp functions
+# seem broken "_tmux_expand"/"_tmux_complete_window" and require further 
+# debugging.
+
+# From "_" <tab>-ing in directory it seems like they're are 6 tmux 
+# tab completion functions that exist
+
+
+# tmux bash comp script:  `complete -F _tmux tmux`
+
+# @TODO: Add tab comp to all below aliases
+
+#alias tlk='tmux list-keys'
+#alias tlkg='tmux list-keys  | egrep -i '
+#alias tma='tmux attach'
+#alias tmab='tmux save-buffer -a'
+#alias tmas='tmux attach -t '
+#alias tmcb='tmux choose-buffer'
+#alias tmds='tmux detach'
+#alias tmka='tmux kill-session -a -t'
+#alias tmkp='tmux kill-pane'
+#alias tmkpa='tmux kill-pane -a -t'
+#alias tmks='tmux kill-session -t'
+#alias tmkw='tmux kill-window'
+#alias tmls='tmux ls'
+#alias tmns='tmux new-session -t '
+#alias tmnw='tmux new-window -t'
+#alias tmnwn='tmux new-window -n '
+#alias tmpb='tmux paste-buffer'
+#alias tmshb='tmux show-buffer'
+#alias tmsk='tmux send-keys '
+#alias tmstb='tmux set-buffer'
+#alias tmsvb='tmux save-buffer'
+
+
+# all tmux-session autocomplete aliases
+complete -F _tmux tma
+complete -F _tmux_complete_session tmka
+complete -F _tmux_complete_session tmks
+complete -F _tmux_complete_session tmns
+
+
+# all tmux window aliases 
+
+#complete -F _tmux tmnw
+#complete -F _tmux_complete_window tmnw
+complete -F _tmux _tmux_complete_window tmnwt
+complete -F _tmux tmnwn
+
+#complete -F _tmux tmkw
+#complete -F _tmux_complete_window tmnk
+complete -F _tmux _tmux_complete_window tmnk
+
+# unsure what _tmux_X function below alias would/should map to
+complete -F _tmux _tmux_expand tmcb
+complete -F _tmux tmstb

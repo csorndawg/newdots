@@ -59,6 +59,7 @@ alias tmka="tmux kill-session -a -t"
 
 ## Tmux Window Mngmnt
 alias tmkw="tmux kill-window"
+alias tmkwt="tmux kill-window -t"
 alias tmnw="tmux new-window -t"     # new window default name
 alias tmnwn="tmux new-window -n "   # new window with name flag
 

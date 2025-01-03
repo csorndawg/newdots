@@ -413,7 +413,7 @@ function git_develop_branch() {
 ### Check if main exists and use instead of master
 function git_main_branch() {
 	# send STDERR to /dev/null to prevent not in git repo dotfiles startup error
-	command git rev-parse --git-dir 2&>/dev/null || return
+	command git rev-parse --git-dir 2 &>/dev/null || return
 	local ref
 	for ref in refs/{heads,remotes/{origin,upstream}}/{main,trunk,mainline,default}; do
 		if command git show-ref -q --verify "$ref"; then
@@ -764,9 +764,8 @@ export FZF_DEFAULT_OPTS="
   --color=marker:#a3be8b,spinner:#b48dac,header:#a3be8b"
 export WINHOME="/mnt/c/Users/zaccs/"
 
-
 # @TEMPFIX
-alias gpunb="gp -u origin $(git branch --show-current 2> /dev/null)"
+alias gpunb="gp -u origin $(git branch --show-current 2>/dev/null)"
 
 llr() {
 	# use CWD if no path specified
@@ -874,9 +873,9 @@ source "$HOME/dotfiles/bash.d/lib/shellGPT_conf.bash"
 # cache ssh-add passphrase when new session starts up
 function add_ssh_pp {
 
-	if [[ -z "$SSH_AGENT_PID" ]]; then 
+	if [[ -z "$SSH_AGENT_PID" ]]; then
 		#echo "" && echo "No active SSH_AGENT present"
-		eval $(ssh-agent) 1> /dev/null
+		eval $(ssh-agent) 1>/dev/null
 	fi
 	# add_ssh_key_pp defined in functions.rc, and must be called after its been sourced
 	add_ssh_key_pp
@@ -884,4 +883,9 @@ function add_ssh_pp {
 add_ssh_pp
 
 ## DOTFILE CONFIG.D FILES
-source "$HOME/dotfiles/config.d/fzf/fzf.config" 2&>1 /dev/null
+source "$HOME/dotfiles/config.d/fzf/fzf.config" 2 /dev/null &>1
+
+# custom bash tab completions
+source "$HOME/dotfiles/bash.d/lib/completions/custom/aliases/git.comp" 2 /dev/null &>1
+source "$HOME/dotfiles/bash.d/lib/completions/custom/aliases/tmux.comp"
+#source "$HOME/dotfiles/bash.d/lib/completions/custom/functs/customFunctionSample.comp" 2&>1 /dev/null

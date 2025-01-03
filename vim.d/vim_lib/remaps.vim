@@ -170,3 +170,7 @@ vnoremap <Leader>c :s/^[0-z]/# &/<CR>
 "" bash/python bulk uncomment all selected commented text w/ <Leader>u
 vnoremap <silent> <Leader>u :s/^# //<CR>
 "vnoremap <silent> <Leader>cc :s/^# //<CR>
+
+" since using <Tab> for tab-completion 
+" use <Shift><Tab> to simulate actual <Tab> key behavior
+inoremap <S-Tab> <Space><Space>

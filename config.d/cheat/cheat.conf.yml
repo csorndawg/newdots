@@ -2,10 +2,8 @@
 # https://github.com/cheat/cheatsheets
 
 ## cheat tool configuration
-# @TODO - revert back to 'nvim' after rebuilding nvim.d v2
-#editor: nvim   
-#editor: vim
-editor: $EDITOR
+editor: vim
+#editor: nvim
 colorize: true
 style: nord
 formatter: terminal256

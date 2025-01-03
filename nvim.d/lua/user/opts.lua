@@ -6,8 +6,8 @@
 
 -- some test/example opts
 vim.opt.linebreak = true -- Wrap lines at convenient points
-vim.opt.list = true
---vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.opt.list = false -- set to 'true' to display
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.mouse = "" -- turn mouse off
 vim.opt.number = true -- Print line number
 vim.opt.pumblend = 10 -- Popup blend

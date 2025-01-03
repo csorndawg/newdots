@@ -58,3 +58,31 @@ complete -F _tmux _tmux_complete_window tmnk
 # unsure what _tmux_X function below alias would/should map to
 #complete -F _tmux _tmux_expand tmcb
 #complete -F _tmux tmstb
+
+
+## @TESTME: Test below completion function for `tmkw`  alias 
+## CUSTOM TMUX COMPLETION FUCNTIONS FOR TMUX ALIASES 
+
+_tmkw_complete() {
+    local cur prev options
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    
+    # If the current option is -t, suggest available Tmux windows
+    if [[ "$prev" == "-t" ]]; then
+        options=$(tmux list-windows -F '#W')  # List all window names
+        COMPREPLY=( $(compgen -W "$options" -- "$cur") )
+    else
+        # Otherwise, suggest flags for the tmux kill-window command
+        COMPREPLY=( $(compgen -W "-t" -- "$cur") )
+    fi
+}
+
+# Attach the completion function to the alias
+complete -F _tmkw_complete tmkw
+
+## 'tmkw' custom completion breakdown
+## 	`tmux list-windows -F '#W'`  - retrieves the names of all available Tmux windows
+##  	`compgen` - command filters suggestions based on the current input
+## 	`complete` - command links the _tmkw_complete function to the tmkw alias
+

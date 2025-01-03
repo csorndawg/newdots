@@ -880,12 +880,13 @@ function add_ssh_pp {
 	# add_ssh_key_pp defined in functions.rc, and must be called after its been sourced
 	add_ssh_key_pp
 }
-add_ssh_pp
+add_ssh_pp 1> /dev/null
 
 ## DOTFILE CONFIG.D FILES
-source "$HOME/dotfiles/config.d/fzf/fzf.config" 2 /dev/null &>1
+source "$HOME/dotfiles/config.d/fzf/fzf.config" 1> /dev/null
 
 # custom bash tab completions
-source "$HOME/dotfiles/bash.d/lib/completions/custom/aliases/git.comp" 2 /dev/null &>1
-source "$HOME/dotfiles/bash.d/lib/completions/custom/aliases/tmux.comp"
-#source "$HOME/dotfiles/bash.d/lib/completions/custom/functs/customFunctionSample.comp" 2&>1 /dev/null
+source "$HOME/dotfiles/bash.d/lib/completions/custom/aliases/git.comp" 1> /dev/null
+source "$HOME/dotfiles/bash.d/lib/completions/custom/aliases/tmux.comp" 1> /dev/null
+source "$HOME/dotfiles/bash.d/lib/completions/custom/functs/adhoc_functions.comp" 1> /dev/null
+

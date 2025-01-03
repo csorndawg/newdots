@@ -1,0 +1,17 @@
+# BASH TAB COMPLETION FOR CUSTOM ADHOC FUNCTIONS
+#
+# For functions that are not distinct enough to warrant 
+# there own function file (unlike git or FZF functions)
+
+
+#  ** STATER EXMAPLE ** 
+#
+# function: mcd
+#
+# args: 
+# 	-o default: Ensures the standard filename and directory completion is used
+# 	-o nospace: Prevents appending a space after the completion, which is useful for paths
+# 	-F _cd: Links the mcd function to the built-in _cd completion, which handles paths
+
+# 'mcd' filename and directory completion
+complete -o default -o nospace -F _cd mcd

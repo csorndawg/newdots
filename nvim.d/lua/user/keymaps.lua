@@ -252,3 +252,14 @@ remapp("c", "<C-.>", "<Down>", { noremap = true })
 --
 -- Experimental Remaps
 --
+
+-- simple navigation/movements while staying in Insert Mode
+remapp("i", "<C-l><C-l>", "<Right>", { noremap = true })
+remapp("i", "<C-h><C-h>", "<Left>", opts)
+remapp("i", "<C-k><C-k>", "<Up>", opts)
+remapp("i", "<C-j><C-j>", "<Down>", opts)
+
+-- delete 1 char/line and remain in Insert
+remapp("i", "<A-l>", "<Delete>", { noremap = true })
+remapp("i", "<A-h>", "<Bs>", { noremap = true })
+remapp("i", "<A-k>", "<C-u>", { noremap = true })

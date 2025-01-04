@@ -32,3 +32,9 @@ if [[ "$(find "$HOME/dotfiles/tmux.d" -type d | egrep -c "\btpm\b")" -eq 0 ]]; t
 else
   echo "TPM folder exists in TMUX_CONF"
 fi
+
+# clean up dup symlinks
+DUP_SYML_PATH="$HOME/dotfiles/tmux.d/tmux.d"
+if [ -e "$DUP_SYML_PATH" ]; then
+    rm -v "$DUP_SYML_PATH"
+fi

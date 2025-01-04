@@ -75,3 +75,12 @@ bind C-p display-panes
 # for tmux-fastcopy plugin
 unbind f
 bind-key C-f  command-prompt { find-window -Z "%%" }
+
+
+#
+# FZF config hot reload (needed on systems w/ ZSH shell) with <Prefix><Alt-f>
+#
+# <Prefix><Alt-g> runs "ff" which sources FZF keybindings/completions
+#bind M-f send-keys 'ff' C-m   	# <C-m> simulates <Enter>
+#bind M-f source-file ~/dotfiles/tmux.d/tmux-fzf-conf-kb-test.sh \; display "RELOADED FZF.CONFIG..."
+bind M-f run-shell bash ~/dotfiles/tmux.d/tmux-fzf-conf-kb-test.sh \; display "RELOADED FZF.CONFIG..."

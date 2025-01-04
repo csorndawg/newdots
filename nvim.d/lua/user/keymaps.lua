@@ -252,3 +252,15 @@ remapp("c", "<C-.>", "<Down>", { noremap = true })
 --
 -- Experimental Remaps
 --
+
+remapp("i", "<A-h>", "<Left>", opts)
+
+-- remap <ll> and <C-l><C-l> to move cursor right one space while staying in Insert Mode
+-- used for smoother autopair integration/usage
+-- TODO: See if possible (via AUTOCMD ??) to only trigger 'll' and 'hh' remaps AFTER AUTOPAIR grouping has been inserted
+--
+-- ',,' is equivalent to 'i' (it uses predefined remap that switches from Normal to Insert)
+remapp("i", "ll", "<ESC>ll,,", opts)
+remapp("i", "<C-l><C-l>", "<ESC>lli", { noremap = true })
+remapp("i", "<C-h><C-h>", "<ESC>hhi", opts)
+remapp("i", "hh", "<ESC>hh,,", { noremap = true })

@@ -292,5 +292,5 @@ function add_ssh_pp {
 add_ssh_pp
 
 # source FZF config - contains key-bindings, completions, and defaults
-source "$HOME/dotfiles/config.d/fzf/fzf.config" 2&>1 /dev/null
+source "$HOME/dotfiles/config.d/fzf/fzf.config" 1> /dev/null
 

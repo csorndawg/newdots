@@ -26,19 +26,17 @@ cheatpaths:
   ## Personal Cheat Dirs 
   ############################
 
-  ## VERSION CONTROLLED 
-
-  # for new and current cheatfiles, feeds into pristine 
-  - name: work
-    #path: /home/shelby-sensation/.cheatlib/tools/cheat/cheatfiles/work
-    path: ~/git/cheatbook/cheat/cheatfiles/work
-    tags: [ personal, work ]
-    readonly: false
+  ## VERSION CONTROLLED CHEATPATHS
 
   # catch-all folder for things like stashing broken cheat 
   # comamnds, partially completed cheatfiles, etc.
   - name: unsorted
-    #path: "$HOME/git/cheatbook/cheat/cheatfiles/unsorted"
     path: ~/git/cheatbook/cheat/cheatfiles/unsorted
     tags: [ personal, unsorted ]
+    readonly: false
+
+  # for new and current cheatfiles, feeds into pristine 
+  - name: work
+    path: ~/git/cheatbook/cheat/cheatfiles/work
+    tags: [ personal, work ]
     readonly: false

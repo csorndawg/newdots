@@ -83,4 +83,7 @@ bind-key C-f  command-prompt { find-window -Z "%%" }
 # <Prefix><Alt-g> runs "ff" which sources FZF keybindings/completions
 #bind M-f send-keys 'ff' C-m   	# <C-m> simulates <Enter>
 #bind M-f source-file ~/dotfiles/tmux.d/tmux-fzf-conf-kb-test.sh \; display "RELOADED FZF.CONFIG..."
-bind M-f run-shell bash ~/dotfiles/tmux.d/tmux-fzf-conf-kb-test.sh \; display "RELOADED FZF.CONFIG..."
+#bind M-f run-shell bash ~/dotfiles/tmux.d/tmux-fzf-conf-kb-test.sh \; display "RELOADED FZF.CONFIG..."
+#bind M-f run-shell 'bash ~/dotfiles/tmux.d/tmux-fzf-conf-kb-test.sh' C-m
+unbind M-f
+bind M-f run-shell 'bash ~/dotfiles/tmux.d/tmux-fzf-conf-kb-test.sh'

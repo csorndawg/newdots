@@ -253,14 +253,13 @@ remapp("c", "<C-.>", "<Down>", { noremap = true })
 -- Experimental Remaps
 --
 
-remapp("i", "<A-h>", "<Left>", opts)
+-- simple navigation/movements while staying in Insert Mode
+remapp("i", "<C-l><C-l>", "<Right>", { noremap = true })
+remapp("i", "<C-h><C-h>", "<Left>", opts)
+remapp("i", "<C-k><C-k>", "<Up>", opts)
+remapp("i", "<C-j><C-j>", "<Down>", opts)
 
--- remap <ll> and <C-l><C-l> to move cursor right one space while staying in Insert Mode
--- used for smoother autopair integration/usage
--- TODO: See if possible (via AUTOCMD ??) to only trigger 'll' and 'hh' remaps AFTER AUTOPAIR grouping has been inserted
---
--- ',,' is equivalent to 'i' (it uses predefined remap that switches from Normal to Insert)
-remapp("i", "ll", "<ESC>ll,,", opts)
-remapp("i", "<C-l><C-l>", "<ESC>lli", { noremap = true })
-remapp("i", "<C-h><C-h>", "<ESC>hhi", opts)
-remapp("i", "hh", "<ESC>hh,,", { noremap = true })
+-- delete 1 char/line and remain in Insert
+remapp("i", "<A-l>", "<Delete>", { noremap = true })
+remapp("i", "<A-h>", "<Bs>", { noremap = true })
+remapp("i", "<A-k>", "<C-u>", { noremap = true })

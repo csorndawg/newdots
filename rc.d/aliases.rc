@@ -308,3 +308,8 @@ alias fkx="cd $HOME/git/fortknox"
 alias prettyjson='python -m json.tool'
 
 # @NOTE: Add new aliases from aliases_experimental.rc below after evaluating 
+
+# TODO: Refactor into a function/script that has a flag for each gig directory, and if no
+# flag given makes a three
+# standard gitignore directory, used across all projects
+alias mkgig="mkdir -v .IgnoreMe .tmp .patches"

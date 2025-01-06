@@ -887,3 +887,4 @@ source "$HOME/dotfiles/config.d/fzf/fzf.config" 1> /dev/null
 
 # custom bash tab completions
 source "$HOME/dotfiles/bash.d/lib/completions/custom/aliases/git.comp" 1> /dev/null
+source "$HOME/dotfiles/bash.d/lib/completions/custom/aliases/aliases.comp" 1> /dev/null

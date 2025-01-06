@@ -188,37 +188,53 @@ alias ga="git add"
 alias gaa="git add ."
 alias gad="git add --dry-run"
 alias gco="git checkout"
+
+## Git Stash 
 alias gst="git stash"
 alias gsts="git stash --show"
 alias gstd="git stash --show --patch"
 alias gsta="git stash --apply"
-alias gstp="git stash --push --message"
+alias gstl="git stash --list"
+alias gstp="git stash --push"
 alias gstpp="git stash --push"
-alias grb="git rebase "
-alias gm="git merge"
-alias gcmn="git checkout main"
+alias gstpp="git stash --push"
+
+
+## Git Branch 
 alias gbl="git branch --list"
 alias gbla="git branch --list --all"
 alias gbc="git branch --show-current"
-alias grm="git rm"
+
+
+# Git Push
 alias gpf="git push -f"
 alias gp="git push"
 #alias gpu="git push -u origin $(git branch --show-current)"
 alias gpu="git push -u origin"
 alias grbi="git rebase --interactive"
 
-# page/peak when status too long for terminal
+# peak/page very long git status outputs
 alias gsh="git status | head -n25"
 alias gsp="git status | less -RiXj5"
 
+# Git Checkout
 alias gcb="git checkout -b"
-alias gpl="git pull"
+alias gcmn="git checkout main"
+
+# Git Diff
 alias gd="git diff"
 alias gds="git diff --stat"
+
+# Git Diff Origin
 alias gdo="git diff origin"
-alias gdos="git diff origin --stat"
-alias gdm="git diff origin/main main"
+alias gdom="git diff origin/main"
 alias gdms="git diff origin/main main --stat"
+alias gdos="git diff origin --stat"
+
+# Git Diff Main
+alias gdm="git diff main"
+alias gdms="git diff main --stat"
+
 
 ## Git Other/Oneoffs
 alias gshw="git show"
@@ -226,6 +242,11 @@ alias gmv="git move"
 alias gwt="git worktree"
 alias gap="git apply"
 alias grfl="git reflog"
+alias grm="git rm"
+alias gpl="git pull"
+alias gm="git merge"
+alias grb="git rebase "
+
 
 
 ## miscellaneous 
@@ -313,3 +334,7 @@ alias prettyjson='python -m json.tool'
 # flag given makes a three
 # standard gitignore directory, used across all projects
 alias mkgig="mkdir -v .IgnoreMe .tmp .patches"
+
+alias ttl="tldr -l"
+alias ttg="tldr -l | egrep "
+alias ctlg="cheat -l | egrep "

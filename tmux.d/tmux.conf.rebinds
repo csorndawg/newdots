@@ -61,17 +61,15 @@ bind-key    -T copy-mode-vi M-Down                  send-keys -X page-down
 bind-key    -T copy-mode-vi M-Up                  send-keys -X page-up
 
 # <Prefix><C-q> to kill current window
-unbind q
-bind q send-keys 'tmux kill-window' C-m
+unbind q	# available binding for future usage
+unbind C-q
+bind C-q send-keys 'tmux kill-window' C-m
 
-# kill pane without confirmation (need to test "-r" repeat flag before adding)
-#bind C-q kill-pane
-#bind -r C-x kill-pane		# @TESTME
+# kill pane without confirmation 
 bind -r C-x kill-pane
 bind C-p display-panes
 
 # rebind default 'f' (find window) binding to <C-f> 
-# before unbinding it to free up '<Prefix-f>' 
-# for tmux-fastcopy plugin
+# unbinding '<Prefix-f>' for tmux-fastcopy plugin
 unbind f
 bind-key C-f  command-prompt { find-window -Z "%%" }

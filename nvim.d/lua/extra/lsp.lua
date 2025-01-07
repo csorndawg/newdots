@@ -55,9 +55,19 @@ end
 ------------------------
 -- NVIM-CMP
 ------------------------
+
 local cmp = require("cmp")
 --local lspkind = require('lspkind')
 local luasnip = require("luasnip")
+
+-- copilot cmp
+local has_words_before = function()
+	if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+		return false
+	end
+	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
+end
 
 -- better autocompletion experience
 vim.o.completeopt = "menuone,noselect"
@@ -126,11 +136,12 @@ cmp.setup({
 		end,
 	},
 	sources = {
-		{ name = "nvim_lsp" },
-		{ name = "luasnip" },
-		{ name = "dadbod" },
-		{ name = "buffer" },
-		{ name = "path" },
-		{ name = "cmdline" },
+		{ name = "luasnip", group_index = 1 },
+		{ name = "nvim_lsp", group_index = 2 },
+		{ name = "copilot", group_index = 2 },
+		{ name = "buffer", group_index = 3 },
+		{ name = "path", group_index = 3 },
+		{ name = "dadbod", group_index = 4 },
+		{ name = "cmdline", group_index = 4 },
 	},
 })

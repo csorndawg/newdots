@@ -23,10 +23,14 @@ local types = require("luasnip.util.types")
 local conds = require("luasnip.extras.conditions")
 local conds_expand = require("luasnip.extras.conditions.expand")
 
-
 -- python sample
 ls.add_snippets("python", {
 	s("hello_looahh", {
-		t('print(f"This was generated from my custom LuaSnips snippet located in nvim.d/lua/extra/luasnips_custom/python_custom.lua snippet")'),
+		t(
+			'print(f"This was generated from my custom LuaSnips snippet located in nvim.d/lua/extra/luasnips_custom/python_custom.lua snippet")'
+		),
+	}),
+	s("main", {
+		t("def main():", "\n", "\t pass"),
 	}),
 })

@@ -48,10 +48,16 @@ require("user.autocmds")
 require("extra.colorscheme")
 require("extra.lsp")
 require("extra.lazy_remaps")
-require("extra.custom_luasnips")
 
 -- experimental post-install configurations
 require("extra.experimental")
 require("extra.lint")
 require("extra.telescope.telescope-config")
 require("extra.which_key")
+
+-- custom luasnips snippets
+require("extra.luaSnipsCustom.bash_custom")
+require("extra.luaSnipsCustom.python_custom")
+--require("extra.luaSnipsCustom.lua_custom")
+--require("extra.luaSnipsCustom.vim_custom")
+require("extra.luaSnipsCustom.all_custom")

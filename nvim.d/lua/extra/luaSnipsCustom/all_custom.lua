@@ -31,7 +31,7 @@ local conds_expand = require("luasnip.extras.conditions.expand")
 -- before removing.
 ls.add_snippets("all", {
 	s(
-		"fmtZZZ",
+		"fmtALL",
 		fmt("To {title} {} {}.", {
 			ls.insert_node(2, "Name"),
 			ls.insert_node(3, "Surname"),

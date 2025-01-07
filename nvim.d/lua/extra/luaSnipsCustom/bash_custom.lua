@@ -27,15 +27,59 @@ local conds_expand = require("luasnip.extras.conditions.expand")
 -- scalable solution where each FT has its own file within a snippets folder.
 -- Also integrating this with nvim-scissors would be the most optimal setup.
 
--- NOTE: Below snippet works as expected. Continue adding other snippets
+-- FIXME: Below code does not seem to work when I try defining multiple types per snippet.
+-- Needck
 -- before removing.
-ls.add_snippets("all", {
-	s(
-		"fmtZZZ",
-		fmt("To {title} {} {}.", {
-			ls.insert_node(2, "Name"),
-			ls.insert_node(3, "Surname"),
-			title = c(1, { t("Mr."), t("Ms.") }),
-		})
-	),
+-- ls.add_snippets({ "bash", "sh" }, {
+-- 	-- 	s(
+-- 	-- 		"fmtZZZ",
+-- 	-- 		fmt("To {title} {} {}.", {
+-- 	-- 			ls.insert_node(2, "Name"),
+-- 	-- 			ls.insert_node(3, "Surname"),
+-- 	-- 			title = c(1, { t("Mr."), t("Ms.") }),
+-- 	-- 		})
+-- 	-- 	),
+--
+-- 	s("##V", {
+-- 		t(" ## ===========================\n## VARIABLES\\## ==========================="),
+-- 	}),
+--
+-- 	s("echox", {
+-- 		t('echo "'),
+-- 		i(1),
+-- 		t('":  "$'),
+-- 		rep(1),
+-- 		t('"'),
+-- 	}),
+-- })
+ls.add_snippets({ "sh", "bash" }, {
+	-- 	s(
+	-- 		"fmtZZZ",
+	-- 		fmt("To {title} {} {}.", {
+	-- 			ls.insert_node(2, "Name"),
+	-- 			ls.insert_node(3, "Surname"),
+	-- 			title = c(1, { t("Mr."), t("Ms.") }),
+	-- 		})
+	-- 	),
+	--
+	-- 	s("##V", {
+	-- 		t(" ## ===========================\n## VARIABLES\\## ==========================="),
+	-- 	}),
+	s("hello_bash", {
+		t("This is a custom bash snippet"),
+	}),
+
+	s("hello_bashyyyyy", {
+		t("This is another custom bash snippet"),
+	}),
 })
+
+-- ls.add_snippets({ "sh", "bash" }, {
+-- 	s("echox", {
+-- 		t('echo "'),
+-- 		i(1),
+-- 		t('":  "$'),
+-- 		rep(1),
+-- 		t('"'),
+-- 	}),
+-- })

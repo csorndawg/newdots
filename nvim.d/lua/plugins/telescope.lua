@@ -20,7 +20,7 @@ return {
 
 			require("telescope").load_extension("fzf")
 
-			vim.keymap.set("n", "<space>st", require("telescope.builtin").help_tags)
+			--vim.keymap.set("n", "<space>st", require("telescope.builtin").help_tags)	-- cmd remapped to <Leader>sh in telescope-config
 			vim.keymap.set("n", "<space>sf", require("telescope.builtin").find_files)
 			vim.keymap.set("n", "<space>sn", function()
 				require("telescope.builtin").find_files({

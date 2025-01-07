@@ -20,6 +20,10 @@ local remapp = vim.api.nvim_set_keymap -- shorten NVIM remap function call
 -- Normal Mode
 --
 
+-- remap Ff/Tt cycling to <Left/Right> arrows
+remapp("n", "<Right>", ";", opts)
+remapp("n", "<Left>", ", ", opts)
+
 -- better window navigation
 remapp("n", "<C-h>", "<C-w>h", opts)
 remapp("n", "<C-j>", "<C-w>j", opts)
@@ -58,14 +62,13 @@ remapp("i", "<A-k>", "<Up>", opts)
 remapp("i", "<A-j>", "<Down>", opts)
 
 -- Normal/Command mode switch 	(Cycle b/w two modes with `;;`)
-remapp("n", "<Leader>;", ":", { silent = false }) --  dont pass "opts" b/c we want to see CMD prompt
+--remapp("n", "<Leader>;", ":", { opts_loud }) --  dont pass "opts" b/c we want to see CMD prompt
 remapp("n", "<Leader>;;", ":", { silent = false }) --  dont pass "opts" b/c we want to see CMD prompt
 --remapp("n", ";;", ":", {silent = false} ) -- opts)  -- @TODO: Find suitable alternate, since this interfers with '[fF]/[tT]' cycling
 
 -- Normal/Insert mode switch 	(Cycle b/w two modes with `,,`)
 remapp("n", "<Leader>,", "i", opts)
-remapp("n", "<Leader>jj", "i", opts) -- @experimental
-remapp("n", ",,", "i", opts) -- @experimental
+remapp("n", ",,", "i", opts)
 
 -- toggle search highlighting
 remapp("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)
@@ -79,9 +82,9 @@ remapp("n", "<leader>qp", "cprev", { silent = false })
 
 -- easier saving/exiting
 remapp("n", "<leader>w", ":w<Cr>", opts)
-remapp("n", "<leader>leader>w", ":w!<Cr>", opts)
-remapp("n", "<leader>x", ":q<Cr>", opts)
-remapp("n", "<leader><leader>x", ":q!<Cr>", opts) -- DONT overwrite 'qq' (start macro recording)
+remapp("n", "<leader>ww", ":w!<Cr>", opts)
+remapp("n", "<leader>ex", ":q<Cr>", opts)
+remapp("n", "<leader>ex!", ":q!<Cr>", opts)
 
 -- if possible, create new vert window from current file
 vim.keymap.set("n", "<C-n>", function()
@@ -129,18 +132,20 @@ remapp("n", "<leader>rb", ":w !bash  %<Tab><Cr>", opts)
 -- Insert/Normal mode swtich
 remapp("i", ",,", "<ESC>", opts)
 remapp("i", "<Alt-,", "<ESC>", opts)
-
--- delete if rarely being used
-remapp("i", "jj", "<ESC>", opts)
-remapp("i", "kk", "<ESC>", opts)
+remapp("i", "jk", "<ESC>", opts)
+remapp("i", "kj", "<ESC>", opts)
 
 -- Insert/Command mode switch
 remapp("i", ";;", "<ESC>:", opts_loud) -- dont pass opts b/c we want to see CMD prompt
 remapp("i", "<Alt-;>", "<ESC>:", opts_loud)
 
--- immediately tab upon insert
+-- Normal/Insert Mode
 remapp("n", "<leader>,,", "i<Tab>", opts)
-remapp("i", "<A-,>", "i<Tab>", opts)
+remapp("n", "jk", "i", opts)
+remapp("n", "kj", "i", opts)
+
+-- <Alt-,> simulates <TAB> key
+remapp("i", "<A-,>", "<Tab>", opts)
 
 --
 -- Visual Mode
@@ -216,12 +221,14 @@ vim.keymap.set("t", "<C-x>", "<C-c> exit<CR>", { desc = "Exit terminal mode" })
 
 -- command/normal mode switch
 remapp("c", ";;", "<Esc>", opts)
-remapp("c", "<A-;>", "<Esc>", opts)
+remapp("n", ";;", ": ", opts)
+
+--remapp("n", "<C-;>", ": ", opts)
+--remapp("c", "<A-;>", "<Esc>", opts)
 
 -- command/insert mode switch  (continue with comma `,` theme remaps linked with Insert Mode)
 remapp("c", "<A-,>", "<Esc>i", opts)
 remapp("c", ",,", "<Esc>i", opts)
---remapp("c", "<A-;;>", "<Esc>", opts)
 
 -- @TODO - Try out <CTRL><key> vs. <key><key> movement remaps, and pick one method
 -- to keep moving forward and remove other method after to free up binding.
@@ -263,3 +270,5 @@ remapp("i", "<C-j><C-j>", "<Down>", opts)
 remapp("i", "<A-l>", "<Delete>", { noremap = true })
 remapp("i", "<A-h>", "<Bs>", { noremap = true })
 remapp("i", "<A-k>", "<C-u>", { noremap = true })
+
+remapp("i", "<C-l>", "<C-x><C-l>", { noremap = true })

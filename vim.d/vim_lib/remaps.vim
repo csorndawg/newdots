@@ -6,10 +6,9 @@
 
 nnoremap <Leader>w :write<CR>
 nnoremap <Leader>ww :write!<CR>
-nnoremap <Leader>x :q<CR>
-nnoremap <Leader>xx :q!<CR>
-nnoremap <C-x> :qa!<CR>
-"nnoremap <Leader>q :q<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <leader>qq :q!<cr>
+nnoremap <C-q> :qa!<CR>
 
 "" Better Movement/Scrolling
 "" ------------------------------
@@ -135,8 +134,11 @@ nnoremap <leader>rb :w !bash %<Tab><Cr>
 
 " @TODO: Add remaps to NVIM config
 "" cmd mode line navigation
-cnoremap hh <Left>
-cnoremap ll <Right>
+"
+" cnoremap hh <Left>
+" cnoremap ll <Right>
+cnoremap <C-h> <Left>
+cnoremap <C-l> <Right>
 cnoremap ee <C-Right>
 cnoremap bb <C-Left>
 cnoremap <Leader>0 <Home>
@@ -160,17 +162,27 @@ cnoremap <A-x> <Delete>
 "" terminal mode
 nnoremap <Leader>t :vertical terminal<Cr>
 
-nnoremap <leader><leader>x :q!<cr>
+
 nnoremap <leader>p :set paste<cr>
 nnoremap <leader>pp :set nopaste<r>
 
-" bash/python bulk comment all selected text with <Leader>c
+" bash/python bulk add/undo comments
 vnoremap <Leader>c :s/^[0-z]/# &/<CR>
+vnoremap <silent><Leader>u :s/^# //<CR>
+
+" lua bulk add/undo comments
+vnoremap <Leader>- :s/^[0-z]/-- &/<CR>
+vnoremap <Leader>uu :s/^[0-z]/-- &/<CR>
+
 
 "" bash/python bulk uncomment all selected commented text w/ <Leader>u
-vnoremap <silent> <Leader>u :s/^# //<CR>
+vnoremap <silent> <C-#> :s/^# //<CR>
+vnoremap <silent> <C-3> :s/^/#&/<CR>
 "vnoremap <silent> <Leader>cc :s/^# //<CR>
 
 " since using <Tab> for tab-completion 
 " use <Shift><Tab> to simulate actual <Tab> key behavior
-inoremap <S-Tab> <Space><Space>
+"inoremap <C-Tab> <Space><Space>
+
+" insert mode line completion
+inoremap  <C-l> <C-x><C-l>

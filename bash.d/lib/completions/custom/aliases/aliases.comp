@@ -1,3 +1,37 @@
 #!/usr/bin/env bash
 
 # Custom bash tab completion for oneoff aliases
+
+## Additional FZF completers
+
+## add FZF completion to `tree` command
+_fzf_setup_completion dir tree
+
+## addd kubectl
+_fzf_setup_completion path kubectl
+_fzf_setup_completion path tee # enable FZF path completion for TEE command
+
+# enable FZF completion for ripgrep and fd-find
+_fzf_setup_completion path rg # enable FZF path completion for TEE command
+_fzf_setup_completion path fd # enable FZF path completion for TEE command
+
+## add fzf completion to 'nv' alias
+complete -o bashdefault -o default -F _fzf_path_completion nv
+
+# use fzf ',,' completion for selecting branches to push git stash
+complete -o bashdefault -o default -F _fzf_path_completion gstp
+complete -o bashdefault -o default -F _fzf_path_completion gstpm
+
+## fzf custom completion 'doge' test
+## Custom fuzzy completion for "doge" command
+##   e.g. doge **<TAB>
+#_fzf_complete_doge() {
+#  _fzf_complete --multi --reverse --prompt="doge> " -- "$@" < <(
+#    echo very
+#    echo wow
+#    echo such
+#    echo doge
+#  )
+#}
+#
+#_fzf_setup_completion _fzf_complete_doge doge

@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+# Shell tab completion for custom Bash functions
+
+# Enable filename and directory completion for 'mcd'
+complete -o default -o nospace -F _cd mcd

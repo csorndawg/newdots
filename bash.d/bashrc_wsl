@@ -149,13 +149,16 @@ source ~/dotfiles/bash.d/aliases.bash 2>/dev/null
 #####
 
 # Linux/OS type folders to add to $PATH
-PATH="$PATH:$HOME/.local/lib/bash:$HOME/.local/lib/misc:$HOME/.local/lib/python:$HOME/.local/bin:$HOME/.local/bin/cronjobs:$HOME/git/toolbox/bin:"
+PATH="$PATH:$HOME/.local/lib/bash:$HOME/.local/lib/misc:$HOME/.local/lib/python:$HOME/.local/bin"
+# Git 'bins'
+PATH="$HOME/git/dataops_bible/bin:$HOME/git/dataops_bible/scripts:$HOME/git/toolbox/bin:$PATH"
 
 # personal/custom type folders to add to $PATH
 SECRETS_BIN="$HOME/git/fortknox/bin"
 DOTFILE_UTILS_BIN="$HOME/git/newdots/utils.d/zbin"
-MY_DEVENV_BIN="$HOME/git/dataops_bible/scripts"
-PATH_ADDONS="$MY_DEVENV_BIN:$SECRETS_BIN:$DOTFILE_UTILS_BIN"
+ZLIB_BIN="$HOME/git/zlib/bin"
+ZLIB_TEST_BIN="$HOME/git/zlib/test/bin"
+PATH_ADDONS="$ZLIB_BIN:$ZLIB_TEST_BIN:$SECRETS_BIN:$DOTFILE_UTILS_BIN"
 PATH="$PATH:$PATH_ADDONS"
 alias python=python3
 

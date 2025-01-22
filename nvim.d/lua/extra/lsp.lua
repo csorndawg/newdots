@@ -8,7 +8,8 @@
 local nvimd_lsp = require("lspconfig")
 
 -- define LSP servers
-local servers = { "pyright", "ansiblels", "bashls", "yamlls", "docker_compose_language_service", "dockerls", "taplo" }
+local servers =
+	{ "pyright", "ansiblels", "bashls", "yamlls", "docker_compose_language_service", "dockerls", "taplo", "jsonls" }
 
 -- do things when language server attached to current buffer
 local on_attach = function(client, bufnr)

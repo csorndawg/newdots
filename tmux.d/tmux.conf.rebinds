@@ -64,8 +64,10 @@ bind-key    -T copy-mode-vi M-Up                  send-keys -X page-up
 unbind q	# available binding for future usage
 unbind C-q
 #bind C-q send-keys 'tmux kill-window' C-m
-bind q send-keys 'tmux kill-window' C-m
-bind M-g send-keys 'tmux kill-window' C-m   
+#bind q send-keys 'tmux kill-window' C-m
+#bind M-g send-keys 'tmux kill-window' C-m   
+bind-key -n C-q kill-window
+
 
 # kill pane without confirmation 
 bind -r C-x kill-pane

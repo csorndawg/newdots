@@ -80,9 +80,13 @@ cmp.setup({
 
 	mapping = {
 		-- Use Tab and shift-Tab to navigate autocomplete menu
-		["<Tab>"] = function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
+		-- ["<Tab>"] = function(fallback)
+		-- if cmp.visible() then
+		-- cmp.select_next_item()
+
+		["<Tab>"] = vim.schedule_wrap(function(fallback)
+			if cmp.visible() and has_words_before() then
+				cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
 			elseif luasnip.expand_or_locally_jumpable() then
 				luasnip.expand_or_jump()
 			elseif luasnip.expand_or_jumpable() then
@@ -90,7 +94,7 @@ cmp.setup({
 			else
 				fallback()
 			end
-		end,
+		end),
 		["<S-Tab>"] = function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()

@@ -15,7 +15,7 @@ export SANDBOXES_HOME_DIR="$HOME/.local/var/sandboxes"
 
 # set EDITOR to NVIM, otherwise use VIM as fallback
 if [[ $(which nvim | wc --chars) -le 0 ]]; then
-	export EDITOR="vim" 
+	export EDITOR="vim"
 else
 	export EDITOR="nvim"
 fi

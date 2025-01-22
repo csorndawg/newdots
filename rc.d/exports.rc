@@ -97,4 +97,10 @@ export LOCAL_GIT_HOME="$HOME/git"
 export LOCAL_DATAOPS_BIBLE_HOME="$HOME/git/dataops_bible"
 
 # monthly sandbox for "var/tmp" files
+mkdir -p "$HOME/.var/tmp/$(date -u +%Y/%m)"
 export MY_VAR_TMP_SANDBOX="$HOME/.var/tmp/$(date -u +%Y/%m)"
+
+# see which one sticks and remove others
+export XDG_VAR_NEW="$HOME/.var_new"
+export LOCAL_VAR_NEW="$HOME/.var_new"
+export VAR_LOCAL_HOME="$HOME/.var_new"

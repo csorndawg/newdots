@@ -279,16 +279,28 @@ alias gpu="git push -u origin"
 # SHELL-GPT configuration sourcing
 source "$HOME/dotfiles/zsh.d/custom/lib/shellGPT_conf.zsh"
 
-# cache ssh-add passphrase when new session starts up
-function add_ssh_pp {
+#### cache ssh-add passphrase when new session starts up
+###function add_ssh_pp {
+###
+###	if [[ -z "$SSH_AGENT_PID" ]]; then 
+###		#echo "" && echo "No active SSH_AGENT present"
+###		eval $(ssh-agent) 1> /dev/null
+###	fi
+###	# add_ssh_key_pp defined in functions.rc, and must be called after its been sourced
+###	add_ssh_key_pp
+###}
+###add_ssh_pp
 
-	if [[ -z "$SSH_AGENT_PID" ]]; then 
-		#echo "" && echo "No active SSH_AGENT present"
-		eval $(ssh-agent) 1> /dev/null
-	fi
-	# add_ssh_key_pp defined in functions.rc, and must be called after its been sourced
-	add_ssh_key_pp
-}
+# @NOTE: Uncomment if calling function directly from functions.rc fails
+## ## # automates ssh key passphrase prompts for Git and SSHing across machines
+## ## function add_ssh_key_pp {
+## ## 	SECRETS_EXPECT_SCRIPT_PATH="$HOME/git/fortknox/bin/run_add_key"
+## ## 	bash "$SECRETS_EXPECT_SCRIPT_PATH" #1> /dev/null
+## ## 	echo "SSH passphrase has been cached"
+## ## } 
+## ## add_ssh_pp #1> /dev/null
+
+echo "" && echo "Running functions.rc add_ssh_pp function ..."
 add_ssh_pp
 
 # source FZF config - contains key-bindings, completions, and defaults

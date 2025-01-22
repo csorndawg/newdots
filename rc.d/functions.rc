@@ -555,9 +555,10 @@ function whichGitRepo {
 # automates ssh key passphrase prompts for Git and SSHing across machines
 function add_ssh_key_pp {
 	SECRETS_EXPECT_SCRIPT_PATH="$HOME/git/fortknox/bin/run_add_key"
-	bash "$SECRETS_EXPECT_SCRIPT_PATH" 1> /dev/null
+	bash "$SECRETS_EXPECT_SCRIPT_PATH" #1> /dev/null
 	echo "SSH passphrase has been cached"
 } 
+add_ssh_key_pp #1> /dev/null
 
 
 # @DUPLICATE: gcof function exists elsewhere in dotfiles 

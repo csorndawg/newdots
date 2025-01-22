@@ -869,18 +869,31 @@ bashexpr() {
 # shellGPT setup
 source "$HOME/dotfiles/bash.d/lib/shellGPT_conf.bash"
 
-## @IMPORTANT: DO NOT REMOVE
-# cache ssh-add passphrase when new session starts up
-function add_ssh_pp {
+## @IMPORTANT: DO NOT MODIFY BELOW FUNCTIONS
+#  All "add_*_ssh_pp" functions are responsible for caching a passphrase 
+#  for frequently used SSH key. Do not modify unless long-term solution.
+
+# caches id_rsa passphrase
+function add_rsa_ssh_pp {
 
 	if [[ -z "$SSH_AGENT_PID" ]]; then
-		#echo "" && echo "No active SSH_AGENT present"
 		eval $(ssh-agent) 1>/dev/null
 	fi
-	# add_ssh_key_pp defined in functions.rc, and must be called after its been sourced
-	add_ssh_key_pp
+	add_rsa_ssh	# function defined in rc.d/functions.rc and must be called after that file is sourced
 }
-add_ssh_pp 1> /dev/null
+
+# caches id_rsa_linode passphrase
+function add_rsa_linode_ssh_pp {
+
+	if [[ -z "$SSH_AGENT_PID" ]]; then
+		eval $(ssh-agent) 1>/dev/null
+	fi
+	add_rsa_linode_ssh 
+}
+
+## call ssh passphrase caching functions
+add_rsa_ssh_pp 1> /dev/null
+add_rsa_linode_ssh_pp 1> /dev/null
 
 ## DOTFILE CONFIG.D FILES
 source "$HOME/dotfiles/config.d/fzf/fzf.config" 1> /dev/null

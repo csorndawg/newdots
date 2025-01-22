@@ -549,14 +549,20 @@ function whichGitRepo {
 }
 
 # ------------------------------------------------
-# automate ssh passphrase prompts
+# Automatic SSH passphrase prompt functions
 # ------------------------------------------------
 
 # automates ssh key passphrase prompts for Git and SSHing across machines
-function add_ssh_key_pp {
-	SECRETS_EXPECT_SCRIPT_PATH="$HOME/git/fortknox/bin/run_add_key"
+function add_rsa_ssh {
+	local SECRETS_EXPECT_SCRIPT_PATH="$HOME/git/fortknox/bin/run_add_key"
 	bash "$SECRETS_EXPECT_SCRIPT_PATH" 1> /dev/null
-	echo "SSH passphrase has been cached"
+	echo "SSH passphrase cached successfully"
+} 
+
+function add_rsa_linode_ssh {
+	local SECRETS_EXPECT_SCRIPT_PATH="$HOME/git/fortknox/bin/run_add_key_linode"
+	bash "$SECRETS_EXPECT_SCRIPT_PATH" 1> /dev/null
+	echo "SSH passphrase cached successfully"
 } 
 
 

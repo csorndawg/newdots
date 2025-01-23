@@ -7,7 +7,7 @@
 --vim.g.db_ui_disable_mappings_javascript = 1
 
 -- @FIXME: After testing remove one of the 2 paths below
--- default save location for dbui stuff
+-- default save location for inhouse/dbui stuff
 -- if it includes connection strings - use fortknox path, otherwise use dataops_bible
---vim.g.db_ui_save_location = "~/git/dataops_bible/runbooks/databases/dbui_queries/nvim"
-vim.g.db_ui_save_location = vim.fn.expand("$HOME") .. "/git/fortknox/creds/dbui/nvim"
+--vim.g.db_ui_save_location = "~/git/dataops_bible/runbooks/databases/inhouse/dbui_queries/nvim"
+vim.g.db_ui_save_location = vim.fn.expand("$HOME") .. "/git/fortknox/creds/inhouse/dbui/nvim"

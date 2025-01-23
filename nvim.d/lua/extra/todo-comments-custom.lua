@@ -28,7 +28,7 @@ if todo_comments then
 			WARN = {
 				-- icon = ">> ",
 				color = "warning",
-				alt = { "WARNING", "SKIPPED", "XXX", "DECOMMISSIONED", "DECOMMISSIONING" },
+				alt = { "WARNING", "SKIPPED", "XXX", "DECOMMISSIONED", "DECOMMISSIONING", "COPYPASTA" },
 			},
 			PERF = {
 				-- icon = ">> ",
@@ -36,12 +36,22 @@ if todo_comments then
 			},
 			NOTE = { -- icon = ">> ",
 				color = "hint",
-				alt = { "COPYPASTA", "NEXTSTEPS", "REMINDER", "INFO" },
+				alt = { "COPYPASTA", "HELP", "NEXT-STEPS", "REMINDER", "INFO", "HINT" },
 			},
 			TEST = {
 				-- icon = "⏲ ",
 				color = "test",
-				alt = { "REVIEW", "TESTME", "TESTING", "UNTESTED", "WILLTEST", "PASSED", "INCONCLUSIVE", "FAILED" },
+				alt = {
+					"REVIEW",
+					"TESTME",
+					"TESTING",
+					"???",
+					"VALIDATED",
+					"PASSED",
+					"INCONCLUSIVE",
+					"EXPERIMENTAL",
+					"FAILED",
+				},
 			},
 		},
 		gui_style = {
@@ -74,7 +84,7 @@ if todo_comments then
 			info = { "DiagnosticInfo", "#2563EB" },
 			hint = { "DiagnosticHint", "#10B981" },
 			default = { "Identifier", "#7C3AED" },
-			test = { "Identifier", "#FF00FF" },
+			test = { "DiagnosticWarn", "#FF00FF" },
 		},
 		-- @TODO: Update below default config if needed
 		search = {

@@ -1,0 +1,5 @@
+return {
+	{
+		"notomo/cmdbuf.nvim",
+	},
+}

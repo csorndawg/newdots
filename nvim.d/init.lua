@@ -62,3 +62,9 @@ require("extra.luaSnipsCustom.python_custom")
 --require("extra.luaSnipsCustom.vim_custom")
 require("extra.luaSnipsCustom.all_custom")
 require("extra.todo-comments-custom")
+
+-- @TODO:
+-- @SILVER
+-- @EXPERIMENTAL
+--require("extra.cmdbuf-custom")
+--require("extra.cmp-nolsp")

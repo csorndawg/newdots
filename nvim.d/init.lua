@@ -68,3 +68,4 @@ require("extra.todo-comments-custom")
 -- @EXPERIMENTAL
 --require("extra.cmdbuf-custom")
 --require("extra.cmp-nolsp")
+require("extra.neo-tree-custom")

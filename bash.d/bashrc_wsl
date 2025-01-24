@@ -141,6 +141,7 @@ source ~/dotfiles/rc.d/functions.rc || echo "Error occurred while sourcing rc.d/
 # BASH ONLY CONFIGS
 source ~/dotfiles/bash.d/functions.bash 2>/dev/null
 source ~/dotfiles/bash.d/exports.bash 2>/dev/null
+source ~/dotfiles/bash.d/experimental.bash 2>/dev/null
 source ~/dotfiles/bash.d/prompt.bash 2>/dev/null
 source ~/dotfiles/bash.d/aliases.bash 2>/dev/null
 

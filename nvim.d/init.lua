@@ -44,6 +44,9 @@ require("user.opts")
 require("user.keymaps")
 require("user.autocmds")
 
+-- @TEST
+require("runtime.ft_autocmds")
+
 -- load colorscheme from nvim.d/lua/extra/colorscheme.lua
 require("extra.colorscheme")
 require("extra.lsp")

@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 
-# Bash Tab-Completion configuration setup for git aliases (git aliases from 
+# Bash Tab-Completion configuration setup for git aliases (git aliases from
 # rc.d/aliases.rc and bash.d/aliases.bash)
 
 # alias gco="git checkout" tab completion
 __git_complete gco _git_checkout
 __git_complete gc1 _git_checkout
-
 
 ## GIT BRANCH
 
@@ -21,11 +20,8 @@ __git_complete gc1 _git_checkout
 #alias gbsmr="git branch --sort=-committerdate"   # sort newest -> oldest
 #alias gbslr="git branch --sort=committerdate"   # sort oldest -> newest
 
-
 # Git Branch Alias Test
 __git_complete gb _git_branch
-
-
 
 ### GIT STASH
 #alias gb="git branch"          # list branches that match glob-
@@ -41,8 +37,6 @@ __git_complete gb _git_branch
 
 __git_complete gst _git_stash
 
-
-
 # REST OF GIT COMMANDS BASE COMMAND ALIASES (eg. 'gco' for git checkout)
 
 ## Git Commit
@@ -51,11 +45,9 @@ __git_complete gc _git_commit
 ## Git Rebase
 __git_complete grb _git_rebase
 
-
 # REST OF GIT BASE COMMANDS (STILL WIP)
 __git_complete gm _git_merge
 __git_complete gd _git_diff
-
 
 ## Git Move
 __git_complete gmv _git_diff
@@ -68,10 +60,18 @@ __git_complete gst _git_stash
 __git_complete gshw _git_show
 __git_complete gm _git_merge
 
-## @TESTME: Git stash picker completion 
+## @TESTME: Git stash picker completion
 #__git_complete gstp _git_add
 #__git_complete gstpm _git_add
 
 # use "cd" built-in completion for gstp alias
 #complete -o default -o nospace -F _cd gstp
 #complete -o default -o nospace -F _cd gstpm
+
+# ENABLE FZF_PATH_COMP FOR SPECIFIED GIT ALIASES
+CUSTOM_GIT_ALIASES_LIST=(grm gd gstp grs grss gds gdm gdo gdom gstpp)
+
+for cga in ${CUSTOM_GIT_ALIASES_LIST[@]}; do
+	echo "complete -o bashdefault -o default -F _fzf_path_completion $cga"
+	complete -o bashdefault -o default -F _fzf_path_completion $cga
+done

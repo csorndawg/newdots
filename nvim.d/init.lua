@@ -65,3 +65,7 @@ require("extra.todo-comments-custom")
 
 -- @RC TESTS
 require("extra.conform-custom")
+
+-- @TEST: mason-utils `ensure_installed` works for select LSP servers 
+-- Testing jq_lsp (move to vim_lsp and ruff after)
+require("extra.mason-utils")

@@ -11,8 +11,7 @@ local mason = require('mason').setup()
 
 if mason then
     
-  -- You can add other tools here that you want Mason to install
-  -- for you, so that they are available from within Neovim.
+  -- SETUP SELECT LSP SERVERS WITH MASON
   local servers = {
     -- clangd = {},
     -- gopls = {},
@@ -27,6 +26,19 @@ if mason then
     -- ts_ls = {},
     --
 
+    -- @NOTE: TEST LSP GROUP
+    -- ... pyright, taplo, dockerls, yamlls, ansiblels, bashls, docker_compose_language_service
+    ansiblels = {},
+    bashls = {},
+    --    @FIX: Uncomment after testing
+--    docker_compose_language_service = {},
+--    dockerls = {},
+--    pyright = {}, 
+--    vim-language-server = {},
+--    yamlls = {},
+
+
+    -- DEFINE SELECT LSP SERVERS LIST
     lua_ls = {
       -- cmd = {...},
       -- filetypes = { ...},
@@ -42,8 +54,15 @@ if mason then
 --      },
     },
   }
+  -- @IMPORTANT: RUN ENSURE INSTALLED ON DEFINED LSP SERVER LIST
+  local ensure_installed = vim.tbl_keys(servers or {})
+  vim.list_extend(ensure_installed, {
+    --'stylua', -- Used to format Lua code
+  })
+  require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
   -- @TODO: Setup Linters
+  -- SETUP SELECT LINTERS WITH MASON
   local linters = {
     -- <python linters(s)>
     -- <bash linters(s)>
@@ -69,12 +88,9 @@ if mason then
     -- <X debugger>
   }
 
-  -- @FIX: Not broke but needs testing after above finished
-  -- Ensure above Mason/Lsp stuff installed
-  local ensure_installed = vim.tbl_keys(servers or {})
-  vim.list_extend(ensure_installed, {
-    'stylua', -- Used to format Lua code
-  })
+  -- @FIX: TEST if below correct way to pass debugger list to EXISTING/RUNNING  MASON_ENSURE_INSTALL_LIST (master list with all MASON CODE OFFERINGS)
+  -- @TESTME
+  vim.list_extend(ensure_installed, {debuggers})
   require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
 end

@@ -902,12 +902,6 @@ add_rsa_linode_ssh_pp 1> /dev/null
 ## DOTFILE CONFIG.D FILES
 source "$HOME/dotfiles/config.d/fzf/fzf.config" 1> /dev/null
 
-# custom bash tab completions
-source "$HOME/dotfiles/bash.d/lib/completions/custom/aliases/git.comp" 1> /dev/null
-source "$HOME/dotfiles/bash.d/lib/completions/custom/aliases/tmux.comp" 1> /dev/null
-source "$HOME/dotfiles/bash.d/lib/completions/custom/aliases/aliases.comp" 1> /dev/null
-source "$HOME/dotfiles/bash.d/lib/completions/custom/functs/functs.comp" 1> /dev/null
-
 # @PASSED_TEST: safe to add
 git_selective_stash() {
   local message files
@@ -959,3 +953,14 @@ git_selective_stash() {
   echo "Stashed selected files."
 }
 
+source_bashrc_custom_comp_modules() {
+
+BASH_CUSTOM_COMP_DIR="$HOME/dotfiles/bash.d/lib/custom/comps"
+SRC_FILE_LIST=$(find $BASH_CUSTOM_COMP_DIR  -type f -not -path '*/test*')
+
+for comp_file in ${SRC_FILE_LIST[@]}; do
+  #echo "Sourcing $comp_file"
+  source $comp_file
+done
+} 1> /dev/null
+source_bashrc_custom_comp_modules

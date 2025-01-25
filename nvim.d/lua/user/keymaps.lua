@@ -272,3 +272,7 @@ remapp("i", "<A-h>", "<Bs>", { noremap = true })
 remapp("i", "<A-k>", "<C-u>", { noremap = true })
 
 remapp("i", "<C-l>", "<C-x><C-l>", { noremap = true })
+
+-- rerun last CMD mode command in normal/on visual block selection with <Leader>cx
+-- `:@:` recalls and executes the most recent `:` command
+vim.keymap.set({'n', 'v'},'<Leader>cx', ':@:<Cr>', {desc = 'Rerun last CMD command'} )

@@ -874,93 +874,93 @@ bashexpr() {
 source "$HOME/dotfiles/bash.d/lib/shellGPT_conf.bash"
 
 ## @IMPORTANT: DO NOT MODIFY BELOW FUNCTIONS
-#  All "add_*_ssh_pp" functions are responsible for caching a passphrase 
+#  All "add_*_ssh_pp" functions are responsible for caching a passphrase
 #  for frequently used SSH key. Do not modify unless long-term solution.
 
 # caches id_rsa passphrase
 function add_rsa_ssh_pp {
 
-	if [[ -z "$SSH_AGENT_PID" ]]; then
-		eval $(ssh-agent) 1>/dev/null
-	fi
-	add_rsa_ssh	# function defined in rc.d/functions.rc and must be called after that file is sourced
+	SSH_SECRET_BIN="$HOME/git/fortknox/bin/"
+	PASSPHRASE_CACHE_SCRIPT_NAME="run_add_key"
+	SSH_PASSPHRASE_CACHE_SCRIPT_PATH="$SSH_SECRET_BIN/$PASSPHRASE_CACHE_SCRIPT_NAME"
+	bash $SSH_PASSPHRASE_CACHE_SCRIPT_PATH
 }
 
 # caches id_rsa_linode passphrase
 function add_rsa_linode_ssh_pp {
 
-	if [[ -z "$SSH_AGENT_PID" ]]; then
-		eval $(ssh-agent) 1>/dev/null
-	fi
-	add_rsa_linode_ssh 
+	SSH_SECRET_BIN="$HOME/git/fortknox/bin/"
+	PASSPHRASE_CACHE_SCRIPT_NAME="run_add_key_linode"
+	SSH_PASSPHRASE_CACHE_SCRIPT_PATH="$SSH_SECRET_BIN/$PASSPHRASE_CACHE_SCRIPT_NAME"
+	bash $SSH_PASSPHRASE_CACHE_SCRIPT_PATH
 }
 
 ## call ssh passphrase caching functions
-add_rsa_ssh_pp 1> /dev/null
-add_rsa_linode_ssh_pp 1> /dev/null
+add_rsa_ssh_pp 1>/dev/null
+add_rsa_linode_ssh_pp 1>/dev/null
 
 ## DOTFILE CONFIG.D FILES
-source "$HOME/dotfiles/config.d/fzf/fzf.config" 1> /dev/null
+source "$HOME/dotfiles/config.d/fzf/fzf.config" 1>/dev/null
 
 # @PASSED_TEST: safe to add
 git_selective_stash() {
-  local message files
+	local message files
 
-  # Parse the optional message flag
-  while [[ "$1" ]]; do
-    case "$1" in
-      -m|--message)
-        shift
-        message="$1"
-        ;;
-      *)
-        echo "Unknown option: $1"
-        return 1
-        ;;
-    esac
-    shift
-  done
+	# Parse the optional message flag
+	while [[ "$1" ]]; do
+		case "$1" in
+		-m | --message)
+			shift
+			message="$1"
+			;;
+		*)
+			echo "Unknown option: $1"
+			return 1
+			;;
+		esac
+		shift
+	done
 
-  # List modified, staged, and untracked files
-  files=$(git status --porcelain=v1 | awk '{print $2}' | fzf --multi --header "Select files to stash (use <SPACE> to select, <ENTER> to confirm)" --preview 'git diff --color=always -- {}')
+	# List modified, staged, and untracked files
+	files=$(git status --porcelain=v1 | awk '{print $2}' | fzf --multi --header "Select files to stash (use <SPACE> to select, <ENTER> to confirm)" --preview 'git diff --color=always -- {}')
 
-  if [[ -z "$files" ]]; then
-    echo "No files selected. Aborting."
-    return 1
-  fi
+	if [[ -z "$files" ]]; then
+		echo "No files selected. Aborting."
+		return 1
+	fi
 
-  # Ensure files are properly stashed
-  while IFS= read -r file; do
-    if [[ -n "$message" ]]; then
-      if git ls-files --error-unmatch "$file" >/dev/null 2>&1; then
-        # File is tracked
-        git stash push -m "$message" -- "$file"
-      else
-        # File is untracked
-        git stash push -u -m "$message" -- "$file"
-      fi
-    else
-      if git ls-files --error-unmatch "$file" >/dev/null 2>&1; then
-        # File is tracked
-        git stash push -- "$file"
-      else
-        # File is untracked
-        git stash push -u -- "$file"
-      fi
-    fi
-  done <<< "$files"
+	# Ensure files are properly stashed
+	while IFS= read -r file; do
+		if [[ -n "$message" ]]; then
+			if git ls-files --error-unmatch "$file" >/dev/null 2>&1; then
+				# File is tracked
+				git stash push -m "$message" -- "$file"
+			else
+				# File is untracked
+				git stash push -u -m "$message" -- "$file"
+			fi
+		else
+			if git ls-files --error-unmatch "$file" >/dev/null 2>&1; then
+				# File is tracked
+				git stash push -- "$file"
+			else
+				# File is untracked
+				git stash push -u -- "$file"
+			fi
+		fi
+	done <<<"$files"
 
-  echo "Stashed selected files."
+	echo "Stashed selected files."
 }
 
 source_bashrc_custom_comp_modules() {
 
-BASH_CUSTOM_COMP_DIR="$HOME/dotfiles/bash.d/lib/custom/comps"
-SRC_FILE_LIST=$(find $BASH_CUSTOM_COMP_DIR  -type f -not -path '*/test*')
+	BASH_CUSTOM_COMP_DIR="$HOME/dotfiles/bash.d/lib/custom/comps"
+	SRC_FILE_LIST=$(find $BASH_CUSTOM_COMP_DIR -type f -not -path '*/test*')
 
-for comp_file in ${SRC_FILE_LIST[@]}; do
-  #echo "Sourcing $comp_file"
-  source $comp_file
-done
-} 1> /dev/null
+	for comp_file in ${SRC_FILE_LIST[@]}; do
+		#echo "Sourcing $comp_file"
+		source $comp_file
+	done
+} 1>/dev/null
 source_bashrc_custom_comp_modules

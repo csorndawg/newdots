@@ -17,7 +17,6 @@
         - npm
         - nodejs
         - unzip
-        - fzf
 
 - hosts: dbservers
   vars:

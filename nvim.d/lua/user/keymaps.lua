@@ -275,4 +275,8 @@ remapp("i", "<C-l>", "<C-x><C-l>", { noremap = true })
 
 -- rerun last CMD mode command in normal/on visual block selection with <Leader>cx
 -- `:@:` recalls and executes the most recent `:` command
-vim.keymap.set({'n', 'v'},'<Leader>cx', ':@:<Cr>', {desc = 'Rerun last CMD command'} )
+vim.keymap.set({ "n", "v" }, "<Leader>cx", ":@:<Cr>", { desc = "Rerun last CMD command" })
+
+-- Cmd Mode shortcut command to load LazyLoaded plugin 	## NOTE: (requires manually typing rest of command)
+vim.keymap.set("n", "<Leader>rq", ":lua require('", { noremap = true })
+vim.keymap.set("c", "<C-r><C-q>", "lua require('", { noremap = true })

@@ -1,9 +1,11 @@
 ---
-- hosts: all
+- hosts: localhost
+  become: yes
   tasks:
     - name: Update APT packages
       apt: update_cache=yes cache_valid_time=36000
 
+    # @NOTE: Default/Out-of-box APT packages only. Create new task for installing APT binaries that require extra steps (eg. fd-find, yq)
     - name: Install APT packages
       apt:
         name: "{{item}}"
@@ -17,18 +19,9 @@
         - npm
         - nodejs
         - unzip
-        - fzf
-
-- hosts: dbservers
-  vars:
-    fixture_name: usda.sql
-  tasks:
-    - name: Install MySQL
-      apt:
-        name: mysql-server
-        state: present
-
-    - name: Copy MySQL fixture
-      copy:
-        src: "{{fixture_name}}"
-        dest: "/opt/{{fixture_name}}"
+        - gh
+        - shellcheck
+        - lua5.1
+        - tree
+        - jq
+        - zip

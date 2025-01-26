@@ -1,0 +1,29 @@
+---
+# below logs in as azure admin, which like 'root' doesnt require `sudo` to run with sudo privileges
+- hosts: azvm1
+  become: yes
+  tasks:
+    - name: Update APT packages
+      apt: update_cache=yes cache_valid_time=36000
+
+    # @NOTE: Default/Out-of-box APT packages only. Create separate task group for installing apt binaries 
+    # that require extra steps (eg. snap install/symlinking binaries/non-standard add-apt-repo)
+    - name: Install APT packages
+      apt:
+        name: "{{item}}"
+        state: present
+      with_items:
+        - rlwrap
+        - ripgrep
+        - make
+        - python3-pip
+        - python3.10-venv
+        - npm
+        - nodejs
+        - unzip
+        - gh
+        - shellcheck
+        - lua5.1
+        - tree
+        - jq
+        - zip

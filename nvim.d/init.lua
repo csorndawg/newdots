@@ -62,3 +62,5 @@ require("extra.luaSnipsCustom.python_custom")
 --require("extra.luaSnipsCustom.vim_custom")
 require("extra.luaSnipsCustom.all_custom")
 require("extra.todo-comments-custom")
+
+require("extra.dap-extras")

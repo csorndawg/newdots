@@ -1,6 +1,20 @@
--- Which-Key Post-Build Configuration
+-- Which-Key Post-Build Configuratio[C]ode (Lint/Format)
 
 local wk = require("which-key")
+
+--[[
+    @TODO: Add/Remove/Update Which-Key Bindings List - includes keygroups and indv. keymaps
+
+    -- Key Groups (see "Search" key group for ref.)
+	Buffers: <leader>b
+	Debug: <leader>d
+	Trouble: <leader>t
+	Git: <leader>g
+	LSP: <leader>l
+
+    -- Indvidual Bindings:
+	<list here>
+--]]
 
 wk.add({
 	-- Telescope [s]earch keymap group
@@ -9,22 +23,25 @@ wk.add({
 	{ "<leader>sl", desc = "Telescope livegrep" },
 	{ "<leader>sg", desc = "Telescope multigrep" },
 
+	-- @TODO: Move debug 'desc' to corresponding remapping in dap-extras
 	-- DAP [d]ebug keymap group
 	{ "<leader>d", group = "Debug" },
-	{ "<leader>db ", "Step Back" },
-	{ "<leader>di ", "Step Into" },
-	{ "<leader>do ", "Step Over" },
-	{ "<leader>dq ", "Quit" },
-	{ "<leader>dr ", "Toggle Repl" },
-	{ "<leader>dt ", "Toggle Breakpoint" },
-	{ "<leader>du ", "Step Out" },
-	{ "<leader>dU ", "Toggle UI" },
-	{ "<leader>dC", "Run To Cursor" },
-	{ "<leader>dc", "Continue" },
-	{ "<leader>dd", "Disconnect" },
-	{ "<leader>dg", "Get Session" },
-	{ "<leader>dp", "Pause" },
-	{ "<leader>ds", "Start" },
+	{ "<leader>db ", desc = "Toggle Breakpoint" },
+	{ "<leader>dB", desc = "Set Breakpoint" },
+	{ "<leader>dk ", desc = "Step Back" },
+	{ "<leader>dc", desc = "Continue" },
+	{ "<leader>dd", desc = "Disconnect" },
+	{ "<leader>dg", desc = "Get Session" },
+	{ "<leader>ds", desc = "Start" },
+	{ "<leader>dp", desc = "Pause" },
+	--{ "<leader>di ", desc = "Step Into" },
+	--{ "<leader>do ", desc = "Step Out" },
+	--{ "<leader>dC", desc = "Run To Cursor" },
+	--{ "<leader>dU ", desc = "Toggle UI" },
+	--{ "<leader>dq ", desc = "Quit" },
+	--{ "<leader>dr ", desc = "Toggle Repl" },
+	--{ "<leader>dt ", desc = "Toggle DAP-UI" },
+	--{"<leader>dv ", desc = "Step Over" },
 
 	-- @TODO: Add "nested" keymaps For each of the group labels below
 	-- Obsidian
@@ -38,4 +55,11 @@ wk.add({
 
 	-- Buffers
 	{ "<leader>b", group = "Buffers" },
+
+	-- Visual
+	{ "<leader>v", group = "Visual Mode" },
+
+	-- Trouble
+	{ "<leader>t", group = "Trouble" },
+
 })

@@ -896,8 +896,8 @@ function add_rsa_linode_ssh_pp {
 }
 
 ## call ssh passphrase caching functions
-add_rsa_ssh_pp #1>/dev/null
-add_rsa_linode_ssh_pp #1>/dev/null
+add_rsa_ssh_pp 1>/dev/null
+add_rsa_linode_ssh_pp 1>/dev/null
 
 ## DOTFILE CONFIG.D FILES
 source "$HOME/dotfiles/config.d/fzf/fzf.config" 1>/dev/null

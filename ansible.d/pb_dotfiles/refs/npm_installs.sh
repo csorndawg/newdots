@@ -13,6 +13,7 @@ sudo npm i -g pyright
 sudo npm i -g vim-language-server
 sudo npm i -g vscode-langservers-extracted  #json
 sudo yarn global add yaml-language-server #yaml
+sudo npm write-good # write-good text/prose linter
 
 
 ## Oneoffs

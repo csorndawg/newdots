@@ -38,3 +38,6 @@ vim.keymap.set("n", "<leader>os", "<cmd>ObsidianSearch<CR>", { noremap = true })
 vim.keymap.set("n", "<leader>or", "<cmd>ObsidianRename<CR>", { noremap = true })
 -- tags
 vim.keymap.set("n", "<leader>ot", "<cmd>ObsidianTags<CR>", { noremap = true })
+
+-- lazy 
+vim.keymap.set("n", "<leader>lz", "<cmd>Lazy<Cr>", { noremap = true, desc = "Lazy Open" })

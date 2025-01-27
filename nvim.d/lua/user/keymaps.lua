@@ -132,9 +132,12 @@ remapp("n", "<leader>rb", ":w !bash  %<Tab><Cr>", opts)
 
 -- Insert/Normal mode swtich
 remapp("i", ",,", "<ESC>", opts)
-remapp("i", "<Alt-,", "<ESC>", opts)
+--remapp("i", "<Alt-,", "<ESC>", opts)
+remapp("i", "<Ctrl-,", "<ESC>", opts)
 remapp("i", "jk", "<ESC>", opts)
 remapp("i", "kj", "<ESC>", opts)
+remapp("i", "ii", "<ESC>", opts)
+remapp("i", "<Leader>ii", "<ESC>", opts)
 
 -- Insert/Command mode switch
 remapp("i", ";;", "<ESC>:", opts_loud) -- dont pass opts b/c we want to see CMD prompt

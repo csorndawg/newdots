@@ -883,7 +883,7 @@ function add_rsa_ssh_pp {
 	SSH_SECRET_BIN="$HOME/git/fortknox/bin/"
 	PASSPHRASE_CACHE_SCRIPT_NAME="run_add_key"
 	SSH_PASSPHRASE_CACHE_SCRIPT_PATH="$SSH_SECRET_BIN/$PASSPHRASE_CACHE_SCRIPT_NAME"
-	bash $SSH_PASSPHRASE_CACHE_SCRIPT_PATH
+	source $SSH_PASSPHRASE_CACHE_SCRIPT_PATH
 }
 
 # caches id_rsa_linode passphrase

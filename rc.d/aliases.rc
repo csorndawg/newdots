@@ -16,19 +16,22 @@ alias n="nvim"
 # general
 alias eg="egrep"
 alias egv="egrep -v"
-alias rgv="rg -v"
 alias a="alias"
 alias ag="alias | egrep "
 alias h="history"
 alias hg="history | egrep "
 alias tt="tldr"
 
+# view shell custom completion functs/cmds
+alias cgf="compgen -A function| egrep "
+alias cgf="compgen -c | egrep "
+alias fcl="fc -l"	# view shell history with cmd # for rerunning
+
 # cheat
 alias c="cheat -c"      # colorize cheat
 alias ce="cheat -e"     # cheat edit
 alias cl="cheat -l"     # cheat edit
 alias cs="cheat -cs"     # cheat edit
-alias clt="cheat -l -t personal"    # list all cheatfiles with 'personal' tag
 
 ## pet (cheat meets ultisnips)
 alias pc="pet clip"
@@ -191,12 +194,10 @@ alias gco="git checkout"
 
 ## Git Stash 
 alias gst="git stash"
-alias gsts="git stash --show"
-alias gstd="git stash --show --patch"
-alias gsta="git stash --apply"
+alias gsts="git stash show"
+alias gstd="git stash show --patch"
+alias gsta="git stash apply"
 alias gstp="git stash --push"
-alias gstpp="git stash --push"
-alias gstpp="git stash --push"
 
 
 ## Git Branch 
@@ -276,19 +277,13 @@ alias fdcw="fd --changed-within"
 alias fdcb="fd --changed-before"
 
 # ripgrep
-alias rgp="rg -p"
-alias rgc="rg -c"
 alias rg_bare="rg -NI"  # --no-line-number --no-filename
+alias rgc="rg -c"
+alias rgi="rg -i"
+alias rgp="rg -p"
+alias rgv="rg -v"
 
-
-## pomodoro 
-alias pt="pomodoro"
-alias ptn="pomodoro start"
-alias pts='pomodoro status --format "Time Remaining: %R  Timer: %L"'
-alias pta="pomodoro ammend"
-
-## FZF fe only runs from CWD 
-alias feh="cd && fe"
+# unsorted
 alias weather='curl "wttr.in/New+York+City?2nq"'
 alias ch777="chmod 777 -R"
 
@@ -336,6 +331,8 @@ alias mkgig="mkdir -v .IgnoreMe .tmp .patches"
 alias ttl="tldr -l"
 alias ttg="tldr -l | egrep "
 alias ctlg="cheat -l | egrep "
+alias varhome="cd $HOME/.local/var"
+alias vartmp="cd $HOME/.local/var/tmp"
 
 # github cli
 alias ghr="gh repo"

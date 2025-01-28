@@ -78,12 +78,14 @@ export KNOWLEDGE_DUMPFILE="$HOME/git/fortknox/knowledge_dumpfile_master.md"
 export SECRETS_DUMPFILE="$HOME/git/fortknox/secrets_dumpfile_master.md"
 export DIFFPATCHES="$HOME/.local/state/diffpatch"
 
+# @TEMPFIX: Setting EDITOR to VIM until autocmd error for open cmd in EDITOR shortcut resolved
 # set EDITOR to NVIM, otherwise use VIM as fallback
-if [[ $(which nvim | wc --chars) -le 0 ]]; then
-	export EDITOR="vim"
-else
-	export EDITOR="nvim"
-fi
+#if [[ $(which nvim | wc --chars) -le 0 ]]; then
+#	export EDITOR="vim"
+#else
+#	export EDITOR="nvim"
+#fi
+export EDITOR="vim"
 export ANSIBLE_LOCAL_HOME="$HOME/.ansible"
 export SANDBOXES_HOME_DIR="$HOME/.local/var/sandboxes"
 export LOCAL_CHEATLIB_HOME="$HOME/git/cheatbook"

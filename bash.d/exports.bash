@@ -13,15 +13,17 @@ export XDG_VAR_HOME="$HOME/.local/var"
 export GH_USERNAME="csorndawg"
 export SANDBOXES_HOME_DIR="$HOME/.local/var/sandboxes"
 
+# @TEMPFIX: Setting EDITOR to VIM until autocmd error for open cmd in EDITOR shortcut resolved
 # set EDITOR to NVIM, otherwise use VIM as fallback
-if [[ $(which nvim | wc --chars) -le 0 ]]; then
-	export EDITOR="vim"
-else
-	export EDITOR="nvim"
-fi
-#echo "EDITOR = $EDITOR"
+#if [[ $(which nvim | wc --chars) -le 0 ]]; then
+#	export EDITOR="vim"
+#else
+#	export EDITOR="nvim"
+#fi
+export EDITOR="vim"
+
 export ANSIBLE_LOCAL_HOME="$HOME/.ansible"
-export SANDBOXES_HOME_DIR="$HOME/.local/var/sandboxes"
+export LOCAL_VAR_HOME="$HOME/.local/var"
 export LOCAL_CHEATLIB_HOME="$HOME/git/cheatbook"
 export LOCAL_DATAOPS_BIBLE_HOME="$HOME/git/dataops_bible"
 export LOCAL_SECRETS_HOME="$HOME/git/fortknox"

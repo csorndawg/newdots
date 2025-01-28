@@ -1,10 +1,10 @@
 ## WSL SHELL EXPORTS (assumes BASH SHELL)
 
 # set EDITOR to NVIM, otherwise use VIM as fallback
-if [[ $(which nvim | wc --chars) -le 0 ]]; then
+if [[ $(which vim | wc --chars) -le 0 ]]; then
 	export EDITOR="vim" 
 else
-		export EDITOR="nvim"
+		export EDITOR="vim"
 fi
 
 ## Pycharm Env. Variables

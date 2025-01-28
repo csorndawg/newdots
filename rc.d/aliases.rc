@@ -336,3 +336,9 @@ alias mkgig="mkdir -v .IgnoreMe .tmp .patches"
 alias ttl="tldr -l"
 alias ttg="tldr -l | egrep "
 alias ctlg="cheat -l | egrep "
+
+# github cli
+alias ghr="gh repo"
+alias ghrl="gh repo list"
+alias ghcx="gh copilot explain"
+alias ghcs="gh copilot suggest"

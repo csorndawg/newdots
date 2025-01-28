@@ -1,0 +1,16 @@
+# Bash Tab Completion for Collection of Indv. Custom Aliases
+
+
+## source external comp scripts
+BASH_COMP_SCRIPTS_DIR="$HOME/git/dotfiles/bash.d/completers"
+for compfile in $(find $BASH_COMP_SCRIPTS_DIR -type f); do 
+  source $compfile
+done
+
+# tldr alias
+complete -o filenames -F _shtab_tldr tt
+
+# @BROKEN: Need to fix so behavior mirrors rg<tab>
+# rg alias
+#complete -F _rg -o bashdefault -o default rgi
+complete -F _rg -o bashdefault -o default rgv

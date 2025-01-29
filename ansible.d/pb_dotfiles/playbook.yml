@@ -1,5 +1,6 @@
 ---
-- hosts: all
+- hosts: localhost
+  become: yes
   tasks:
     - name: Update APT packages
       apt: update_cache=yes cache_valid_time=36000
@@ -12,22 +13,7 @@
         - rlwrap
         - ripgrep
         - make
-        - python3-pip
-        - python3.10-venv
+        - python3-full
         - npm
         - nodejs
         - unzip
-
-- hosts: dbservers
-  vars:
-    fixture_name: usda.sql
-  tasks:
-    - name: Install MySQL
-      apt:
-        name: mysql-server
-        state: present
-
-    - name: Copy MySQL fixture
-      copy:
-        src: "{{fixture_name}}"
-        dest: "/opt/{{fixture_name}}"

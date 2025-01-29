@@ -279,8 +279,25 @@ remapp("i", "<C-l>", "<C-x><C-l>", { noremap = true })
 
 -- rerun last CMD mode command in normal/on visual block selection with <Leader>cx
 -- `:@:` recalls and executes the most recent `:` command
-vim.keymap.set({ "n", "v" }, "<Leader>cx", ":@:<Cr>", { desc = "Rerun last CMD command" })
+vim.keymap.set({ "n", "v" }, "<Up><Up>", ":@:<Cr>", { silent =true,silent =true,  desc = "Rerun last CMD command" })
 
 -- Cmd Mode shortcut command to load LazyLoaded plugin 	## NOTE: (requires manually typing rest of command)
 vim.keymap.set("n", "<Leader>rq", ":lua require('", { noremap = true })
 vim.keymap.set("c", "<C-r><C-q>", "lua require('", { noremap = true })
+
+
+-- @TODO: Better Cursor Movement/Workflow
+-- For default movement mappings see: https://learnvim.irian.to/basics/moving_in_file#scrolling
+
+-- scroll halfway up/down with <Ctrl-j/k>
+-- @NEXT: expand mapping to visual mode (see <Up><Up> example above for ref)
+-- @IDEA: make <Leader>m --> "Movement" group for cursor/scrolling remaps
+
+-- @TEST: test which scroll keymap mapping style (leader/Alt/Ctrl) works best for my workflow
+vim.keymap.set("n","<Leader>k", "<C-u>", {noremap=true, silent=true})
+vim.keymap.set("n","<Leader>j", "<C-d>", {noremap=true, silent=true})
+vim.keymap.set("n","<C-k>", "<C-u>", {noremap=true, silent=true})
+vim.keymap.set("n","<C-j>", "<C-d>", {noremap=true, silent=true})
+vim.keymap.set("n","<A-k>", "<C-u>", {noremap=true, silent=true})
+vim.keymap.set("n","<A-j>", "<C-d>", {noremap=true, silent=true})
+

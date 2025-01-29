@@ -1,11 +1,12 @@
 ## WSL SHELL EXPORTS (assumes BASH SHELL)
 
 # set EDITOR to NVIM, otherwise use VIM as fallback
-if [[ $(which vim | wc --chars) -le 0 ]]; then
-	export EDITOR="vim" 
-else
-		export EDITOR="vim"
-fi
+#if [[ $(which nvim | wc --chars) -le 0 ]]; then
+#	export EDITOR="vim" 
+#else
+#	export EDITOR="nvim"
+#fi
+export EDITOR="vim" 
 
 ## Pycharm Env. Variables
 export WSL_PYCHARM_HOME="/mnt/c/Users/zaccs/PycharmProjects"

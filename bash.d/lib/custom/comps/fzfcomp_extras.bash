@@ -8,13 +8,14 @@ GIT_ALIASES_LIST=(grm ga gd gstp grs grss gsta gds gdm gdms gdo gdom)
 for ga in ${GIT_ALIASES_LIST[@]}; do
 	#_fzf_setup_completion path "$ga"
 	echo "complete -F __fzf_default_completion $ga"
+	#complete -o bashdefault -o default -F _fzf_path_completion $cga
 	complete -F __fzf_default_completion "$ga"
 done
 
 # TODO: Add config file that extends FZF default shell comp to any command/alias in the file. After
 # making the file, move any command/alias defined below to the file to clean up this script.
 # Enable FZF default shell completion for shell commands and aliases
-FZF_DEFAULT_COMP_EXTENSION_LIST=$(tee rgv rgi wc rsync zip)
+FZF_DEFAULT_COMP_EXTENSION_LIST=(tee rgv rgi wc rsync zip)
 for item in ${FZF_DEFAULT_COMP_EXTENSION_LIST[@]}; do
 	echo "item: $item"
 	echo "complete -F __fzf_default_completion $item"

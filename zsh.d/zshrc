@@ -41,12 +41,13 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM="$HOME/dotfiles/zsh.d/custom"
 
-# set EDITOR to NVIM, otherwise use VIM as fallback
-if [[ $(which nvim | wc --chars) -le 0 ]]; then
-	export EDITOR="vim" 
-else
-		export EDITOR="nvim"
-fi
+## set EDITOR to NVIM, otherwise use VIM as fallback
+#if [[ $(which nvim | wc --chars) -le 0 ]]; then
+#	export EDITOR="vim" 
+#else
+#	export EDITOR="nvim"
+#fi
+export EDITOR="vim"
 
 ### ------------------------------
 ###   Plugins

@@ -197,7 +197,6 @@ alias gst="git stash"
 alias gsts="git stash show"
 alias gstd="git stash show --patch"
 alias gsta="git stash apply"
-alias gstp="git stash --push"
 
 
 ## Git Branch 

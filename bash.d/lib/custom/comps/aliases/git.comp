@@ -69,7 +69,7 @@ __git_complete gm _git_merge
 #complete -o default -o nospace -F _cd gstpm
 
 # ENABLE FZF_PATH_COMP FOR SPECIFIED GIT ALIASES
-CUSTOM_GIT_ALIASES_LIST=(grm gd gstp grs grss gds gdm gdo gdom gstpp)
+CUSTOM_GIT_ALIASES_LIST=(grm gd gstp grs grss gds gdm gdo)
 
 for cga in ${CUSTOM_GIT_ALIASES_LIST[@]}; do
 	echo "complete -o bashdefault -o default -F _fzf_path_completion $cga"

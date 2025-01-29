@@ -290,8 +290,6 @@ alias ch777="chmod 777 -R"
 alias kbv="bat $HOME/.cheatlib/resources/keybindings-zc-cheatsheet.txt"
 alias vv="source $HOME/.local/state/python/venvs/venv/bin/activate" 
 alias vvs="source $HOME/.shellGPT/shellGPT_venv/bin/activate"
-alias XARGS='/usr/bin/xargs'
-alias xargs='xargs -I "{}"'
 alias xa='xargs -I "{}"'
 
 

@@ -28,11 +28,19 @@ cheatpaths:
 
   ## VERSION CONTROLLED CHEATPATHS
 
-  # catch-all folder for things like stashing broken cheat 
-  # comamnds, partially completed cheatfiles, etc.
+  # catch-all folder for things like stashing broken cheat comamnds, partially 
+  # completed cheatfiles, etc.
   - name: unsorted
     path: ~/git/cheatbook/cheat/cheatfiles/unsorted
     tags: [ personal, unsorted ]
+    readonly: false
+  # catch-all folder for things like stashing broken cheat 
+
+  # runbook-like folder for example code/snippets
+  # use for cheat examples that span more than a few lines
+  - name: examples
+    path: ~/git/cheatbook/cheat/cheatfiles/examples
+    tags: [ personal, code-examples, snippets ]
     readonly: false
 
   # for new and current cheatfiles, feeds into pristine 

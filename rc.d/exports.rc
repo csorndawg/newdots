@@ -11,7 +11,6 @@ export XDG_DOWNLOADS_HOME="$HOME/.local/var/downloads"
 # custom XDG local dirs
 export XDG_TMP_HOME="$HOME/.local/var/tmp"
 export XDG_VAR_HOME="$HOME/.local/var"
-export LOCAL_TMP="$HOME/.local/var/tmp"
 export XDG_RUNTIME_HOME="$HOME/.local/runtime"
 #mkdir -pv "$HOME/.local/runtime/"{conf,srcs,tmp} >/dev/null 2>&1
 
@@ -74,9 +73,8 @@ export TMUX_BUFFERS="$HOME/.local/state/tmux/buffers"
 export VIM_BUFFERS="$HOME/.local/state/vim/buffers"
 export NVIM_BUFFERS="$HOME/.local/state/nvim/buffers"
 export DOCKER_CONTAINERS="$HOME/.local/share/docker/containers"
-export KNOWLEDGE_DUMPFILE="$HOME/git/fortknox/knowledge_dumpfile_master.md"
-export SECRETS_DUMPFILE="$HOME/git/fortknox/secrets_dumpfile_master.md"
-export DIFFPATCHES="$HOME/.local/state/diffpatch"
+export PATCH_DIR="$HOME/.local/state/patch"
+export DIFF_DIR="$HOME/.local/state/diff"
 
 ## set EDITOR to NVIM, otherwise use VIM as fallback
 #if [[ $(which nvim | wc --chars) -le 0 ]]; then
@@ -84,7 +82,7 @@ export DIFFPATCHES="$HOME/.local/state/diffpatch"
 #else
 #	export EDITOR="nvim"
 #fi
-#export EDITOR="vim"
+export EDITOR="vim"
 
 export ANSIBLE_LOCAL_HOME="$HOME/.ansible"
 export LOCAL_VAR_HOME="$HOME/.local/var"
@@ -97,12 +95,8 @@ export LOCAL_DOTFILES_HOME="$HOME/git/newdots"
 export LOCAL_ZXPLORE_HOME="$HOME/git/zxp"
 export LOCAL_GIT_HOME="$HOME/git"
 export LOCAL_DATAOPS_BIBLE_HOME="$HOME/git/dataops_bible"
+export XDG_OBSIDIAN_HOME="$HOME/git/obsiddy"
 
 # monthly sandbox for "var/tmp" files
 mkdir -p "$HOME/.var/tmp/$(date -u +%Y/%m)"
 export MY_VAR_TMP_SANDBOX="$HOME/.var/tmp/$(date -u +%Y/%m)"
-
-# see which one sticks and remove others
-export XDG_VAR_NEW="$HOME/.local/var_new"
-export LOCAL_VAR_NEW="$HOME/.local/var_new"
-export VAR_LOCAL_HOME="$HOME/.local/var_new"

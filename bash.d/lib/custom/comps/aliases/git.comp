@@ -59,19 +59,3 @@ __git_complete ga _git_add
 __git_complete gst _git_stash
 __git_complete gshw _git_show
 __git_complete gm _git_merge
-
-## @TESTME: Git stash picker completion
-#__git_complete gstp _git_add
-#__git_complete gstpm _git_add
-
-# use "cd" built-in completion for gstp alias
-#complete -o default -o nospace -F _cd gstp
-#complete -o default -o nospace -F _cd gstpm
-
-# ENABLE FZF_PATH_COMP FOR SPECIFIED GIT ALIASES
-CUSTOM_GIT_ALIASES_LIST=(grm gd gstp grs grss gds gdm gdo)
-
-for cga in ${CUSTOM_GIT_ALIASES_LIST[@]}; do
-	echo "complete -o bashdefault -o default -F _fzf_path_completion $cga"
-	complete -o bashdefault -o default -F _fzf_path_completion $cga
-done

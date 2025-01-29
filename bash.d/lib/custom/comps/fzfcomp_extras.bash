@@ -5,11 +5,11 @@
 # ... need actual git functions
 
 GIT_ALIASES_LIST=(grm ga gd gstp grs grss gsta gds gdm gdms gdo gdom)
-for ga in ${GIT_ALIASES_LIST[@]}; do
-	#_fzf_setup_completion path "$ga"
-	echo "complete -F __fzf_default_completion $ga"
+for gaf in ${GIT_ALIASES_LIST[@]}; do
+	#_fzf_setup_completion path "$gaf"
+	echo "complete -F __fzf_default_completion $gaf"
 	#complete -o bashdefault -o default -F _fzf_path_completion $cga
-	complete -F __fzf_default_completion "$ga"
+	complete -F __fzf_default_completion "$gaf"
 done
 
 # TODO: Add config file that extends FZF default shell comp to any command/alias in the file. After

@@ -56,7 +56,7 @@ alias tlkg="tmux list-keys  | egrep -i "
 ## Tmux Session Mngmnt
 alias tmns="tmux new-session -t "     
 alias tmks="tmux kill-session -t"
-alias tmka="tmux kill-session -a -t"
+alias tmka="tmux kill-session -a"
 alias tma="tmux attach"
 alias tmas="tmux attach -t "
 
@@ -68,7 +68,7 @@ alias tmmw="tmux move-window"   # new window with name flag
 
 ## Tmux Pane Mngmnt
 alias tmkp="tmux kill-pane"
-alias tmkpa="tmux kill-pane -a -t"	# kill all panes except for target
+alias tmkpa="tmux kill-pane -a"	# kill all panes except for target
 
 ## Tmux Buffer Mngmnt
 alias tmab="tmux save-buffer -a"

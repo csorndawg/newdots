@@ -91,3 +91,60 @@ _custom_git_selective_stash() {
 
 complete -F _custom_git_selective_stash gstp
 complete -F _custom_git_selective_stash gst
+
+# @TODO: Build out rest of Git alias custom completion functions
+# custom git branch aliases completion logic
+#_custom_git_branch() {}
+
+# custom git apply aliases completion logic
+#_custom_git_apply() {}
+
+# custom git remove aliases completion logic
+_custom_git_remove() {
+
+	# List modified, staged, and untracked files
+	files=$(git status --porcelain=v1 | awk '{print $2}' | fzf --multi --header "Select files to git remove" --preview 'bat {}')
+
+	if [[ -z "$files" ]]; then
+		echo "No files selected. Aborting."
+		return 1
+	fi
+	echo "Removed selected files."
+}
+complete -F _custom_git_remove grm
+
+# custom git reflog aliases completion logic
+#_custom_git_reflog() {}
+
+# custom git merge aliases completion logic
+_custom_git_merge() {
+	#	git branch -l | rg -v '\*|main' | awk '{print $1}' | fzf --select-1 --header "Select branch to merge into current working branch" --preview "git diff --stat {} main"
+	# shows diffstat b/w FZF spinner branch and current branch
+	git branch -l | rg -v '\*|main' | awk '{print $1}' | fzf --exit-0 --select-1 --header "Select branch to merge into current working branch" --preview "git diff --stat {} $(git branch --show-current)"
+}
+complete -F _custom_git_selective_stash gm
+
+# custom git add aliases completion logic
+_custom_git_add() {
+
+	# List modified, staged, and untracked files
+	files=$(git status --porcelain=v1 | awk '{print $2}' | fzf --multi --header "Select files to add" --preview 'bat --color=always -- {}')
+
+	if [[ -z "$files" ]]; then
+		echo "No files selected. Aborting."
+		return 1
+	fi
+
+	# Ensure files are properly stashed
+	while IFS= read -r file; do
+		if git ls-files --error-unmatch "$file" >/dev/null 2>&1; then
+			# File is tracked
+			git add -v -- "$file"
+		else
+			# File is untracked
+			git add -- "$file"
+		fi
+	done <<<"$files"
+}
+complete -F _custom_git_add ga
+complete -F _custom_git_add gad

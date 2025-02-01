@@ -394,7 +394,6 @@ bashexpr() {
 	esac
 }
 
-
 # shellGPT setup
 source "$HOME/dotfiles/bash.d/lib/shellGPT_conf.bash"
 

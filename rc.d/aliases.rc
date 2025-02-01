@@ -1,21 +1,27 @@
 # bash/zsh shared aliases 
 
+# NOTE: For aliases with commands that have a bunch of flags (eg. git diff) Im only aliasing up to 1 extra flag. Any mixing and matching must be done manually by adding the extra flags to the stemmed alias.
+#
+# Example: For "git diff --staged --stat" will have to be entered as "gds --staged" or "gdsg --stat"
+
+
 # inital examples
 alias jc="jupyter-console"
 alias python=python3
 alias fdd="find -type d"
-alias gds="git diff --summary"
 alias tdv="vim $HOME/dotfiles/TODO.md"
-alias tdb="bat --theme='Nord' $HOME/dotfiles/TODO.md"
 alias bat="bat --theme='Nord'"
-alias zc="z -c" 
 alias nv="nvim"
 alias n="nvim"
 
 
 # general
 alias eg="egrep"
+alias egr="egrep -R"
+alias egl="egrep -l"
+alias egc="egrep -c"
 alias egv="egrep -v"
+alias ego="egrep -o"
 alias a="alias"
 alias ag="alias | egrep "
 alias h="history"
@@ -85,18 +91,12 @@ alias o="origin"
 ### add
 alias gad="git add --dry-run"
 alias ga="git add"
+alias ga.="git add ."
 alias gacm="git add . && git commit -m "
+
 ### branch
-alias gb="git branch"          # list branches that match glob 
-alias gbl="git branch --list "          # list branches that match glob 
-alias gbc="git branch --contains "      # like -l except for commits
-alias gba="git branch -a"               # list all branchs
-alias gbr="git branch -r"               # list remote branchs
-alias gbshw="git branch --show-current"   
-alias gbm="git branch --merged"         # list all branches merged into CURRENT branch
-alias gbnm="git branch --no-merged"     # list all branches not merged into CURRENT branch
-alias gbsmr="git branch --sort=-committerdate"   # sort newest -> oldest
-alias gbslr="git branch --sort=committerdate"   # sort oldest -> newest
+
+
 ### commit 
 alias gc="git commit"
 alias gca="git commit --amend"
@@ -109,30 +109,9 @@ alias GCO="git checkout "
 alias gcmn="git checkout main "
 alias gcb="git checkout -b "
 alias gc1="git checkout @{-1}"  # checkout last branch 
-### diff
-alias gd="git diff "
-alias gdf="git diff "
-alias gdfc="git diff --compact-summary"
-alias gdfcs="git diff --compact-summary --staged "
-alias gdfh="git diff HEAD~1"
-
-### current branch diffs
-alias gdo="git diff origin"
-alias gdos="git diff origin"
-alias gdom="git diff origin --stat"
-alias gdoms="git diff origin --stat"
-
-### ONLY main origin/main diffs
-alias gdmo="git diff origin/main main"
-alias gdmos="git diff origin/main main --stat"
 
 
-### other git diffs
-alias gdfo="git diff --stat origin $(git branch --show-current)"    # experimental
-alias gdfom="git diff --stat origin/main"
-alias gdfs="git diff --stat "
-alias gdfss="git diff --staged "
-alias gdm="git diff $(git branch --show-current) main"
+
 
 ### fetch
 alias gf="git fetch"
@@ -193,15 +172,26 @@ alias gco="git checkout"
 
 ## Git Stash 
 alias gst="git stash"
+alias gstp="git stash push"
 alias gsts="git stash show"
 alias gstd="git stash show --patch"
 alias gsta="git stash apply"
 
 
 ## Git Branch 
-alias gbl="git branch --list"
-alias gbla="git branch --list --all"
+alias gb="git branch"          
+alias gbl="git branch --list "          # list branches that match glob 
+alias gbc="git branch --contains "      # like -l except for commits
+alias gba="git branch -a"               # list all (local and remote) branches
+alias gbr="git branch -r"               # list remote branchs
+alias gbs="git branch --sort=-committerdate"   # (s)ort newest -> oldest
+alias gbs-="git branch --sort=committerdate"   # (s)ort oldest -> newest
+alias gbm="git branch --merged"         # list all branches merged into CURRENT branch
+alias gbnm="git branch --no-merged"     # list all branches not merged into CURRENT branch
 alias gbc="git branch --show-current"
+
+# (f)ind git branch with egrep pattern in branch name or commit message
+alias gbf="git branch -v --sort='-committerdate' | egrep --color=always -i"  
 
 
 # Git Push
@@ -220,19 +210,17 @@ alias gcb="git checkout -b"
 alias gcmn="git checkout main"
 
 # Git Diff
-alias gd="git diff"
+alias gd="git diff "
+alias gdi="git diff --ignore-all-space"
+alias gdm="git diff $(git branch --show-current) main"	# diff local feat with local main
 alias gds="git diff --stat"
-
-# Git Diff Origin
+alias gdsg="git diff --staged"
+alias gdss="git diff --shortstat"  # output total number of modified files and added/deleted lines
+alias gdr="git diff ...origin/"  # diff local with remote equivalent
 alias gdo="git diff origin"
-alias gdom="git diff origin/main"
-alias gdms="git diff origin/main main --stat"
-alias gdos="git diff origin --stat"
 
-# Git Diff Main
-alias gdm="git diff main"
-alias gdms="git diff main --stat"
-
+# TODO: convert to function that accepts 'X' number of commits ago as ARG
+alias gdh="git diff HEAD~1"	
 
 ## Git Other/Oneoffs
 alias gshw="git show"
@@ -276,8 +264,10 @@ alias fdcb="fd --changed-before"
 
 # ripgrep
 alias rg_bare="rg -NI"  # --no-line-number --no-filename
-alias rgc="rg -c"
+alias rgc="rg -c"	# ripgrep count matches
+alias rgo="rg -o"
 alias rgi="rg -i"
+alias rgl="rg -l"
 alias rgp="rg -p"
 alias rgv="rg -v"
 
@@ -292,17 +282,17 @@ alias vvs="source $HOME/.shellGPT/shellGPT_venv/bin/activate"
 alias xa='xargs -I "{}"'
 
 
+# @TODO: Refactor into functions so flags for each git subcommand can be passed 
+# @Example: `fz_ga` will run `git add --dry-run` if `--dry-run` flag passed
+
 # GIT x FZF ALIASES
-alias fz_gco="git branch -v | fzf  | xargs git checkout"
-alias fz_gd="git branch -v | fzf  | xargs git diff"
-alias fz_gds="git branch -v | fzf  | xargs git diff --stat"
-alias fz_gdp="git branch -v | fzf  | xargs git diff --patch {} | tee $HOME/.temp/patchfiles/{}.patch"
-alias fz_rm="git branch -v | fzf -m -1 | xargs git rm"
-
-
-# POTENTIAL GIT ALIASES
-#gd "$(git branch --show-current)" "origin/$(git branch --show-current)"
-#gd --stat"$(git branch --show-current)" "origin/$(git branch --show-current)"
+alias fz_gco="git branch -v | fzf  -0 | xargs git checkout"
+alias fz_gd="git branch -v | fzf  -0 | xargs git diff"
+alias fz_gds="git branch -v | fzf  -0| xargs git diff --stat"
+alias fz_gdp="git branch -v | fzf  -0| xargs git diff --patch {} | tee $HOME/.tmp/{}.patch"
+alias fz_grm="git status ---porcelain | awk -F ' ' '{print $2}' | fzf -m -1 -0 | xargs git rm"
+alias fz_gmv="git branch -v | fzf -m -1  -0| xargs git mv"
+alias fz_ga="git branch -v | fzf -m -1  -0| xargs git add"
 
 # git repo folder jumping
 alias dob="cd $HOME/git/dataops_bible"
@@ -317,8 +307,6 @@ alias fkx="cd $HOME/git/fortknox"
 
 # terminal json formatter
 alias prettyjson='python -m json.tool'
-
-# @NOTE: Add new aliases from aliases_experimental.rc below after evaluating 
 
 # TODO: Refactor into a function/script that has a flag for each gig directory, and if no
 # flag given makes a three

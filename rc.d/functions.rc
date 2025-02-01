@@ -555,19 +555,75 @@ function whichGitRepo {
 # automates ssh key passphrase prompts for Git and SSHing across machines
 function add_rsa_ssh {
 	local SECRETS_EXPECT_SCRIPT_PATH="$HOME/git/fortknox/bin/run_add_key"
-	bash "$SECRETS_EXPECT_SCRIPT_PATH" 1> /dev/null
+	bash "$SECRETS_EXPECT_SCRIPT_PATH" 1>/dev/null
 	echo "SSH passphrase cached successfully"
-} 
+}
 
 function add_rsa_linode_ssh {
 	local SECRETS_EXPECT_SCRIPT_PATH="$HOME/git/fortknox/bin/run_add_key_linode"
-	bash "$SECRETS_EXPECT_SCRIPT_PATH" 1> /dev/null
+	bash "$SECRETS_EXPECT_SCRIPT_PATH" 1>/dev/null
 	echo "SSH passphrase cached successfully"
-} 
+}
 
 
-# @DUPLICATE: gcof function exists elsewhere in dotfiles 
-# @TODO: Move existing `gcof` function here, and then remove the below
-#function gcof {
-#  #gco $(gbsmr  | fzf --select-1 | xargs echo {} | sed -e  's/^\* //g')
-#}
+# get (g)it (d)iff b/w local branch and its (r)emote equivalent
+# pass a "remote" flag (-r) to diff from remote's perspective (remote will be the "new" file)
+function gdr() {
+    local CUR_GBRANCH
+    CUR_GBRANCH=$(git branch --show-current)
+
+    # Ensure we're on a valid branch
+    if [[ -z "$CUR_GBRANCH" ]]; then
+        echo "Error: Not on a valid branch."
+        return 1
+    fi
+
+    local FUNC_FLAG="${1:-}"  # Use first argument, default to empty if not given
+
+    case "$FUNC_FLAG" in
+        -r | r | remote)
+            echo "git diff $CUR_GBRANCH origin/$CUR_GBRANCH"
+            git diff "$CUR_GBRANCH" "origin/$CUR_GBRANCH"
+            ;;
+        "" )  # Case for no arguments
+            echo "git diff origin/$CUR_GBRANCH $CUR_GBRANCH"
+            git diff "origin/$CUR_GBRANCH" "$CUR_GBRANCH"
+            ;;
+        *)
+            echo "Error: Invalid flag. Use -r, r, or remote."
+            return 1
+            ;;
+    esac
+}
+
+##$ gdr  # No arguments
+#git diff origin/main main  # Compares local branch vs. remote
+#
+#$ gdr -r  # Remote diff
+#git diff main origin/main  # Compares remote as "new"
+#
+#$ gdr invalid
+#Error: Invalid flag. Use -r, r, or remote.
+#
+#$ git checkout HEAD~1  # Detached HEAD state
+#$ gdr
+#Error: Not on a valid branch.
+
+
+
+# show changes from state X commits ago
+# uses 1 as default if X not given
+# setting max of 25 commits to simplify logic
+function gdh() {
+    local X="${1:-1}" # Default to 1 if no input is given
+    local MAX=25
+
+    # Validate input: check if X is an integer and within range
+    if ! [[ "$X" =~ ^[0-9]+$ ]] || ((X < 1 || X > MAX)); then
+        echo "Error - invalid input provided. Input must be an integer between 1 and 25."
+        return 1
+    fi
+
+    echo "git diff HEAD~$X"
+    git diff HEAD~$X
+}

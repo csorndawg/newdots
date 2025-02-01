@@ -216,11 +216,7 @@ alias gdm="git diff $(git branch --show-current) main"	# diff local feat with lo
 alias gds="git diff --stat"
 alias gdsg="git diff --staged"
 alias gdss="git diff --shortstat"  # output total number of modified files and added/deleted lines
-alias gdr="git diff ...origin/"  # diff local with remote equivalent
 alias gdo="git diff origin"
-
-# TODO: convert to function that accepts 'X' number of commits ago as ARG
-alias gdh="git diff HEAD~1"	
 
 ## Git Other/Oneoffs
 alias gshw="git show"

@@ -50,15 +50,14 @@ alias ctl="crontab -l"
 alias tmds="tmux detach"
 alias tmls='tmux ls'
 alias tmsk="tmux send-keys "
-alias tlk="tmux list-keys"
-alias tlkg="tmux list-keys  | egrep -i "
+alias tmlk="tmux list-keys"
+alias tmlkg="tmux list-keys  | egrep -i "
 
 ## Tmux Session Mngmnt
-alias tmns="tmux new-session -t "     
-alias tmks="tmux kill-session -t"
+alias tmns="tmux new-session -t"     
+alias tmks="tmux kill-session"
 alias tmka="tmux kill-session -a"
 alias tma="tmux attach"
-alias tmas="tmux attach -t "
 
 ## Tmux Window Mngmnt
 alias tmkw="tmux kill-window"
@@ -307,6 +306,7 @@ alias fz_rm="git branch -v | fzf -m -1 | xargs git rm"
 
 # git repo folder jumping
 alias dob="cd $HOME/git/dataops_bible"
+alias zlb="cd $HOME/git/zlib"
 alias gwh="cd $HOME/git"
 alias dot="cd $HOME/git/newdots"
 alias zxp="cd $HOME/git/zxp"

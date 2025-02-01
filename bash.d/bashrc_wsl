@@ -155,8 +155,9 @@ PATH="$HOME/git/dataops_bible/bin:$HOME/git/dataops_bible/scripts:$HOME/git/tool
 
 # personal/custom type folders to add to $PATH
 SECRETS_BIN="$HOME/git/fortknox/bin"
-TESTS_BIN="$HOME/.local/var/tmp/bin"
-PATH_ADDONS="$SECRETS_BIN:$TESTS_BIN"
+#TESTS_BIN="$HOME/.local/var/tmp/bin"
+ZLIB_BIN="$HOME/git/zlib/bin"
+PATH_ADDONS="$SECRETS_BIN:$ZLIB_BIN"
 PATH="$PATH:$PATH_ADDONS"
 alias python=python3
 

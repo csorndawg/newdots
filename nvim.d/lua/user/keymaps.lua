@@ -265,24 +265,20 @@ remapp("c", "<C-.>", "<Down>", { noremap = true })
 --
 
 -- simple navigation/movements while staying in Insert Mode
-remapp("i", "<C-l><C-l>", "<Right>", { noremap = true })
-remapp("i", "<C-h><C-h>", "<Left>", opts)
-remapp("i", "<C-k><C-k>", "<Up>", opts)
-remapp("i", "<C-j><C-j>", "<Down>", opts)
+remapp("i", "<A-l><A-l>", "<Right>", { noremap = true })
+remapp("i", "<A-h><A-h>", "<Left>", opts)
+remapp("i", "<A-k><A-k>", "<Up>", opts)
+remapp("i", "<A-j><A-j>", "<Down>", opts)
 
--- delete 1 char/line and remain in Insert
-remapp("i", "<A-l>", "<Delete>", { noremap = true })
-remapp("i", "<A-h>", "<Bs>", { noremap = true })
-remapp("i", "<A-k>", "<C-u>", { noremap = true })
-
-remapp("i", "<C-l>", "<C-x><C-l>", { noremap = true })
+-- <Ctrl-l><Ctrl-l> for omni line completion
+remapp("i", "<C-l><C-l>", "<C-x><C-l>", { noremap = true })
 
 -- rerun last CMD mode command in normal/on visual block selection with <Leader>cx
 -- `:@:` recalls and executes the most recent `:` command
 vim.keymap.set({ "n", "v" }, "<Up><Up>", ":@:<Cr>", { silent = true, silent = true, desc = "Rerun last CMD command" })
 
 -- Cmd Mode shortcut command to load LazyLoaded plugin 	## NOTE: (requires manually typing rest of command)
-vim.keymap.set("n", "<Leader>rq", ":lua require('", { noremap = true })
+-- vim.keymap.set("n", "<Leader>rq", ":lua require('", { noremap = true })
 vim.keymap.set("c", "<C-r><C-q>", "lua require('", { noremap = true })
 
 -- @TODO: Better Cursor Movement/Workflow
@@ -293,15 +289,18 @@ vim.keymap.set("c", "<C-r><C-q>", "lua require('", { noremap = true })
 -- @IDEA: make <Leader>m --> "Movement" group for cursor/scrolling remaps
 
 -- @TEST: test which scroll keymap mapping style (leader/Alt/Ctrl) works best for my workflow
-vim.keymap.set("n", "<Leader>k", "<C-u>", { noremap = true, silent = true })
-vim.keymap.set("n", "<Leader>j", "<C-d>", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-k>", "<C-u>", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-j>", "<C-d>", { noremap = true, silent = true })
+-- vim.keymap.set("n", "<Leader>k", "<C-u>", { noremap = true, silent = true })
+--vim.keymap.set("n", "<Leader>j", "<C-d>", { noremap = true, silent = true })
 vim.keymap.set("n", "<A-k>", "<C-u>", { noremap = true, silent = true })
 vim.keymap.set("n", "<A-j>", "<C-d>", { noremap = true, silent = true })
 
--- Insert/Autopairs Workaround
-vim.keymap.set("i", "<Leader><Leader>", "<Right>", { noremap = true, silent = true })
+-- move cursor right with <Ctrl-Space> within insert
+vim.keymap.set("i", "<C-Space><C-Space>", "<Right>", { noremap = true, silent = true })
 
--- Insert mode navigation shortcuts
+--  move cursor left with <Ctrl-h><Ctrl-h> or <Ctrl-BS><Ctrl-BS> as vim
+-- natively maps <C-h> to <Bs>
+vim.keymap.set("i", "<C-h><C-h>", "<Left>", { noremap = true, silent = true })
+
+-- move cursor to start/end of line shortcuts
+vim.keymap.set("i", "00", "<Home>", { noremap = true, silent = true })
 vim.keymap.set("i", "$$", "<End>", { noremap = true, silent = true })

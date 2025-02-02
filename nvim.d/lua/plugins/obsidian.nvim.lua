@@ -12,17 +12,14 @@ return {
 	--   "BufNewFile path/to/my-vault/*.md",
 	-- },
 	dependencies = {
-		-- Required.
 		"nvim-lua/plenary.nvim",
-
-		-- see below for full list of optional dependencies 👇
 	},
+	event = "BufReadPre " .. vim.fn.expand("~") .. "/git/obsiddy/**.md",
 	opts = {
-		workspaces = {
-			{
-				name = "versionControl",
-				path = "~/git/obsiddy",
-			},
-		},
+		require("extra.obsidian").opts, -- source custom options from helper file
 	},
+	config = function(_, opts)
+		require("obsidian").setup(opts) -- ensure settings are still configured
+		require("extra.obsidian").setup() -- load keymaps from helper file
+	end,
 }

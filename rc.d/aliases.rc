@@ -32,6 +32,7 @@ alias tt="tldr"
 alias cgf="compgen -A function| egrep "
 alias cgf="compgen -c | egrep "
 alias fcl="fc -l"	# view shell history with cmd # for rerunning
+alias rr='fc -s'		# rerun last command matching pattern that follows (no pattern is last command)
 
 # cheat
 alias c="cheat -c"      # colorize cheat

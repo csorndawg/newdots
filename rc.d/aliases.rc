@@ -142,17 +142,17 @@ alias grbm="git rebase main"
 ### restore
 alias grs="git restore "
 alias grss="git restore --staged "
+
 ### status
 alias gs="git status"
-alias gss="git status -s"
+alias gss="git status -s -b"	# include branch name in short format status ouputs
+alias gss="git status --porcelain"	# use for shell scripts and pipelines
+
 ### stash
 alias gst="git stash"
-alias gsta="git stash apply "
 alias gstl="git stash list"
-alias gstp="git stash push"
-alias gstpm="git stash push -m "
-alias gstpu="git stash push -u -m "
-alias gsts="git stash show -p "
+alias gstp="git stash push -m"
+alias gstpu="git stash push -u"
 
 ## @TODO: Refactor below "git aliases" with above "git aliases"
 ## BASH.D GIT ALIASES COPYPASTA 
@@ -174,9 +174,7 @@ alias gco="git checkout"
 ## Git Stash 
 alias gst="git stash"
 alias gstp="git stash push"
-alias gsts="git stash show"
-alias gstd="git stash show --patch"
-alias gsta="git stash apply"
+alias gstdp="git stash show --patch"  # use as workaround until I can add "--patch" handling logic in "gstd" rc.d/function
 
 
 ## Git Branch 

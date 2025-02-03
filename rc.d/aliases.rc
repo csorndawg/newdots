@@ -272,9 +272,18 @@ alias ch777="chmod 777 -R"
 
 ## keybind references 
 alias kbv="bat $HOME/.cheatlib/resources/keybindings-zc-cheatsheet.txt"
+
+# frequently used venvs
 alias vv="source $HOME/.local/state/python/venvs/venv/bin/activate" 
 alias vvs="source $HOME/.shellGPT/shellGPT_venv/bin/activate"
+
+# shell command pipelining
 alias xa='xargs -I "{}"'
+alias cutw='cut -d " "'  # cut [w]hitespace delimited
+alias cutc='cut -d ","'  # cut [c]omma delimited
+#alias sedn=""	# TODO: make function for sed "newline" delimiter funct - acts similarly to above cut aliases except delimiter (that will be replaced by a NEWLINE) is passed as CLI ARG
+#alias cutd=""	# TODO: make function for cut helper funct, like above sed funct, except it takes delimiter AND field args from CLI, and returns cut results
+
 
 
 # @TODO: Refactor into functions so flags for each git subcommand can be passed 

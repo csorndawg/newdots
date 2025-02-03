@@ -69,3 +69,6 @@ set completeopt+=longest
 " lines above/below cursor when possible
 set scrolloff=4
 set tabstop=2
+
+" disable auto comment next line if current line is a comment line
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

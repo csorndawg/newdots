@@ -20,6 +20,9 @@ M.opts = {
 	new_notes_location = "notes_subdir",
 }
 
+-- fix for obsidian conceallevel error
+vim.opt_local.conceallevel = 2
+
 -- Function to set up keymaps after plugin loads
 function M.setup()
 	if not require("lazy.core.config").plugins["obsidian.nvim"]._.loaded then

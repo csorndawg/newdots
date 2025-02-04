@@ -302,28 +302,6 @@ let g:fzf_vim.commits_log_options = '--graph --color=always --format="%C(auto)%h
 let g:fzf_vim.buffers_jump = 1
 let g:fzf_vim.listproc = { list -> fzf#vim#listproc#quickfix(list) }
 
-" FZF.VIM Commands
-nnoremap <C-f> :Rg!<CR>
-nnoremap <silent> <leader>b :Buffers<CR>
-nnoremap <silent> <leader>f :Files<CR>
-" search for files under $HOME `~`
-nnoremap <silent> <leader>fh :Files ~<CR>
-nnoremap <silent> <leader>gf :GFiles<CR>
-" search for git files under $HOME `~`
-nnoremap <silent> <leader>gs :GFiles?<CR>
-nnoremap <silent> <leader>gsh :GFiles?<CR>
-nnoremap <silent> <leader>gc :Commits<CR>
-nnoremap <silent> <leader>s :Snippets<CR>
-nnoremap <silent> <leader>m :Marks<CR>
-nnoremap <silent> <leader>nm :Maps<CR>
-"nnoremap <silent> <leader>t :Tags<CR>      "@TODO
-
-
-" Ex-Mode Command History
-nnoremap <silent> <leader>ch :History:<CR>
-" Ex-Mode Search History
-nnoremap <silent> <leader>sh :History/:<CR>
-
 
 " Mapping selecting mappings
 "nmap <leader><tab> <plug>(fzf-maps-n)
@@ -453,29 +431,6 @@ let g:fzf_vim.commits_log_options = '--graph --color=always --format="%C(auto)%h
 " [Buffers] Jump to the existing window if possible (default: 0)
 let g:fzf_vim.buffers_jump = 1
 let g:fzf_vim.listproc = { list -> fzf#vim#listproc#quickfix(list) }
-
-" FZF.VIM Commands
-nnoremap <C-f> :Rg!<CR>
-nnoremap <silent> <leader>b :Buffers<CR>
-nnoremap <silent> <leader>f :Files<CR>
-" search for files under $HOME `~`
-nnoremap <silent> <leader>fh :Files ~<CR>
-nnoremap <silent> <leader>gf :GFiles<CR>
-" search for git files under $HOME `~`
-nnoremap <silent> <leader>gs :GFiles?<CR>
-nnoremap <silent> <leader>gsh :GFiles?<CR>
-nnoremap <silent> <leader>gc :Commits<CR>
-nnoremap <silent> <leader>s :Snippets<CR>
-nnoremap <silent> <leader>m :Marks<CR>
-nnoremap <silent> <leader>nm :Maps<CR>
-"nnoremap <silent> <leader>t :Tags<CR>      "@TODO
-
-
-" Ex-Mode Command History
-nnoremap <silent> <leader>ch :History:<CR>
-" Ex-Mode Search History
-nnoremap <silent> <leader>sh :History/:<CR>
-
 
 " Mapping selecting mappings
 "nmap <leader><tab> <plug>(fzf-maps-n)

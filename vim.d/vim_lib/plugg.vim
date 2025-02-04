@@ -1,4 +1,4 @@
-" VIM Plugin Remaps 
+ " VIM Plugin Remaps 
 "
 " @DEPENDENCIES: `plug.vim`
 " @IMPORTANT: This file must be sourced AFTER its dependencies
@@ -52,6 +52,29 @@ let g:which_key_map['W'] = {
       \ 's' : ['<C-W>s'     , 'split-window-below']    ,
       \ 'v' : ['<C-W>v'     , 'split-window-below']    ,
       \ '?' : ['Windows'    , 'fzf-window']            ,
+      \ }
+
+" @FIX: Fix following keymaps: "G","u" -- need to figure out '~' expansion workaround
+let g:which_key_map['f'] = {
+      \ 'name' : 'FZF' ,
+      \ 'C' : [':Commands '     , 'Cmd Mode Commands']    ,
+      \ 'G' : [':GFiles ~/git '     , 'Git Folder Git File Search ']    ,
+      \ 'H' : [':History/ <Cr>'     , 'Search History']         ,
+      \ 'M' : [':Maps '     , 'Search Maps']    ,
+      \ 'R' : [':RG!'     , 'Ripgrep Relaunch Search']         ,
+      \ 'b' : [':Buffers <CR>'     , 'Buffers Search']    ,
+      \ 'c' : [':Commits '     , 'Git Commits Search']    ,
+      \ 'g' : [':GFiles '     , 'Git Files Search']    ,
+      \ 'h' : [':History: <Cr>'     , 'Command History']         ,
+      \ 'j' : [':Jumps '     , 'Search Maps']    ,
+      \ 'm' : [':Marks '     , 'Marks Search']    ,
+      \ 'r' : [':Rg!'     , 'Ripgrep Search']         ,
+      \ 's' : [':GFiles? '     , 'Git Status Search']    ,
+      \ 'S' : [':Snippets '     , 'Snippets Search']    ,
+      \ 't' : [':Tags '     , 'Tags Search ']    ,
+      \ 'u' : [':Files  ~/git<CR>'     , 'Search User $HOME files']          ,
+      \ 'w' : [':Windows '     , 'Search Maps']    ,
+      \ 'z' : [':Changes '     , 'Changelist Search']    ,
       \ }
 call which_key#register('<Space>', "g:which_key_map")
 
@@ -112,19 +135,21 @@ let g:which_key_map['_'] = { 'name': 'which_key_ignore' }
 "" feed into `feedkeys()`, in which case you have to define a decicated
 "" Command or function wrapper to make it work with vim-which-key.
 "" Ref issue #126, #133 etc.
-"let g:which_key_map.b = {
-"      \ 'name' : '+buffer' ,
-"      \ '1' : ['b1'        , 'buffer 1']        ,
-"      \ '2' : ['b2'        , 'buffer 2']        ,
-"      \ 'd' : ['bd'        , 'delete-buffer']   ,
-"      \ 'f' : ['bfirst'    , 'first-buffer']    ,
-"      \ 'h' : ['Startify'  , 'home-buffer']     ,
-"      \ 'l' : ['blast'     , 'last-buffer']     ,
-"      \ 'n' : ['bnext'     , 'next-buffer']     ,
-"      \ 'p' : ['bprevious' , 'previous-buffer'] ,
-"      \ '?' : ['Buffers'   , 'fzf-buffer']      ,
-"      \ }
-"
+
+" Default buffer subkey mappings
+let g:which_key_map.b = {
+      \ 'name' : '+buffer' ,
+      \ '1' : ['b1'        , 'buffer 1']        ,
+      \ '2' : ['b2'        , 'buffer 2']        ,
+      \ 'd' : ['bd'        , 'delete-buffer']   ,
+      \ 'f' : ['bfirst'    , 'first-buffer']    ,
+      \ 'h' : ['Startify'  , 'home-buffer']     ,
+      \ 'l' : ['blast'     , 'last-buffer']     ,
+      \ 'n' : ['bnext'     , 'next-buffer']     ,
+      \ 'p' : ['bprevious' , 'previous-buffer'] ,
+      \ '?' : ['Buffers'   , 'fzf-buffer']      ,
+      \ }
+
 "let g:which_key_map.l = {
 "      \ 'name' : '+lsp',
 "      \ 'f' : ['spacevim#lang#util#Format()'          , 'formatting']       ,

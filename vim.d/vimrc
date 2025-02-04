@@ -93,7 +93,7 @@ let g:nord_uniform_diff_background = 1
 let g:nord_italic = 1
 let g:nord_underline = 1
 "let g:nord_italic_comments = 1
-silent! colorscheme nord
+"silent! colorscheme nord
 
 " airline
 "let g:airline#extensions#tabline#enabled = 1   " enable tabline buffer list
@@ -740,9 +740,18 @@ cnoremap ;; <C-c>
 
 
 
-" @TODO
+" @TODO: Move vim functions to dedicated file
 "source ~/dotfiles/vim.d/vim_lib/functs.vim
-"source ~/dotfiles/vim.d/vim_lib/expr.vim
 set foldmethod=manual
 
-" @TODO: Update colorscheme to use nord-custom by default
+" @TODO: move over to vim_lib/ module and source last.
+" @NOTE: Configurations must be set before activating colorscheme
+" set default colorscheme custom nord scheme, with custom configuration options
+let g:nord_cursor_line_number_background = 1
+let g:nord_bold_vertical_split_line = 1
+let g:nord_uniform_diff_background = 1
+let g:nord_italic = 1
+let g:nord_underline = 1
+
+"silent! colorscheme nord
+colorscheme nord-custom

@@ -744,3 +744,5 @@ cnoremap ;; <C-c>
 "source ~/dotfiles/vim.d/vim_lib/functs.vim
 "source ~/dotfiles/vim.d/vim_lib/expr.vim
 set foldmethod=manual
+
+" @TODO: Update colorscheme to use nord-custom by default

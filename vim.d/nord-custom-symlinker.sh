@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+# SYMLINK SRC.TARG PATH SETUP
+DOTFILES_DIR="$HOME/dotfiles"
+VIM_DIR="vim.d"
+NORD_CUSTOM="nord-custom.vim"
+NORD_CUSTOM_ABSPATH="$DOTFILES_DIR/$VIM_DIR/$NORD_CUSTOM"
+
+TARG_NAME="nord-custom.vim"
+TARG_PATH="$HOME/.vim/plugged/vim/colors"
+echo ln -sf "$NORD_CUSTOM_ABSPATH" "$TARG_PATH/$TARG_NAME"
+ln -sf "$NORD_CUSTOM_ABSPATH" "$TARG_PATH/$TARG_NAME"

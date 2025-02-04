@@ -154,4 +154,4 @@ autocmd FileType sql setlocal omnifunc=vim_dadbod_completion#omni
 " *** DO NOT COMMIT CONNECTIONS FILES THEMSELVES TO VERSION CONTROL ***
 " default location for saved DBUI connections  
 "let g:db_ui_save_location = "~/git/dataops_bible/runbooks/databases/dbui_queries/vim"
-let g:db_ui_save_location=expand("$HOME") . "/git/fortknox/creds/inhouse/dbui/vim"
+let g:db_ui_save_location=expand("$HOME") . "/git/fortknox/creds/internal/dbui/vim"

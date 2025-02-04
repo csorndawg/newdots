@@ -45,7 +45,7 @@ require("user.keymaps")
 require("user.autocmds")
 
 -- load colorscheme from nvim.d/lua/extra/colorscheme.lua
-require("extra.colorscheme")
+require("extra.colorscheme_enabled")
 require("extra.lsp")
 require("extra.lazy_remaps")
 

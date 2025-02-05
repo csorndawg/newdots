@@ -63,3 +63,4 @@ require("extra.luaSnipsCustom.all_custom")
 require("extra.todo-comments-custom")
 
 require("extra.dap-extras")
+require("extra.lint-custom")

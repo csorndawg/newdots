@@ -15,8 +15,6 @@ local linters_by_ft = {
 	sql = { "sqlruff" },
 }
 
-local lint = require("lint")
-
 -- Register linters
 lint.linters_by_ft = linters_by_ft
 
@@ -40,10 +38,9 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 
 -- Toggle state
 M.lint_enabled = false
-M
-	-- Function to toggle linting on save
-	.M
-	.toggle_lint_on_save = function()
+
+-- Function to toggle linting on save
+M.toggle_lint_on_save = function()
 	M.lint_enabled = not M.lint_enabled
 	if M.lint_enabled then
 		vim.api.nvim_create_autocmd("BufWritePost", {

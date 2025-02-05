@@ -9,6 +9,7 @@ local linters_by_ft = {
 	lua = { "selene" },
 	yaml = { "yamllint", "ansible-lint" },
 	sh = { "shellcheck" },
+	bash = { "shellcheck" },
 	markdown = { "write-good" },
 	text = { "write-good" },
 	ansible = { "ansible-lint" },

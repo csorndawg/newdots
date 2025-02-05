@@ -38,7 +38,7 @@ require("lazy").setup({
 
 -- EXPERIMENTAL/DEV configs (comment out below if breaking changes occur)
 require("extra.cmp-test")
-require("extra.mason-lspconfig") -- sensitive to loading order ; might need to be first "required" module ; needs to be before "extra.lsp"
+--require("extra.mason-lspconfig") -- sensitive to loading order ; might need to be first "required" module ; needs to be before "extra.lsp"
 
 require("user.opts")
 require("user.keymaps")
@@ -48,6 +48,7 @@ require("user.autocmds")
 require("extra.colorscheme")
 require("extra.lsp")
 require("extra.lazy_remaps")
+require("extra.lint-custom")
 
 -- experimental post-install configurations
 require("extra.experimental")
@@ -63,4 +64,3 @@ require("extra.luaSnipsCustom.all_custom")
 require("extra.todo-comments-custom")
 
 require("extra.dap-extras")
-require("extra.lint-custom")

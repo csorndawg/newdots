@@ -27,7 +27,16 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 	callback = function()
 		-- Check filetype and lint level
 		local ft = vim.bo.filetype
-		local supported_filetypes = { bash = true, python = true, yaml = true, docker = true }
+		local supported_filetypes = {
+			bash = true,
+			python = true,
+			markdown = true,
+			sql = true,
+			sh = true,
+			ansible = true,
+			yaml = true,
+			docker = true,
+		}
 
 		if supported_filetypes[ft] and vim.opt_local.modifiable:get() then
 			if _G.lint_level ~= "error" then

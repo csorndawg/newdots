@@ -6,13 +6,13 @@
 require("conform")
 vim.api.nvim_set_keymap(
 	"n",
-	"<leader>cF",
+	"<leader>cf",
 	":FormatDisable <CR>",
-	{ desc = "Disable Formatting", noremap = true, silent = true }
+	{ desc = "Format Disable", noremap = true, silent = true }
 )
 vim.api.nvim_set_keymap(
 	"n",
-	"<leader>cf",
+	"<leader>cF",
 	"<cmd>FormatEnable<CR>",
-	{ desc = "Enable Formatting", noremap = true, silent = true }
+	{ desc = "Format Enable", noremap = true, silent = true }
 )

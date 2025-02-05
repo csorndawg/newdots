@@ -49,6 +49,7 @@ require("extra.colorscheme")
 require("extra.lsp")
 require("extra.lazy_remaps")
 require("extra.lint-custom")
+require("extra.conform")
 
 -- experimental post-install configurations
 require("extra.experimental")

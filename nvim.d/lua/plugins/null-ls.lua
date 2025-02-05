@@ -8,19 +8,19 @@ return {
 			sources = {
 				-- Formatters
 				null_ls.builtins.formatting.black, -- Python
-				--null_ls.builtins.formatting.prettier,    -- JS/TS, Markdown, JSON
 				null_ls.builtins.formatting.shfmt, -- shell formatter
-				null_ls.builtins.formatting.yamlfix, -- Lua
+				null_ls.builtins.formatting.yamlfmt, -- yaml
 				null_ls.builtins.formatting.stylua, -- Lua
-				null_ls.builtins.formatting.jq, -- JSON
+				--null_ls.builtins.formatting.jq, -- JSON
+				--null_ls.builtins.formatting.prettier,    -- JS/TS, Markdown, JSON
 
-				-- Linters
-				null_ls.builtins.diagnostics.ansible_lint,
-				null_ls.builtins.diagnostics.yamllint,
-				null_ls.builtins.diagnostics.ruff, -- Python linter
+				-- Linters: Using nvim-lint for liniting
+				--null_ls.builtins.diagnostics.ansible_lint,
+				--null_ls.builtins.diagnostics.yamllint,
+				--null_ls.builtins.diagnostics.ruff, -- Python linter
 				--null_ls.builtins.diagnostics.shellcheck,  @BROKEN: need to debug/fix null-ls error
-				null_ls.builtins.diagnostics.write_good, -- Markdown
-				null_ls.builtins.diagnostics.hadolint, -- Dockerfile
+				--null_ls.builtins.diagnostics.write_good, -- Markdown
+				--null_ls.builtins.diagnostics.hadolint, -- Dockerfile
 
 				-- @TODO: make if-statement that only does this if it exists in local /usr/bin otherwise use Mason shellcheck
 				-- use APT installed shellcheck that exists on my system

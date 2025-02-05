@@ -13,6 +13,7 @@ return {
 			ensure_installed = {
 				"ansiblels",
 				"bashls", -- Bash
+				"awk_ls",
 				"docker_compose_language_service",
 				"dockerls",
 				--"gopls", -- Go
@@ -40,7 +41,7 @@ return {
 				"write-good",
 				"jq",
 				"yamllint",
-				"yamlfix",
+				"yamlfmt",
 			},
 			automatic_installation = true,
 		})

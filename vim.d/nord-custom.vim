@@ -265,9 +265,18 @@ endif
 "+----------------------+
 "+ Language Base Groups +
 "+----------------------+
+
+
+" custom comment color to contrast against selection color
+let s:nord_custom_comment_gui = "#434F55"
+"let s:nord_custom_comment_term = \"#434F55"  -- throws error
+
 call s:hi("Boolean", s:nord9_gui, "", s:nord9_term, "", "", "")
 call s:hi("Character", s:nord14_gui, "", s:nord14_term, "", "", "")
-call s:hi("Comment", s:nord3_gui_bright, "", s:nord3_term, "", s:italicize_comments, "")
+" nord7_term --> aqua comments ; nord12_term --> yellow comments 
+"call s:hi("Comment", s:nord_custom_comment_gui, "", s:nord7_term, "", s:italicize_comments, "")
+"call s:hi("Comment", s:nord_custom_comment_gui, "", s:nord12_term, "", s:italicize_comments, "")
+call s:hi("Comment", s:nord_custom_comment_gui, "", s:nord13_term, "", s:italicize_comments, "")
 call s:hi("Conceal", "", "NONE", "", "NONE", "", "")
 call s:hi("Conditional", s:nord9_gui, "", s:nord9_term, "", "", "")
 call s:hi("Constant", s:nord4_gui, "", "NONE", "", "", "")

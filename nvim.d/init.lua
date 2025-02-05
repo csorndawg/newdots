@@ -51,7 +51,6 @@ require("extra.lazy_remaps")
 
 -- experimental post-install configurations
 require("extra.experimental")
-require("extra.lint")
 require("extra.telescope.telescope-config")
 require("extra.which_key")
 
@@ -64,4 +63,3 @@ require("extra.luaSnipsCustom.all_custom")
 require("extra.todo-comments-custom")
 
 require("extra.dap-extras")
-require("extra.lint-custom")

@@ -35,6 +35,11 @@ return {
 			end)
 
 			require("extra.telescope.multigrep").setup()
+			-- @TODO: Review functionality and/or fix broken/misused pickers
+			require("extra.telescope.vim_pickers").setup()
+			require("extra.telescope.git_pickers").setup()
+			require("extra.telescope.lsp_pickers").setup()
+			-- @TODO: Add review community pickers and add any useful ones below
 		end,
 	},
 }

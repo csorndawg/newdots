@@ -20,8 +20,13 @@ wk.add({
 	-- Telescope [s]earch keymap group
 	{ "<leader>s", group = "Search" }, -- telescope [s]earch group
 	{ "<leader>sn", desc = "Telescope find Nvim files" },
-	{ "<leader>sl", desc = "Telescope livegrep" },
-	{ "<leader>sg", desc = "Telescope multigrep" },
+	--{ "<leader>sl", desc = "Telescope livegrep" },
+	--{ "<leader>sm", desc = "Telescope multigrep" },
+
+	-- Telescope [L]sp subgroup keymap
+	{ "<leader>sl", group = "[L]SP Pickers" },
+	{ "<leader>sv", group = "[V]im Pickers" },
+	{ "<leader>sg", group = "[G]it Pickers" },
 
 	-- @TODO: Move debug 'desc' to corresponding remapping in dap-extras
 	-- DAP [d]ebug keymap group
@@ -61,5 +66,4 @@ wk.add({
 
 	-- Trouble
 	{ "<leader>t", group = "Trouble" },
-
 })

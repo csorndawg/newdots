@@ -445,3 +445,7 @@ source_bashrc_custom_comp_modules() {
 	done
 } 1>/dev/null
 source_bashrc_custom_comp_modules
+
+# from go installer pb
+export GOBIN="/home/tlop/.local/share/go/bin"
+export PATH="$PATH:$GOBIN"

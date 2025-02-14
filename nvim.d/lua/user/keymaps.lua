@@ -62,13 +62,11 @@ remapp("i", "<A-k>", "<Up>", opts)
 remapp("i", "<A-j>", "<Down>", opts)
 
 -- Normal/Command mode switch 	(Cycle b/w two modes with `;;`)
---remapp("n", "<Leader>;", ":", { opts_loud }) --  dont pass "opts" b/c we want to see CMD prompt
 remapp("n", "<Leader>;;", ":", { silent = false }) --  dont pass "opts" b/c we want to see CMD prompt
---remapp("n", ";;", ":", {silent = false} ) -- opts)  -- @TODO: Find suitable alternate, since this interfers with '[fF]/[tT]' cycling
 
 -- Normal/Insert mode switch 	(Cycle b/w two modes with `,,`)
 remapp("n", "<Leader>,", "i", opts)
-remapp("n", ",,", "i", opts)
+remapp("n", "<C-,>", "i", opts)
 
 -- toggle search highlighting
 remapp("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)
@@ -132,21 +130,17 @@ remapp("n", "<leader>rb", ":w !bash  %<Tab><Cr>", opts)
 
 -- Insert/Normal mode swtich
 remapp("i", ",,", "<ESC>", opts)
---remapp("i", "<Alt-,", "<ESC>", opts)
 remapp("i", "<Ctrl-,", "<ESC>", opts)
-remapp("i", "jk", "<ESC>", opts)
-remapp("i", "kj", "<ESC>", opts)
+remapp("i", "jj", "<ESC>", opts)
+remapp("i", "kk", "<ESC>", opts)
 remapp("i", "ii", "<ESC>", opts)
-remapp("i", "<Leader>ii", "<ESC>", opts)
 
 -- Insert/Command mode switch
 remapp("i", ";;", "<ESC>:", opts_loud) -- dont pass opts b/c we want to see CMD prompt
-remapp("i", "<Alt-;>", "<ESC>:", opts_loud)
+remapp("i", "<C-;>", "<ESC>:", opts_loud)
 
 -- Normal/Insert Mode
 remapp("n", "<leader>,,", "i<Tab>", opts)
-remapp("n", "jk", "i", opts)
-remapp("n", "kj", "i", opts)
 
 -- <Alt-,> simulates <TAB> key
 remapp("i", "<A-,>", "<Tab>", opts)
@@ -224,8 +218,9 @@ vim.keymap.set("t", "<C-x>", "<C-c> exit<CR>", { desc = "Exit terminal mode" })
 --
 
 -- command/normal mode switch
-remapp("c", ";;", "<Esc>", opts)
-remapp("n", ";;", ": ", opts)
+--remapp("c", ";;", "<Esc>", opts)
+remapp("c", "<C-;>", "<Esc>", opts)
+remapp("n", "<Leader>;", ": ", opts)
 
 --remapp("n", "<C-;>", ": ", opts)
 --remapp("c", "<A-;>", "<Esc>", opts)
@@ -244,7 +239,7 @@ remapp("c", "EE", "<End>", { noremap = true })
 remapp("c", "bb", "<C-Left>", { noremap = true })
 remapp("c", "ww", "<C-Right>", { noremap = true })
 remapp("c", "hh", "<Left>", { noremap = true })
-remapp("c", "ll", "<Right>", { noremap = true })
+remapp("c", "lll", "<Right>", { noremap = true })
 
 -- CMD history cycling remaps
 remapp("c", "<C-,>", "<Up>", { noremap = true })
@@ -304,3 +299,9 @@ vim.keymap.set("i", "<C-h><C-h>", "<Left>", { noremap = true, silent = true })
 -- move cursor to start/end of line shortcuts
 vim.keymap.set("i", "00", "<Home>", { noremap = true, silent = true })
 vim.keymap.set("i", "$$", "<End>", { noremap = true, silent = true })
+
+-- @Experimental: Easier ESC with CapsLock
+vim.api.nvim_set_keymap("", "<CapsLock>", "<Esc>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("i", "<CapsLock>", "<Esc>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<CapsLock>", "<Esc>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("c", "<CapsLock>", "<Esc>", { noremap = true, silent = true })

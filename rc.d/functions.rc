@@ -696,3 +696,11 @@ function gsta() {
 	echo "git stash apply stash@{$X}"
 	git stash apply stash@{$X}
 }
+
+
+# use fzf to pick git branch (local or remote) to checkout 
+function fz_gco(){
+	# TODO: ensure CWD belongs to git repo, otherwise exit w/o running cmd
+	git branch -a | awk -F' ' '{print $1}' | egrep -v "\*|HEAD" | sed 's/^remotes.origin.//g'  | fzf -1 | xargs -I "{}" git checkout "{}"
+	git status | egrep --color=always "branch"
+}

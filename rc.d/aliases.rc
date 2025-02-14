@@ -29,6 +29,8 @@ alias hg="history | egrep "
 alias tt="tldr"
 alias ls="ls -lh"
 alias lsa="ls -lha"
+alias wcl="wc -l"
+alias wcc="wc -c"
 
 # @TODO: Decide on alias naming convention for 'raw' (no flags) builtin shell from 
 #	the 4 styles below. After deciding, remove other 3 styles.
@@ -314,13 +316,13 @@ alias cutc='cut -d ","'  # cut [c]omma delimited
 # @Example: `fz_ga` will run `git add --dry-run` if `--dry-run` flag passed
 
 # GIT x FZF ALIASES
-alias fz_gco="git branch -v | fzf  -0 | xargs git checkout"
-alias fz_gd="git branch -v | fzf  -0 | xargs git diff"
-alias fz_gds="git branch -v | fzf  -0| xargs git diff --stat"
-alias fz_gdp="git branch -v | fzf  -0| xargs git diff --patch {} | tee $HOME/.tmp/{}.patch"
+#alias fz_gco="git branch --all | fzf  -0 | xargs git checkout"		# MOVED TO functions.rc
+alias fz_gd="git branch --all | fzf  -0 | xargs git diff"
+alias fz_gds="git branch --all | fzf  -0| xargs git diff --stat"
+alias fz_gdp="git branch --all | fzf  -0| xargs git diff --patch {} | tee $HOME/.tmp/{}.patch"
 alias fz_grm="git status ---porcelain | awk -F ' ' '{print $2}' | fzf -m -1 -0 | xargs git rm"
-alias fz_gmv="git branch -v | fzf -m -1  -0| xargs git mv"
-alias fz_ga="git branch -v | fzf -m -1  -0| xargs git add"
+alias fz_gmv="git branch --all | fzf -m -1  -0| xargs git mv"
+alias fz_ga="git branch --all | fzf -m -1  -0| xargs git add"
 
 # git repo folder jumping
 alias dob="cd $HOME/git/dataops_bible"
@@ -353,3 +355,6 @@ alias ghrl="gh repo list"
 alias ghcx="gh copilot explain"
 alias ghcs="gh copilot suggest -s"
 alias py="python3"
+
+# lazygit
+alias lg="lazygit"

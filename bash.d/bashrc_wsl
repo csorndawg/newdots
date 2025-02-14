@@ -446,6 +446,10 @@ source_bashrc_custom_comp_modules() {
 } 1>/dev/null
 source_bashrc_custom_comp_modules
 
+# TODO: update go install script to add below env/exports
 # from go installer pb
-export GOBIN="/home/tlop/.local/share/go/bin"
+export GOPATH="$HOME/.local/share/go/workspace"
+export GOROOT="$HOME/.local/share/go/root"
+export GOBIN="$GOROOT/bin"
 export PATH="$PATH:$GOBIN"
+#export PATH="$PATH:$GOBIN:$GOPATH"

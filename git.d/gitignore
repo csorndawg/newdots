@@ -1,14 +1,10 @@
 .temp/
 **/temp/
-**.temp
 **/tmp/
 .tmp/
-**.tmp
-temp.*
 **/temp.*
-*.diff
 patch*
-diffpatches**
+**.diffpatch
 
 .cargo/
 .vim/plugged
@@ -16,36 +12,32 @@ diffpatches**
 # gitignore.io
 
 # standard
-*.swp
-*.tar
-*.tar.*
-*.jar
-*.exe
-*.msi
-*.zip
-*.tgz
-*.log
-*.log.*
-*.sig
+**.swp
+**.tar.**
+**.exe
+**.zip.**
+**.log
+**.log.**
+**.diff
 
 pkg/
 src/
 
-*.og
-*.ig
-*.tmp
-*.temp
-*.bk
-*.bak
-*.db
-*.avi
-*.pdf
-*.ps
-*.mid
-*.midi
-*.mp3
-*.aif
-*.wav
+**.og
+**.ig
+**.tmp
+**.temp
+**.bk
+**.bak
+**.db
+**.avi
+**.pdf
+**.ps
+**.mid
+**.midi
+**.mp3
+**.aif
+**.wav
 
 #### Test ###
 #### Ignore all files that could be used to test your code and
@@ -219,10 +211,8 @@ package.json
 ## 
 ## CUSTOM IGNORES
 ## 
-**.syml
 .IgnoreMe**
 .patches**
-**.patch
 ## node
 **/node_modules
 node_modules/
@@ -238,9 +228,44 @@ go/
 !go/bin
 syml**
 **/syml**
-**/**.syml
+#**/**.syml
 **/venv/**
 **/venvs/**
 
 ## Try below, if above fails
 #**/go/pkg/
+
+# commonly ignored extensions
+**.gz
+**.tar
+**.csv
+**.tsv
+**.zip
+**.syml
+**.gig
+**.ignore
+**.test
+**.tst
+**.bk
+**.log
+**.dat
+**.gzip
+**.patch
+
+**.gz.*
+**.tar.*
+**.csv.*
+**.tsv.*
+**.zip.*
+
+# @NOTE: Uncomment after testing with above
+#**.syml.*
+#**.gig.*
+#**.ignore.*
+#**.test.*
+#**.tst.*
+#**.bk.*
+#**.log.*
+#**.dat.*
+#**.gzip.*
+#**.patch.*

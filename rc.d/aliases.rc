@@ -27,6 +27,15 @@ alias ag="alias | egrep "
 alias h="history"
 alias hg="history | egrep "
 alias tt="tldr"
+alias ls="ls -lh"
+alias lsa="ls -lha"
+
+# @TODO: Decide on alias naming convention for 'raw' (no flags) builtin shell from 
+#	the 4 styles below. After deciding, remove other 3 styles.
+alias LS="command ls"
+alias ls_raw="command ls"
+alias lsrw="command ls"
+alias lsRaw="command ls"
 
 # view shell custom completion functs/cmds
 alias cgf="compgen -A function| egrep "
@@ -287,11 +296,18 @@ alias vvs="source $HOME/.shellGPT/shellGPT_venv/bin/activate"
 
 # shell command pipelining
 alias xa='xargs -I "{}"'
+# alias xargs='xargs -I "{}"'
+# alias XARGS='command xargs'
+# alias xargs_raw='command xargs'
+# alias xargsrw='command xargs'
+# alias xargsRaw='command xargs'
 alias cutw='cut -d " "'  # cut [w]hitespace delimited
 alias cutc='cut -d ","'  # cut [c]omma delimited
-#alias sedn=""	# TODO: make function for sed "newline" delimiter funct - acts similarly to above cut aliases except delimiter (that will be replaced by a NEWLINE) is passed as CLI ARG
-#alias cutd=""	# TODO: make function for cut helper funct, like above sed funct, except it takes delimiter AND field args from CLI, and returns cut results
 
+#alias sedn=""	# TODO: Make function for sed "newline" delimiter function. Acts similarly
+# 		# 	to above cut aliases except the delimiter (that will be replaced 
+#		# 	by a NEWLINE) is passed as CLI ARG.
+#alias cutd=""	# TODO: make function for cut helper funct, like above sed funct, except it takes delimiter AND field args from CLI, and returns cut results
 
 
 # @TODO: Refactor into functions so flags for each git subcommand can be passed 

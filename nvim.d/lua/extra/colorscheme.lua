@@ -12,4 +12,26 @@ M.setup = function()
 	-- Load the colorscheme
 	require("nord").set()
 end
+
+-- configure headlines bufferline integration
+-- local ok, headlines = pcall(require, "headlines")
+-- if ok then
+-- 	headlines.setup({
+-- 		markdown = {
+-- 			headline_highlights = {
+-- 				"Headline1",
+-- 				"Headline2",
+-- 				"Headline3",
+-- 				"Headline4",
+-- 				"Headline5",
+-- 				"Headline6",
+-- 			},
+-- 			codeblock_highlight = "CodeBlock",
+-- 			dash_highlight = "Dash",
+-- 			quote_highlight = "Quote",
+-- 		},
+-- 	})
+-- else
+-- 	vim.notify("headlines.nvim not found!", vim.log.levels.WARN)
+-- end
 return M

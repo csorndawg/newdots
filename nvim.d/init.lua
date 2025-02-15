@@ -38,8 +38,8 @@ require("lazy").setup({
 
 -- editor configurations
 require("extra.colorscheme")
-require("extra.bufferline-custom")
-require("extra.lualine-custom")
+--require("extra.bufferline-custom")
+--require("extra.lualine-custom")
 
 -- EXPERIMENTAL/DEV configs (comment out below if breaking changes occur)
 require("extra.cmp-test")

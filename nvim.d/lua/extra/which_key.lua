@@ -26,7 +26,8 @@ wk.add({
 	-- Telescope [L]sp subgroup keymap
 	{ "<leader>sl", group = "[L]SP Pickers" },
 	{ "<leader>sv", group = "[V]im Pickers" },
-	{ "<leader>sg", group = "[G]it Pickers" },
+	--{ "<leader>sg", group = "[G]it Pickers" },
+	{ "<leader>g", group = "[G]it" },
 
 	-- @TODO: Move debug 'desc' to corresponding remapping in dap-extras
 	-- DAP [d]ebug keymap group
@@ -53,7 +54,7 @@ wk.add({
 	{ "<leader>o", group = "Obsidian" },
 
 	-- Git
-	{ "<leader>g", group = "Git" },
+	--{ "<leader>g", group = "Git" },
 
 	-- LSP
 	{ "<leader>l", group = "LSP" },

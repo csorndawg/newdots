@@ -36,6 +36,11 @@ require("lazy").setup({
 --  source custom nvim config submodules
 -- ---------------------------------------------------
 
+-- editor configurations
+require("extra.colorscheme")
+require("extra.bufferline-custom")
+require("extra.lualine-custom")
+
 -- EXPERIMENTAL/DEV configs (comment out below if breaking changes occur)
 require("extra.cmp-test")
 require("extra.mason-lspconfig") -- sensitive to loading order ; might need to be first "required" module ; needs to be before "extra.lsp"
@@ -45,7 +50,7 @@ require("user.keymaps")
 require("user.autocmds")
 
 -- load colorscheme from nvim.d/lua/extra/colorscheme.lua
-require("extra.colorscheme")
+
 require("extra.lsp")
 require("extra.lazy_remaps")
 

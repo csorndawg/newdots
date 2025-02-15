@@ -1,49 +1,46 @@
 -- Lualine configuration
-
 local M = {}
 
 M.setup = function()
-	require("lualine").setup({
+	local lualine = require("lualine")
+
+	-- Get the current config (to avoid overwriting everything)
+	local config = {
 		options = {
-			theme == "nord",
-			icons_enabled = true,
-			theme = "auto",
+			theme = "nord",
 			component_separators = { left = "", right = "" },
 			section_separators = { left = "", right = "" },
-			disabled_filetypes = {
-				statusline = {},
-				winbar = {},
-			},
-			ignore_focus = {},
-			always_divide_middle = true,
-			always_show_tabline = true,
-			globalstatus = false,
 			refresh = {
 				statusline = 100,
 				tabline = 100,
 				winbar = 100,
 			},
+			icons_enabled = true,
 		},
 		sections = {
 			lualine_a = { "mode" },
-			lualine_b = { "branch", "diff", "diagnostics" },
-			lualine_c = { "" },
-			lualine_x = { "encoding", "filetype" },
-			lualine_y = { "location", "progress" },
-			lualine_z = { "filename" },
-		},
-		inactive_sections = {
-			lualine_a = {},
-			lualine_b = {},
+			lualine_b = { "branch", "diff" },
 			lualine_c = { "filename" },
-			lualine_x = { "fileformat", "location" },
-			lualine_y = {},
-			lualine_z = {},
+			lualine_x = { "encoding", "fileformat", "filetype" },
+			lualine_y = { "progress" },
+			lualine_z = { "location" },
 		},
-		tabline = {},
-		winbar = {},
-		inactive_winbar = {},
-		extensions = {},
-	})
+		-- inactive_sections = {
+		-- lualine_a = {},
+		-- lualine_b = {},
+		-- lualine_c = { "filename" },
+		-- lualine_x = { "location" },
+		-- lualine_y = {},
+		-- lualine_z = {},
+		-- },
+		--		tabline = {},
+		--		winbar = {},
+		--		inactive_winbar = {},
+		--		extensions = {},
+	}
+
+	-- Apply the new configuration (merging it with the defaults)
+	lualine.setup(config)
 end
+
 return M

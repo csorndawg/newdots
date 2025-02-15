@@ -353,3 +353,6 @@ alias ghrl="gh repo list"
 alias ghcx="gh copilot explain"
 alias ghcs="gh copilot suggest -s"
 alias py="python3"
+
+# lazygit
+alias lg="lazygit"

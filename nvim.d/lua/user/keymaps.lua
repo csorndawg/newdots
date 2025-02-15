@@ -299,9 +299,3 @@ vim.keymap.set("i", "<C-h><C-h>", "<Left>", { noremap = true, silent = true })
 -- move cursor to start/end of line shortcuts
 vim.keymap.set("i", "00", "<Home>", { noremap = true, silent = true })
 vim.keymap.set("i", "$$", "<End>", { noremap = true, silent = true })
-
--- @Experimental: Easier ESC with CapsLock
-vim.api.nvim_set_keymap("", "<CapsLock>", "<Esc>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("i", "<CapsLock>", "<Esc>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "<CapsLock>", "<Esc>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("c", "<CapsLock>", "<Esc>", { noremap = true, silent = true })

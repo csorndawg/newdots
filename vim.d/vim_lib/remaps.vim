@@ -186,9 +186,3 @@ vnoremap <silent> <C-3> :s/^/#&/<CR>
 
 " insert mode line completion
 inoremap  <C-l> <C-x><C-l>
-
-" @EXPR: CAPSLOCK to <ESC>
-nnoremap <CapsLock> <Esc>
-inoremap <CapsLock> <Esc>
-vnoremap <CapsLock> <Esc>
-cnoremap <CapsLock> <Esc>

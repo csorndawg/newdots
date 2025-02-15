@@ -706,7 +706,7 @@ function fz_gco() {
 # add (stage) all files selected in FZF picker - will add a "--dry-run" flag if "-d/d/dryrun" passed as ARG
 function fz_ga() {
 
-	# dyrun flag handling logic
+	# dryrun flag handling logic
 	if [[ -n "$1" ]]; then
 		case $1 in
 		d | dryrun | \-d | dry\-run | D)
@@ -739,4 +739,49 @@ function fz_gm() {
 	fi
 	git branch --all --sort=-committerdate | h10 | egrep -v "\*|HEAD" | tr -d ' ' | sed 's|^remotes\/||g' | fzf -1 | xargs -I "{}" git merge {}
 
+}
+
+# fzf picker for git diff elements (for now only works for branches only, make sep. diff commits funct if needed in future)
+function fz_gd() {
+	echo ""
+
+	# store fzf picks as single whitespace delimited string so they
+	# can all be dumped out in single `git diff` command
+	FZF_GDIFF_PICKS=$(git status --porcelain | awk -F ' ' '{print $2}' | fzf -m |
+		xargs -I "{}" echo "'{}'")
+	FZF_GDIFF_PICKS=$(echo $FZF_GDIFF_PICKS | sed 's/\n/ /g')
+	echo "FZF_GDIFF_PICKS: $FZF_GDIFF_PICKS"
+
+	# logic to handle git diff flags (--stat/--staged/etc.)
+	#echo "Will add flag logic later"
+
+	# possibly might need to add logic to determine diff ref branch (current, origin, origin/main, etc.)
+	# for now assume current but allow for origin OR main to be specified via a flag
+
+	if [[ ! -n "$1" ]]; then
+		echo "No argument passed alongside function."
+		echo git diff HEAD "$FZF_GDIFF_PICKS"
+		git diff HEAD "$FZF_GDIFF_PICKS"
+		#return 0
+
+	# case st. to handle 3 possible cases
+	else
+		echo "Argument '$1' passed alongside function. As a result main will be used as the diff reference branch"
+		case "$1" in
+		o | origin | og | O | \-o)
+			echo "Running git diff origin"
+			echo git diff origin "$FZF_GDIFF_PICKS"
+			#git diff origin "$FZF_GDIFF_PICKS"
+			;;
+		m | main | M | mn | \-m)
+			echo "Running git diff main"
+			echo git diff main "$FZF_GDIFF_PICKS"
+			#git diff main "$FZF_GDIFF_PICKS"
+			;;
+		*)
+			echo "Error - unrecognized argument provided. Aborting function."
+			return 1
+			;;
+		esac
+	fi
 }

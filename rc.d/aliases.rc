@@ -343,7 +343,7 @@ alias mkgig="mkdir -v .IgnoreMe .tmp .patches"
 
 alias ttl="tldr -l"
 alias ttg="tldr -l | egrep "
-alias ctlg="cheat -l | egrep "
+alias clg="cheat -l | egrep "
 alias varhome="cd $HOME/.local/var"
 alias vartmp="cd $HOME/.local/var/tmp"
 

@@ -316,13 +316,11 @@ alias cutc='cut -d ","'  # cut [c]omma delimited
 # @Example: `fz_ga` will run `git add --dry-run` if `--dry-run` flag passed
 
 # GIT x FZF ALIASES
-#alias fz_gco="git branch --all | fzf  -0 | xargs git checkout"		# MOVED TO functions.rc
 alias fz_gd="git branch --all | fzf  -0 | xargs git diff"
 alias fz_gds="git branch --all | fzf  -0| xargs git diff --stat"
 alias fz_gdp="git branch --all | fzf  -0| xargs git diff --patch {} | tee $HOME/.tmp/{}.patch"
 alias fz_grm="git status ---porcelain | awk -F ' ' '{print $2}' | fzf -m -1 -0 | xargs git rm"
 alias fz_gmv="git branch --all | fzf -m -1  -0| xargs git mv"
-alias fz_ga="git branch --all | fzf -m -1  -0| xargs git add"
 
 # git repo folder jumping
 alias dob="cd $HOME/git/dataops_bible"

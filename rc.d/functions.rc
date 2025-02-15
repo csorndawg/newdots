@@ -637,7 +637,6 @@ function gcox() {
 	git checkout @{-$X}
 }
 
-
 # @TODO: Add "-p" patch flag handling to view actual diff and not summary. For now using "-p" as default case.
 # show diff b/w stash X and current work
 function gstd() {
@@ -697,10 +696,34 @@ function gsta() {
 	git stash apply stash@{$X}
 }
 
-
-# use fzf to pick git branch (local or remote) to checkout 
-function fz_gco(){
+# use fzf to pick git branch (local or remote) to checkout
+function fz_gco() {
 	# TODO: ensure CWD belongs to git repo, otherwise exit w/o running cmd
-	git branch -a | awk -F' ' '{print $1}' | egrep -v "\*|HEAD" | sed 's/^remotes.origin.//g'  | fzf -1 | xargs -I "{}" git checkout "{}"
+	git branch -a | awk -F' ' '{print $1}' | egrep -v "\*|HEAD" | sed 's/^remotes.origin.//g' | fzf -1 | xargs -I "{}" git checkout "{}"
 	git status | egrep --color=always "branch"
+}
+
+# add (stage) all files selected in FZF picker - will add a "--dry-run" flag if "-d/d/dryrun" passed as ARG
+function fz_ga() {
+
+	# dyrun flag handling logic
+	if [[ -n "$1" ]]; then
+		case $1 in
+		d | dryrun | \-d | dry\-run | D)
+			echo "Dryrun flag passed"
+			git ls-files --modified --others --exclude-standard | awk 'BEGIN { OFS=";"} {print $2, $1}' | fzf -m | xargs -I "{}" echo "{}" | cut -f 1 -d ';' | xargs -I "{}" git add --dry-run "{}"
+			exit 0
+			;;
+		*)
+			echo "Error - unrecognized flag passed."
+			exit 1
+			;;
+		esac
+	fi
+
+	# no dryrun flag given, proceed with staging selections
+	git ls-files --modified --others --exclude-standard |  fzf -m | xargs -I "{}" git add "{}"
+
+	# show currently staged files
+	git status | sed -n '/Changes to be committed:/, /Changes not staged for commit:/ { /Changes not staged for commit:/!p }'
 }

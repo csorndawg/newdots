@@ -453,3 +453,8 @@ export GOROOT="$HOME/.local/share/go/root"
 export GOBIN="$GOROOT/bin"
 export PATH="$PATH:$GOBIN"
 #export PATH="$PATH:$GOBIN:$GOPATH"
+export PATH="$PATH:$HOME/.cargo/env"
+
+# cargo/rustup install
+source $HOME/.cargo/env
+export PATH="$PATH:$HOME/.cargo/bin"

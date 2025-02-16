@@ -288,6 +288,7 @@ alias rgv="rg -v"
 # unsorted
 alias weather='curl "wttr.in/New+York+City?2nq"'
 alias ch777="chmod 777 -R"
+alias chmox="chmod +x"
 
 ## keybind references 
 alias kbv="bat $HOME/.cheatlib/resources/keybindings-zc-cheatsheet.txt"

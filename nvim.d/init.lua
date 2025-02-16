@@ -69,3 +69,5 @@ require("extra.luaSnipsCustom.all_custom")
 require("extra.todo-comments-custom")
 
 require("extra.dap-extras")
+require("extra.mini-surround")
+require("extra.git-keymaps-expr")

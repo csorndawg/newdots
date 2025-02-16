@@ -55,6 +55,12 @@ wk.add({
 	-- Git
 	{ "<leader>g", group = "Git" },
 
+	-- Mini
+	{ "<leader>m", group = "Mini" },
+	{ "<leader>ms", group = "[S]urround" },
+	{ "<leader>mc", group = "[C]omment" },
+	{ "<leader>ma", group = "[A]i" },
+
 	-- LSP
 	{ "<leader>l", group = "LSP" },
 

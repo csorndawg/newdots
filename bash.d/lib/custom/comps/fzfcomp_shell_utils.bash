@@ -7,8 +7,12 @@
 complete -F __fzf_default_completion echo
 complete -F __fzf_default_completion python
 complete -F __fzf_default_completion python3
+complete -F __fzf_default_completion bash
 complete -F __fzf_default_completion source
+complete -F __fzf_default_completion ansible
+complete -F __fzf_default_completion ansible-playbook
 complete -F __fzf_default_completion patch
+complete -F __fzf_default_completion diff
 
 ## extra special comp enablement
 _fzf_complete_special_notrigger() {

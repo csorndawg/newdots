@@ -1,9 +1,10 @@
 # BASH SHELL ONLY - (make separate file for ZSH equivalent)
 
-# @VALIDATE
+
 # fgcor - checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
 # [F]zf [G]it [C]heck[O]ut [R]ecent branch
-
+#
+# @VALIDATED: 'fgcor' has been validated 
 fgcor() {
   local branches branch
   branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&

@@ -6,10 +6,12 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_BIN_HOME="$HOME/.local/bin"
+export XDG_GWD_HOME="$HOME/git/obsiddy"
+export XDG_OBSIDIAN_HOME="$HOME/git/obsiddy"
 export XDG_DOWNLOADS_HOME="$HOME/.local/var/downloads"
 
 # custom XDG local dirs
-export XDG_TMP_HOME="$HOME/.local/var/tmp"
+export XDG_TMP_HOME="$HOME/.local/tmp"
 export XDG_VAR_HOME="$HOME/.local/var"
 export XDG_RUNTIME_HOME="$HOME/.local/runtime"
 #mkdir -pv "$HOME/.local/runtime/"{conf,srcs,tmp} >/dev/null 2>&1
@@ -95,7 +97,7 @@ export LOCAL_DOTFILES_HOME="$HOME/git/newdots"
 export LOCAL_ZXPLORE_HOME="$HOME/git/zxp"
 export LOCAL_GIT_HOME="$HOME/git"
 export LOCAL_DATAOPS_BIBLE_HOME="$HOME/git/dataops_bible"
-export XDG_OBSIDIAN_HOME="$HOME/git/obsiddy"
+
 
 # monthly sandbox for "var/tmp" files
 mkdir -p "$HOME/.var/tmp/$(date -u +%Y/%m)"

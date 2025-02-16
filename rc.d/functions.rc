@@ -740,3 +740,15 @@ function fz_gm() {
 	git branch --all --sort=-committerdate | h10 | egrep -v "\*|HEAD" | tr -d ' ' | sed 's|^remotes\/||g' | fzf -1 | xargs -I "{}" git merge {}
 
 }
+
+# use for on-the-fly resetting of files, useful for testing and logging files
+function wipe_file(){
+if [[ ! -n "$1" ]]; then
+echo "Error - file ARG required."
+return 1
+else
+INFILE="$1"
+fi
+
+echo "" > "$INFILE"
+}

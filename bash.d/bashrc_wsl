@@ -458,3 +458,7 @@ export PATH="$PATH:$HOME/.cargo/env"
 # cargo/rustup install
 source $HOME/.cargo/env
 export PATH="$PATH:$HOME/.cargo/bin"
+
+# @EXPR: source file with all my fzf-extras experimental configurations that need testing
+experimental_fzf_extra_conf="$HOME/git/newdots/rc.d/fzf-extras-functions.rc"
+source "$experimental_fzf_extra_conf"

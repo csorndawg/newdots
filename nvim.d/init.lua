@@ -69,3 +69,4 @@ require("extra.luaSnipsCustom.all_custom")
 require("extra.todo-comments-custom")
 
 require("extra.dap-extras")
+require("extra.mini-surround") -- this keeps default configuration and only overwrites if direct conflict configuration

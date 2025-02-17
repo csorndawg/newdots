@@ -69,5 +69,5 @@ require("extra.luaSnipsCustom.all_custom")
 require("extra.todo-comments-custom")
 
 require("extra.dap-extras")
-require("extra.mini-surround")
-require("extra.git-keymaps-expr")
+require("extra.mini-surround") -- @NOTE: use as reference for extending default plugin configurations
+require("extra.git-keymaps")

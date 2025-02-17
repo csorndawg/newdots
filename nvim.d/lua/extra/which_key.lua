@@ -55,6 +55,18 @@ wk.add({
 	-- Git
 	{ "<leader>g", group = "Git" },
 
+	-- Git diff subkey
+	{ "<leader>gd", group = "Git [d]iff" },
+
+	-- Git hunk subkey
+	{ "<leader>gh", group = "Hunk navigation" },
+
+	-- Mini
+	{ "<leader>m", group = "Mini" },
+	{ "<leader>ms", group = "[S]urround" },
+	{ "<leader>mc", group = "[C]omment" },
+	{ "<leader>ma", group = "[A]i" },
+
 	-- LSP
 	{ "<leader>l", group = "LSP" },
 

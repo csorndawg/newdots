@@ -728,6 +728,32 @@ function fz_ga() {
 	git status | sed -n '/Changes to be committed:/, /Changes not staged for commit:/ { /Changes not staged for commit:/!p }'
 }
 
+# restore/ restore and unstaged all files picked in FZF picker
+function fz_grs() {
+
+	# dyrun flag handling logic
+	if [[ -n "$1" ]]; then
+		case $1 in
+		s|staged|cached|S)
+			echo "Restore staged files"
+			git ls-files --modified --exclude-standard |  fzf -m | xargs -I "{}" echo "{}" \
+			  | xargs -I "{}" git restore --staged "{}"
+			exit 0
+			;;
+		*)
+			echo "Error - unrecognized flag passed."
+			exit 1
+			;;
+		esac
+	fi
+
+	# no dryrun flag given, proceed with staging selections
+	git ls-files --modified --exclude-standard | fzf -m | xargs -I "{}" git restore "{}"
+
+	# show currently staged files
+	git status 
+}
+
 # use fzf to select git merge branch
 function fz_gm() {
 
@@ -751,4 +777,10 @@ INFILE="$1"
 fi
 
 echo "" > "$INFILE"
+}
+
+# on-the-fly shellrc sourcing
+function ssrc(){
+local usr_shell=$(basename $(echo $SHELL))
+source "$HOME"/."$usr_shell"rc 2> /dev/null || echo "Error - issue occurred when trying to source '."$usr_shell"rc'"
 }

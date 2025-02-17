@@ -59,13 +59,13 @@ require("extra.experimental")
 require("extra.lint")
 require("extra.telescope.telescope-config")
 require("extra.which_key")
-
--- custom luasnips snippets
-require("extra.luaSnipsCustom.bash_custom")
-require("extra.luaSnipsCustom.python_custom")
---require("extra.luaSnipsCustom.lua_custom")
---require("extra.luaSnipsCustom.vim_custom")
-require("extra.luaSnipsCustom.all_custom")
 require("extra.todo-comments-custom")
 
+-- custom helper module for easier plugin module dependency management
+local ih = require("runtime.import_helper")
+ih.import_custom_luasnips() -- loads all custom luasnip files that match specific regex
+
+
 require("extra.dap-extras")
+require("extra.mini-surround") -- @NOTE: use as reference for extending default plugin configurations
+require("extra.git-keymaps")  -- custom keymaps for git-related plugins (fugitive, telescope git pickers, etc.)

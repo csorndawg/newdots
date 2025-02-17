@@ -23,19 +23,13 @@ local types = require("luasnip.util.types")
 local conds = require("luasnip.extras.conditions")
 local conds_expand = require("luasnip.extras.conditions.expand")
 
--- TODO: Add custom Python, SQL, BASH, and other snippets for workflow. Try and find more
--- scalable solution where each FT has its own file within a snippets folder.
--- Also integrating this with nvim-scissors would be the most optimal setup.
+-- below works (cmp recognizes) for both ".sh" and ".bash" files
+ls.add_snippets("sh", {
+	s("hello_bash", {
+		t("This is a custom bash snippet"),
+	}),
 
--- NOTE: Below snippet works as expected. Continue adding other snippets
--- before removing.
-ls.add_snippets("all", {
-	s(
-		"fmtZZZ",
-		fmt("To {title} {} {}.", {
-			ls.insert_node(2, "Name"),
-			ls.insert_node(3, "Surname"),
-			title = c(1, { t("Mr."), t("Ms.") }),
-		})
-	),
+	s("hello_bashyyyyy", {
+		t("This is another custom bash snippet"),
+	}),
 })

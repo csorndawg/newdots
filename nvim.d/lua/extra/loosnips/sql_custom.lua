@@ -29,13 +29,11 @@ local conds_expand = require("luasnip.extras.conditions.expand")
 
 -- NOTE: Below snippet works as expected. Continue adding other snippets
 -- before removing.
-ls.add_snippets("all", {
+ls.add_snippets("sql", {
 	s(
-		"fmtZZZ",
-		fmt("To {title} {} {}.", {
-			ls.insert_node(2, "Name"),
-			ls.insert_node(3, "Surname"),
-			title = c(1, { t("Mr."), t("Ms.") }),
-		})
+		"cte_loo",
+		-- literal text string snippet as simple base case
+		-- expand logic to tabstops after verifying this imports correctly, and only for "sql" files
+		t("WITH cte1 AS (<sql that generates CTE table>) -- <rest of query>")
 	),
 })

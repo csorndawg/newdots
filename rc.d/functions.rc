@@ -766,3 +766,9 @@ function fz_gm() {
 	git branch --all --sort=-committerdate | h10 | egrep -v "\*|HEAD" | tr -d ' ' | sed 's|^remotes\/||g' | fzf -1 | xargs -I "{}" git merge {}
 
 }
+
+# on-the-fly shellrc sourcing
+function ssrc(){
+local usr_shell=$(basename $(echo $SHELL))
+source "$HOME"/."$usr_shell"rc 2> /dev/null || echo "Error - issue occurred when trying to source '."$usr_shell"rc'"
+}

@@ -102,3 +102,5 @@ export LOCAL_DATAOPS_BIBLE_HOME="$HOME/git/dataops_bible"
 # monthly sandbox for "var/tmp" files
 mkdir -p "$HOME/.var/tmp/$(date -u +%Y/%m)"
 export MY_VAR_TMP_SANDBOX="$HOME/.var/tmp/$(date -u +%Y/%m)"
+
+export _Z_DATA="$HOME/.local/share/z/z_data"

@@ -461,3 +461,6 @@ export PATH="$PATH:$HOME/.cargo/bin"
 
 # remove XDG_DATA_DIRS since I only use DATA_HOME
 unset XDG_DATA_DIRS
+
+# source 'z' binary
+source ~/.local/bin/z.sh

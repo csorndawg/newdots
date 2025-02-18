@@ -458,3 +458,6 @@ export PATH="$PATH:$HOME/.cargo/env"
 # cargo/rustup install
 source $HOME/.cargo/env
 export PATH="$PATH:$HOME/.cargo/bin"
+
+# remove XDG_DATA_DIRS since I only use DATA_HOME
+unset XDG_DATA_DIRS

@@ -14,3 +14,9 @@ complete -o filenames -F _shtab_tldr tt
 # rg alias
 #complete -F _rg -o bashdefault -o default rgi
 complete -F _rg -o bashdefault -o default rgv
+
+# cheat aliases 
+complete -F _cheat c
+complete -F _cheat cl
+complete -F _cheat ce
+

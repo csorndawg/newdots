@@ -810,3 +810,52 @@ fco() {
   git checkout $(awk '{print $2}' <<<"$target" )
 }
 
+
+# fzf-z integration
+# usage:
+#  - 'z' with arg acts like normal 'z' command
+#  - 'z' with no args returns 'z' results within fzf picker
+#  - 'zz' takes the arg from last 'z' command and uses it as filter in fzf picker
+#  - ex: 'z git' jumps to match (no fzf picker) then entering 'zz' opens fzf picker with 'z git' path as filter
+#unalias z
+z() {
+  if [[ -z "$*" ]]; then
+    cd "$(_z -l 2>&1 | fzf +s --tac | sed 's/^[0-9,.]* *//')"
+  else
+    _last_z_args="$@"
+    _z "$@"
+  fi
+}
+
+zz() {
+  cd "$(_z -l 2>&1 | sed 's/^[0-9,.]* *//' | fzf -q "$_last_z_args")"
+}
+
+# alias 'z' to 'j' for smoother workflow
+alias j=z
+alias jj=zz
+
+# fzf-docker integration
+
+# remove 1 or more docker containers
+function drm() {
+  docker ps -a | sed 1d | fzf -q "$1" --no-sort -m --tac | awk '{ print $1 }' | xargs -r docker rm {}
+}
+
+# @TESTME
+# Select a docker container to start and attach to
+function da() {
+  local cid
+  cid=$(docker ps -a | sed 1d | fzf -1 -q "$1" | awk '{print $1}')
+
+  [ -n "$cid" ] && docker start "$cid" && docker attach "$cid"
+}
+
+# @TESTME
+# Select a docker container to start and attach to
+function da() {
+  local cid
+  cid=$(docker ps -a | sed 1d | fzf -1 -q "$1" | awk '{print $1}')
+
+  [ -n "$cid" ] && docker start "$cid" && docker attach "$cid"
+}

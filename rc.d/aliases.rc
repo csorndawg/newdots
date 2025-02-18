@@ -269,12 +269,15 @@ alias tl="task list"
 ## fd
 alias fd='fd --ignore-file "$HOME/dotfiles/config.d/fd/fdignore"'
 alias fd_noignore="$(which fd) -I"
-alias fdh="fd -H"
-alias fdi="$(which fd) -I"
-alias fde="fd -e"
-alias fdhi="fd -HI"
-alias fdcw="fd --changed-within"
+alias fda="which $(fd) -HI"
+alias fdca="fd --changed-after "
 alias fdcb="fd --changed-before"
+alias fdcw="fd --changed-within"
+alias fde="fd -e"
+alias fdh="fd -H"
+alias fdhi="fd -HI"
+alias fdi="$(which fd) -I"
+alias fdt="fd -t"
 
 # ripgrep
 alias rg_bare="rg -NI"  # --no-line-number --no-filename

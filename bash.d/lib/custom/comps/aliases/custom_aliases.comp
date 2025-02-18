@@ -20,3 +20,28 @@ complete -F _cheat c
 complete -F _cheat cl
 complete -F _cheat ce
 
+# taskwarrior aliases
+complete -o nospace -F _task t
+complete -o nospace -F _task ta
+complete -o nospace -F _task tl
+
+# ripgrep alias
+complete -o bashdefault -o default -F _fzf_path_completion rgi
+complete -o bashdefault -o default -F _fzf_path_completion rgc
+complete -o bashdefault -o default -F _fzf_path_completion rgl
+complete -o bashdefault -o default -F _fzf_path_completion rgv
+complete -o bashdefault -o default -F _fzf_path_completion rgo
+complete -o bashdefault -o default -F _fzf_path_completion rgp
+complete -o bashdefault -o default -F _fzf_path_completion rgl
+complete -o bashdefault -o default -F _fzf_path_completion rg_bare
+
+# fd aliases
+complete -o bashdefault -o default -F _fzf_path_completion fdhi
+complete -o bashdefault -o default -F _fzf_path_completion fdca
+complete -o bashdefault -o default -F _fzf_path_completion fdcb
+complete -o bashdefault -o default -F _fzf_path_completion fdcw
+complete -o bashdefault -o default -F _fzf_path_completion fdt
+complete -o bashdefault -o default -F _fzf_path_completion fde
+complete -o bashdefault -o default -F _fzf_path_completion fda
+complete -o bashdefault -o default -F _fzf_path_completion fdi
+

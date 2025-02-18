@@ -696,23 +696,18 @@ function gsta() {
 	git stash apply stash@{$X}
 }
 
-# use fzf to pick git branch (local or remote) to checkout
-function fz_gco() {
-	# TODO: ensure CWD belongs to git repo, otherwise exit w/o running cmd
-	git branch -a | awk -F' ' '{print $1}' | egrep -v "\*|HEAD" | sed 's/^remotes.origin.//g' | fzf -1 | xargs -I "{}" git checkout "{}"
-	git status | egrep --color=always "branch"
-}
-
 # add (stage) all files selected in FZF picker - will add a "--dry-run" flag if "-d/d/dryrun" passed as ARG
-function fz_ga() {
+function fga() {
 
 	# dyrun flag handling logic
 	if [[ -n "$1" ]]; then
-		case $1 in
+		case "$1" in
 		d | dryrun | \-d | dry\-run | D)
 			echo "Dryrun flag passed"
-			git ls-files --modified --others --exclude-standard | awk 'BEGIN { OFS=";"} {print $2, $1}' | fzf -m | xargs -I "{}" echo "{}" | cut -f 1 -d ';' | xargs -I "{}" git add --dry-run "{}"
-			exit 0
+			git ls-files --modified --others --exclude-standard | awk 'BEGIN { OFS=";"} {print $2, $1}' |
+				fzf --bind 'ctrl-o:toggle-all' -m | xargs -I "{}" echo "{}" | cut -f 1 -d ';' |
+				xargs -I "{}" git add --dry-run "{}"
+			return 0
 			;;
 		*)
 			echo "Error - unrecognized flag passed."
@@ -722,9 +717,10 @@ function fz_ga() {
 	fi
 
 	# no dryrun flag given, proceed with staging selections
-	git ls-files --modified --others --exclude-standard | fzf -m | xargs -I "{}" git add "{}"
-
+	git ls-files --modified --others --exclude-standard | fzf --header '<Ctrl-o> select all' --bind 'ctrl-o:toggle-all' -m | xargs -I "{}" git add "{}"
+ 
 	# show currently staged files
+	echo "Git status after function:" && echo ""
 	git status | sed -n '/Changes to be committed:/, /Changes not staged for commit:/ { /Changes not staged for commit:/!p }'
 }
 
@@ -734,10 +730,10 @@ function fz_grs() {
 	# dyrun flag handling logic
 	if [[ -n "$1" ]]; then
 		case $1 in
-		s|staged|cached|S)
+		s | staged | cached | S)
 			echo "Restore staged files"
-			git ls-files --modified --exclude-standard |  fzf -m | xargs -I "{}" echo "{}" \
-			  | xargs -I "{}" git restore --staged "{}"
+			git ls-files --modified --exclude-standard | fzf -m | xargs -I "{}" echo "{}" |
+				xargs -I "{}" git restore --staged "{}"
 			exit 0
 			;;
 		*)
@@ -751,7 +747,7 @@ function fz_grs() {
 	git ls-files --modified --exclude-standard | fzf -m | xargs -I "{}" git restore "{}"
 
 	# show currently staged files
-	git status 
+	git status
 }
 
 # use fzf to select git merge branch
@@ -768,48 +764,53 @@ function fz_gm() {
 }
 
 # use for on-the-fly resetting of files, useful for testing and logging files
-function wipe_file(){
-if [[ ! -n "$1" ]]; then
-echo "Error - file ARG required."
-return 1
-else
-INFILE="$1"
-fi
+function wipe_file() {
+	if [[ ! -n "$1" ]]; then
+		echo "Error - file ARG required."
+		return 1
+	else
+		INFILE="$1"
+	fi
 
-echo "" > "$INFILE"
+	echo "" >"$INFILE"
 }
 
 # on-the-fly shellrc sourcing
-function ssrc(){
-local usr_shell=$(basename $(echo $SHELL))
-source "$HOME"/."$usr_shell"rc 2> /dev/null || echo "Error - issue occurred when trying to source '."$usr_shell"rc'"
+function ssrc() {
+	local usr_shell=$(basename $(echo $SHELL))
+	source "$HOME"/."$usr_shell"rc 2>/dev/null || echo "Error - issue occurred when trying to source '."$usr_shell"rc'"
 }
 
 # fco30 - checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
-fco30() {
-  local branches branch
-  branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
-  branch=$(echo "$branches" |
-           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+function fco30() {
+	local branches branch
+	branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
+		branch=$(echo "$branches" |
+			fzf-tmux -d $((2 + $(wc -l <<<"$branches"))) +m) &&
+		git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
 # - checkout git branch/tag
 fco() {
-  local tags branches target
-  branches=$(
-    git --no-pager branch --all \
-      --format="%(if)%(HEAD)%(then)%(else)%(if:equals=HEAD)%(refname:strip=3)%(then)%(else)%1B[0;34;1mbranch%09%1B[m%(refname:short)%(end)%(end)" \
-    | sed '/^$/d') || return
-  tags=$(
-    git --no-pager tag | awk '{print "\x1b[35;1mtag\x1b[m\t" $1}') || return
-  target=$(
-    (echo "$branches"; echo "$tags") |
-    fzf --no-hscroll --no-multi -n 2 \
-        --ansi) || return
-  git checkout $(awk '{print $2}' <<<"$target" )
+	local tags branches target
+	branches=$(
+		git --no-pager branch --all \
+			--format="%(if)%(HEAD)%(then)%(else)%(if:equals=HEAD)%(refname:strip=3)%(then)%(else)%1B[0;34;1mbranch%09%1B[m%(refname:short)%(end)%(end)" |
+			sed '/^$/d'
+	) || return
+	tags=$(
+		git --no-pager tag | awk '{print "\x1b[35;1mtag\x1b[m\t" $1}'
+	) || return
+	target=$(
+		(
+			echo "$branches"
+			echo "$tags"
+		) |
+			fzf --no-hscroll --no-multi -n 2 \
+				--ansi
+	) || return
+	git checkout $(awk '{print $2}' <<<"$target")
 }
-
 
 # fzf-z integration
 # usage:
@@ -818,17 +819,17 @@ fco() {
 #  - 'zz' takes the arg from last 'z' command and uses it as filter in fzf picker
 #  - ex: 'z git' jumps to match (no fzf picker) then entering 'zz' opens fzf picker with 'z git' path as filter
 #unalias z
-z() {
-  if [[ -z "$*" ]]; then
-    cd "$(_z -l 2>&1 | fzf +s --tac | sed 's/^[0-9,.]* *//')"
-  else
-    _last_z_args="$@"
-    _z "$@"
-  fi
+function z() {
+	if [[ -z "$*" ]]; then
+		cd "$(_z -l 2>&1 | fzf +s --tac | sed 's/^[0-9,.]* *//')"
+	else
+		_last_z_args="$@"
+		_z "$@"
+	fi
 }
 
-zz() {
-  cd "$(_z -l 2>&1 | sed 's/^[0-9,.]* *//' | fzf -q "$_last_z_args")"
+function zz() {
+	cd "$(_z -l 2>&1 | sed 's/^[0-9,.]* *//' | fzf -q "$_last_z_args")"
 }
 
 # alias 'z' to 'j' for smoother workflow
@@ -839,23 +840,23 @@ alias jj=zz
 
 # remove 1 or more docker containers
 function drm() {
-  docker ps -a | sed 1d | fzf -q "$1" --no-sort -m --tac | awk '{ print $1 }' | xargs -r docker rm {}
+	docker ps -a | sed 1d | fzf -q "$1" --no-sort -m --tac | awk '{ print $1 }' | xargs -r docker rm {}
 }
 
 # @TESTME
 # Select a docker container to start and attach to
 function da() {
-  local cid
-  cid=$(docker ps -a | sed 1d | fzf -1 -q "$1" | awk '{print $1}')
+	local cid
+	cid=$(docker ps -a | sed 1d | fzf -1 -q "$1" | awk '{print $1}')
 
-  [ -n "$cid" ] && docker start "$cid" && docker attach "$cid"
+	[ -n "$cid" ] && docker start "$cid" && docker attach "$cid"
 }
 
 # @TESTME
 # Select a docker container to start and attach to
 function da() {
-  local cid
-  cid=$(docker ps -a | sed 1d | fzf -1 -q "$1" | awk '{print $1}')
+	local cid
+	cid=$(docker ps -a | sed 1d | fzf -1 -q "$1" | awk '{print $1}')
 
-  [ -n "$cid" ] && docker start "$cid" && docker attach "$cid"
+	[ -n "$cid" ] && docker start "$cid" && docker attach "$cid"
 }

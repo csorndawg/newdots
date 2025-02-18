@@ -135,8 +135,8 @@ fi
 # RC - SHARED BASH/ZSH CONFIGURATIONS
 source ~/dotfiles/rc.d/aliases.rc 2>/dev/null
 source ~/dotfiles/rc.d/aliases_experimental.rc 2>/dev/null
-source ~/dotfiles/rc.d/exports.rc #2>/dev/null
-source ~/dotfiles/rc.d/functions.rc || echo "Error occurred while sourcing rc.d/functions file"
+source ~/dotfiles/rc.d/exports.rc   #2>/dev/null
+source ~/dotfiles/rc.d/functions.rc #|| echo "Error occurred while sourcing rc.d/functions file"
 
 # BASH ONLY CONFIGS
 source ~/dotfiles/bash.d/functions.bash 1>/dev/null

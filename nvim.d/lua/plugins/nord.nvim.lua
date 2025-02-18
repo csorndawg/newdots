@@ -3,6 +3,7 @@ return {
 		"shaunsingh/nord.nvim",
 		lazy = true,
 		priority = 1000,
+
 		-- Example config in lua
 		--  vim.g.nord_contrast = true
 		--  vim.g.nord_borders = false

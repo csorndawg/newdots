@@ -37,7 +37,7 @@ require("lazy").setup({
 -- ---------------------------------------------------
 
 -- editor configurations
-require("extra.colorscheme")
+require("extra.colorschemes.nord")
 --require("extra.bufferline-custom")
 --require("extra.lualine-custom")
 
@@ -65,7 +65,6 @@ require("extra.todo-comments-custom")
 local ih = require("runtime.import_helper")
 ih.import_custom_luasnips() -- loads all custom luasnip files that match specific regex
 
-
 require("extra.dap-extras")
 require("extra.mini-surround") -- @NOTE: use as reference for extending default plugin configurations
-require("extra.git-keymaps")  -- custom keymaps for git-related plugins (fugitive, telescope git pickers, etc.)
+require("extra.git-keymaps") -- custom keymaps for git-related plugins (fugitive, telescope git pickers, etc.)

@@ -470,6 +470,26 @@ if [ ! -z "$HOME/.local/bin/z.sh" ]; then
   fi
 
 # TEMPFIX: Getting FZFCOMP to play nice with existing/default shell comp
-# IMPORTANT: Must be last file sourced
-source "$HOME/dotfiles/config.d/fzf/fzfcomp_fallback_comp.bash"
 
+#source "$HOME/dotfiles/config.d/fzf/fzfcomp_fallback_comp.bash"
+_fzf_or_default_completion() {
+	local cmd="${COMP_WORDS[0]}"
+	local prev_word="${COMP_WORDS[COMP_CWORD - 1]}"
+
+	# If the previous word is the FZF trigger (,,), use fzf completion
+	if [[ "$prev_word" == ",," ]]; then
+		__fzf_default_completion
+		return
+	fi
+
+	# If there's a default Bash completion for the command, use it
+	if complete -p "$cmd" &>/dev/null; then
+		local comp_func
+		comp_func=$(complete -p "$cmd" | awk '{print $3}')
+		"$comp_func"
+	fi
+}
+
+# IMPORTANT: Must be last file sourced
+# Apply the modified completion function to all commands
+complete -D -F _fzf_or_default_completion

@@ -5,12 +5,20 @@ Z_DATA="$Z_XDG_DATA_DIR/z_data"
 #export _Z_DATA="$Z_DATA"
 mkdir -p "$Z_XDG_DATA_DIR"
 touch "$Z_DATA"
+#export _Z_DATA="$Z_DATA"
+mkdir -p "$Z_XDG_DATA_DIR"
+touch "$Z_DATA"
 
 # get clone and move to expected local dir spot
 git clone https://github.com/rupa/z.git
 mv -v z "$Z_XDG_DATA_DIR"
+mv -v z $Z_XDG_DATA_DIR
+echo ""
+# echo mv -v z "$Z_XDG_DATA_DIR/src"
+mv -v z "$Z_XDG_DATA_DIR/src"
 
 # make symlink to binary and source symlink
+# echo ln -sf $HOME/.local/share/z/src/z.sh $HOME/.local/bin/z.sh
 ln -sf $HOME/.local/share/z/src/z.sh $HOME/.local/bin/z.sh
 
 # add below to zsh/bash rc

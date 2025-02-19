@@ -463,4 +463,13 @@ export PATH="$PATH:$HOME/.cargo/bin"
 unset XDG_DATA_DIRS
 
 # source 'z' binary
-source ~/.local/bin/z.sh
+if [ ! -z "$HOME/.local/bin/z.sh" ]; then
+  source ~/.local/bin/z.sh
+  else
+  echo 'Error - "z.sh" is not in LOCALBIN'
+  fi
+
+# TEMPFIX: Getting FZFCOMP to play nice with existing/default shell comp
+# IMPORTANT: Must be last file sourced
+source "$HOME/dotfiles/config.d/fzf/fzfcomp_fallback_comp.bash"
+

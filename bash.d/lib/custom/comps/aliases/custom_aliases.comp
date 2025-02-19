@@ -25,6 +25,8 @@ complete -o nospace -F _task t
 complete -o nospace -F _task ta
 complete -o nospace -F _task tl
 
+
+# @BROKEN: Ripgrep and FD fzfcomp dont work. Need to revert to "python" __fzf_default_completion form.
 # ripgrep alias
 complete -o bashdefault -o default -F _fzf_path_completion rgi
 complete -o bashdefault -o default -F _fzf_path_completion rgc
@@ -45,3 +47,7 @@ complete -o bashdefault -o default -F _fzf_path_completion fde
 complete -o bashdefault -o default -F _fzf_path_completion fda
 complete -o bashdefault -o default -F _fzf_path_completion fdi
 
+
+# @TODO
+# python default arg comp for aliases
+#complete -F __fzf_default_completion python

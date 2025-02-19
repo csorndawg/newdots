@@ -1,4 +1,4 @@
-#!/bin bash
+#!/usr/bin/env bash
 
 ## @NOTE - Majority of script worked. Only issue was with "moving/symlinking" the unzipped tarball. Can clean that up later, at another time.
 

@@ -1,0 +1,8 @@
+---
+- hosts: 127.0.0.1
+  connection: localhost
+  tasks:
+    - name: Run neovim install shell script for nvim/lazyvim
+      ansible.builtin.script: ./neovim-scratch-install-wip.sh
+      #ansible.builtin.script: neovim-scratch-install-wip.sh
+      #ansible.builtin.script: /home/azureadmin1/git/newdots/nvim.d/dependencies/neovim-scratch-install-wip.sh

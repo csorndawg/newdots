@@ -360,3 +360,10 @@ alias py="python3"
 
 # lazygit
 alias lg="lazygit"
+alias py="python3"
+
+# XDG cd aliases
+alias XDGDAT="cd $HOME/.local/share"
+alias XDGCONF="cd $HOME/.config"
+alias XDGTMP="cd $HOME/.local/tmp"
+alias XDGVAR="cd $HOME/.local/tmp"

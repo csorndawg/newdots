@@ -13,9 +13,10 @@
         - ripgrep
         - make
         - python3-pip
-        - python3.10-venv
+        - python3
         - npm
         - nodejs
+        - expect
         - unzip
 
 - hosts: dbservers

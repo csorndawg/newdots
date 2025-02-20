@@ -13,7 +13,7 @@ local servers = {
 	"awk_ls",
 	"azure_pipelines_ls",
 	"bashls",
-	"copilot-language-server",
+	-- "copilot-language-server",
 	"docker_compose_language_service",
 	"dockerls",
 	"jsonls",

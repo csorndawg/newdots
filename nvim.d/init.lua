@@ -68,3 +68,6 @@ ih.import_custom_luasnips() -- loads all custom luasnip files that match specifi
 require("extra.dap-extras")
 require("extra.mini-surround") -- @NOTE: use as reference for extending default plugin configurations
 require("extra.git-keymaps") -- custom keymaps for git-related plugins (fugitive, telescope git pickers, etc.)
+
+-- @TESTME
+require("extra.lspconfig_extra")

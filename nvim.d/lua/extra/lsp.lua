@@ -9,14 +9,23 @@ local nvimd_lsp = require("lspconfig")
 
 -- define LSP servers
 local servers = {
-	"pyright",
-	"lua_ls",
 	"ansiblels",
+	"awk_ls",
+	"azure_pipelines_ls",
 	"bashls",
-	"yamlls",
+	"copilot-language-server",
 	"docker_compose_language_service",
 	"dockerls",
+	"jsonls",
+	"lua_ls",
+	"marksman",
+	"pyright",
+	"ruff",
+	"sqls",
 	"taplo",
+	"ts_query_ls",
+	"vimls",
+	"yamlls",
 }
 
 -- do things when language server attached to current buffer

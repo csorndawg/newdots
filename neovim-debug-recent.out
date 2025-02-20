@@ -1,0 +1,16 @@
+# Most recent error/debug issue to pick up at
+
+## extra/mason-tool-extra output
+
+{ "ansiblels", "awk_ls", "azure_pipelines_ls", "bashls", "docker_compose_language_service", "dockerls", "jsonls", "lua_ls", "marksman", "pyright", "ruff", "sqls", "taplo", "ts_query_ls", "vimls", "yamlls", "yamllint", "write-good", "selene"
+, "shellcheck", "ruff", "sqlfmt", "shfmt", "xmlformatter", "debugpy", "bash-debug-adapter" }
+Error detected while processing /home/azureadmin1/git/newdots/nvim.d/init.lua:
+E5113: Error while calling lua chunk: vim/shared.lua:0: dst: expected table, got nil
+stack traceback:
+        [C]: in function 'error'
+        vim/shared.lua: in function 'validate'
+        vim/shared.lua: in function 'list_extend'
+        .../azureadmin1/.config/nvim/lua/extra/mason-tool-extra.lua:59: in main chunk
+        [C]: in function 'require'
+        /home/azureadmin1/git/newdots/nvim.d/init.lua:74: in main chunk
+

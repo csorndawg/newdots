@@ -71,3 +71,4 @@ require("extra.git-keymaps") -- custom keymaps for git-related plugins (fugitive
 
 -- @TESTME
 require("extra.lspconfig_extra")
+require("extra.mason-tool-extra")

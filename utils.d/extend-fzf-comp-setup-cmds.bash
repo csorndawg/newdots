@@ -26,7 +26,7 @@ for item in ${FZF_DEFAULT_DIR_COMP_EXTENSION_LIST[@]}; do
 	echo ""
 	echo "item: $item"
 	exist_locally_check=$(which "$item" | wc -c)
-	if $(( $exist_locally_check > 0 )); 
+	if $(( exist_locally_check > 0 )); 
 	then
 	  _fzf_setup_completion dir $item
 	else

@@ -55,9 +55,15 @@ function config_nvimd {
 	ln -srf "$NVIM_DIR" "$HOME/.config/nvim" 2>/dev/null
 }
 
+## @NOTE: For easier dependency management I am isolating the bootstrap logic to their own script.
+## This will make it easier to bootstrap programatically and will make it easier to modify (since I can just rerun the indv. bootstrap 
+## script instead of this whole script, which is meant for bare server). The below vimrc_dependencies is my first "attempt" at decoupling
+## the logic. And if it works out well, expand to rest of functions.
+
 ## vim
 function config_vimd {
-	ln -srf "$VIMD_DIR/vimrc" "$HOME/.vimrc" 2>/dev/null
+#	ln -srf "$VIMD_DIR/vimrc" "$HOME/.vimrc" 2>/dev/null
+	bash $HOME/dotfiles/vim.d/vimrc_dependencies.sh
 }
 
 ## tmux

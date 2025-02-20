@@ -67,8 +67,8 @@ vim.keymap.set("n", "<A-;>", ";", { noremap = true }) -- Use Alt+; to repeat f/t
 --vim.keymap.set("n", "<A-:>", ":", { noremap = true }) -- Optional: Alt+: for command mode
 
 -- Now swap ";" and ":"
-vim.keymap.set("n", ";", ":", { silent = true, noremap = true })
-vim.keymap.set("n", ":", ";", { silent = true, noremap = true })
+vim.keymap.set("n", ";", ":", { noremap = true })
+vim.keymap.set("n", ":", ";", { noremap = true })
 
 -- Normal/Insert mode switch 	(Cycle b/w two modes with `,,`)
 remapp("n", "<Leader>,", "i", opts)
@@ -212,13 +212,6 @@ remapp("n", "<Leader><Up>", ":<Up><CR>", opts)
 -- remapp("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 -- remapp("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- remapp("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
-
--- @TODO
--- Find way to simluate another <CR> after Neovim ends the terminal process.
--- Tried adding second <CR> but it didnt work (guessing its b/c of some Operator pending thing).
-vim.keymap.set("t", "<C-x>", "<C-c> exit<CR>", { desc = "Exit terminal mode" })
--- remapp("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
-
 --
 -- Command Mode
 --
@@ -300,5 +293,8 @@ vim.keymap.set("i", "<C-h><C-h>", "<Left>", { noremap = true, silent = true })
 vim.keymap.set("i", "00", "<Home>", { noremap = true, silent = true })
 vim.keymap.set("i", "$$", "<End>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<Leader>w", "<cmd>w <cr>", { desc = "Save", noremap = true })
-vim.keymap.set("n", "<Leader>w", "<cmd>w <cr>", { desc = "Save", noremap = true })
+vim.keymap.set("n", "<leader>no", "<cmd> nornu nonu <cmd>", { desc = "Disable line numbers" })
+vim.keymap.set("n", "<leader>ne", "<cmd> rnu nu <cmd>", { desc = "Enable line numbers" })
+
+vim.keymap.set("n", "<Leader>bn", ":bn", { desc = "Buffer next", noremap = true })
+vim.keymap.set("n", "<Leader>bn", ":bp", { desc = "Buffer prev", noremap = true })

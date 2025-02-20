@@ -356,11 +356,13 @@ alias ghr="gh repo"
 alias ghrl="gh repo list"
 alias ghcx="gh copilot explain"
 alias ghcs="gh copilot suggest -s"
-alias py="python3"
 
 # lazygit
 alias lg="lazygit"
-alias py="python3"
+alias pyy="python3"
+alias P="python3"
+alias B="bash"
+alias baa="bash"
 
 # XDG cd aliases
 alias XDGDAT="cd $HOME/.local/share"

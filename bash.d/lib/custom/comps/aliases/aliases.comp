@@ -9,7 +9,7 @@ _fzf_setup_completion dir tree
 
 ## addd kubectl
 _fzf_setup_completion path kubectl
-_fzf_setup_completion path tee # enable FZF path completion for TEE command
+_fzf_setup_completion path tee 
 
 # enable FZF completion for ripgrep and fd-find
 _fzf_setup_completion path rg # enable FZF path completion for TEE command

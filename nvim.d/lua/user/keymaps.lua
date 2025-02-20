@@ -61,8 +61,14 @@ remapp("i", "<A-l>", "<Right>", opts)
 remapp("i", "<A-k>", "<Up>", opts)
 remapp("i", "<A-j>", "<Down>", opts)
 
--- Normal/Command mode switch 	(Cycle b/w two modes with `;;`)
-remapp("n", "<Leader>;;", ":", { silent = false }) --  dont pass "opts" b/c we want to see CMD prompt
+-- @FIXME: Broken keymap. Use <Right> as 'next' fFtT match
+-- Restore original find-repeat behavior BEFORE swapping ";"
+vim.keymap.set("n", "<A-;>", ";", { noremap = true }) -- Use Alt+; to repeat f/t
+--vim.keymap.set("n", "<A-:>", ":", { noremap = true }) -- Optional: Alt+: for command mode
+
+-- Now swap ";" and ":"
+vim.keymap.set("n", ";", ":", { silent = true, noremap = true })
+vim.keymap.set("n", ":", ";", { silent = true, noremap = true })
 
 -- Normal/Insert mode switch 	(Cycle b/w two modes with `,,`)
 remapp("n", "<Leader>,", "i", opts)
@@ -136,7 +142,7 @@ remapp("i", "kk", "<ESC>", opts)
 remapp("i", "ii", "<ESC>", opts)
 
 -- Insert/Command mode switch
-remapp("i", ";;", "<ESC>:", opts_loud) -- dont pass opts b/c we want to see CMD prompt
+--remapp("i", ";;", "<ESC>:", opts_loud) -- dont pass opts b/c we want to see CMD prompt
 remapp("i", "<C-;>", "<ESC>:", opts_loud)
 
 -- Normal/Insert Mode
@@ -220,10 +226,6 @@ vim.keymap.set("t", "<C-x>", "<C-c> exit<CR>", { desc = "Exit terminal mode" })
 -- command/normal mode switch
 --remapp("c", ";;", "<Esc>", opts)
 remapp("c", "<C-;>", "<Esc>", opts)
-remapp("n", "<Leader>;", ": ", opts)
-
---remapp("n", "<C-;>", ": ", opts)
---remapp("c", "<A-;>", "<Esc>", opts)
 
 -- command/insert mode switch  (continue with comma `,` theme remaps linked with Insert Mode)
 remapp("c", "<A-,>", "<Esc>i", opts)
@@ -283,9 +285,7 @@ vim.keymap.set("c", "<C-r><C-q>", "lua require('", { noremap = true })
 -- @NEXT: expand mapping to visual mode (see <Up><Up> example above for ref)
 -- @IDEA: make <Leader>m --> "Movement" group for cursor/scrolling remaps
 
--- @TEST: test which scroll keymap mapping style (leader/Alt/Ctrl) works best for my workflow
--- vim.keymap.set("n", "<Leader>k", "<C-u>", { noremap = true, silent = true })
---vim.keymap.set("n", "<Leader>j", "<C-d>", { noremap = true, silent = true })
+-- simpler scrolling workflow (@TEST:)
 vim.keymap.set("n", "<A-k>", "<C-u>", { noremap = true, silent = true })
 vim.keymap.set("n", "<A-j>", "<C-d>", { noremap = true, silent = true })
 
@@ -299,3 +299,6 @@ vim.keymap.set("i", "<C-h><C-h>", "<Left>", { noremap = true, silent = true })
 -- move cursor to start/end of line shortcuts
 vim.keymap.set("i", "00", "<Home>", { noremap = true, silent = true })
 vim.keymap.set("i", "$$", "<End>", { noremap = true, silent = true })
+
+vim.keymap.set("n", "<Leader>w", "<cmd>w <cr>", { desc = "Save", noremap = true })
+vim.keymap.set("n", "<Leader>w", "<cmd>w <cr>", { desc = "Save", noremap = true })

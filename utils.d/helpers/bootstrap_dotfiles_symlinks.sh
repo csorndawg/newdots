@@ -66,13 +66,9 @@ function config_vimd {
 	bash $HOME/dotfiles/vim.d/vimrc_dependencies.sh
 }
 
-## tmux
-# make symlinks for XDG_CONFIG/tmux and tmux.conf
+# @TESTING: Decoupled logic, similar to above vim function.
+## tmux bootstrap dependencies
 function config_tmuxd {
-	ln -srf "$TMUXD_DIR" "$HOME/.config/tmux" 2>/dev/null
-	ln -srf "$TMUXD_DIR/tmux.conf" "$HOME/.tmux.conf" 2>/dev/null
-
-	# handle tpm setup automatically
 	bash "$HOME/dotfiles/tmux.d/tmux_conf_dependencies.sh" || echo "Error occured while running tmux_conf_dependencies script"
 }
 

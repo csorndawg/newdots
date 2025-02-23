@@ -28,7 +28,7 @@ function activate-venv-cwd() {
  }
 
 # run FZF from home 
-fzfhm() {
+_fzfhm() {
     # check if type flag present
     if [[ "$1" = "f" ]];
     then
@@ -49,51 +49,8 @@ fzfhm() {
 #############################################################
 
 
-##############################
-#   FZF Wiki - General
-##############################
-
-# fuzzy grep open via ripgrep
-vg() {
-  local file
-
-  file="$(rg --no-filename --no-line-number | fzf -0 -1 | awk -F: '{print $1}')"
-
-  if [[ -n $file ]]
-  then
-     vim $file
-  fi
-}
-
-# cdf - cd into the directory of the selected file
-cdf() {
-   local file
-   local dir
-   file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
-}
-
-# cf - fuzzy cd from anywhere
-# ex: cf word1 word2 ... (even part of a file name)
-# zsh autoload function
-# depencies: locate     (sudo dnf install mlocate)
-cf() {
-  local file
-
-  file="$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1)"
-
-  if [[ -n $file ]]
-  then
-     if [[ -d $file ]]
-     then
-        cd -- $file
-     else
-        cd -- ${file:h}
-     fi
-  fi
-}
-
 # fdr - cd to selected parent directory
-fdr() {
+_fdr() {
   local declare dirs=()
   get_parent_dirs() {
     if [[ -d "${1}" ]]; then dirs+=("$1"); else return; fi
@@ -111,7 +68,7 @@ fdr() {
 #   - Bypass fuzzy finder if there's only one match (--select-1)
 #   - Exit if there's no match (--exit-0)
 fe() {
-  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fzf --tmux --query="$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
@@ -221,21 +178,6 @@ fhe() {
 #   FZF Wiki - Other
 ##############################
 
-# fkill - kill processes - list only the ones you can kill. Modified the earlier script.
-fkill() {
-    local pid 
-    if [ "$UID" != "0" ]; then
-        pid=$(ps -f -u $UID | sed 1d | fzf -m | awk '{print $2}')
-    else
-        pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
-    fi  
-
-    if [ "x$pid" != "x" ]
-    then
-        echo $pid | xargs kill -${1:-9}
-    fi  
-}
-
 
 ##############################
 #   FZF Wiki - Git
@@ -310,7 +252,7 @@ function git-fixup () {
 # `tm` will allow you to select your tmux session via fzf.
 # `tm irc` will attach to the irc session (if it exists), else it will create it.
 
-tm() {
+_tm() {
   [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
   if [ $1 ]; then
     tmux $change -t "$1" 2>/dev/null || (tmux new-session -d -s $1 && tmux $change -t "$1"); return
@@ -319,27 +261,6 @@ tm() {
 }
 
 
-# TMUX switch panees
-#Gitne - switch pane (@george-b)
-ftpane() {
-  local panes current_window current_pane target target_window target_pane
-  panes=$(tmux list-panes -s -F '#I:#P - #{pane_current_path} #{pane_current_command}')
-  current_pane=$(tmux display-message -p '#I:#P')
-  current_window=$(tmux display-message -p '#I')
-
-  target=$(echo "$panes" | grep -v "$current_pane" | fzf +m --reverse) || return
-
-  target_window=$(echo $target | awk 'BEGIN{FS=":|-"} {print$1}')
-  target_pane=$(echo $target | awk 'BEGIN{FS=":|-"} {print$2}' | cut -c 1)
-
-  if [[ $current_window -eq $target_window ]]; then
-    tmux select-pane -t ${target_window}.${target_pane}
-  else
-    tmux select-pane -t ${target_window}.${target_pane} &&
-    tmux select-window -t $target_window
-  fi
-}
-
 
 ##############################
 #   QUICKADDS
@@ -347,7 +268,7 @@ ftpane() {
 
 
 # use /home/<user> as starting point for fzf
-fzcd_hm() {
+_fzcd_hm() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
                   -o -type d -print 2> /dev/null | fzf +m) &&
@@ -355,7 +276,7 @@ fzcd_hm() {
 }
 
 # use current dir as starting point for fzf, include subdirs
-fzcd_cwd() {
+_fzcd_cwd() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
                   -o -type d -print 2> /dev/null | fzf +m) &&
@@ -364,14 +285,14 @@ fzcd_cwd() {
 
 
 # current dir max depth 1 (no subdirs)
-fzcd_cwd1() {
+_fzcd_cwd1() {
   DIR=`find * -maxdepth 0 -type d -print 2> /dev/null | fzf-tmux` \
     && cd "$DIR"
 }
 
 
 ## @TODO: make separate function to include hidden and no-ignore-vcs
-ff (){
+_ff (){
 # Interactive search.
 # Usage: `ff` or `ff <folder>`.
 #
@@ -396,6 +317,6 @@ FZF_DEFAULT_COMMAND="rg --files" fzf \
 }
 
 # fh - repeat history and add selection back on to history command stack
-fh() {
+_fh() {
       print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
 }

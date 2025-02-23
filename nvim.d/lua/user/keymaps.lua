@@ -297,4 +297,4 @@ vim.keymap.set("n", "<leader>no", "<cmd> nornu nonu <cmd>", { desc = "Disable li
 vim.keymap.set("n", "<leader>ne", "<cmd> rnu nu <cmd>", { desc = "Enable line numbers" })
 
 vim.keymap.set("n", "<Leader>bn", ":bn", { desc = "Buffer next", noremap = true })
-vim.keymap.set("n", "<Leader>bn", ":bp", { desc = "Buffer prev", noremap = true })
+vim.keymap.set("n", "<Leader>bp", ":bp", { desc = "Buffer prev", noremap = true })

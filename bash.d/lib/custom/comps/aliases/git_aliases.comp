@@ -1,0 +1,16 @@
+# Enable Git command/subcommand completion for custom Git aliases
+
+ __git_complete gm _git_merge
+ __git_complete gd _git_diff
+ 
+
+### Git Move
+#__git_complete gmv _git_diff
+#__git_complete gap _git_apply
+#__git_complete gwt _git_worktree
+#__git_complete grfl _git_reflog
+#__git_complete grm _git_rm
+#__git_complete ga _git_add
+#__git_complete gst _git_stash
+#__git_complete gshw _git_show
+#__git_complete gm _git_merge

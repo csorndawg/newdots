@@ -427,21 +427,27 @@ add_rsa_linode_ssh_pp 1>/dev/null
 source "$HOME/dotfiles/config.d/fzf/fzf.config" 1>/dev/null
 
 source_bashrc_custom_comp_modules() {
-	BASH_CUSTOM_COMP_DIR="$HOME/dotfiles/bash.d/lib/custom/comps"
-	SRC_FILE_LIST=$(find $BASH_CUSTOM_COMP_DIR -type f -not -path '*/test*')
-	IGNORE_LIST=(fzf_comp_expr)
+	local BASH_CUSTOM_COMP_DIR="$HOME/dotfiles/bash.d/lib/custom/comps"
+	local SRC_FILE_LIST=$(find $BASH_CUSTOM_COMP_DIR -type f )
+	local IGNORE_LIST=(gitignore test)
 	for comp_file in $SRC_FILE_LIST; do
-		compf=$(basename $comp_file | cut -f 1 -d '.') # get compfile name to test if in ignore list
-		for ignr in ${IGNORE_LIST[@]}; do
-			match_exists=$(echo $compf | egrep -c "$ignr")
-			if [[ match_exists -ge 1 ]]; then
-				#echo "$compf matches IGNORE_LIST pattern and will not be sourced"
-				continue
-			else
-				#echo "source $comp_file 1> /dev/null"
-				source $comp_file
+		local SKIP_FLAG=0
+		for ignore_pattern in ${IGNORE_LIST[@]}; do 
+			IGNORE_FLAG=$(echo $comp_file | egrep -c "$ignore_pattern")
+			#echo "IGNORE_FLAG: $IGNORE_FLAG"
+			if (( $IGNORE_FLAG > 0)); then
+				echo "Skip $comp_file"
+				SKIP_FLAG=1
+				break
 			fi
 		done
+		if [[ $SKIP_FLAG -eq 1 ]]; 
+		then
+			continue
+		fi
+		#echo "comp_file: $comp_file"
+		#echo "source $comp_file 1> /dev/null"
+		source $comp_file
 	done
 } 1>/dev/null
 source_bashrc_custom_comp_modules

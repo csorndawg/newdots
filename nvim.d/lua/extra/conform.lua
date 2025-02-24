@@ -4,5 +4,5 @@
 
 --
 require("conform")
-vim.api.nvim_set_keymap("n", "<leader>fd", ":FormatDisable <CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>fe", "<cmd>FormatEnable<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>fd", ":FormatDisable <CR>", { desc = "Disable formatting", noremap = true })
+vim.keymap.set("n", "<leader>fe", "<cmd>FormatEnable<CR>", { desc = "Enable formatting", noremap = true })

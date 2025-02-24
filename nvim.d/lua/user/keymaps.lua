@@ -261,15 +261,12 @@ remapp("i", "<A-k><A-k>", "<Up>", opts)
 remapp("i", "<A-j><A-j>", "<Down>", opts)
 
 -- <Ctrl-l><Ctrl-l> for omni line completion
-remapp("i", "<C-l><C-l>", "<C-x><C-l>", { noremap = true })
+vim.keymap.set("i", "<C-l><C-l>", "<C-x><C-l>", { desc = "Line comp", noremap = true })
+vim.keymap.set("i", "<C-f><C-f>", "<C-x><C-f>", { desc = "Path comp", noremap = true })
 
 -- rerun last CMD mode command in normal/on visual block selection with <Leader>cx
 -- `:@:` recalls and executes the most recent `:` command
 vim.keymap.set({ "n", "v" }, "<Up><Up>", ":@:<Cr>", { silent = true, silent = true, desc = "Rerun last CMD command" })
-
--- Cmd Mode shortcut command to load LazyLoaded plugin 	## NOTE: (requires manually typing rest of command)
--- vim.keymap.set("n", "<Leader>rq", ":lua require('", { noremap = true })
-vim.keymap.set("c", "<C-r><C-q>", "lua require('", { noremap = true })
 
 -- @TODO: Better Cursor Movement/Workflow
 -- For default movement mappings see: https://learnvim.irian.to/basics/moving_in_file#scrolling
@@ -293,8 +290,28 @@ vim.keymap.set("i", "<C-h><C-h>", "<Left>", { noremap = true, silent = true })
 vim.keymap.set("i", "00", "<Home>", { noremap = true, silent = true })
 vim.keymap.set("i", "$$", "<End>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>no", "<cmd> nornu nonu <cmd>", { desc = "Disable line numbers" })
-vim.keymap.set("n", "<leader>ne", "<cmd> rnu nu <cmd>", { desc = "Enable line numbers" })
+vim.keymap.set("n", "<leader>no", "<cmd>set nornu nonu <cr>", { desc = "Disable line numbers" })
+vim.keymap.set("n", "<leader>ne", "<cmd>set rnu nu <cr>", { desc = "Enable line numbers" })
 
 vim.keymap.set("n", "<Leader>bn", ":bn", { desc = "Buffer next", noremap = true })
 vim.keymap.set("n", "<Leader>bp", ":bp", { desc = "Buffer prev", noremap = true })
+
+-- @EXPERIMENTAL: https://github.com/NvChad/NvChad/blob/v2.5/lua/nvchad/mappings.lua
+local map = vim.keymap.set
+map("n", "<C-a><C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
+map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
+map("i", "<C-e>", "<End>", { desc = "move end of line" })
+
+map("i", "<C-h>", "<Left>", { desc = "move left" })
+map("i", "<C-l>", "<Right>", { desc = "move right" })
+map("i", "<C-j>", "<Down>", { desc = "move down" })
+map("i", "<C-k>", "<Up>", { desc = "move up" })
+
+-- @EXPERIMENTAL: https://github.com/LunarVim/Neovim-from-scratch/blob/master/lua/user/keymaps.lua
+-- <lunarvim remap copypasta>
+
+-- @EXPERIMENTAL: https://github.com/dam9000/kickstart-modular.nvim/blob/master/lua/keymaps.lua
+-- <kickstart remap copypasta>
+
+-- @EXPERIMENTAL: Custom remaps to trial
+-- <my custom remap copypasta>

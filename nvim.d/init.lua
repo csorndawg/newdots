@@ -45,11 +45,18 @@ require("extra.colorschemes.nord")
 require("extra.cmp-test")
 require("extra.mason-lspconfig") -- sensitive to loading order ; might need to be first "required" module ; needs to be before "extra.lsp"
 
+-- Custom settings
 require("user.opts")
 require("user.keymaps")
 require("user.autocmds")
 
--- load colorscheme from nvim.d/lua/extra/colorscheme.lua
+-- WIP:Custom plugin/extra configurations
+-- put <require('extra.<module>')> code here after confirming module is
+-- correctly installed, sourced, and configured.
+require("extra.todo-comments-custom")
+
+-- @WARN: All modules below are either 'experimental' or "hotfix" and will require refactoring
+-- 	  after enabling all features/functionality for my "essential" NVIM.
 
 require("extra.lsp")
 require("extra.lazy_remaps")
@@ -59,12 +66,14 @@ require("extra.experimental")
 require("extra.lint")
 require("extra.telescope.telescope-config")
 require("extra.which_key")
-require("extra.todo-comments-custom")
 
 -- custom helper module for easier plugin module dependency management
 local ih = require("runtime.import_helper")
 ih.import_custom_luasnips() -- loads all custom luasnip files that match specific regex
 
 require("extra.dap-extras")
-require("extra.mini-surround") -- @NOTE: use as reference for extending default plugin configurations
+--require("extra.mini-surround") -- @NOTE: use as reference for extending default plugin configurations
 require("extra.git-keymaps") -- custom keymaps for git-related plugins (fugitive, telescope git pickers, etc.)
+
+-- @TEST: extra.conform
+require("extra.conform")

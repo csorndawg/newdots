@@ -12,23 +12,32 @@ if todo_comments then
 			FIX = {
 				-- icon = "!! --->  ", -- icon used for the sign, and in search results
 				color = "error", -- can be a hex color, or a named color (see below)
-				alt = { "FIXME", "BROKEN", "BUG", "WILLFIX", "WIP", "FIXIT", "IMPORTANT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
+				alt = { "FIXME", "BROKEN", "BUG", "ERROR", "WIP", "FIXIT", "IMPORTANT", "ISSUE", "FAILED", "BROKEN" }, -- a set of other keywords that all map to this FIX keywords
 				-- signs = false, -- configure signs for some keywords individually
 			},
 			TODO = {
 				-- icon = ">> ",
 				color = "info",
-				alt = { "UNFINISHED", "OPTIMIZE", "DECOMMISSION", "PRODUCTIONIZE", "SKELETON", "OPTIMIZE" },
+				alt = {
+					"UNFINISHED",
+					"NEXTSTEPS",
+					"OPTIMIZE",
+					"DECOMMISSION",
+					"PRODUCTIONIZE",
+					"OPTIMIZE",
+					"OPT",
+					"DECOMM",
+				},
 			},
 			HACK = {
 				-- icon = ">> ",
 				color = "warning",
-				alt = { "INTERIM-FIX", "TEMPFIX", "WORKAROUND", "WILLFIX" },
+				alt = { "INTERIM-FIX", "HOTFIX", "TEMPFIX", "WORKAROUND", "WILLFIX", "HACK" },
 			},
 			WARN = {
 				-- icon = ">> ",
 				color = "warning",
-				alt = { "WARNING", "SKIPPED", "XXX", "DECOMMISSIONED", "DECOMMISSIONING" },
+				alt = { "WARNING", "EXPERIMENTAL", "HELP", "SKIPPED", "XXX", "DECOMMISSIONED", "DECOMMISSIONING" },
 			},
 			PERF = {
 				-- icon = ">> ",
@@ -36,12 +45,12 @@ if todo_comments then
 			},
 			NOTE = { -- icon = ">> ",
 				color = "hint",
-				alt = { "COPYPASTA", "NEXTSTEPS", "REMINDER", "INFO" },
+				alt = { "COPYPASTA", "REMINDER", "NOTE" },
 			},
 			TEST = {
 				-- icon = "⏲ ",
 				color = "test",
-				alt = { "REVIEW", "TESTME", "TESTING", "UNTESTED", "WILLTEST", "PASSED", "INCONCLUSIVE", "FAILED" },
+				alt = { "REVIEW", "TESTME", "TESTING", "UNTESTED", "VALIDATED", "PASSED", "INCONCLUSIVE", "FAILED" },
 			},
 		},
 		gui_style = {

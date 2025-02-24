@@ -46,3 +46,5 @@ complete -o bashdefault -o default -F _fzf_path_completion nv
 complete -o bashdefault -o default -F _fzf_path_completion gd
 complete -o bashdefault -o default -F _fzf_path_completion gdo
 complete -o bashdefault -o default -F _fzf_path_completion gdm
+complete -o bashdefault -o default -F _fzf_path_completion grs
+complete -o bashdefault -o default -F _fzf_path_completion grm

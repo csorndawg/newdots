@@ -1,0 +1,21 @@
+# Bash Tab Completion for Collection of Indv. Custom Aliases
+
+
+# tldr alias
+complete -o filenames -F _shtab_tldr tt
+
+# @BROKEN: Need to fix so behavior mirrors rg<tab>
+# rg alias
+#complete -F _rg -o bashdefault -o default rgi
+complete -F _rg -o bashdefault -o default rgv
+
+# cheat aliases 
+complete -F _cheat c
+complete -F _cheat cl
+complete -F _cheat ce
+
+# taskwarrior aliases
+complete -o nospace -F _task t
+complete -o nospace -F _task ta
+complete -o nospace -F _task tl
+

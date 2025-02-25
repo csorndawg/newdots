@@ -11,8 +11,10 @@ return {
 	},
 	cmd = "Neotree",
 	keys = {
-		{ "\\", ":Neotree reveal<CR>", desc = "NeoTree reveal", silent = true },
-		{ "<Leader>ft", ":Neotree reveal<CR>", desc = "NeoTree reveal", silent = true },
+		-- { "\\", ":Neotree reveal<CR>", desc = "NeoTree reveal", silent = true },
+		-- { "<Left><Left>", ":Neotree reveal<CR>", desc = "NeoTree reveal", silent = true },
+		{ "\\", ":Neotree reveal<CR>", silent = true },
+		{ "<Left><Left>", ":Neotree reveal<CR>", silent = true },
 	},
 	opts = {
 		close_if_last_window = true,

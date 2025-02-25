@@ -24,6 +24,7 @@ vim.opt.shiftwidth = 2 -- Size of an indent
 vim.opt.shortmess:append({ W = true, I = true, c = true, C = true })
 vim.opt.showmode = false
 
+
 --
 -- Lua Locals
 --
@@ -32,6 +33,7 @@ local option = vim.opt
 --
 -- Custom Local Opts
 --
+vim.api.nvim_set_option('termguicolors', true)
 
 -- case-insensitive search unless \C or search includes multiple capital letters
 option.ignorecase = true

@@ -13,6 +13,8 @@ alias tdv="vim $HOME/dotfiles/TODO.md"
 alias bat="bat --theme='Nord'"
 alias nv="nvim"
 alias n="nvim"
+alias sortu="sort -u"
+alias sortr="sort -r"
 
 
 # general

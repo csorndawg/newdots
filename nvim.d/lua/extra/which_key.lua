@@ -79,3 +79,16 @@ wk.add({
 	-- Trouble
 	{ "<leader>t", group = "Trouble" },
 })
+
+
+-- -- create 'ignore" (do not display in whichkey-menu) register
+-- wk.register({
+--   ["\\"] = {},  -- This hides all mappings starting with '\'
+-- })
+
+-- alt. mapping to view keymaps 
+vim.keymap.set("n", "<leader>wK", "<cmd>WhichKey <CR>", { desc = "view all whichkey keymaps" })
+
+vim.keymap.set("n", "<leader>wq", function()
+  vim.cmd("WhichKey " .. vim.fn.input "WhichKey: ")
+end, { desc = "whichkey query lookup" })

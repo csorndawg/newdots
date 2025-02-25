@@ -1,5 +1,6 @@
 return {
   {
-    'andersevenrud/nordic.nvim'
+    'andersevenrud/nordic.nvim',
+	lazy = false,
   }
 }

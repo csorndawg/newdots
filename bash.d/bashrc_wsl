@@ -476,9 +476,17 @@ if [ -x "$HOME/.local/bin/z.sh" ]; then
   echo 'Error "z.sh" is either not present or executable. Check $LOCALBIN to debug.'
   fi
 
-# TEMPFIX: Getting FZFCOMP to play nice with existing/default shell comp
+# TEMPFIX: Getting FZFCOMP to play nicely with existing/default shell comp
 
-#source "$HOME/dotfiles/config.d/fzf/fzfcomp_fallback_comp.bash"
+# @TODO: Expand below logic to remaining git aliases (then other non-git aliases commands)
+# @PASSED: Below SUCCESSFULLY 
+# - adds git command shell (flag, paths, etc.) completion to my custom alias
+# - integrates FZF COMP without removing git shell completion 
+complete -o bashdefault -o default -o nospace -F __git_wrap_git_diff -F _fzf_path_completion gd
+complete -o bashdefault -o default -o nospace -F __git_wrap_git_diff -F _fzf_path_completion gdo
+complete -o bashdefault -o default -o nospace -F __git_wrap_git_diff -F _fzf_path_completion gdm
+complete -o bashdefault -o default -o nospace -F __git_wrap_git_restore -F _fzf_path_completion grs
+
 _fzf_or_default_completion() {
 	local cmd="${COMP_WORDS[0]}"
 	local prev_word="${COMP_WORDS[COMP_CWORD - 1]}"
@@ -497,6 +505,5 @@ _fzf_or_default_completion() {
 	fi
 }
 
-# IMPORTANT: Must be last file sourced
-# Apply the modified completion function to all commands
-complete -D -F _fzf_or_default_completion
+# IMPORTANT: Must be last line sourced!!
+complete -D -F _fzf_or_default_completion  # Apply the modified completion function to all commands

@@ -10,7 +10,7 @@
         name: "{{item}}"
         state: present
       with_items:
-        - ansible-core
+        - ansible
         - expect
         - make
         - nodejs

@@ -19,17 +19,17 @@ M.setup = function()
 		},
 		sections = {
 			lualine_a = { "mode" },
-			lualine_b = { "branch", "diff" },
+			lualine_b = { "branch", "diff","diagnostics" },
 			lualine_c = { "filename" },
 			lualine_x = { "encoding", "fileformat", "filetype" },
-			lualine_y = { "progress" },
+			lualine_y = { "progress", "location", "hostname" },
 			lualine_z = { "location" },
 		},
-		-- inactive_sections = {
+		inactive_sections = {
 		-- lualine_a = {},
 		-- lualine_b = {},
-		-- lualine_c = { "filename" },
-		-- lualine_x = { "location" },
+		lualine_c = { "filename" },
+		lualine_x = { "location" },
 		-- lualine_y = {},
 		-- lualine_z = {},
 		-- },
@@ -37,6 +37,7 @@ M.setup = function()
 		--		winbar = {},
 		--		inactive_winbar = {},
 		--		extensions = {},
+  },
 	}
 
 	-- Apply the new configuration (merging it with the defaults)

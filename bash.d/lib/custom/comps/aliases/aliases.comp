@@ -31,19 +31,23 @@ _fzf_setup_completion path fd # enable FZF path completion for FD command
 
 ## Shell (custom) Aliases
 
-## add fzf completion to neovim 'nv' alias
-complete -o bashdefault -o default -F _fzf_path_completion nv
+## @IMPORTANT: Below allows for BOTH bash default shell comp and FZF shell comp to work in tandem
+_fzf_setup_completion path ansible
+_fzf_setup_completion path ansible-playbook
 
 # @TEST: Testing two definition methods for FZF completion with BASH alias
-
-  # @VERIFIED: method 1 works as expected
+# @VERIFIED: method 1 works as expected
 # method 1: _fzf_setup_completion
 _fzf_setup_completion path ga # enable FZF path completion for ga (git add) alias
+_fzf_setup_completion path gd 
+_fzf_setup_completion path grss
+
+# mcd custom alias
+#_fzf_setup_completion dir mcd	# @IMPORTANT: _fzf_setup_completion fails for this
 
 # @VERIFIED: method 2 works as expected
 # method 2: complete -o <...? _fzf_path_completion <alias>
 complete -o bashdefault -o default -F _fzf_path_completion nv
-complete -o bashdefault -o default -F _fzf_path_completion gd
 complete -o bashdefault -o default -F _fzf_path_completion gdo
 complete -o bashdefault -o default -F _fzf_path_completion gdm
 complete -o bashdefault -o default -F _fzf_path_completion grs

@@ -671,7 +671,8 @@ nnoremap <Leader>; :
 nnoremap <Leader>v <C-v>
 
 "" @TESTME - remove if leads to difficulty w/ fF/tT cycling
-nnoremap ;; :
+nnoremap ; :
+nnoremap : ;
 nnoremap ,, i
 
 
@@ -682,8 +683,11 @@ nnoremap ,, i
 
 "" insert --> normal
 inoremap ,, <Esc>
+inoremap jj <Esc>
+inoremap kk <Esc>
+inoremap ii <Esc>
 "" insert --> command
-inoremap ;; <C-c>:
+inoremap <C-;> <C-c>:
 
 " insert --> Visual Block
 inoremap <C-v> <C-c><C-v>

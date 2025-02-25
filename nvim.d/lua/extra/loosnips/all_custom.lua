@@ -38,4 +38,5 @@ ls.add_snippets("all", {
 			title = c(1, { t("Mr."), t("Ms.") }),
 		})
 	),
+	s("localhost", t("127.0.0.1")),
 })

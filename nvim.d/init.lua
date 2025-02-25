@@ -58,7 +58,7 @@ require("extra.todo-comments-custom")
 -- @WARN: All modules below are either 'experimental' or "hotfix" and will require refactoring
 -- 	  after enabling all features/functionality for my "essential" NVIM.
 
-require("extra.lsp")
+--require("extra.lsp")
 require("extra.lazy_remaps")
 
 -- experimental post-install configurations
@@ -73,7 +73,10 @@ ih.import_custom_luasnips() -- loads all custom luasnip files that match specifi
 
 require("extra.dap-extras")
 --require("extra.mini-surround") -- @NOTE: use as reference for extending default plugin configurations
+
+-- @PASSED: All 2/25+ custom modules that PASSED INTEGRATION testing and can be permanetly added to init.lua
 require("extra.git-keymaps") -- custom keymaps for git-related plugins (fugitive, telescope git pickers, etc.)
 
--- @TEST: extra.conform
+-- @TESTING: All 2/25+ MVP Nvim custom modules creating, sourcing, testing, and integrating
 require("extra.conform")
+require("extra.lsp-extra")

@@ -958,3 +958,55 @@ fstash() {
   done
 }
 
+
+# uv runner
+uv_run() {
+    if (( $(which uv) <= 0 )); then
+      echo 'Error - "uv" is not installed and/or in a $PATH directory'
+    # true if venv currently enabled
+    elif [! -z "$VIRTUAL_ENV" ]; then
+        export PATH="$VIRTUAL_ENV/bin:$PATH"
+      else
+	echo 'No virtualenv active. Default venv will be enabled before running "uv run"'
+        export VIRTUAL_ENV="/home/zc/.local/state/python/venvs/venv/bin/activate"
+        export PATH="$VIRTUAL_ENV/bin:$PATH"
+	activate $VIRTUAL_ENV
+    fi
+    uv "$@"
+}
+alias uvr=uv_run
+
+
+# Taken from OH-MY-BASH (https://github.com/ohmybash/oh-my-bash/tree/master/lib)
+# search $1 command for pattern $2
+# ex usage: mans ansible beco	# search 'ansible' man page for 'beco'
+function mans() {
+man "$1" | grep -iC2 --color=always "$2" | bat ; 
+}
+
+# show all aliases that match the partial pattern passed as input
+function showa() {
+  LOCAL_ALIASES="/home/zc/dotfiles/rc.d/aliases.rc"
+  /usr/bin/grep --color=always -i -a1 "$@" "$LOCAL_ALIASES" | grep -v '^\s*$' | bat ; 
+}
+
+# supress output (essentially a portable --quiet flag)
+function quiet() {
+  "$@" &> /dev/null &
+}
+
+
+#   buf:  back up file with timestamp
+#   ---------------------------------------------------------
+function buf() {
+  local filename filetime
+  filename=$1
+  filetime=$(date +%Y%m%d_%H%M%S)
+  cp -a "${filename}" "${filename}_${filetime}"
+}
+
+#   del:  move files to hidden folder in tmp, that gets cleared on each reboot
+#   ---------------------------------------------------------
+function del() {
+  mkdir -p /tmp/.trash && mv "$@" /tmp/.trash;
+}

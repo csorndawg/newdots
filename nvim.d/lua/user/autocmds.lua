@@ -59,3 +59,34 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.formatoptions:remove({ "c", "r", "o" })
 	end,
 })
+
+-- set filetypes for custom ".rc" ft extensions
+vim.api.nvim_create_augroup('FileTypeRC', { clear = true })
+
+-- autocommand sets filetype as bash for .rc files
+vim.api.nvim_create_autocmd('BufRead', {
+  pattern = {'rc', 'comp'},
+  command = 'set filetype=bash',
+  group = 'FileTypeRC',
+})
+
+vim.api.nvim_create_autocmd('BufNewFile', {
+  pattern = {'rc', 'comp'},
+  command = 'set filetype=bash',
+  group = 'FileTypeRC',
+})
+
+-- set filetypes for custom ignore ft extensions (.gig, .ignore)
+vim.api.nvim_create_augroup('FileTypeIGNR', { clear = true })
+
+vim.api.nvim_create_autocmd('BufRead', {
+  pattern = {'gig','ignore'},
+  command = 'set filetype=text',
+  group = 'FileTypeIGNR',
+})
+
+vim.api.nvim_create_autocmd('BufNewFile', {
+  pattern = {'gig','ignore'},
+  command = 'set filetype=text',
+  group = 'FileTypeIGNR',
+})

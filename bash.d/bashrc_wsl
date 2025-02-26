@@ -15,12 +15,7 @@ case $- in
 *) return ;;
 esac
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
 
-# append to the history file, don't overwrite it
-shopt -s histappend
 
 # PRESET
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
@@ -204,30 +199,51 @@ ssh_tunnel() {
 	ssh -L $REMOTE_PORT:localhost:$LOCAL_PORT "$SSH_CONN"
 }
 
+# default BAT theme
 export BAT_THEME="Nord" # @TODO: move to bat.config and remove
 
-## HISTORY
+## Better Shell History Configurations
 
-### increase shell history
-HISTSIZE=100000
-HISTFILESIZE=100000
+## set history file
+if [ -z "$HISTFILE" ]; then
 
-### Save multi-line commands as one command
+  HISTFILE=$HOME/.bash_history
+fi
+
+## SANE HISTORY DEFAULTS ##
+
+# append to history file, not overwrite
+shopt -s histappend
+
+# save multi-line commands as one command
 shopt -s cmdhist
 
-### Re-edit the command line for failing history expansions
+# re-edit command line for failing history expansions
 shopt -s histreedit
 
-### Re-edit the result of history expansions
+# re-edit result of history expansions
 shopt -s histverify
 
-### save history with newlines instead of ; where possible
+# save history with newlines instead of ; where possible
 shopt -s lithist
+
+# record each line as its issued
+_omb_util_add_prompt_command 'history -a'
+
+# dont add duplicate lines or lines starting with space in history
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+### increase shell history size
+HISTSIZE=100000
+HISTFILESIZE=100000
 
 ### Avoid duplicate entries
 HISTCONTROL="erasedups:ignoreboth"
 
-### Don't record some commands
+### dont add any of the below commands to history file
 HISTIGNORE="exit:ls:bg:fg:history:clear"
 
 HISTTIMEFORMAT=$'\033[31m[%F] \033[36m[%T]\033[0m '
@@ -291,9 +307,6 @@ function git_main_branch() {
 alias nv="nvim"
 alias neovim="nvim"
 export WINHOME="/mnt/c/Users/zaccs/"
-
-# @TEMPFIX
-alias gpunb="gp -u origin $(git branch --show-current 2>/dev/null)"
 
 llr() {
 	# use CWD if no path specified
@@ -446,7 +459,7 @@ source_bashrc_custom_comp_modules() {
 			continue
 		fi
 		#echo "comp_file: $comp_file"
-		#echo "source $comp_file 1> /dev/null"
+		echo "source $comp_file" 
 		source $comp_file
 	done
 } 1>/dev/null
@@ -482,10 +495,14 @@ if [ -x "$HOME/.local/bin/z.sh" ]; then
 # @PASSED: Below SUCCESSFULLY 
 # - adds git command shell (flag, paths, etc.) completion to my custom alias
 # - integrates FZF COMP without removing git shell completion 
+complete -o bashdefault -o default -o nospace -F __git_wrap_git_diff -F _fzf_path_completion ga
+complete -o bashdefault -o default -o nospace -F __git_wrap_git_diff -F _fzf_path_completion gad
 complete -o bashdefault -o default -o nospace -F __git_wrap_git_diff -F _fzf_path_completion gd
 complete -o bashdefault -o default -o nospace -F __git_wrap_git_diff -F _fzf_path_completion gdo
 complete -o bashdefault -o default -o nospace -F __git_wrap_git_diff -F _fzf_path_completion gdm
+complete -o bashdefault -o default -o nospace -F __git_wrap_git_diff -F _fzf_path_completion gco
 complete -o bashdefault -o default -o nospace -F __git_wrap_git_restore -F _fzf_path_completion grs
+complete -o bashdefault -o default -o nospace -F __git_wrap_git_restore -F _fzf_path_completion grss
 
 _fzf_or_default_completion() {
 	local cmd="${COMP_WORDS[0]}"

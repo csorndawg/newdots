@@ -367,7 +367,10 @@ alias B="bash"
 alias baa="bash"
 
 # XDG cd aliases
-alias XDGDAT="cd $HOME/.local/share"
-alias XDGCONF="cd $HOME/.config"
-alias XDGTMP="cd $HOME/.local/tmp"
-alias XDGVAR="cd $HOME/.local/tmp"
+alias xdgdat="cd $HOME/.local/share"
+alias xdgconF="cd $HOME/.config"
+alias xdgtmp="cd $HOME/.local/tmp"
+alias xdgvar="cd $HOME/.local/var"
+alias hh="help"  # use to expand '-h' to '--help' easier when command requires verbose documentation 
+alias sedpath="echo $PATH | sed 's/:/\n/g' "
+

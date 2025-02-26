@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# Script to enable fzf shell-completion, in a scalable way, for a (growing) list of shell commands.
+
+
+## Enabling FZF Examples
+## fzf_dir_comp  example:  _fzf_setup_completion dir tree
+## fzf_path_comp example:  _fzf_setup_completion path kubectl
+
+
+## WARN: Once list > 20 items (cmds), move to separate file and add logic to read-in file
+
+## dir comp only
+shell_dir_cmds=(tree find fd)
+for cmd in ${shell_dir_cmds[@]}; do
+  #echo ""
+  #echo "cmd: $cmd"
+  #echo "_fzf_setup_completion dir $cmd"
+  _fzf_setup_completion dir $cmd
+  done
+
+
+## path comp (file + dirs)
+shell_path_cmds=(sed rsync python python3 bash source diff)
+for cmd in ${shell_path_cmds[@]}; do
+  #echo ""
+  #echo "cmd: $cmd"
+  #echo "_fzf_setup_completion path $cmd"
+  _fzf_setup_completion path $cmd
+  done

@@ -374,3 +374,4 @@ alias xdgvar="cd $HOME/.local/var"
 alias hh="help"  # use to expand '-h' to '--help' easier when command requires verbose documentation 
 alias sedpath="echo $PATH | sed 's/:/\n/g' "
 
+alias suu="sudo"

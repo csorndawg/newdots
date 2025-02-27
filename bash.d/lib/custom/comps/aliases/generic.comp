@@ -1,0 +1,26 @@
+
+# For "generic aliases" that will have/be linked with the most basic 
+# Bash completion function ("_command"). Only filename/paths covered with this comp.
+
+# enables bash default comp (files/paths) and also enabled root tab-comp 
+complete -o bashdefault -o default -o nospace -F _command -F _complete_as_root suu
+
+# enable bash default comp only for custom alias
+#complete -o bashdefault -o default -o nospace -F _command chmox # @BROKEN
+
+
+# enabling completion function provided by owner/docs
+
+# @BROKEN: throws annoying /usr/bin/... tldr error
+# tldr alias
+#complete -o filenames -F _shtab_tldr tt
+
+# cheat aliases 
+complete -F _cheat c
+complete -F _cheat cl
+complete -F _cheat ce
+
+# taskwarrior aliases
+complete -o nospace -F _task t
+complete -o nospace -F _task ta
+complete -o nospace -F _task tl

@@ -202,51 +202,33 @@ ssh_tunnel() {
 # default BAT theme
 export BAT_THEME="Nord" # @TODO: move to bat.config and remove
 
-## Better Shell History Configurations
+## Better Bash History ##
 
-## set history file
+# set history file
 if [ -z "$HISTFILE" ]; then
 
   HISTFILE=$HOME/.bash_history
 fi
 
-## SANE HISTORY DEFAULTS ##
-
-# append to history file, not overwrite
-shopt -s histappend
-
-# save multi-line commands as one command
-shopt -s cmdhist
-
-# re-edit command line for failing history expansions
-shopt -s histreedit
-
-# re-edit result of history expansions
-shopt -s histverify
-
-# save history with newlines instead of ; where possible
-shopt -s lithist
-
-# record each line as its issued
-_omb_util_add_prompt_command 'history -a'
-
-# dont add duplicate lines or lines starting with space in history
-HISTCONTROL=ignoreboth
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-### increase shell history size
 HISTSIZE=100000
 HISTFILESIZE=100000
 
-### Avoid duplicate entries
-HISTCONTROL="erasedups:ignoreboth"
+shopt -s cmdhist 	# save multi-line commands as one command
+shopt -s histappend 	# append to history file, not overwrite
+shopt -s histreedit 	# re-edit command line for failing history expansions
+shopt -s histverify 	# re-edit result of history expansions
+shopt -s lithist 	# save history with newlines instead of ; where possible
 
-### dont add any of the below commands to history file
-HISTIGNORE="exit:ls:bg:fg:history:clear"
+HISTCONTROL="erasedups:ignoreboth" 	# avoid duplicate entries
+HISTCONTROL=ignoreboth 			# dont add duplicate lines or lines starting with space in hist
+HISTTIMEFORMAT=$'\033[31m[%F] \033[36m[%T]\033[0m '  	# YYYY-MM-DD hh-mm-ss timestamped entries
 
-HISTTIMEFORMAT=$'\033[31m[%F] \033[36m[%T]\033[0m '
+# commands (including aliases) that wont be written to history
+HISTIGNORE="exit:ls:bg:fg:history:clear:gs:gpl:h:a:tmls:tma:mcd:yes" 	
+
+# ensure history updates in real-time, and is in-sync across multiple tmux sessions
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }history -a; history -c; history -r" 
+
 
 ### GIT
 

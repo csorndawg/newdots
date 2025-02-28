@@ -80,3 +80,4 @@ require("extra.git-keymaps") -- custom keymaps for git-related plugins (fugitive
 -- @TESTING: All 2/25+ MVP Nvim custom modules creating, sourcing, testing, and integrating
 require("extra.conform")
 require("extra.lsp-extra")
+require("extra.telescope.mycustom_pickers")

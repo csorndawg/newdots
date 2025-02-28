@@ -42,13 +42,14 @@ require("extra.colorschemes.nord")
 --require("extra.lualine-custom")
 
 -- EXPERIMENTAL/DEV configs (comment out below if breaking changes occur)
-require("extra.cmp-test")
---require("extra.mason-lspconfig") -- sensitive to loading order ; might need to be first "required" module ; needs to be before "extra.lsp"
 
 -- Custom settings
 require("user.opts")
 require("user.keymaps")
 require("user.autocmds")
+
+-- @IMPORTANT: Has downstream dependencies
+require("extra.mason-lspconfig") -- all LSP configurations depend on this being loaded before they are ran
 
 -- WIP:Custom plugin/extra configurations
 -- put <require('extra.<module>')> code here after confirming module is
@@ -57,7 +58,6 @@ require("extra.todo-comments-custom")
 
 -- @WARN: All modules below are either 'experimental' or "hotfix" and will require refactoring
 -- 	  after enabling all features/functionality for my "essential" NVIM.
-
 --require("extra.lsp")
 require("extra.lazy_remaps")
 
@@ -75,9 +75,13 @@ require("extra.dap-extras")
 --require("extra.mini-surround") -- @NOTE: use as reference for extending default plugin configurations
 
 -- @PASSED: All 2/25+ custom modules that PASSED INTEGRATION testing and can be permanetly added to init.lua
+
 require("extra.git-keymaps") -- custom keymaps for git-related plugins (fugitive, telescope git pickers, etc.)
 
 -- @TESTING: All 2/25+ MVP Nvim custom modules creating, sourcing, testing, and integrating
+
+--require("extra.lsp-extra")
+require("extra.cmp-test")
+require("extra.lsp")
 require("extra.conform")
-require("extra.lsp-extra")
 require("extra.telescope.mycustom_pickers")

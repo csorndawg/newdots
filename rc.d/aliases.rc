@@ -382,6 +382,7 @@ alias hh="help"
 alias h_="--help"  
 
 alias suu="sudo"
+alias ap="ansible-playbook"
 
 # @TODO: debug aliases commented out with 3 hashtags "#" 
 # easier/smoother flag appending for various git cmds/subcmds combos

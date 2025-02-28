@@ -290,9 +290,6 @@ vim.keymap.set("i", "<C-h><C-h>", "<Left>", { noremap = true, silent = true })
 vim.keymap.set("i", "00", "<Home>", { noremap = true, silent = true })
 vim.keymap.set("i", "$$", "<End>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>no", "<cmd>set nornu nonu <cr>", { desc = "Disable line numbers" })
-vim.keymap.set("n", "<leader>ne", "<cmd>set rnu nu <cr>", { desc = "Enable line numbers" })
-
 vim.keymap.set("n", "<Leader>bn", ":bn", { desc = "Buffer next", noremap = true })
 vim.keymap.set("n", "<Leader>bp", ":bp", { desc = "Buffer prev", noremap = true })
 
@@ -314,4 +311,12 @@ map("i", "<C-k>", "<Up>", { desc = "move up" })
 -- <kickstart remap copypasta>
 
 -- @EXPERIMENTAL: Custom remaps to trial
--- <my custom remap copypasta>
+-- NOTE: Attempting to use '<Leader>Z' as my personal utility/helper keyspace for whichkey. Within the space will be miscellaneous, but frequently used mappings.
+vim.keymap.set("n", "<leader>Zs", ":set signcolumn=no<CR>", { silent = true, desc = "Disable sign column" })
+
+vim.keymap.set(
+	"n",
+	"<leader>Zl",
+	":set norelativenumber nonumber<CR>",
+	{ silent = true, desc = "Disable line numbers" }
+)

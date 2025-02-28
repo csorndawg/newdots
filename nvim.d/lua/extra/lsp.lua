@@ -5,21 +5,77 @@
 -- LSPCONFIG
 
 -- require() imports "plugin/lspconfig.lua"
-local nvimd_lsp = require("lspconfig")
+local lspconfig = require("lspconfig")
+local mason = require("mason")
+local mason_lspp = require("mason-lspconfig")
+local mason_tool_installer = require("mason-tool-installer")
 
 -- define LSP servers
 local servers = {
-	"pyright",
-	"lua_ls",
-	"ansiblels",
-	"bashls",
-	"yamlls",
-	"docker_compose_language_service",
-	"dockerls",
-	"taplo",
+	pyright = {},
+	ansiblels = {},
+	awk_ls = {},
+	bashls = {},
+	diagnosticls = {},
+	docker_compose_language_service = {},
+	dockerls = {},
+	jinja_lsp = {},
+	jqls = {},
+	lua_ls = {},
+	ruff = {},
+	taplo = {},
+	ts_query_ls = {},
+	vimls = {},
+	yamlls = {},
 }
 
+-- @TESTING: Test vim.table.extends logic that I tried earlier in other LSP-extra file. Start small with debuggers first.
+
+-- pre-install debuggers list
+local debuggers = {
+	"bash-debug-adapter",
+	"debugpy",
+}
+
+-- pre-install linters list
+local linters = {
+	"ansible-lint",
+	"commitlint",
+	"hadolint",
+	"ruff",
+	"selene",
+	"shellcheck",
+	"sqlfluff",
+	"vint",
+	"write-good",
+}
+
+local formatters = {
+	"black",
+	"jq",
+	"ruff",
+	"sqlfmt",
+	"shfmt",
+	"stylua",
+	"superhtml",
+	"xmlformatter",
+	"yamlfmt",
+}
+
+-- concat all non-lsp mason tools
+local mason_nonlsp = {}
+vim.list_extend(formatters, vim.list_extend(debuggers, linters))
+vim.list_extend(mason_nonlsp, formatters)
+
+-- install all non-lsp mason tools defined above
+mason_tool_installer.setup({ ensure_installed = mason_nonlsp })
+
+local ensure_installed2 = vim.tbl_keys(servers or {})
+mason_tool_installer.setup({ ensure_installed = ensure_installed2 })
+-- print("Post-Extend: ", vim.inspect(ensure_installed2))  -- view and confirm non-LSP install list is good
+
 -- do things when language server attached to current buffer
+-- print("Defining LSP on_attach")
 local on_attach = function(client, bufnr)
 	local function buf_set_keymap(...)
 		vim.api.nvim_buf_set_keymap(bufnr, ...)
@@ -46,24 +102,44 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
--- set capabilities for ??
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-for _, lsp in ipairs(servers) do
-	-- nvimd_lsp[lsp].setup {}	-- installs LSP server, but will not be recognized unless manually referenced/called
-
-	-- run local on_attach function, which allows files to be
-	-- recognize/picked up by its LSP server (if exists), for each server
-	nvimd_lsp[lsp].setup({
+-- print("servers table: ", vim.inspect(servers))  -- view list of LSP severs that will be installed
+-- print("Setting up LSP capabilities for:")
+for lsp in pairs(servers) do
+	print("LSP Server = ", vim.inspect(lsp)) -- uncomment to debug any LSP server with attaching issues
+	local config = {
 		capabilities = capabilities,
 		on_attach = on_attach,
-	})
+	}
+	-- ruff doesn't have textDocument features needed for things like (hover, go to definition, etc.)
+	-- so need to use/setup pyright to handle those tasks while ruff covers linting/formatting tasks
+	if lsp == "ruff" then
+		-- skip since we only want ruff for linting/formatting purposes
+		goto continue
+	end
+
+	-- Add SchemaStore config specifically for yaml-language-server
+	if lsp == "yamlls" then
+		config.settings = {
+			yaml = {
+				schemaStore = {
+					enable = true, -- Auto-fetch schemas from SchemaStore
+					url = "https://www.schemastore.org/api/json/catalog.json",
+				},
+			},
+		}
+	end
+
+	lspconfig[lsp].setup(config)
+	::continue::
 end
 
 ------------------------
 -- NVIM-CMP
 ------------------------
+
 local cmp = require("cmp")
 --local lspkind = require('lspkind')
 local luasnip = require("luasnip")

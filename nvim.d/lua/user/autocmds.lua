@@ -61,32 +61,53 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- set filetypes for custom ".rc" ft extensions
-vim.api.nvim_create_augroup('FileTypeRC', { clear = true })
+vim.api.nvim_create_augroup("FileTypeRC", { clear = true })
 
 -- autocommand sets filetype as bash for .rc files
-vim.api.nvim_create_autocmd('BufRead', {
-  pattern = {'rc', 'comp'},
-  command = 'set filetype=bash',
-  group = 'FileTypeRC',
+vim.api.nvim_create_autocmd("BufRead", {
+	pattern = { "rc", "comp" },
+	command = "set filetype=bash",
+	group = "FileTypeRC",
 })
 
-vim.api.nvim_create_autocmd('BufNewFile', {
-  pattern = {'rc', 'comp'},
-  command = 'set filetype=bash',
-  group = 'FileTypeRC',
+vim.api.nvim_create_autocmd("BufNewFile", {
+	pattern = { "rc", "comp" },
+	command = "set filetype=bash",
+	group = "FileTypeRC",
 })
 
 -- set filetypes for custom ignore ft extensions (.gig, .ignore)
-vim.api.nvim_create_augroup('FileTypeIGNR', { clear = true })
+vim.api.nvim_create_augroup("FileTypeIGNR", { clear = true })
 
-vim.api.nvim_create_autocmd('BufRead', {
-  pattern = {'gig','ignore'},
-  command = 'set filetype=text',
-  group = 'FileTypeIGNR',
+vim.api.nvim_create_autocmd("BufRead", {
+	pattern = { "gig", "ignore" },
+	command = "set filetype=text",
+	group = "FileTypeIGNR",
 })
 
-vim.api.nvim_create_autocmd('BufNewFile', {
-  pattern = {'gig','ignore'},
-  command = 'set filetype=text',
-  group = 'FileTypeIGNR',
+vim.api.nvim_create_autocmd("BufNewFile", {
+	pattern = { "gig", "ignore" },
+	command = "set filetype=text",
+	group = "FileTypeIGNR",
 })
+
+-- print message if any Mason updates occur
+vim.api.nvim_create_autocmd("User", {
+	pattern = "MasonToolsUpdateCompleted",
+	callback = function(e)
+		if e.data and vim.tbl_isempty(e.data) then
+			vim.schedule(function()
+				print("No Mason updates were performed.")
+			end)
+		end
+	end,
+})
+
+-- vim.api.nvim_create_autocmd("User", {
+-- 	pattern = "MasonToolsUpdateCompleted",
+-- 	callback = function(e)
+-- 		vim.schedule(function()
+-- 			print("Mason Updates: ", vim.inspect(e.data)) -- print the table that lists the programs that were installed
+-- 		end)
+-- 	end,
+-- })

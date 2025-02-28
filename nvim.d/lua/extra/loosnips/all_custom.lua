@@ -39,4 +39,10 @@ ls.add_snippets("all", {
 		})
 	),
 	s("localhost", t("127.0.0.1")),
+	s("HOME", t("$HOME")),
+	s("HOME_LOCAL", t("$HOME/.local")),
+	s("XDGDATA", t("$HOME/.local/share")),
+	s("XDGVAR", t("$HOME/.local/var")),
+	s("XDGTMP", t("$HOME/.local/tmp")),
+	s("XDGDWNLDS", t("$HOME/.local/var/downloads")),
 })

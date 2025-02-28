@@ -3,6 +3,7 @@
 # Bash completion function ("_command"). Only filename/paths covered with this comp.
 
 # enables bash default comp (files/paths) and also enabled root tab-comp 
+complete -o bashdefault -o default -o nospace -F _command -F _complete_as_root sudo
 complete -o bashdefault -o default -o nospace -F _command -F _complete_as_root suu
 
 # enable bash default comp only for custom alias

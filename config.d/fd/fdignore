@@ -79,15 +79,17 @@
 # GITIGNORE.IO patterns
 
 # Python: ignore all files with "venv" in their path
-**/venv/**
+**/venv/
 **/.venv/**
 **/**_venv/**
+**/pip/**
 
 # Go: ignore all files in the "go/pkg/" directory
 **/go/pkg/**
 
 # Node: ignore all npm/node_modules files
 **/node_modules/**
+
 node_modules/**
 .npm/**
 **/.npm/**
@@ -119,3 +121,202 @@ node_modules/**
 **/ycm-core/**
 **/spotify/**
 **/gem**
+
+
+# @TODO: turn single '*' into '**' for FZF
+# GITHUB/GITIGNORE TEMPLATE COPYPASTA
+**.diff
+**.7z
+**.jar
+**.rar
+**.zip
+**.gz
+**.gzip
+**.tgz
+**.bzip
+**.bzip2
+**.bz2
+**.xz
+**.lzma
+**.cab
+**.xar
+**.zst
+**.tzst
+**.bk
+**.bk.*
+# patch failures
+**.orig
+**.rej
+
+### python stuff - uncomment line(s) if cluttering up FZF stuff
+##.Python
+###[Bb]in
+##[Ii]nclude
+###[Ll]ib
+##[Ll]ib64
+###[Ll]ocal
+###[Ss]cripts
+##pyvenv.cfg
+#**venv/**
+#!**venv/*/site-packages
+##pip-selfcheck.json
+### Byte-compiled / optimized / DLL files
+#**/__pycache__/
+##*.py[cod]
+##*$py.class
+### C extensions
+##*.so
+### Distribution / packaging
+##.Python
+##build/
+##develop-eggs/
+##dist/
+##downloads/
+#**/eggs/
+#**/eggs/
+###lib/
+##lib64/
+##parts/
+##sdist/
+###var/
+#**/wheels/
+##share/python-wheels/
+##*.egg-info/
+##.installed.cfg
+##*.egg
+##MANIFEST
+##.env
+##.venv
+##env/
+##venv/
+##ENV/
+#**#env.bak/
+#**venv.bak/
+###.idea/
+##.ruff_cache/
+#**/.ipynb_checkpoints
+#**/.ipynb_checkpoints/*
+
+## images
+**/*.jpg
+**/*.jpeg
+**/*.gif
+**/*.png
+**/*.pdf
+
+## microsoft
+# Word temporary and Auto Backup
+# ~$*.doc*
+# Backup of *.doc*
+# # Excel temporary
+# **.xls*
+# ~$*.xls*
+
+## vim 
+# Swap
+**/[._]*.s[a-v][a-z]
+**/!*.svg  # comment out if you don't need vector files
+**/[._]*.sw[a-p]
+**/[._]s[a-rt-v][a-z]
+**/[._]ss[a-gi-z]
+**/[._]sw[a-p]
+# Session
+**/Session.vim
+**/Sessionx.vim
+# Temporary
+**/.netrwhist
+**/*~
+# Auto-generated tag files
+**/tags
+# Persistent undo
+**/[._]*.un~
+
+## lua 
+# # Compiled Lua sources
+# luac.out
+# # luarocks build files
+# *.src.rock
+# *.zip
+# *.tar.gz
+# # Object files
+# *.o
+# *.os
+# *.ko
+# *.obj
+# *.elf
+# # Precompiled Headers
+# *.gch
+# *.pch
+# # Libraries
+# *.lib
+# *.a
+# *.la
+# *.lo
+# *.def
+# *.exp
+# # Shared objects (inc. Windows DLLs)
+# *.dll
+# *.so
+# *.so.*
+# *.dylib
+# # Executables
+# *.exe
+# *.out
+# *.app
+# *.i*86
+# *.x86_64
+# *.hex
+
+
+## FZF_DEFAULT/ fd --ignore-file output inspection
+## ^files clutter
+**.icns
+**.svg
+**.scd
+**.fish
+**.js
+**.mjs
+**.glsl
+**.go
+**.rs
+**.dump
+**/CONTRI*.md
+**/LICENS**
+
+## ^dir clutter
+.cargo/
+.rustup/
+**/font**
+**/.github
+**/tests
+**/.junk
+**/junk
+**/.JUNK
+**/JUNK
+**/DECOM**
+**/Decom**
+**/decom**
+**/logos
+**/.builds/
+**/.inactive/
+**/inactive/
+**/.INACTIVE/
+**/INACTIVE/
+**/DUMP**
+**/dump**
+**/cygwin**
+**/tldr/**
+**/plugin/**
+**/plugins/**
+**/.changes/**
+
+# noisey files/folders that Im temporarily ignoring 
+**/var/downloads/**
+.var/downloads/**
+git/jh/**
+**/jobhunt/**
+**/cheatsheets/community/
+**/lib64/**
+**/venv**/lib**
+**/venvs/lib**
+**/nvim/swap/

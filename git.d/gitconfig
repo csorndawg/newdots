@@ -29,3 +29,43 @@
 
 [alias]
     recent="branch --sort=-committerdate"
+#    st = status -sb
+#    ci = commit
+#    co = checkout
+#    graph = log --graph --oneline --decorate=short --branches='*'
+#    br = branch
+#    df = diff --color-words='[^[:space:]]'
+#    sh = show --color-words='[^[:space:]]'
+#    lg = log -p
+
+[color]
+  branch = auto
+  #decorate = auto 
+  diff = auto
+  #grep = auto
+  showbranch = auto
+  status = always
+  ui = always
+
+# @TODO: Check if color configs below need to be manually configured (unsure if they are inherited from Terminal theme)
+# 	 And if they do need to be manually set uncomment and modify so colors align with Nord theme.
+#[color "status"]
+#	added = yellow
+#	changed = green
+#	untracked = cyan
+  ; header = "#999999"
+  ; # Because the phrase "Detached HEAD" isn't unnerving enough
+  ;   nobranch = bold ul blink "#f99157"
+#
+#[color "branch"]
+#	current = yellow reverse
+#	local = yellow
+#	remote = green
+#
+#[color "diff"]
+#	meta = yellow bold
+#	frag = magenta bold
+#	old = red bold
+#	new = green bold
+; [format]
+        ; pretty = '%C(yellow)%h%Creset %C(magenta)%cd%Creset %d %s'

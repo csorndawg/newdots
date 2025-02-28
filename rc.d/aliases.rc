@@ -375,3 +375,11 @@ alias hh="help"  # use to expand '-h' to '--help' easier when command requires v
 alias sedpath="echo $PATH | sed 's/:/\n/g' "
 
 alias suu="sudo"
+
+# easier/smoother flag appending for various git cmds/subcmds combos
+alias sg-='--staged'
+alias st-='--stat'
+alias pxa-='--pickaxe-all -S'
+alias pxr-='--pickaxe-regex -S '
+alias scd--="--sort=-committerdate "   # expand to sort by commit date in reverse (most recent first)
+alias scd-="--sort=committerdate "   # expand to sort by commit date (oldest first)

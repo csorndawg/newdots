@@ -41,7 +41,7 @@
 [color]
   branch = always
   #decorate = auto 
-  diff = auto
+  diff = always      # colorize terminal and piped output (auto only colorizes terminal output)
   #grep = auto
   showbranch = auto
   status = always

@@ -220,6 +220,19 @@ cmp.setup({
 		{ name = "path" },
 		{ name = "cmdline" },
 	},
+	sorting = {
+		comparators = {
+			cmp.config.compare.offset,
+			cmp.config.compare.exact,
+			cmp.config.compare.score,
+			require("cmp-under-comparator").under,
+			cmp.config.compare.kind,
+			cmp.config.compare.sort_text,
+			cmp.config.compare.length,
+			cmp.config.compare.order,
+		},
+		-- priority_weight = {}	-- need to review docs first
+	},
 })
 
 -- need to add mysql/psql extensions also?

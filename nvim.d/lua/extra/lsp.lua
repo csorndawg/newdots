@@ -108,7 +108,7 @@ capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 -- print("servers table: ", vim.inspect(servers))  -- view list of LSP severs that will be installed
 -- print("Setting up LSP capabilities for:")
 for lsp in pairs(servers) do
-	print("LSP Server = ", vim.inspect(lsp)) -- uncomment to debug any LSP server with attaching issues
+	-- print("LSP Server = ", vim.inspect(lsp)) -- uncomment to debug any LSP server with attaching issues
 	local config = {
 		capabilities = capabilities,
 		on_attach = on_attach,

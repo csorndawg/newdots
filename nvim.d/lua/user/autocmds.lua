@@ -21,9 +21,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
--- @experimental
--- nvim-confirm auto-format toggling
-
+-- toggle autoformatting enablement
 require("conform").setup({
 	format_on_save = function(bufnr)
 		-- Disable with a global or buffer-local variable
@@ -34,6 +32,7 @@ require("conform").setup({
 	end,
 })
 
+-- Disable/Enable Autoformatting
 vim.api.nvim_create_user_command("FormatDisable", function(args)
 	if args.bang then
 		-- FormatDisable! will disable formatting just for this buffer
@@ -60,16 +59,13 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- set filetypes for custom ".rc" ft extensions
+-- have ".rc" files treated as "bash" filetypes
 vim.api.nvim_create_augroup("FileTypeRC", { clear = true })
-
--- autocommand sets filetype as bash for .rc files
 vim.api.nvim_create_autocmd("BufRead", {
 	pattern = { "rc", "comp" },
 	command = "set filetype=bash",
 	group = "FileTypeRC",
 })
-
 vim.api.nvim_create_autocmd("BufNewFile", {
 	pattern = { "rc", "comp" },
 	command = "set filetype=bash",
@@ -78,13 +74,11 @@ vim.api.nvim_create_autocmd("BufNewFile", {
 
 -- set filetypes for custom ignore ft extensions (.gig, .ignore)
 vim.api.nvim_create_augroup("FileTypeIGNR", { clear = true })
-
 vim.api.nvim_create_autocmd("BufRead", {
 	pattern = { "gig", "ignore" },
 	command = "set filetype=text",
 	group = "FileTypeIGNR",
 })
-
 vim.api.nvim_create_autocmd("BufNewFile", {
 	pattern = { "gig", "ignore" },
 	command = "set filetype=text",
@@ -103,11 +97,11 @@ vim.api.nvim_create_autocmd("User", {
 	end,
 })
 
--- vim.api.nvim_create_autocmd("User", {
--- 	pattern = "MasonToolsUpdateCompleted",
--- 	callback = function(e)
--- 		vim.schedule(function()
--- 			print("Mason Updates: ", vim.inspect(e.data)) -- print the table that lists the programs that were installed
--- 		end)
--- 	end,
--- })
+-- all help docs open in vertical split
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "help",
+	callback = function()
+		vim.cmd("wincmd L") -- Moves the help window to the far right
+		vim.cmd("vertical resize 80") -- Adjusts the width (optional)
+	end,
+})

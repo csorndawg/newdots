@@ -155,6 +155,11 @@ cmp.setup({
 	--		format = lspkind.cmp_format()
 	--	},
 
+	-- configure cmp popup menu
+	window = {
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
+	},
 	mapping = {
 		-- Use Tab and shift-Tab to navigate autocomplete menu
 		["<Tab>"] = function(fallback)
@@ -212,6 +217,7 @@ cmp.setup({
 			luasnip.lsp_expand(args.body)
 		end,
 	},
+	-- default source hierarchy waterfall
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
@@ -220,11 +226,14 @@ cmp.setup({
 		{ name = "path" },
 		{ name = "cmdline" },
 	},
+
 	sorting = {
 		comparators = {
 			cmp.config.compare.offset,
 			cmp.config.compare.exact,
 			cmp.config.compare.score,
+			-- double underscore  methods (eg.  __repl__()) are sorted after, all other cmp choices
+			-- keeps cmp options for Python clean and uncluttered
 			require("cmp-under-comparator").under,
 			cmp.config.compare.kind,
 			cmp.config.compare.sort_text,
@@ -234,6 +243,20 @@ cmp.setup({
 		-- priority_weight = {}	-- need to review docs first
 	},
 })
+
+-- Now that standard cmp configuration is set by (set by above function)
+-- we can EXTEND extra configurations that will override/patch any previously
+-- existing setting (or add a new setting if not defined)
+
+--
+-- @NOTE: CMP extended configurations
+--
+
+-- set special cmp behavior for Cmdline and Search ('/','?') cmp
+cmp.setup.cmdline({})
+
+-- set special cmp behavior for Cmdline and Search ('/','?') cmp
+cmp.setup.cmdline({})
 
 -- need to add mysql/psql extensions also?
 cmp.setup.filetype({ "sql" }, {

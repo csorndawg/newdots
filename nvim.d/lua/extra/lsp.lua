@@ -12,7 +12,6 @@ local mason_tool_installer = require("mason-tool-installer")
 
 -- define LSP servers
 local servers = {
-	pyright = {},
 	ansiblels = {},
 	awk_ls = {},
 	bashls = {},
@@ -22,7 +21,9 @@ local servers = {
 	jinja_lsp = {},
 	jqls = {},
 	lua_ls = {},
+	pyright = {},
 	ruff = {},
+	sqls = {},
 	taplo = {},
 	ts_query_ls = {},
 	vimls = {},
@@ -48,6 +49,7 @@ local linters = {
 	"sqlfluff",
 	"vint",
 	"write-good",
+	"yamllint",
 }
 
 local formatters = {
@@ -213,9 +215,17 @@ cmp.setup({
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
-		{ name = "dadbod" },
+		-- { name = "dadbod" },
 		{ name = "buffer" },
 		{ name = "path" },
 		{ name = "cmdline" },
+	},
+})
+
+-- need to add mysql/psql extensions also?
+cmp.setup.filetype({ "sql" }, {
+	sources = {
+		{ name = "vim-dadbod-completion" },
+		{ name = "buffer" },
 	},
 })

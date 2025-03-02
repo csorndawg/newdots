@@ -23,6 +23,12 @@ export CRONTAB_LOGS_HOME="$XDG_VAR_HOME/log/cron"
 # local venvs
 export VENVS_HOME="$XDG_STATE_HOME/python/venvs"
 
+# xdg tab comp shortcuts
+export DWNLDS_LOCAL_HOME="$HOME/.local/var/downloads"
+export DAT_LOCAL_HOME="$HOME/.local/share"
+export LOGS_LOCAL_HOME="$HOME/.local/var/log"
+export TMP_LOCAL_HOME="$HOME/.local/tmp"
+
 # dotfile directories
 export DOTFILES_HOME="$HOME/dotfiles"
 export ZSH_CONFD="$HOME/dotfiles/zsh.d"

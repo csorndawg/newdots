@@ -1,0 +1,108 @@
+[terminal.shell]
+program = "C:\\Windows\\System32\\wsl.exe"
+args = ["~"]
+
+# Colors (Nord)
+
+# Default colors
+[colors.primary]
+background = '#2E3440'
+foreground = '#D8DEE9'
+
+# Normal colors
+[colors.normal]
+black   = '#3B4252'
+red     = '#BF616A'
+green   = '#A3BE8C'
+yellow  = '#EBCB8B'
+blue    = '#81A1C1'
+magenta = '#B48EAD'
+cyan    = '#88C0D0'
+white   = '#E5E9F0'
+
+# Bright colors
+[colors.bright]
+black   = '#4C566A'
+red     = '#BF616A'
+green   = '#A3BE8C'
+yellow  = '#EBCB8B'
+blue    = '#81A1C1'
+magenta = '#B48EAD'
+cyan    = '#8FBCBB'
+white   = '#ECEFF4'
+
+# default browser integration
+#[mouse.url]
+#launcher = "xdg-open" 
+#args = []
+#modifiers = "Control" 
+
+[cursor]
+style = "Beam"
+# Cursor style
+#
+# Values for 'style':
+#   - ▇ Block
+#   - _ Underline
+#   - | Beam
+#custom_cursor_colors = true
+
+# Live config reload (changes require restart)
+# live_config_reload = true
+
+# Shell
+#
+# You can set shell.program to the path of your favorite shell, e.g. /bin/zsh.
+# Entries in shell.args are passed unmodified as arguments to the shell.
+# shell:
+#   program: /usr/local/bin/zsh
+#   program: /usr/local/bin/bash
+#   args:
+#     - --command=tmux
+
+# [window]
+# decorations = 'buttonless'
+# full: borders and title bar
+# none: neither borders nor title bar
+
+##
+## Font Config
+##
+
+# Run 'fc-list' to see available fonts
+# Installed Fonts:
+#  - IosevkaTermNerdFontMono
+#  - JetBrainsMonoNerdFont
+#  - DejaVuSansM Nerd Font (example style: style=Bold)
+#  - Ubuntu Sans Mono (example style: style=Condensed Thin)
+[font]
+size = 13.0
+# normal = { family = "IosevkaTerm Nerd Font", style = "Medium, Regular" }
+# normal = { family = "IosevkaTerm NF", style = "Medium" }
+bold = { family = "IosevkaTerm Nerd Font", style = "Bold" }
+italic = { family = "IosevkaTerm Nerd Font", style = "Italic" }
+#bold_italic = { family = "IosevkaTerm Nerd Font", style = "Bold Italic" }
+[font.bold_italic]
+family = "JetBrainsMonoNerdFont"
+style = "Bold Italic"
+
+# [font.normal]
+# family = "Iosevka"
+# style = "Light"
+# # family: "Fira Code"
+# # family: "Source Code Pro"
+# # style: Retina
+
+# [font.bold]
+# family = "Iosevka"
+# style = "Medium"
+# # family: "Fira Code"
+# # family: "Source Code Pro"
+
+# [font.italic]
+# family = "Iosevka"
+# style = "Light Italic"
+# style: "Light Oblique"
+# family: "Fira Code"
+# family: "Source Code Pro"
+# style: "Medium Italic"

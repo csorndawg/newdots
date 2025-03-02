@@ -1,3 +1,7 @@
 export OBSIDIAN_REPO="/home/zc/git/obsiddy"
 export OBSIDIAN_PERSONAL="/mnt/c/Users/zaccs/Documents/Obsidian-Vault"
 export ASUS_ALACRITTY_CONFD="/mnt/c/Users/zaccs/AppData/Roaming/alacritty"
+export ALACRITTY_CONFIG_ASUS="/mnt/c/Users/zaccs/AppData/Roaming/alacritty"
+export ASUS_TEMP_DATA="/mnt/c/Users/zaccs/AppData/Local"
+export ASUS_DWNLDS_HOME="/mnt/c/Users/zaccs/Downloads"
+export ASUS_RSYNC_HOME="/mnt/c/Users/zaccs/Downloads/Rsync"

@@ -2,6 +2,6 @@ return {
 	{
 		"akinsho/toggleterm.nvim",
 		version = "*",
-		config = function() end,
+		-- config = function() end,
 	},
 }

@@ -97,11 +97,18 @@ vim.api.nvim_create_autocmd("User", {
 	end,
 })
 
--- all help docs open in vertical split
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "help",
+-- Ensure :help always opens in a vertical split on the right
+vim.cmd([[
+  command! -nargs=* Help vertical rightbelow help <args>
+]])
+
+-- Autocmd to move help buffers to the right side and resize
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*.txt",
 	callback = function()
-		vim.cmd("wincmd L") -- Moves the help window to the far right
-		vim.cmd("vertical resize 80") -- Adjusts the width (optional)
+		if vim.bo.filetype == "help" then
+			vim.cmd("wincmd L") -- Move help window to the far right
+			vim.cmd("vertical resize 80") -- Adjust width (optional)
+		end
 	end,
 })

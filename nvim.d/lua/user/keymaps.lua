@@ -103,15 +103,6 @@ end, { noremap = true, silent = true })
 -- @kickstarter
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
--- Normal/Terminal
-remapp("n", "<Leader>t", ":terminal<Cr>iclear<CR>", { noremap = true })
-
--- Normal/Visual
-remapp("n", "<leader>v", "v", { noremap = true })
-
--- Normal/Visual Line
-remapp("n", "<leader><leader>v", "<S-v>", { noremap = true })
-
 -- Cursor Movement within current screen
 remapp("n", "<leader><leader>h", "H", { silent = true })
 remapp("n", "<leader><leader>m", "M", { silent = true })

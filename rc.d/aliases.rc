@@ -198,14 +198,12 @@ alias gba="git branch -a --sort=-committerdate "               # list all (local
 alias gbr="git branch -r --sort=-committerdate  "               # list remote branchs
 alias gbc="git branch --show-current"
 
-# filter to 20 most recent branches by default
-alias gbs="git branch --sort=-committerdate | head -n 20"   # (s)ort newest -> oldest
-alias gbs--="git branch --sort=committerdate | head -n 20"   # (s)ort oldest -> newest
+# filter 20 most recent branches by default
+#alias gbs20="git branch --sort=-committerdate | head -n 20"   # (s)ort newest -> oldest
 
 # git branch sort [a]ll 
-alias gbsa="git branch --sort=-committerdate"   # (s)ort newest -> oldest
-alias gbsa-="git branch --sort=committerdate"   # (s)ort oldest -> newest
-
+alias gbsa="git branch --all --sort=-committerdate"   # (s)ort newest -> oldest
+alias gbsa-="git branch --all --sort=committerdate"   # (s)ort oldest -> newest
 alias gbm="git branch --merged"         # list all branches merged into CURRENT branch
 alias gbnm="git branch --no-merged"     # list all branches not merged into CURRENT branch
 

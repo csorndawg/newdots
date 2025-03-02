@@ -97,11 +97,37 @@ vim.api.nvim_create_autocmd("User", {
 	end,
 })
 
--- all help docs open in vertical split
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "help",
+-- Ensure :help always opens in a vertical split on the right
+vim.cmd([[
+  command! -nargs=* Help vertical rightbelow help <args>
+]])
+
+-- Autocmd to move help buffers to the right side and resize
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*.txt",
 	callback = function()
-		vim.cmd("wincmd L") -- Moves the help window to the far right
-		vim.cmd("vertical resize 80") -- Adjusts the width (optional)
+		if vim.bo.filetype == "help" then
+			vim.cmd("wincmd L") -- Move help window to the far right
+			vim.cmd("vertical resize 80") -- Adjust width (optional)
+		end
 	end,
+})
+
+-- Modify Telescope's `help_tags` action to use vertical split
+local actions = require("telescope.actions")
+local action_state = require("telescope.actions.state")
+
+require("telescope").setup({
+	pickers = {
+		help_tags = {
+			attach_mappings = function(_, map)
+				map("i", "<CR>", function(prompt_bufnr)
+					local selection = action_state.get_selected_entry()
+					actions.close(prompt_bufnr)
+					vim.cmd("vertical rightbelow help " .. selection.value) -- Open help in vertical split
+				end)
+				return true
+			end,
+		},
+	},
 })

@@ -194,8 +194,8 @@ alias gstdp="git stash show --patch"  # use as workaround until I can add "--pat
 alias gb="git branch"          
 alias gbl="git branch --list "          # list branches that match glob 
 alias gbc="git branch --contains "      # like -l except for commits
-alias gba="git branch -a"               # list all (local and remote) branches
-alias gbr="git branch -r"               # list remote branchs
+alias gba="git branch -a --sort=-committerdate "               # list all (local and remote) branches
+alias gbr="git branch -r --sort=-committerdate  "               # list remote branchs
 alias gbc="git branch --show-current"
 
 # filter to 20 most recent branches by default
@@ -220,6 +220,7 @@ alias gp="git push"
 #alias gpu="git push -u origin $(git branch --show-current)"
 alias gpu="git push -u origin"
 alias grbi="git rebase --interactive"
+alias grbi="git rebase --continue"
 
 # peak/page very long git status outputs
 alias gsh="git status | head -n25"
@@ -247,7 +248,10 @@ alias grfl="git reflog"
 alias grm="git rm"
 alias gpl="git pull"
 alias gm="git merge"
+alias gmnf="git merge --no-ff"
 alias grb="git rebase "
+alias grbm="git rebase main"
+alias grbo="git rebase origin"
 
 
 
@@ -361,25 +365,29 @@ alias ghcs="gh copilot suggest -s"
 
 # lazygit
 alias lg="lazygit"
-alias pyy="python3"
 alias P="python3"
 alias B="bash"
-alias baa="bash"
+alias sedpath="echo $PATH | sed 's/:/\n/g' "
 
 # XDG cd aliases
 alias xdgdat="cd $HOME/.local/share"
 alias xdgconF="cd $HOME/.config"
 alias xdgtmp="cd $HOME/.local/tmp"
 alias xdgvar="cd $HOME/.local/var"
-alias hh="help"  # use to expand '-h' to '--help' easier when command requires verbose documentation 
-alias sedpath="echo $PATH | sed 's/:/\n/g' "
+
+
+
+# easier "--help" arg flag usage
+alias hh="help"  
+alias h_="--help"  
 
 alias suu="sudo"
 
+# @TODO: debug aliases commented out with 3 hashtags "#" 
 # easier/smoother flag appending for various git cmds/subcmds combos
-alias sg-='--staged'
-alias st-='--stat'
-alias pxa-='--pickaxe-all -S'
-alias pxr-='--pickaxe-regex -S '
-alias scd--="--sort=-committerdate "   # expand to sort by commit date in reverse (most recent first)
-alias scd-="--sort=committerdate "   # expand to sort by commit date (oldest first)
+alias sg_='--staged'
+alias st_='--stat'	
+alias pxa_='--pickaxe-all -S'
+alias pxr_='--pickaxe-regex -S '
+alias scd_="--sort=-committerdate "   # expand to sort by commit date in reverse (most recent first)
+alias scd+="--sort=committerdate "   # expand to sort by commit date (oldest first)

@@ -85,16 +85,25 @@ vim.api.nvim_create_autocmd("BufNewFile", {
 	group = "FileTypeIGNR",
 })
 
--- print message if any Mason updates occur
+-- print info message about installed/upgraded Mason tools
 vim.api.nvim_create_autocmd("User", {
 	pattern = "MasonToolsUpdateCompleted",
 	callback = function(e)
-		if e.data and vim.tbl_isempty(e.data) then
-			vim.schedule(function()
-				print("No Mason updates were performed.")
-			end)
-		end
+		vim.schedule(function()
+			if e.data and vim.tbl_isempty(e.data) then
+				--print("No Mason updates were performed.")
+				goto continue -- skip printing. Comment this line, and uncomment above to debug.
+			else
+				print("Mason updates completed. Installed/Updated tools:")
+				for _, tool in ipairs(e.data or {}) do
+					print("  - " .. tool)
+				end
+			end
+		::continue::
+		end)
+
 	end,
+
 })
 
 -- Ensure :help always opens in a vertical split on the right

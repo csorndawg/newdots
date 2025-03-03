@@ -17,14 +17,18 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 -- vim.opt.scrolloff = 4 -- Lines of context
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 5
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 vim.opt.shiftround = true -- Round indent
-vim.opt.shiftwidth = 2 -- Size of an indent
+
 vim.opt.shortmess:append({ W = true, I = true, c = true, C = true })
 vim.opt.showmode = false
 
-
+-- default spaces/tabs
+vim.opt.ts = 2
+vim.opt.sts = 2
+vim.opt.sw = 2
+vim.opt.et = true
 --
 -- Lua Locals
 --
@@ -33,7 +37,7 @@ local option = vim.opt
 --
 -- Custom Local Opts
 --
-vim.api.nvim_set_option('termguicolors', true)
+vim.api.nvim_set_option("termguicolors", true)
 
 -- case-insensitive search unless \C or search includes multiple capital letters
 option.ignorecase = true

@@ -1012,29 +1012,48 @@ function del() {
 }
 
 
+##-- @NEEDSFIX:
+##function gbs(){
+##  # assumes '-all' and 'reverse sort' by default 
+##  # 1st arg indicates remote/all/local 
+##  # 2nd arg indicates sort method 
+##  if $(( "$#" == 2 )); then 
+##    echo 'Both branch scope and sorting specified.'
+##    echo git branch "$1" --sort=committerdate
+##    git branch "$1" --sort=committerdate
+##  elif $(( "$#" == 1 )); then
+##    case "$1" in 
+##      l|L|\-l)
+##        echo "$1" branch scope flag passed - printing local branches only
+##	echo git branch "--sort=-committerdate"
+##	git branch "--sort=-committerdate"
+##	;;
+##      r|R|\-r|remote|origin)
+##        echo "$1" branch scope flag passed - printing remote branches only
+##	echo git branch -r "--sort=-committerdate"
+##	git branch -r "--sort=-committerdate"
+##	;;
+##      *)
+##        echo Unrecognized flag passed - printing 'all' branches
+##	echo git branch --all "--sort=-committerdate"
+##	git branch --all "--sort=-committerdate"
+##	;;
+##	esac
+##	fi
+##}
+##
+
 function gbs(){
-  # assumes '-all' and 'reverse sort' by default 
-  # 1st arg indicates remote/all/local 
-  # 2nd arg indicates sort method 
-  if $(( "$#" == 2 )); then 
-    echo 'Both branch scope and sorting specified.'
-    echo git branch "$1" --sort=committerdate
-    git branch "$1" --sort=committerdate
-  elif $(( "$#" == 1 )); then
-    case "$1" in 
-      l|L|\-l)
-        echo "$1" branch scope flag passed - printing local branches only
-	echo git branch "--sort=-committerdate"
-	git branch "--sort=-committerdate"
-	;;
-      r|R|\-r|remote|origin)
-        echo "$1" branch scope flag passed - printing remote branches only
-	echo git branch -r "--sort=-committerdate"
-	git branch -r "--sort=-committerdate"
-	;;
-      *)
-        echo Unrecognized flag passed - printing 'all' branches
-	echo git branch --all "--sort=-committerdate"
-	git branch --all "--sort=-committerdate"
-	;;
+if [ ! -z "$1" ]; then
+  echo "Returning $1-most recent branches" && echo ""
+  fi
+
+# return 20 most recent branches by default
+git branch --all "--sort=-committerdate"  | head -n "${1:-20}"
 }
+
+## helper function to make branch's first upstream git push
+function gpu(){
+git push -u origin $(git branch --show-current)
+}
+

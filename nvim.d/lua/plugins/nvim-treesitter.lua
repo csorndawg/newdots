@@ -14,6 +14,7 @@ return {
 					"c",
 					"comment",
 					"csv",
+					-- "dap_repl", -- note: plugin must be installed/setup or this will break
 					"diff",
 					"dockerfile",
 					"editorconfig",

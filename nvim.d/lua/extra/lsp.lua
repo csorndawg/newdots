@@ -219,12 +219,13 @@ cmp.setup({
 	},
 	-- default source hierarchy waterfall
 	sources = {
-		{ name = "nvim_lsp" },
-		{ name = "luasnip" },
-		-- { name = "dadbod" },
-		{ name = "buffer" },
-		{ name = "path" },
-		{ name = "cmdline" },
+		{ name = "nvim_lsp", group_index = 2 },
+		{ name = "luasnip", group_index = 1 },
+		-- { name = "dadbod" , group_index = 2},
+		{ name = "copilot", group_index = 3 },
+		{ name = "buffer", group_index = 4 },
+		{ name = "path", group_index = 4 },
+		{ name = "cmdline", group_index = 4 },
 	},
 
 	sorting = {

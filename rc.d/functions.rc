@@ -1037,4 +1037,6 @@ function gbs(){
 	echo git branch --all "--sort=-committerdate"
 	git branch --all "--sort=-committerdate"
 	;;
+	esac
+	fi
 }

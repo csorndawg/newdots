@@ -28,6 +28,7 @@ local servers = {
 	ts_query_ls = {},
 	vimls = {},
 	yamlls = {},
+	marksman = {},
 }
 
 -- @TESTING: Test vim.table.extends logic that I tried earlier in other LSP-extra file. Start small with debuggers first.

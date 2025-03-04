@@ -63,7 +63,6 @@ require("extra.todo-comments-custom")
 require("extra.experimental")
 require("extra.lint")
 require("extra.telescope.telescope-config")
-require("extra.which_key")
 
 -- Luasnips: Custom and community snippets
 -- custom helper module for easier plugin module dependency management
@@ -86,3 +85,4 @@ require("extra.telescope.mycustom_pickers")
 
 -- @TESTING: Dap configs
 require("extra.dap")
+require("extra.which_key")

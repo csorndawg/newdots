@@ -59,20 +59,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- have ".rc" files treated as "bash" filetypes
-vim.api.nvim_create_augroup("FileTypeRC", { clear = true })
-vim.api.nvim_create_autocmd("BufRead", {
-	pattern = { "rc", "comp" },
-	command = "set filetype=bash",
-	group = "FileTypeRC",
-})
-vim.api.nvim_create_autocmd("BufNewFile", {
-	pattern = { "rc", "comp" },
-	command = "set filetype=bash",
-	group = "FileTypeRC",
-})
-
--- set filetypes for custom ignore ft extensions (.gig, .ignore)
+-- group custom ignore filetypes (.gig, .ignore)
 vim.api.nvim_create_augroup("FileTypeIGNR", { clear = true })
 vim.api.nvim_create_autocmd("BufRead", {
 	pattern = { "gig", "ignore" },
@@ -99,11 +86,9 @@ vim.api.nvim_create_autocmd("User", {
 					print("  - " .. tool)
 				end
 			end
-		::continue::
+			::continue::
 		end)
-
 	end,
-
 })
 
 -- Ensure :help always opens in a vertical split on the right
@@ -121,3 +106,28 @@ vim.api.nvim_create_autocmd("BufEnter", {
 		end
 	end,
 })
+
+-- ensure ".rc" and ".comp" files are treated as "bash" filetypes
+vim.api.nvim_create_augroup("FileTypeRC", { clear = true })
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = { "rc", "comp" },
+	callback = function()
+		vim.bo.filetype = "bash"
+	end,
+	group = "FileTypeRC",
+})
+
+-- @WIP: More testing/debugging needed to ensure this doesnt break other plugins/code
+-- -- set commentstring for files with 'bash' filetype but only for specific patterns
+-- -- this doesnt imapct actual ".bash" files since their extension doesnt match
+-- -- the autocmd pattern, thus never gets triggered
+-- vim.api.nvim_create_autocmd("FileType", {
+-- 	pattern = "bash",
+-- 	callback = function()
+-- 		local filename = vim.fn.expand("%:t")
+-- 		if filename:match("%.rc$") or filename:match("%.comp$") then
+-- 			vim.bo.commentstring = "#%s"
+-- 		end
+-- 	end,
+-- })

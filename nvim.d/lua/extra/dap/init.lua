@@ -7,8 +7,8 @@
 -- dap configs that will be sourced
 local dap_configs = {
 	"extra.dap.dap-general",
-	"extra.dap.dap-utils",
 	"extra.dap.dap-keybinds",
+	"extra.dap.daputils",
 	"extra.dap.python",
 }
 

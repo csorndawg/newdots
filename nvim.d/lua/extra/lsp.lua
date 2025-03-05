@@ -255,10 +255,24 @@ cmp.setup({
 --
 
 -- set special cmp behavior for Cmdline and Search ('/','?') cmp
-cmp.setup.cmdline({})
+cmp.setup.cmdline({ "/", "?" }, {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = {
+		{ name = "buffer" },
+	},
+	entries = { name = "wildmenu", separator = "|" },
+})
 
 -- set special cmp behavior for Cmdline and Search ('/','?') cmp
-cmp.setup.cmdline({})
+cmp.setup.cmdline(":", {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = cmp.config.sources({
+		{ name = "path" },
+	}, {
+		{ name = "cmdline" },
+	}),
+	matching = { disallow_symbol_nonprefix_matching = false },
+})
 
 -- need to add mysql/psql extensions also?
 cmp.setup.filetype({ "sql" }, {

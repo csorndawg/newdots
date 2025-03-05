@@ -387,3 +387,6 @@ alias pxa_='--pickaxe-all -S'
 alias pxr_='--pickaxe-regex -S '
 alias scd_="--sort=-committerdate "   # expand to sort by commit date in reverse (most recent first)
 alias scd+="--sort=committerdate "   # expand to sort by commit date (oldest first)
+
+# remove "--color=always" colorcodes from text
+alias nocolor="sed 's/\\x1b\\[[0-9;]*m//g'"

@@ -6,10 +6,10 @@
 
 -- dap configs that will be sourced
 local dap_configs = {
-	"extra.dap.dap-general",
-	"extra.dap.dap-utils",
+	"extra.dap.dap-custom",
 	"extra.dap.dap-keybinds",
-	"extra.dap.python",
+	"extra.dap.daputils",
+	"extra.dap.dap-python",
 }
 
 -- load each module from above table

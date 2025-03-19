@@ -297,9 +297,10 @@ alias chmox="chmod +x"
 ## keybind references 
 alias kbv="bat $HOME/.cheatlib/resources/keybindings-zc-cheatsheet.txt"
 
-# frequently used venvs
-alias vv="source $HOME/.local/state/python/venvs/venv/bin/activate" 
+# freq. venvs
+alias vv="source $HOME/.local/state/python/venvs/venv/bin/activate"  # default python venv
 alias vvs="source $HOME/.shellGPT/shellGPT_venv/bin/activate"
+alias uvv="source python/uv/uvv/bin/activate"   # default uv venv
 
 # shell command pipelining
 alias xa='xargs -I "{}"'

@@ -188,11 +188,8 @@ cmp.setup({
 			select = true,
 		}),
 
-		-- @EXPERIMENTAL - Change to smoother keybinding after confirming this
-		-- will not break anything.
-		--
-		-- <c-f> will move you (f)orward (to the right) of each expansion locations
-		-- <c-b> is similar, except moving you (b)ackwards.
+		-- <c-f> move (f)orward (to the right) of each expansion locations
+		-- <c-b> same as above, except moving (b)ackwards
 		["<C-f>"] = cmp.mapping(function()
 			if luasnip.expand_or_locally_jumpable() then
 				luasnip.expand_or_jump()
@@ -205,8 +202,12 @@ cmp.setup({
 			end
 		end, { "i", "s" }),
 
-		-- @OPT: this seems to be broken. Need to confirm. Also b/w this and new 'abort' mapping below some refactoring needed.
-		["<C-Space>"] = cmp.mapping(function(fallback)
+		-- scroll up/down
+		["<A-Up>"] = cmp.mapping.scroll_docs(-4),
+		["<A-Down>"] = cmp.mapping.scroll_docs(4),
+
+		-- abort selection, without adding space, while remaining in Insert Mode
+		["<C-e>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.abort() -- Close the completion menu without selecting any suggestion
 			else
@@ -221,13 +222,6 @@ cmp.setup({
 
 		-- scroll down
 		["<A-Down>"] = cmp.mapping.scroll_docs(4),
-
-		-- abort/cancel cmp
-		--["<C-e><C-e>"] = cmp.mapping.abort(),
-		--["<A-e>"] = cmp.mapping.abort(),
-		["<C-e>"] = cmp.mapping.abort(),
-
-		-- @TODO: see if "cmp.mapping.complete(select=true)" (select NOT replace) keybind also needed. Curr only have "replace" select logic.
 	},
 	snippet = {
 		expand = function(args)
@@ -271,10 +265,10 @@ cmp.setup({
 --
 
 -- set special cmp behavior for Cmdline and Search ('/','?') cmp
-cmp.setup.cmdline({})
+-- cmp.setup.cmdline({})
 
 -- set special cmp behavior for Cmdline and Search ('/','?') cmp
-cmp.setup.cmdline({})
+-- cmp.setup.cmdline({})
 
 -- need to add mysql/psql extensions also?
 cmp.setup.filetype({ "sql" }, {

@@ -1043,6 +1043,7 @@ function del() {
 ##}
 ##
 
+# show X most-recent git branches 
 function gbs(){
   if [ ! -z "$1" ]; then
     echo "Returning $1-most recent branches" && echo ""

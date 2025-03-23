@@ -1043,17 +1043,13 @@ function del() {
 ##}
 ##
 
+# show X most-recent git branches 
 function gbs(){
-if [ ! -z "$1" ]; then
-  echo "Returning $1-most recent branches" && echo ""
-  fi
-
-# return 20 most recent branches by default
-git branch --all "--sort=-committerdate"  | head -n "${1:-20}"
+  nBranches={$1:-25} # number of branches to show 
+  git branch --all "--sort=-committerdate" | head -n ${1:-25}
 }
 
 ## helper function to make branch's first upstream git push
 function gpu(){
-git push -u origin $(git branch --show-current)
+  git push -u origin $(git branch --show-current)
 }
-

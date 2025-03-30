@@ -6,4 +6,9 @@ export ASUS_APPDATA_TEMP="/mnt/c/Users/zaccs/AppData/Local"
 export ASUS_DWNLDS_HOME="/mnt/c/Users/zaccs/Downloads"
 export ASUS_RSYNC_HOME="/mnt/c/Users/zaccs/Downloads/Rsync"
 export ASUS_DESKTOP_HOME="/mnt/c/Users/zaccs/Desktop"
-export ASUS_ALACRITTY_TEMP="/mnt/c/Users/zaccs/alacritty"   # store files generated within alacritty for easy Windows/File Explorer acces
+
+# Windows/File Explorer folder for alacritty files
+export ASUS_ALACRITTY_TEMP="/mnt/c/Users/zaccs/alacritty"   
+
+# default File Explorer cdrive working dir
+export ASUS_WIN_QUICK_HOME="/mnt/c/Users/zaccs/WSL2/quick"

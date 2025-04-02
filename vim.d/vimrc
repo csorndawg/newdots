@@ -700,7 +700,7 @@ cnoremap ;; <C-c>
 
 
 " @TODO: Move vim functions to dedicated file
-"source ~/dotfiles/vim.d/vim_lib/functs.vim
+source ~/dotfiles/vim.d/vim_lib/functs.vim
 set foldmethod=manual
 
 " @TODO: move over to vim_lib/ module and source last.
@@ -714,3 +714,6 @@ let g:nord_underline = 1
 
 "silent! colorscheme nord
 colorscheme nord-custom
+
+" @TODO: move quickadds to respective vim_lib/ module
+nnoremap <Leader>sb :set ft=bash <Cr>

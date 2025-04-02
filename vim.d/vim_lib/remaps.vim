@@ -175,9 +175,12 @@ vnoremap <Leader>- :s/^[0-z]/-- &/<CR>
 vnoremap <Leader>uu :s/^[0-z]/-- &/<CR>
 
 
-"" bash/python bulk uncomment all selected commented text w/ <Leader>u
+" Moving over to gcc function 
+" bash/python bulk uncomment
 vnoremap <silent> <C-#> :s/^# //<CR>
-vnoremap <silent> <C-3> :s/^/#&/<CR>
+
+" bash/python bulk comment
+vnoremap <silent> <C-3> :s/^/# &/<CR>
 "vnoremap <silent> <Leader>cc :s/^# //<CR>
 
 " since using <Tab> for tab-completion 
@@ -186,3 +189,19 @@ vnoremap <silent> <C-3> :s/^/#&/<CR>
 
 " insert mode line completion
 inoremap  <C-l> <C-x><C-l>
+
+" SILENT EXAMPLE
+"vnoremap <silent><Leader>u :s/^# //<CR>
+
+
+"
+" Buffer Remaps
+nnoremap <silent><C-Right> :bnext<cr>
+nnoremap <silent><C-Left> :bprev<cr>
+nnoremap <silent><Leader>bb :blast<cr>
+nnoremap <silent><Leader>bd :bdelete<cr>
+nnoremap <silent><Leader>bb :blast<cr>
+
+" use FZF for Buffers list 
+nnoremap <silent><Leader>bl :Buffers <cr>
+nnoremap <silent><Leader>ba :bad 

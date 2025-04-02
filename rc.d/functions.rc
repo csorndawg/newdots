@@ -1044,16 +1044,20 @@ function del() {
 ##
 
 function gbs(){
-if [ ! -z "$1" ]; then
-  echo "Returning $1-most recent branches" && echo ""
+  if [ ! -z "$1" ]; then
+    echo "Returning $1-most recent branches" && echo ""
   fi
-
-# return 20 most recent branches by default
-git branch --all "--sort=-committerdate"  | head -n "${1:-20}"
+  # return 20 most recent branches by default
+  git branch --all "--sort=-committerdate"  | head -n "${1:-20}"
 }
 
 ## helper function to make branch's first upstream git push
 function gpu(){
-git push -u origin $(git branch --show-current)
+  git push -u origin $(git branch --show-current)
+}
+
+# search all files/folders in $USER home dir 
+function fduh() {
+  fd . "$HOME" | rg "$1"  # $1 is regex pattern for FD to match against
 }
 

@@ -17,7 +17,8 @@ nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 " after 500 ms `which-key` map is shown (vim stops waiting for remap
 " sequence after 500 ms, which triggers the which-key map display)
-set timeoutlen=500
+"set timeoutlen=500
+set timeoutlen=300
 
 
 " Create separate which-key <SPACE> dictionaries for Normal/Visual Modes
@@ -144,10 +145,13 @@ let g:which_key_map.b = {
       \ 'd' : ['bd'        , 'delete-buffer']   ,
       \ 'f' : ['bfirst'    , 'first-buffer']    ,
       \ 'h' : ['Startify'  , 'home-buffer']     ,
-      \ 'l' : ['blast'     , 'last-buffer']     ,
+      \ 'b' : ['blast'     , 'buffer back (last)']     ,
+      \ 'l' : ['blast'     , 'list buffers']     ,
+      \ 'a' : ['ba'     , 'add (file) to buffers']     ,
       \ 'n' : ['bnext'     , 'next-buffer']     ,
       \ 'p' : ['bprevious' , 'previous-buffer'] ,
-      \ '?' : ['Buffers'   , 'fzf-buffer']      ,
+      "\ '?' : ['Buffers'   , 'fzf-buffer']      ,
+      \ 's' : ['Buffers'   , 'FZF Buffer Search']      ,
       \ }
 
 "let g:which_key_map.l = {
@@ -165,6 +169,11 @@ let g:which_key_map.b = {
 "        \ },
 "call which_key#register('<Space>', '"g:which_key_map")
 
+
+" MISC whichkey maps
+" show 'Set filetype ...' in which key map
+let g:which_key_map.sb = [':set filetype=bash', 'Set filetype to Bash']
+call which_key#register('<leader>', 'g:which_key_map')
 
 "" ------------------------------------------------
 "" vim-dadbod

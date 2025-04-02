@@ -31,17 +31,17 @@ remapp("n", "<C-k>", "<C-w>k", opts)
 remapp("n", "<C-l>", "<C-w>l", opts)
 
 -- resize with arrows
-remapp("n", "<C-Up>", ":resize -2<CR>", opts)
-remapp("n", "<C-Down>", ":resize +2<CR>", opts)
-remapp("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-remapp("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+remapp("n", "<A-Up>", ":resize -2<CR>", opts)
+remapp("n", "<A-Down>", ":resize +2<CR>", opts)
+remapp("n", "<A-Left>", ":vertical resize -2<CR>", opts)
+remapp("n", "<A-Right>", ":vertical resize +2<CR>", opts)
 
 -- buffer navigation
 remapp("n", "<S-l>", ":bnext<CR>", opts)
 remapp("n", "<S-h>", ":bprev<CR>", opts)
-remapp("n", "<Leader>bl", ":blast<CR>", opts)
+remapp("n", "<Leader>bb", ":blast<CR>", opts) -- 'bb' == [b]ack to last [b]uffer
 remapp("n", "<Leader>bd", ":bd<CR>", opts)
-remapp("n", "<Leader>b", ":buffers<CR>", opts)
+remapp("n", "<Leader>bb", ":buffers<CR>", opts)
 
 -- move text up and down w/ <ALT-j><ALT-j>/<ALT-k><ALT-k>
 --remapp("n", "<A-j>", ":m .+1<CR>==", opts)
@@ -222,24 +222,14 @@ remapp("c", ",,", "<Esc>i", opts)
 -- <key><key> CMD movement remaps
 remapp("c", "HH", "<Home>", { noremap = true })
 remapp("c", "EE", "<End>", { noremap = true })
-remapp("c", "bb", "<C-Left>", { noremap = true })
-remapp("c", "ww", "<C-Right>", { noremap = true })
-remapp("c", "hh", "<Left>", { noremap = true })
-remapp("c", "lll", "<Right>", { noremap = true })
+remapp("c", "BB", "<C-Left>", { noremap = true })
+remapp("c", "WW", "<C-Right>", { noremap = true })
+remapp("c", "HH", "<Left>", { noremap = true })
+remapp("c", "LL", "<Right>", { noremap = true })
 
 -- CMD history cycling remaps
 remapp("c", "<C-,>", "<Up>", { noremap = true })
 remapp("c", "<C-.>", "<Down>", { noremap = true })
-
--- <Ctrl><key> CMD movement remaps
---remapp("c", "<C-l>", <Right>, {noremap = true})
---remapp("c", "<C-b>", <C-Left>, {noremap = true})
---remapp("c", "<C-w>", <C-Right>, {noremap = true})
---remapp("c", "<C-b>", <C-Right>, {noremap = true})
---remapp("c", "ww", <C-Right>, {noremap = true})
----- remap <Ctrl-h> (delete previous key) to new keymap before overwriting
---remapp("c", "<C-x>", <C-h>, {noremap = true})
---remapp("c", "<C-h>", <Left>, {noremap = true})
 
 --
 -- Experimental Remaps
@@ -281,8 +271,15 @@ vim.keymap.set("i", "<C-h><C-h>", "<Left>", { noremap = true, silent = true })
 vim.keymap.set("i", "00", "<Home>", { noremap = true, silent = true })
 vim.keymap.set("i", "$$", "<End>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<Leader>bn", ":bn", { desc = "Buffer next", noremap = true })
-vim.keymap.set("n", "<Leader>bp", ":bp", { desc = "Buffer prev", noremap = true })
+-- @PRELIM: Testing alternate buffer navigation/movement keybinds. After trying out remove if not helpful.
+vim.keymap.set("n", "<Leader>bn", ":bn<Cr>", { silent = true, desc = "Buffer next", noremap = true })
+vim.keymap.set("n", "<Leader>bp", ":bp<Cr>", { silent = true, desc = "Buffer prev", noremap = true })
+vim.keymap.set("n", "<Leader>bl", ":buffers<Cr>", { desc = "List buffers", noremap = true })
+vim.keymap.set("n", "<C-Right>", ":bn<Cr>", { silent = true, desc = "Buffer next", noremap = true })
+vim.keymap.set("n", "<C-Left>", ":bp<Cr>", { silent = true, desc = "Buffer next", noremap = true })
+
+vim.keymap.set("n", "<Leader>bb", ":blast <Cr>", { silent = true, desc = "Last buffer", noremap = true })
+vim.keymap.set("n", "<Leader>bd", ":bd <Cr>", { silent = true, desc = "Delete buffer", noremap = true })
 
 -- @EXPERIMENTAL: https://github.com/NvChad/NvChad/blob/v2.5/lua/nvchad/mappings.lua
 local map = vim.keymap.set
@@ -303,11 +300,17 @@ map("i", "<C-k>", "<Up>", { desc = "move up" })
 
 -- @EXPERIMENTAL: Custom remaps to trial
 -- NOTE: Attempting to use '<Leader>Z' as my personal utility/helper keyspace for whichkey. Within the space will be miscellaneous, but frequently used mappings.
-vim.keymap.set("n", "<leader>Zs", ":set signcolumn=no<CR>", { silent = true, desc = "Disable sign column" })
+vim.keymap.set("n", "<leader>ts", ":set signcolumn=no<CR>", { silent = true, desc = "Disable sign column" })
 
+-- toggle line numbers on/off
 vim.keymap.set(
 	"n",
-	"<leader>Zl",
-	":set norelativenumber nonumber<CR>",
-	{ silent = true, desc = "Disable line numbers" }
+	"<leader>tl",
+	":set norelativenumber nonumber <Cr>",
+	{ silent = true, desc = "Toggle line numbers off" }
 )
+vim.keymap.set("n", "<leader>tL", ":set relativenumber number <Cr>", { silent = true, desc = "Toggle line numbers on" })
+
+-- toggle fold column on/off
+vim.keymap.set("n", "<leader>tf", ":set foldcolumn=0<Cr>", { silent = true, desc = "Toggle fold column off" })
+vim.keymap.set("n", "<leader>tF", ":set foldcolumn=1<Cr>", { silent = true, desc = "Toggle fold column on" })

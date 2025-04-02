@@ -233,6 +233,7 @@ alias gds="git diff --stat"
 alias gdsg="git diff --staged"
 alias gdss="git diff --shortstat"  # output total number of modified files and added/deleted lines
 alias gdo="git diff origin"
+alias gdc="git diff --color=always"
 
 ## Git Other/Oneoffs
 alias gshw="git show"
@@ -275,9 +276,9 @@ alias fdca="fd --changed-after "
 alias fdcb="fd --changed-before"
 alias fdcw="fd --changed-within"
 alias fde="fd -e"
-alias fdh="fd -H"
-alias fdhi="fd -HI"
-alias fdi="$(which fd) -I"
+alias fdH="fd -H"
+alias fdHI="fd -HI"
+alias fdI="$(which fd) -I"
 alias fdt="fd -t"
 
 # ripgrep
@@ -361,8 +362,6 @@ alias ghcs="gh copilot suggest -s"
 
 # lazygit
 alias lg="lazygit"
-alias P="python3"
-alias B="bash"
 alias sedpath="echo $PATH | sed 's/:/\n/g' "
 
 # XDG cd aliases
@@ -371,9 +370,7 @@ alias xdgconF="cd $HOME/.config"
 alias xdgtmp="cd $HOME/.local/tmp"
 alias xdgvar="cd $HOME/.local/var"
 
-
-
-# easier "--help" arg flag usage
+# easier cli "--help" arg flag usage
 alias hh="help"  
 alias h_="--help"  
 
@@ -391,3 +388,6 @@ alias scd+="--sort=committerdate "   # expand to sort by commit date (oldest fir
 
 # remove "--color=always" colorcodes from text
 alias nocolor="sed 's/\\x1b\\[[0-9;]*m//g'"
+
+# sandobx/scratch directory
+alias sdir="cd $HOME/.local/var/scratch"

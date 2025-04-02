@@ -205,6 +205,7 @@ cmp.setup({
 			end
 		end, { "i", "s" }),
 
+		-- @OPT: this seems to be broken. Need to confirm. Also b/w this and new 'abort' mapping below some refactoring needed.
 		["<C-Space>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.abort() -- Close the completion menu without selecting any suggestion
@@ -212,6 +213,21 @@ cmp.setup({
 				fallback() -- Fall back to the normal <C-Space> functionality
 			end
 		end, { "i", "c", "s" }),
+
+		-- @NEWCODE
+
+		-- scroll up
+		["<A-Up>"] = cmp.mapping.scroll_docs(-4),
+
+		-- scroll down
+		["<A-Down>"] = cmp.mapping.scroll_docs(4),
+
+		-- abort/cancel cmp
+		--["<C-e><C-e>"] = cmp.mapping.abort(),
+		--["<A-e>"] = cmp.mapping.abort(),
+		["<C-e>"] = cmp.mapping.abort(),
+
+		-- @TODO: see if "cmp.mapping.complete(select=true)" (select NOT replace) keybind also needed. Curr only have "replace" select logic.
 	},
 	snippet = {
 		expand = function(args)

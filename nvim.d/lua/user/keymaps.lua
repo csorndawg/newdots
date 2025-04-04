@@ -314,3 +314,13 @@ vim.keymap.set("n", "<leader>tL", ":set relativenumber number <Cr>", { silent = 
 -- toggle fold column on/off
 vim.keymap.set("n", "<leader>tf", ":set foldcolumn=0<Cr>", { silent = true, desc = "Toggle fold column off" })
 vim.keymap.set("n", "<leader>tF", ":set foldcolumn=1<Cr>", { silent = true, desc = "Toggle fold column on" })
+
+-- Lazy Vim
+-- Terminal Mappings
+map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+map("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
+
+-- windows
+map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
+map("n", "<leader>|", "<C-W>v", { desc = "Split Window Right", remap = true })
+map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })

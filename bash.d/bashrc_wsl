@@ -181,23 +181,6 @@ if [ -f "$HOME/.local/bin/lib/comp/bash/cht.sh" ]; then
 	source "$HOME/.local/bin/lib/comp/bash/cht.sh"
 fi
 
-# ssh tunneling funct
-ssh_tunnel() {
-	# optional local port
-	REMOTE_PORT="$1"
-	if [[ -z "$2" ]]; then
-		LOCAL_PORT="$1"
-	else
-		LOCAL_PORT="$2"
-	fi
-	# default ssh user/host
-	SSH_CONN="$3"
-	if [[ -z "$3" ]]; then
-		SSH_CONN="shelby"
-	fi
-	echo "ssh -L $REMOTE_PORT:localhost:$LOCAL_PORT $SSH_CONN"
-	ssh -L $REMOTE_PORT:localhost:$LOCAL_PORT "$SSH_CONN"
-}
 
 # default BAT theme
 export BAT_THEME="Nord" # @TODO: move to bat.config and remove
@@ -396,27 +379,16 @@ source "$HOME/dotfiles/bash.d/lib/shellGPT_conf.bash"
 #  All "add_*_ssh_pp" functions are responsible for caching a passphrase
 #  for frequently used SSH key. Do not modify unless long-term solution.
 
-# caches id_rsa passphrase
-function add_rsa_ssh_pp {
 
-	SSH_SECRET_BIN="$HOME/git/fortknox/bin/"
-	PASSPHRASE_CACHE_SCRIPT_NAME="run_add_key"
-	SSH_PASSPHRASE_CACHE_SCRIPT_PATH="$SSH_SECRET_BIN/$PASSPHRASE_CACHE_SCRIPT_NAME"
-	source $SSH_PASSPHRASE_CACHE_SCRIPT_PATH
-}
+# @TESTING: test ssh-agent auth across tmux
+export SSH_AUTH_SOCK="$HOME/.ssh/ssh_auth_sock"
+if [ ! -S "$SSH_AUTH_SOCK" ]; then
+    eval "$(ssh-agent -s)" > /dev/null
+    ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/ssh_auth_sock"
+fi
 
-# caches id_rsa_linode passphrase
-function add_rsa_linode_ssh_pp {
 
-	SSH_SECRET_BIN="$HOME/git/fortknox/bin/"
-	PASSPHRASE_CACHE_SCRIPT_NAME="run_add_key_linode"
-	SSH_PASSPHRASE_CACHE_SCRIPT_PATH="$SSH_SECRET_BIN/$PASSPHRASE_CACHE_SCRIPT_NAME"
-	bash $SSH_PASSPHRASE_CACHE_SCRIPT_PATH
-}
 
-## call ssh passphrase caching functions
-add_rsa_ssh_pp 1>/dev/null
-add_rsa_linode_ssh_pp 1>/dev/null
 
 ## DOTFILE CONFIG.D FILES
 source "$HOME/dotfiles/config.d/fzf/fzf.config" 1>/dev/null

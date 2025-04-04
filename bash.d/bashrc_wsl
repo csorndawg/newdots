@@ -443,7 +443,19 @@ if [ -x "$HOME/.local/bin/z.sh" ]; then
   echo 'Error "z.sh" is either not present or executable. Check $LOCALBIN to debug.'
   fi
 
-# TEMPFIX: Getting FZFCOMP to play nicely with existing/default shell comp
+
+
+# add zlib/bin to PATH
+export PATH="$PATH:$HOME/git/zlib/bin"
+source "$HOME/git/zlib/bin/shellcomp_cache_ssh_passphrase.sh"
+
+# ---------------------------------------------------------------------------------------------
+#		FZFCOMP EXTRAS 
+# 
+# ***MUST BE LAST SECTION IN BASHRC***
+# ---------------------------------------------------------------------------------------------
+
+# This is an partial fix that I can use in the interim to actual fix/soln found
 
 # @TODO: Expand below logic to remaining git aliases (then other non-git aliases commands)
 # @PASSED: Below SUCCESSFULLY 

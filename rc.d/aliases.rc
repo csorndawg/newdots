@@ -386,8 +386,14 @@ alias pxr_='--pickaxe-regex -S '
 alias scd_="--sort=-committerdate "   # expand to sort by commit date in reverse (most recent first)
 alias scd+="--sort=committerdate "   # expand to sort by commit date (oldest first)
 
-# remove "--color=always" colorcodes from text
+
+## text processing alias
+
+# remove ansii escape codes from text (added by things like "--color=always")
 alias nocolor="sed 's/\\x1b\\[[0-9;]*m//g'"
+
+# squash lines into single whitespace delimited line
+alias squash_lines="tr '\n' ' ' | sed 's/  */ /g' "
 
 # sandobx/scratch directory
 alias sdir="cd $HOME/.local/var/scratch"

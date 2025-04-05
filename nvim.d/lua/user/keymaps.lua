@@ -300,20 +300,20 @@ map("i", "<C-k>", "<Up>", { desc = "move up" })
 
 -- @EXPERIMENTAL: Custom remaps to trial
 -- NOTE: Attempting to use '<Leader>Z' as my personal utility/helper keyspace for whichkey. Within the space will be miscellaneous, but frequently used mappings.
-vim.keymap.set("n", "<leader>ts", ":set signcolumn=no<CR>", { silent = true, desc = "Disable sign column" })
+vim.keymap.set("n", "<leader>zs", ":set signcolumn=no<CR>", { silent = true, desc = "Disable sign column" })
 
 -- toggle line numbers on/off
 vim.keymap.set(
 	"n",
-	"<leader>tl",
+	"<leader>zl",
 	":set norelativenumber nonumber <Cr>",
 	{ silent = true, desc = "Toggle line numbers off" }
 )
-vim.keymap.set("n", "<leader>tL", ":set relativenumber number <Cr>", { silent = true, desc = "Toggle line numbers on" })
+vim.keymap.set("n", "<leader>zL", ":set relativenumber number <Cr>", { silent = true, desc = "Toggle line numbers on" })
 
 -- toggle fold column on/off
-vim.keymap.set("n", "<leader>tf", ":set foldcolumn=0<Cr>", { silent = true, desc = "Toggle fold column off" })
-vim.keymap.set("n", "<leader>tF", ":set foldcolumn=1<Cr>", { silent = true, desc = "Toggle fold column on" })
+vim.keymap.set("n", "<leader>zf", ":set foldcolumn=0<Cr>", { silent = true, desc = "Toggle fold column off" })
+vim.keymap.set("n", "<leader>zF", ":set foldcolumn=1<Cr>", { silent = true, desc = "Toggle fold column on" })
 
 -- Lazy Vim
 -- Terminal Mappings

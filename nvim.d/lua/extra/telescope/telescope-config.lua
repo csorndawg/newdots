@@ -3,9 +3,10 @@
 local builtin = require("telescope.builtin")
 
 -- create remaps for core telescope actions
-vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "Telescope find files" })
-vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "Telescope buffers" })
-vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "Telescope help tags" })
+--vim.keymap.set("n", "<leader>tf", builtin.find_files, { desc = "Telescope find files" })
+vim.keymap.set("n", "<leader>tb", builtin.buffers, { desc = "Buffers" })
+vim.keymap.set("n", "<leader>bt", builtin.buffers, { desc = "[B]uffers [T]elescope" }) -- alternate keymap for "Buffers" subkey
+vim.keymap.set("n", "<leader>th", builtin.help_tags, { desc = "Help tags" })
 
 -- Cherry-picked configuration recipes from: https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes
 
@@ -36,41 +37,6 @@ require("telescope").setup({
 	},
 })
 
--- @FIXME: Fallback to find_files functionality is broken
-
----- fallback to find_files if git_files cant find .git directory
----- telescope-config.lua
---local M = {}
---
----- We cache the results of "git rev-parse"
----- Process creation is expensive in Windows, so this reduces latency
---local is_inside_work_tree = {}
---
---M.project_files = function()
---  local opts = {} -- define here if you want to define something
---
---  local cwd = vim.fn.getcwd()
---  if is_inside_work_tree[cwd] == nil then
---    vim.fn.system("git rev-parse --is-inside-work-tree")
---    is_inside_work_tree[cwd] = vim.v.shell_error == 0
---  end
---
---  if is_inside_work_tree[cwd] then
---    require("telescope.builtin").git_files(opts)
---  else
---    require("telescope.builtin").find_files(opts)
---  end
---end
---
---return M
---
----- call via:
----- :lua require"telescope-config".project_files()
---
----- remap find_files fallback to <Leader>sp  (think  <leader> [s]earch [p]roject)
-----vim.api.nvim_set_keymap("n", "<Leader>sp", "<CMD>lua require'telescope-config'.project_files()<CR>", {noremap = true, silent = true})
---
-
 -- remove './' from FD results
 require("telescope").setup({
 	defaults = {
@@ -98,7 +64,8 @@ local new_maker = function(filepath, bufnr, opts)
 			else
 				-- maybe we want to write something to the buffer here
 				vim.schedule(function()
-					vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { "BINARY" })
+					--vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { "BINARY" })
+					vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { "Not Previewable" })
 				end)
 			end
 		end,

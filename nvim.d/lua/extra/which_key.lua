@@ -1,4 +1,7 @@
--- Which-Key Post-Build Configuratio[C]ode (Lint/Format)
+-- Which-Key Mappings Extended/Customized
+--
+-- Certain functionality has dedicated subgroup key (eg. telescope w/ 't')
+-- 'z' subgroup key is a catch-all for miscellaneous/utilities
 
 local wk = require("which-key")
 
@@ -18,15 +21,13 @@ local wk = require("which-key")
 
 wk.add({
 	-- Telescope [s]earch keymap group
-	{ "<leader>s", group = "Telescope [S]earch" }, -- telescope [s]earch group
-	{ "<leader>sn", desc = "Telescope find Nvim files" },
-	--{ "<leader>sl", desc = "Telescope livegrep" },
-	--{ "<leader>sm", desc = "Telescope multigrep" },
+	{ "<leader>t", group = "[T]elescope Search" }, -- telescope [s]earch group
 
 	-- Telescope [L]sp subgroup keymap
-	{ "<leader>sl", group = "[L]SP Pickers" },
-	{ "<leader>sv", group = "[V]im Pickers" },
-	{ "<leader>sg", group = "[G]it Pickers" },
+	{ "<leader>tl", group = "[L]SP Pickers" },
+	{ "<leader>tv", group = "[V]im Pickers" },
+	{ "<leader>tg", group = "[G]it Pickers" },
+	{ "<leader>tn", desc = "Telescope find Nvim files" },
 
 	-- @TODO: Move debug 'desc' to corresponding remapping in dap-extras
 	-- DAP [d]ebug keymap group
@@ -59,7 +60,7 @@ wk.add({
 	{ "<leader>gd", group = "Git [d]iff" },
 
 	-- Git hunk subkey
-	{ "<leader>gh", group = "Hunk navigation" },
+	{ "<leader>gh", group = "Git [h]unks" },
 
 	-- Mini
 	-- { "<leader>ma", group = "[A]i" },

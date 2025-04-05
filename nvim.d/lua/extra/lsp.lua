@@ -214,14 +214,6 @@ cmp.setup({
 				fallback() -- Fall back to the normal <C-Space> functionality
 			end
 		end, { "i", "c", "s" }),
-
-		-- @NEWCODE
-
-		-- scroll up
-		["<A-Up>"] = cmp.mapping.scroll_docs(-4),
-
-		-- scroll down
-		["<A-Down>"] = cmp.mapping.scroll_docs(4),
 	},
 	snippet = {
 		expand = function(args)
@@ -233,7 +225,7 @@ cmp.setup({
 		{ name = "nvim_lsp", group_index = 2 },
 		{ name = "luasnip", group_index = 1 },
 		-- { name = "dadbod" , group_index = 2},
-		{ name = "copilot", group_index = 3 },
+		{ name = "copilot", group_index = 4 },
 		{ name = "buffer", group_index = 4 },
 		{ name = "path", group_index = 4 },
 		{ name = "cmdline", group_index = 4 },
@@ -264,13 +256,26 @@ cmp.setup({
 -- @NOTE: CMP extended configurations
 --
 
--- set special cmp behavior for Cmdline and Search ('/','?') cmp
--- cmp.setup.cmdline({})
+-- enable special cmp behavior for Cmdline and Search cmp for '/' and '?'
+cmp.setup.cmdline({ "/", "?" }, {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = {
+		{ name = "buffer" },
+	},
+})
 
--- set special cmp behavior for Cmdline and Search ('/','?') cmp
--- cmp.setup.cmdline({})
+-- use cmdline & path source for ':'
+cmp.setup.cmdline(":", {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = cmp.config.sources({
+		{ name = "path" },
+	}, {
+		{ name = "cmdline" },
+	}),
+	matching = { disallow_symbol_nonprefix_matching = false },
+})
 
--- need to add mysql/psql extensions also?
+-- @TODO: Review/Test sql cmp configuration with workflow
 cmp.setup.filetype({ "sql" }, {
 	sources = {
 		{ name = "vim-dadbod-completion" },

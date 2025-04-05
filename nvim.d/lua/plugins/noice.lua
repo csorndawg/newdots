@@ -4,14 +4,16 @@ return {
 		"folke/noice.nvim",
 		event = "VeryLazy",
 		opts = {
-			-- add any options here
+			cmdline = {
+				enabled = true,
+				-- overrides default 'cmdline_popup' view since it breaks nvim-cmp ':' completion
+				view = "cmdline",
+			},
+			-- more custom noice options here
 		},
 		dependencies = {
 			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
 			"MunifTanjim/nui.nvim",
-			-- OPTIONAL:
-			--   `nvim-notify` is only needed, if you want to use the notification view.
-			--   If not available, we use `mini` as the fallback
 			"rcarriga/nvim-notify",
 		},
 	},

@@ -127,8 +127,10 @@ alias gc1="git checkout @{-1}"  # checkout last branch
 
 
 
+
 ### fetch
 alias gf="git fetch"
+
 ### log
 alias glg="git log --pretty=oneline"
 alias glgg="git log "
@@ -136,22 +138,29 @@ alias glgn="git log -n "
 alias glgo="git log --oneline"
 alias glga="git log -all"
 alias glga_graph="git log --oneline --decorate --graph --all"
+
 ### merge
 alias gm="git merge "
 alias gmmn="git merge main"      # merge main into branch to ensure branch always in-sync with main
 alias gml="git merge @{-1}"     # merge last checkout branch
+
 ### push
 alias gpf="git push --force "
 alias gp="git push "
+
 ### pull
 alias gpl="git pull"
 alias gplr="git pull --rebase"
 alias gplf="git pull --ff-only"
+
 ### rebase
 alias grb="git rebase "
+alias grba="git rebase --abort"
 alias grbi="git rebase -i "
+alias grbc="git rebase --continue"
 alias grbsq="git rebase -i --autosquash"
 alias grbm="git rebase main"
+
 ### restore
 alias grs="git restore "
 alias grss="git restore --staged "
@@ -214,8 +223,7 @@ alias gbf="git branch -v --sort='-committerdate' | egrep --color=always -i"
 # Git Push
 alias gpf="git push -f"
 alias gp="git push"
-alias grbi="git rebase --interactive"
-alias grbi="git rebase --continue"
+
 
 # peak/page very long git status outputs
 alias gsh="git status | head -n25"

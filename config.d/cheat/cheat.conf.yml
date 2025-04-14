@@ -49,6 +49,12 @@ cheatpaths:
     tags: [personal, work]
     readonly: false
 
+  #  cheatfiles that are integrated with telescope-cheatsheet (requires specific formatting)
+  - name: telescope
+    path: ~/git/cheatbook/cheat/cheatfiles/telescope
+    tags: [personal, telescope]
+    readonly: false
+
   # use as "pristine" folder for personal cheatsheets
   - name: pristine
     path: ~/git/cheatbook/cheat/cheatfiles/pristine

@@ -9,7 +9,7 @@ return {
 		},
 		keys = {
 			{
-				"<leader>?",
+				"?", -- triggered by ""<leader>?" sequence, but <leader> is implicitly defined here
 				function()
 					require("which-key").show({ global = false })
 				end,

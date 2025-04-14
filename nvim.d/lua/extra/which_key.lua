@@ -17,16 +17,33 @@ local wk = require("which-key")
 --]]
 
 wk.add({
-	-- Telescope [s]earch keymap group
-	{ "<leader>s", group = "Telescope [S]earch" }, -- telescope [s]earch group
-	{ "<leader>sn", desc = "Telescope find Nvim files" },
-	--{ "<leader>sl", desc = "Telescope livegrep" },
-	--{ "<leader>sm", desc = "Telescope multigrep" },
 
-	-- Telescope [L]sp subgroup keymap
-	{ "<leader>sl", group = "[L]SP Pickers" },
-	{ "<leader>sv", group = "[V]im Pickers" },
-	{ "<leader>sg", group = "[G]it Pickers" },
+	-- @TODO: ADD all sub group (and any nested) labels here
+	-- { "<leader>t", group = "Telescope Builtins" }, -- telescope [s]earch group
+	-- { "<leader>T", group = "Telescope Extended" }, -- telescope [s]earch group
+	-- { "<leader>g", group = "[G]it" },
+	-- { "<leader>gd", group = "Git [d]iff" },
+	-- { "<leader>l", group = "[L]SP" },
+	-- { "<leader>T", group = "[T]rouble" },
+
+	-- @WIP: Adding subkey/nested subkey groups in piecemeal
+	{ "<leader>l", group = "[L]SP" },
+	{ "<leader>o", group = "[O]bsidian" },
+	{ "<leader>b", group = "[B]uffers" }, -- Buffers
+	{ "<leader>v", group = "Visual Mode" }, -- Visual
+
+	-- Two distinct subkey groups for Telescope mappings
+	--  -- 't' for all builtin Telescope mappings
+	--  -- 'T' for all non-default Telescope mappings (eg. extensions, custom pickers, etc.)
+
+	-- Builtin Telescope WhichKeys Labels
+	{ "<leader>t", group = "Telescope Builtins" }, -- telescope [s]earch group
+	{ "<leader>tl", group = "[L]SP Pickers" },
+	{ "<leader>tv", group = "[V]im Pickers" },
+	{ "<leader>tg", group = "[G]it Pickers" },
+
+	-- Extended Telescope WhichKeys Labels
+	{ "<leader>T", group = "Telescope Extended" }, -- telescope [s]earch group
 
 	-- @TODO: Move debug 'desc' to corresponding remapping in dap-extras
 	-- DAP [d]ebug keymap group
@@ -47,34 +64,6 @@ wk.add({
 	--{ "<leader>dr ", desc = "Toggle Repl" },
 	--{ "<leader>dt ", desc = "Toggle DAP-UI" },
 	--{"<leader>dv ", desc = "Step Over" },
-
-	-- @TODO: Add "nested" keymaps For each of the group labels below
-	-- Obsidian
-	{ "<leader>o", group = "[O]bsidian" },
-
-	-- Git
-	{ "<leader>g", group = "[G]it" },
-
-	-- Git diff subkey
-	{ "<leader>gd", group = "Git [d]iff" },
-
-	-- Git hunk subkey
-	{ "<leader>gh", group = "Hunk navigation" },
-
-	-- Mini
-	-- { "<leader>ma", group = "[A]i" },
-
-	-- LSP
-	{ "<leader>l", group = "[L]SP" },
-
-	-- Buffers
-	{ "<leader>b", group = "[B]uffers" },
-
-	-- Visual
-	{ "<leader>v", group = "Visual Mode" },
-
-	-- Trouble
-	{ "<leader>T", group = "[T]rouble" },
 })
 
 -- -- create 'ignore" (do not display in whichkey-menu) register

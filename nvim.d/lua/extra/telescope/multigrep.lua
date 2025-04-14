@@ -51,8 +51,8 @@ local live_multigrep = function(opts)
 end
 
 M.setup = function()
-	vim.keymap.set("n", "<leader>sm", live_multigrep, { desc = "Telescope multigrep" })
-	-- vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "Telescope live grep" })   -- not needed because of "multigrep" custom grep function/action
+	vim.keymap.set("n", "<leader>tm", live_multigrep, { desc = "Telescope multigrep" })
+	-- vim.keymap.set("n", "<leader>tg", builtin.live_grep, { desc = "Telescope live grep" })   -- not needed because of "multigrep" custom grep function/action
 end
 
 return M

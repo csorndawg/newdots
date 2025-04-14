@@ -317,8 +317,8 @@ vim.keymap.set("n", "<leader>zf", ":set foldcolumn=0<Cr>", { silent = true, desc
 vim.keymap.set("n", "<leader>zF", ":set foldcolumn=1<Cr>", { silent = true, desc = "Toggle fold column on" })
 
 -- paste toggling
-vim.keymap.set("n", "<leader>zp", ":set paste", { silent = true, desc = "Paste on" })
-vim.keymap.set("n", "<leader>zP", ":set nopaste", { silent = true, desc = "Paste off" })
+vim.keymap.set("n", "<leader>zp", ":set paste <cr>", { silent = true, desc = "Paste on" })
+vim.keymap.set("n", "<leader>zP", ":set nopaste <cr>", { silent = true, desc = "Paste off" })
 
 -- Lazy Vim
 -- Terminal Mappings

@@ -20,15 +20,15 @@ return {
 
 			require("telescope").load_extension("fzf")
 
-			--vim.keymap.set("n", "<space>st", require("telescope.builtin").help_tags)	-- cmd remapped to <Leader>sh in telescope-config
-			vim.keymap.set("n", "<space>sf", require("telescope.builtin").find_files)
-			vim.keymap.set("n", "<space>sn", function()
+			--vim.keymap.set("n", "<Leader>tt", require("telescope.builtin").help_tags)	-- cmd remapped to <Leader>th in telescope-config
+			vim.keymap.set("n", "<Leader>tf", require("telescope.builtin").find_files)
+			vim.keymap.set("n", "<Leader>tn", function()
 				require("telescope.builtin").find_files({
 					cwd = vim.fn.stdpath("config"),
 				})
 			end)
 			-- [s]earch [l]azy  -- @NOTE: This was copied from TJ and might not be needed for my workflow
-			vim.keymap.set("n", "<space>sl", function()
+			vim.keymap.set("n", "<Leader>tl", function()
 				require("telescope.builtin").find_files({
 					cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy"),
 				})

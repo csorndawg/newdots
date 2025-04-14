@@ -405,3 +405,7 @@ alias squash_lines="tr '\n' ' ' | sed 's/  */ /g' "
 
 # sandobx/scratch directory
 alias sdir="cd $HOME/.local/var/scratch"
+
+# z/zoxide alias
+alias z="zoxide"
+alias zz="zoxide"

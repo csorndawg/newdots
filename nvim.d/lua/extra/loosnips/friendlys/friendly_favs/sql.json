@@ -1,4 +1,9 @@
 {
+    "zzz_friendlysnip_test": {
+        "prefix": "zzz_friendlysnip_test",
+        "body": ["-- @TEST: TEST SNIPPET IGNORE/DELETE AFTER TESTING"],
+        "description": "Create regular table"
+    },
     "createt": {
         "prefix": "createt",
         "body": ["CREATE TABLE ${1:tableName} (", "\t${2:attribute(s)}", ");"],

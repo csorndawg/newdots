@@ -316,6 +316,10 @@ vim.keymap.set("n", "<leader>zL", ":set relativenumber number <Cr>", { silent = 
 vim.keymap.set("n", "<leader>zf", ":set foldcolumn=0<Cr>", { silent = true, desc = "Toggle fold column off" })
 vim.keymap.set("n", "<leader>zF", ":set foldcolumn=1<Cr>", { silent = true, desc = "Toggle fold column on" })
 
+-- paste toggling
+vim.keymap.set("n", "<leader>zp", ":set paste", { silent = true, desc = "Paste on" })
+vim.keymap.set("n", "<leader>zP", ":set nopaste", { silent = true, desc = "Paste off" })
+
 -- Lazy Vim
 -- Terminal Mappings
 map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })

@@ -250,7 +250,14 @@ syml**
 **.log
 **.dat
 **.gzip
+
+# diff/patch files
 **.patch
+**.diff
+**.orig
+**.patch.*
+**.diff.*
+**.orig.*
 
 **.gz.*
 **.tar.*

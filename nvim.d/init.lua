@@ -87,3 +87,17 @@ require("extra.ufo")
 
 -- @TESTING: Dap configs
 require("extra.dap")
+
+-- @IMPORTANT: Below is still being tested. But if successfully it will allow for all config changes to be tested as overrides first, then moved to perm spot before merging with MAIN
+-- Load only active overrides from lua/extra/overrides/active/
+local override_path = vim.fn.stdpath("config") .. "/lua/extra/overrides/active"
+
+for _, file in ipairs(vim.fn.readdir(override_path)) do
+	if file:sub(-4) == ".lua" then
+		local module_name = "extra.overrides.active." .. file:sub(1, -5)
+		local ok, mod = pcall(require, module_name)
+		if ok and type(mod) == "table" and mod.setup then
+			pcall(mod.setup) -- call setup() if defined
+		end
+	end
+end

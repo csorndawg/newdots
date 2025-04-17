@@ -9,8 +9,9 @@ wk.register({
 	T = { name = "[T]elescope extensions" },
 }, { prefix = "<leader>" })
 
+-- @VALIDATED: validated all 4 keymaps work as intended
 -- mock keymaps just to test whichkey map behavior
 vim.keymap.set("n", "<leader>xx", "<cmd>echo 'Experimental Feature'<cr>", { desc = "Experimental Feature" })
 vim.keymap.set("n", "<leader>mm", "<cmd>echo 'Misc Function'<cr>", { desc = "Misc Function" })
-vim.keymap.set("n", "<leader>tt", "<cmd>Telescope builtin<cr>", { desc = "Telescope Builtins" })
+vim.keymap.set("n", "<leader>ta", "<cmd>Telescope builtin<cr>", { desc = "All builtins search" })
 vim.keymap.set("n", "<leader>Tl", "<cmd>Telescope luasnip<cr>", { desc = "Telescope Luasnip" })

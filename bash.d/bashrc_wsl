@@ -419,10 +419,11 @@ unset XDG_DATA_DIRS
 export PATH="$PATH:$HOME/git/zlib/bin"
 
 # @TEMPFIX: Temp fix for ssh passphrase automation. Need to address zombie/stale agent/pid cleanup
-if [ -z "$SSH_AUTH_SOCK" ]; then
-  eval "$(ssh-agent -s)" 1>/dev/null
-  export SSH_AUTH_SOCK
-fi
+# if [ -z "$SSH_AUTH_SOCK" ]; then
+#   eval "$(ssh-agent -s)" 1>/dev/null
+#   export SSH_AUTH_SOCK
+# fi
+eval "$(ssh-agent -s)" 1>/dev/null
 source "$HOME/git/zlib/bin/shellcomp_cache_ssh_passphrase.sh"
 source "$HOME/git/zlib/bin/cache_ssh_passphrase" 1>/dev/null
 

@@ -38,10 +38,10 @@ cheatpaths:
 
   # runbook-like folder for example code/snippets
   # use for cheat examples that span more than a few lines
-  - name: examples
-    path: ~/git/cheatbook/cheat/cheatfiles/examples
-    tags: [code-examples, personal, snippets]
-    readonly: false
+  - #name: examples
+    #path: ~/git/cheatbook/cheat/cheatfiles/examples
+    # tags: [code-examples, personal, snippets]
+    # readonly: false
 
   # for new and current cheatfiles, feeds into pristine 
   - name: work

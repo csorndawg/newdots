@@ -15,8 +15,6 @@ case $- in
 *) return ;;
 esac
 
-
-
 # PRESET
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
@@ -35,7 +33,7 @@ shopt -s checkwinsize
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-	debian_chroot=$(cat /etc/debian_chroot)
+  debian_chroot=$(cat /etc/debian_chroot)
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
@@ -49,41 +47,41 @@ esac
 #force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
-	if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-		# We have color support; assume it's compliant with Ecma-48
-		# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-		# a case would tend to support setf rather than setaf.)
-		color_prompt=yes
-	else
-		color_prompt=
-	fi
+  if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+    # We have color support; assume it's compliant with Ecma-48
+    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    # a case would tend to support setf rather than setaf.)
+    color_prompt=yes
+  else
+    color_prompt=
+  fi
 fi
 
 if [ "$color_prompt" = yes ]; then
-	PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm* | rxvt*)
-	PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-	;;
+  PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+  ;;
 *) ;;
 esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-	alias ls='ls --color=auto'
-	#alias dir='dir --color=auto'
-	#alias vdir='vdir --color=auto'
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+  #alias dir='dir --color=auto'
+  #alias vdir='vdir --color=auto'
 
-	alias grep='grep --color=auto'
-	alias fgrep='fgrep --color=auto'
-	alias egrep='egrep --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
 fi
 
 # colored GCC warnings and errors
@@ -104,18 +102,18 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
-	. ~/.bash_aliases
+  . ~/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-	if [ -f /usr/share/bash-completion/bash_completion ]; then
-		. /usr/share/bash-completion/bash_completion
-	elif [ -f /etc/bash_completion ]; then
-		. /etc/bash_completion
-	fi
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
 fi
 
 ##################################################
@@ -165,22 +163,21 @@ alias tl="task list"
 # as of now no protective logic exists, but plan on adding logic or
 # cronjob to delete stale versions (>5 copies AND older than 1month) --> TODO
 mk_artifact() {
-	TARG="$1"
-	TARG_NAME="$(basename $TARG)"
-	TIMESTAMP=$"(date +%Y%m%d_%H%M%S_%Z)"
-	# TODO - logic to check if abs or relative path ; for now assume relativee
-	ART_DIR="$HOME/.local/var/backups/auto"
+  TARG="$1"
+  TARG_NAME="$(basename $TARG)"
+  TIMESTAMP=$"(date +%Y%m%d_%H%M%S_%Z)"
+  # TODO - logic to check if abs or relative path ; for now assume relativee
+  ART_DIR="$HOME/.local/var/backups/auto"
 
-	# TODO - handle directories logic
-	echo rsync -azvh $TARG "$ART_DIR/$TARG_NAME_$TIMESTAMP"
-	rsync -azvh $TARG "$ART_DIR/$TARG_NAME_$TIMESTAMP"
+  # TODO - handle directories logic
+  echo rsync -azvh $TARG "$ART_DIR/$TARG_NAME_$TIMESTAMP"
+  rsync -azvh $TARG "$ART_DIR/$TARG_NAME_$TIMESTAMP"
 }
 alias cht='cht.sh'
 alias jc="jupyter console"
 if [ -f "$HOME/.local/bin/lib/comp/bash/cht.sh" ]; then
-	source "$HOME/.local/bin/lib/comp/bash/cht.sh"
+  source "$HOME/.local/bin/lib/comp/bash/cht.sh"
 fi
-
 
 # default BAT theme
 export BAT_THEME="Nord" # @TODO: move to bat.config and remove
@@ -196,22 +193,21 @@ fi
 HISTSIZE=100000
 HISTFILESIZE=100000
 
-shopt -s cmdhist 	# save multi-line commands as one command
-shopt -s histappend 	# append to history file, not overwrite
-shopt -s histreedit 	# re-edit command line for failing history expansions
-shopt -s histverify 	# re-edit result of history expansions
-shopt -s lithist 	# save history with newlines instead of ; where possible
+shopt -s cmdhist    # save multi-line commands as one command
+shopt -s histappend # append to history file, not overwrite
+shopt -s histreedit # re-edit command line for failing history expansions
+shopt -s histverify # re-edit result of history expansions
+shopt -s lithist    # save history with newlines instead of ; where possible
 
-HISTCONTROL="erasedups:ignoreboth" 	# avoid duplicate entries
-HISTCONTROL=ignoreboth 			# dont add duplicate lines or lines starting with space in hist
-HISTTIMEFORMAT=$'\033[31m[%F] \033[36m[%T]\033[0m '  	# YYYY-MM-DD hh-mm-ss timestamped entries
+HISTCONTROL="erasedups:ignoreboth"                  # avoid duplicate entries
+HISTCONTROL=ignoreboth                              # dont add duplicate lines or lines starting with space in hist
+HISTTIMEFORMAT=$'\033[31m[%F] \033[36m[%T]\033[0m ' # YYYY-MM-DD hh-mm-ss timestamped entries
 
 # commands (including aliases) that wont be written to history
-HISTIGNORE="exit:ls:bg:fg:history:clear:gs:gpl:h:a:tmls:tma:mcd:yes" 	
+HISTIGNORE="exit:ls:bg:fg:history:clear:gs:gpl:h:a:tmls:tma:mcd:yes"
 
 # ensure history updates in real-time, and is in-sync across multiple tmux sessions
-PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }history -a; history -c; history -r" 
-
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }history -a; history -c; history -r"
 
 ### GIT
 
@@ -224,49 +220,49 @@ PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }history -a; history -c; hist
 ## the plugin, before being pulled in to core lib/git.zsh as git_current_branch()
 ## to fix the core -> git plugin dependency.
 function current_branch() {
-	git_current_branch
+  git_current_branch
 }
 
 ### The list of remotes
 function current_repository() {
-	if ! $_omb_git_git_cmd rev-parse --is-inside-work-tree &>/dev/null; then
-		return
-	fi
-	_omb_util_print $($_omb_git_git_cmd remote -v | cut -d':' -f 2)
+  if ! $_omb_git_git_cmd rev-parse --is-inside-work-tree &>/dev/null; then
+    return
+  fi
+  _omb_util_print $($_omb_git_git_cmd remote -v | cut -d':' -f 2)
 }
 
 ### Warn if the current branch is a WIP
 function work_in_progress() {
-	if $(git log -n 1 | grep -q -c "\-\-wip\-\-"); then
-		_omb_util_print "WIP!!"
-	fi
+  if $(git log -n 1 | grep -q -c "\-\-wip\-\-"); then
+    _omb_util_print "WIP!!"
+  fi
 }
 
 ### Check for develop and similarly named branches
 function git_develop_branch() {
-	command git rev-parse --git-dir &>/dev/null || return
-	local branch
-	for branch in dev devel development; do
-		if command git show-ref -q --verify refs/heads/"$branch"; then
-			_omb_util_print "$branch"
-			return
-		fi
-	done
-	_omb_util_print develop
+  command git rev-parse --git-dir &>/dev/null || return
+  local branch
+  for branch in dev devel development; do
+    if command git show-ref -q --verify refs/heads/"$branch"; then
+      _omb_util_print "$branch"
+      return
+    fi
+  done
+  _omb_util_print develop
 }
 
 ### Check if main exists and use instead of master
 function git_main_branch() {
-	# send STDERR to /dev/null to prevent not in git repo dotfiles startup error
-	command git rev-parse --git-dir 2 &>/dev/null || return
-	local ref
-	for ref in refs/{heads,remotes/{origin,upstream}}/{main,trunk,mainline,default}; do
-		if command git show-ref -q --verify "$ref"; then
-			_omb_util_print "${ref##*/}"
-			return
-		fi
-	done
-	_omb_util_print master
+  # send STDERR to /dev/null to prevent not in git repo dotfiles startup error
+  command git rev-parse --git-dir 2 &>/dev/null || return
+  local ref
+  for ref in refs/{heads,remotes/{origin,upstream}}/{main,trunk,mainline,default}; do
+    if command git show-ref -q --verify "$ref"; then
+      _omb_util_print "${ref##*/}"
+      return
+    fi
+  done
+  _omb_util_print master
 }
 
 alias nv="nvim"
@@ -274,27 +270,27 @@ alias neovim="nvim"
 export WINHOME="/mnt/c/Users/zaccs/"
 
 llr() {
-	# use CWD if no path specified
-	if [ -z $1 ]; then
-		DIRROOT="$(pwd)"
-	else
-		DIRROOT="$1"
-	fi
-	#echo "ECHO TEST: ls -lR $DIRROOT | grep '^l' "
-	ls -lR $DIRROOT | grep '^l'
+  # use CWD if no path specified
+  if [ -z $1 ]; then
+    DIRROOT="$(pwd)"
+  else
+    DIRROOT="$1"
+  fi
+  #echo "ECHO TEST: ls -lR $DIRROOT | grep '^l' "
+  ls -lR $DIRROOT | grep '^l'
 
 }
 
 # recursive symlink lister
 llr() {
-	# use CWD if no path specified
-	if [ -z $1 ]; then
-		DIRROOT="$(pwd)"
-	else
-		DIRROOT="$1"
-	fi
-	#echo "ECHO TEST: ls -lR $DIRROOT | grep '^l' "
-	ls -lR $DIRROOT | grep '^l'
+  # use CWD if no path specified
+  if [ -z $1 ]; then
+    DIRROOT="$(pwd)"
+  else
+    DIRROOT="$1"
+  fi
+  #echo "ECHO TEST: ls -lR $DIRROOT | grep '^l' "
+  ls -lR $DIRROOT | grep '^l'
 
 }
 export XDG_ASUS_HOME="/mnt/c/Users/zaccs/Desktop"
@@ -302,120 +298,104 @@ alias dsktp="cd /mnt/c/Users/zaccs/Desktop/Personal"
 
 # SOURCE DOTFILES BASH COMPLETION SCRIPTS
 bashcomps() {
-	COMP_DIR="$HOME/dotfiles/bash.d/completers"
+  COMP_DIR="$HOME/dotfiles/bash.d/completers"
 
-	# ignore patterns for broken/experimental completion scripts
-	# need to add place holder pattern if no patterns are currently
-	# being ignored as temp. workaround
-	IGNORE_REGX="fallback"
+  # ignore patterns for broken/experimental completion scripts
+  # need to add place holder pattern if no patterns are currently
+  # being ignored as temp. workaround
+  IGNORE_REGX="fallback"
 
-	for x in $(find $COMP_DIR -type f); do
-		# skip sourcing if matches ignore regex
-		if [ $(echo $x | egrep -ci "$IGNORE_REGX") -ge 1 ]; then
-			continue
-		fi
-		source "$x"
-	done
+  for x in $(find $COMP_DIR -type f); do
+    # skip sourcing if matches ignore regex
+    if [ $(echo $x | egrep -ci "$IGNORE_REGX") -ge 1 ]; then
+      continue
+    fi
+    source "$x"
+  done
 }
 bashcomps
 
 # Source WSL configs if working on local machine
 if [[ "$HOSTNAME" = "DESKTOP-FPDD922" ]]; then
-	WSL_DOTFILES_HOME="$HOME/dotfiles/wsl"
-	for srcfile in $(find "$WSL_DOTFILES_HOME/lib" -type f -name '*.wsl'); do
-		source "$srcfile" || echo 'Error unable to source: ' "$srcfile"
-	done
+  WSL_DOTFILES_HOME="$HOME/dotfiles/wsl"
+  for srcfile in $(find "$WSL_DOTFILES_HOME/lib" -type f -name '*.wsl'); do
+    source "$srcfile" || echo 'Error unable to source: ' "$srcfile"
+  done
 fi
 
 # on-the-fly sourcing for experimental bash configurations
 bashexpr() {
-	# TODO - Improve logic to accept/source some but not all experimental
-	# configuration file FLAGS.
-	#
-	# Function accepts 1 (at the moment) CLI ARG, if given it
-	# checks which experimental bashconfig matches flag and
-	# sources the file. Otherwise if no FLAG is given
-	# all bashconfig experimental files are sourced.
-	#
+  # TODO - Improve logic to accept/source some but not all experimental
+  # configuration file FLAGS.
+  #
+  # Function accepts 1 (at the moment) CLI ARG, if given it
+  # checks which experimental bashconfig matches flag and
+  # sources the file. Otherwise if no FLAG is given
+  # all bashconfig experimental files are sourced.
+  #
 
-	BASHD_EXPERIMENTAL_HOME="$HOME/dotfiles/bash.d/lib/expr"
-	case $1 in
-	a | alias)
-		# use bash if "source" returns error when calling after shell login initaliziation
-		#bash "$BASHD_EXPERIMENTAL_HOME/alias.bash"
-		source "$BASHD_EXPERIMENTAL_HOME/alias.bash"
-		echo "The experimental alias.bash has been successfully sourced"
-		;;
+  BASHD_EXPERIMENTAL_HOME="$HOME/dotfiles/bash.d/lib/expr"
+  case $1 in
+  a | alias)
+    # use bash if "source" returns error when calling after shell login initaliziation
+    #bash "$BASHD_EXPERIMENTAL_HOME/alias.bash"
+    source "$BASHD_EXPERIMENTAL_HOME/alias.bash"
+    echo "The experimental alias.bash has been successfully sourced"
+    ;;
 
-	f | funct | functs | function | F)
-		#bash "$BASHD_EXPERIMENTAL_HOME/functs.bash"
-		source "$BASHD_EXPERIMENTAL_HOME/functs.bash"
-		echo "The experimental functs.bash has been successfully sourced"
-		;;
+  f | funct | functs | function | F)
+    #bash "$BASHD_EXPERIMENTAL_HOME/functs.bash"
+    source "$BASHD_EXPERIMENTAL_HOME/functs.bash"
+    echo "The experimental functs.bash has been successfully sourced"
+    ;;
 
-	e | export | exports | E)
-		#bash "$BASHD_EXPERIMENTAL_HOME/exports.bash"
-		source "$BASHD_EXPERIMENTAL_HOME/exports.bash"
-		echo "The experimental exports.bash has been successfully sourced"
-		;;
+  e | export | exports | E)
+    #bash "$BASHD_EXPERIMENTAL_HOME/exports.bash"
+    source "$BASHD_EXPERIMENTAL_HOME/exports.bash"
+    echo "The experimental exports.bash has been successfully sourced"
+    ;;
 
-	p | prompt | P)
-		#bash "$BASHD_EXPERIMENTAL_HOME/prompt.bash"
-		source "$BASHD_EXPERIMENTAL_HOME/prompt.bash"
-		echo "The experimental prompt.bash has been successfully sourced"
-		;;
-	**)
-		for expr_file in $(find "$BASHD_EXPERIMENTAL_HOME" -type f); do
-			source $expr_file
-		done
-		;;
-	esac
+  p | prompt | P)
+    #bash "$BASHD_EXPERIMENTAL_HOME/prompt.bash"
+    source "$BASHD_EXPERIMENTAL_HOME/prompt.bash"
+    echo "The experimental prompt.bash has been successfully sourced"
+    ;;
+  **)
+    for expr_file in $(find "$BASHD_EXPERIMENTAL_HOME" -type f); do
+      source $expr_file
+    done
+    ;;
+  esac
 }
 
 # shellGPT setup
 source "$HOME/dotfiles/bash.d/lib/shellGPT_conf.bash"
 
-## @IMPORTANT: DO NOT MODIFY BELOW FUNCTIONS
-#  All "add_*_ssh_pp" functions are responsible for caching a passphrase
-#  for frequently used SSH key. Do not modify unless long-term solution.
-
-
-# @TESTING: test ssh-agent auth across tmux
-export SSH_AUTH_SOCK="$HOME/.ssh/ssh_auth_sock"
-if [ ! -S "$SSH_AUTH_SOCK" ]; then
-    eval "$(ssh-agent -s)" > /dev/null
-    ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/ssh_auth_sock"
-fi
-
-
-
-
 ## DOTFILE CONFIG.D FILES
 source "$HOME/dotfiles/config.d/fzf/fzf.config" 1>/dev/null
 
 source_bashrc_custom_comp_modules() {
-	local BASH_CUSTOM_COMP_DIR="$HOME/dotfiles/bash.d/lib/custom/comps"
-	local SRC_FILE_LIST=$(find $BASH_CUSTOM_COMP_DIR -type f )
-	local IGNORE_LIST=(gitignore test)
-	for comp_file in $SRC_FILE_LIST; do
-		local SKIP_FLAG=0
-		for ignore_pattern in ${IGNORE_LIST[@]}; do 
-			IGNORE_FLAG=$(echo $comp_file | egrep -c "$ignore_pattern")
-			#echo "IGNORE_FLAG: $IGNORE_FLAG"
-			if (( $IGNORE_FLAG > 0)); then
-				echo "Skip $comp_file"
-				SKIP_FLAG=1
-				break
-			fi
-		done
-		if [[ $SKIP_FLAG -eq 1 ]]; 
-		then
-			continue
-		fi
-		#echo "comp_file: $comp_file"
-		echo "source $comp_file" 
-		source $comp_file
-	done
+  local BASH_CUSTOM_COMP_DIR="$HOME/dotfiles/bash.d/lib/custom/comps"
+  local SRC_FILE_LIST=$(find $BASH_CUSTOM_COMP_DIR -type f)
+  local IGNORE_LIST=(gitignore test)
+  for comp_file in $SRC_FILE_LIST; do
+    local SKIP_FLAG=0
+    for ignore_pattern in ${IGNORE_LIST[@]}; do
+      IGNORE_FLAG=$(echo $comp_file | egrep -c "$ignore_pattern")
+      #echo "IGNORE_FLAG: $IGNORE_FLAG"
+      if (($IGNORE_FLAG > 0)); then
+        echo "Skip $comp_file"
+        SKIP_FLAG=1
+        break
+      fi
+    done
+    if [[ $SKIP_FLAG -eq 1 ]]; then
+      continue
+    fi
+    #echo "comp_file: $comp_file"
+    echo "source $comp_file"
+    source $comp_file
+  done
 } 1>/dev/null
 source_bashrc_custom_comp_modules
 
@@ -435,32 +415,29 @@ export PATH="$PATH:$HOME/.cargo/bin"
 # remove XDG_DATA_DIRS since I only use DATA_HOME
 unset XDG_DATA_DIRS
 
-# source 'z' binary
-#if [ -z "$HOME/.local/bin/z.sh" ]; then
-if [ -x "$HOME/.local/bin/z.sh" ]; then
-  source ~/.local/bin/z.sh
-  else
-  echo 'Error "z.sh" is either not present or executable. Check $LOCALBIN to debug.'
-  fi
-
-
-
 # add zlib/bin to PATH
 export PATH="$PATH:$HOME/git/zlib/bin"
+
+# @TEMPFIX: Temp fix for ssh passphrase automation. Need to address zombie/stale agent/pid cleanup
+if [ -z "$SSH_AUTH_SOCK" ]; then
+  eval "$(ssh-agent -s)" 1>/dev/null
+  export SSH_AUTH_SOCK
+fi
 source "$HOME/git/zlib/bin/shellcomp_cache_ssh_passphrase.sh"
+source "$HOME/git/zlib/bin/cache_ssh_passphrase" 1>/dev/null
 
 # ---------------------------------------------------------------------------------------------
-#		FZFCOMP EXTRAS 
-# 
+#		FZFCOMP EXTRAS
+#
 # ***MUST BE LAST SECTION IN BASHRC***
 # ---------------------------------------------------------------------------------------------
 
 # This is an partial fix that I can use in the interim to actual fix/soln found
 
 # @TODO: Expand below logic to remaining git aliases (then other non-git aliases commands)
-# @PASSED: Below SUCCESSFULLY 
+# @PASSED: Below SUCCESSFULLY
 # - adds git command shell (flag, paths, etc.) completion to my custom alias
-# - integrates FZF COMP without removing git shell completion 
+# - integrates FZF COMP without removing git shell completion
 complete -o bashdefault -o default -o nospace -F __git_wrap_git_diff -F _fzf_path_completion ga
 complete -o bashdefault -o default -o nospace -F __git_wrap_git_diff -F _fzf_path_completion gad
 complete -o bashdefault -o default -o nospace -F __git_wrap_git_diff -F _fzf_path_completion gd
@@ -471,22 +448,22 @@ complete -o bashdefault -o default -o nospace -F __git_wrap_git_restore -F _fzf_
 complete -o bashdefault -o default -o nospace -F __git_wrap_git_restore -F _fzf_path_completion grss
 
 _fzf_or_default_completion() {
-	local cmd="${COMP_WORDS[0]}"
-	local prev_word="${COMP_WORDS[COMP_CWORD - 1]}"
+  local cmd="${COMP_WORDS[0]}"
+  local prev_word="${COMP_WORDS[COMP_CWORD - 1]}"
 
-	# If the previous word is the FZF trigger (,,), use fzf completion
-	if [[ "$prev_word" == ",," ]]; then
-		__fzf_default_completion
-		return
-	fi
+  # If the previous word is the FZF trigger (,,), use fzf completion
+  if [[ "$prev_word" == ",," ]]; then
+    __fzf_default_completion
+    return
+  fi
 
-	# If there's a default Bash completion for the command, use it
-	if complete -p "$cmd" &>/dev/null; then
-		local comp_func
-		comp_func=$(complete -p "$cmd" | awk '{print $3}')
-		"$comp_func"
-	fi
+  # If there's a default Bash completion for the command, use it
+  if complete -p "$cmd" &>/dev/null; then
+    local comp_func
+    comp_func=$(complete -p "$cmd" | awk '{print $3}')
+    "$comp_func"
+  fi
 }
 
 # IMPORTANT: Must be last line sourced!!
-complete -D -F _fzf_or_default_completion  # Apply the modified completion function to all commands
+complete -D -F _fzf_or_default_completion # Apply the modified completion function to all commands

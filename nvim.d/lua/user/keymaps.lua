@@ -55,11 +55,12 @@ remapp("n", "mk", ":m .-2<CR>==", opts)
 -- Mode like actions within Insert Mode (ex. delete current word, but stay
 -- in Insert mode whole time)
 --
+-- @STALE:
 -- insert mode arrow key cursor navigation
-remapp("i", "<A-h>", "<Left>", opts)
-remapp("i", "<A-l>", "<Right>", opts)
-remapp("i", "<A-k>", "<Up>", opts)
-remapp("i", "<A-j>", "<Down>", opts)
+-- remapp("i", "<A-h>", "<Left>", opts)
+-- remapp("i", "<A-l>", "<Right>", opts)
+-- remapp("i", "<A-k>", "<Up>", opts)
+-- remapp("i", "<A-j>", "<Down>", opts)
 
 -- @FIXME: Broken keymap. Use <Right> as 'next' fFtT match
 -- Restore original find-repeat behavior BEFORE swapping ";"
@@ -79,16 +80,10 @@ remapp("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)
 
 -- @experimental
 -- quickfix navigation
-remapp("n", "<leader>qo", "copen", { silent = false })
-remapp("n", "<leader>qc", "cclose", { silent = false })
-remapp("n", "<leader>qn", "cnext", { silent = false })
-remapp("n", "<leader>qp", "cprev", { silent = false })
-
--- easier saving/exiting
-remapp("n", "<leader>w", ":w<Cr>", opts)
-remapp("n", "<leader>ww", ":w!<Cr>", opts)
-remapp("n", "<leader>ex", ":q<Cr>", opts)
-remapp("n", "<leader>ex!", ":q!<Cr>", opts)
+remapp("n", "<leader>qo", "copen", { desc = "Open quicklist", silent = false })
+remapp("n", "<leader>qc", "cclose", { desc = "Close quicklist", silent = false })
+remapp("n", "<leader>qn", "cnext", { desc = "Next quicklist", silent = false })
+remapp("n", "<leader>qp", "cprev", { desc = "Prev quiclist", silent = false })
 
 -- if possible, create new vert window from current file
 vim.keymap.set("n", "<C-n>", function()
@@ -101,19 +96,15 @@ vim.keymap.set("n", "<C-n>", function()
 end, { noremap = true, silent = true })
 
 -- @kickstarter
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+vim.keymap.set("n", "<leader>dq", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 -- Cursor Movement within current screen
-remapp("n", "<leader><leader>h", "H", { silent = true })
-remapp("n", "<leader><leader>m", "M", { silent = true })
-remapp("n", "<leader><leader>l:", "L", { silent = true })
-
--- undo/redo
-remapp("n", "<leader>u", "<C-u>", opts)
-remapp("n", "<leader>r", "<C-r>", { noremap = true })
+remapp("n", "<leader><leader>h", "H", { desc = "Move cursor to top", silent = true })
+remapp("n", "<leader><leader>m", "M", { desc = "Move cursor to middle", silent = true })
+remapp("n", "<leader><leader>l", "L", { desc = "Move cursor to bottom", silent = true })
 
 -- show path of current file
-remapp("n", "<Leader>ep", ":echo expand('%')<Cr>", { noremap = true })
+remapp("n", "<Leader>ep", ":echo expand('%')<Cr>", { desc = "Echo path", noremap = true })
 
 -- add description later
 -- run (p)ython/(b)ash buffer

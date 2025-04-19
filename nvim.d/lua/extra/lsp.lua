@@ -183,10 +183,40 @@ cmp.setup({
 				fallback()
 			end
 		end,
-		["<CR>"] = cmp.mapping.confirm({
-			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
+
+		-- smart safe <Enter> accept CMP suggestion
+		["<CR>"] = cmp.mapping({
+			i = function(fallback)
+				if cmp.visible() and cmp.get_active_entry() then
+					cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+				else
+					fallback()
+				end
+			end,
+			s = cmp.mapping.confirm({ select = true }),
+			c = function(fallback)
+				if cmp.visible() and cmp.get_active_entry() then
+					cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
+				else
+					-- Perform % fix only in cmdline mode
+					local mode = vim.api.nvim_get_mode().mode
+					if mode == "c" then
+						local line = vim.fn.getcmdline()
+						local col = vim.fn.getcmdpos()
+						local prefix = string.sub(line, 1, col - 1)
+						local suffix = string.sub(line, col)
+
+						-- Match '%' followed by any path-like string (letters, numbers, symbols, dots, slashes, underscores, etc.)
+						local new_prefix = prefix:gsub("%%([%w%p]+)", "%1")
+						if new_prefix ~= prefix then
+							vim.fn.setcmdline(new_prefix .. suffix)
+						end
+					end
+					fallback()
+				end
+			end,
 		}),
+
 
 		-- <c-f> move (f)orward (to the right) of each expansion locations
 		-- <c-b> same as above, except moving (b)ackwards
@@ -225,7 +255,7 @@ cmp.setup({
 		{ name = "nvim_lsp", group_index = 2 },
 		{ name = "luasnip", group_index = 1 },
 		-- { name = "dadbod" , group_index = 2},
-		{ name = "copilot", group_index = 4 },
+		-- { name = "copilot", group_index = 4 },  -- @NOTE: temporarily suspendeding until fix accidental cmp issue
 		{ name = "buffer", group_index = 4 },
 		{ name = "path", group_index = 4 },
 		{ name = "cmdline", group_index = 4 },
@@ -272,8 +302,52 @@ cmp.setup.cmdline(":", {
 	}, {
 		{ name = "cmdline" },
 	}),
-	matching = { disallow_symbol_nonprefix_matching = false },
+	matching = {
+		disallow_symbol_nonprefix_matching = false,
+		-- @TESTME:
+		disallow_fuzzy_matching = false,
+		disallow_fullfuzzy_matching = false,
+		disallow_partial_fuzzy_matching = false,
+		disallow_partial_matching = false,
+		disallow_prefix_unmatching = false,
+	},
 })
+
+-- -- @HOTFIX: Fix cmdline expansion issue with special EX characters ('%') expansion for
+-- -- 					commands listed in ipairs() list.
+-- -- Before: :e %<tab>  >> :e %/tmp/tests/nvim_cmp_tests1.py
+-- -- After: :e %<tab>  >> :e /tmp/tests/nvim_cmp_tests1.py
+-- cmp.event:on("confirm_done", function(event)
+-- 	if vim.api.nvim_get_mode().mode == "c" then
+-- 		local line = vim.fn.getcmdline()
+-- 		local col = vim.fn.getcmdpos()
+-- 		local prefix = string.sub(line, 1, col - 1)
+-- 		local suffix = string.sub(line, col)
+--
+-- 		-- Optional: only apply fix for specific commands
+-- 		local should_fix = false
+-- 		for _, cmd in ipairs({ "e", "edit", "vsplit", "vsp", "split", "sp", "read" }) do
+-- 			if line:match("^%s*:" .. cmd .. "%s") then
+-- 				should_fix = true
+-- 				break
+-- 			end
+-- 		end
+--
+-- 		if not should_fix then
+-- 			return
+-- 		end
+--
+-- 		-- Strip special expansion characters if followed by expanded content
+-- 		local cleaned_prefix = prefix
+-- 			:gsub("%%(/[^%s]*)", "%1") -- % → full path
+-- 			:gsub("#(/[^%s]*)", "%1") -- # → full path
+-- 			:gsub("<[^>]+>(/[^%s]*)", "%1") -- <cfile>, <afile>, etc.
+--
+-- 		if cleaned_prefix ~= prefix then
+-- 			vim.fn.setcmdline(cleaned_prefix .. suffix)
+-- 		end
+-- 	end
+-- end)
 
 -- @TODO: Review/Test sql cmp configuration with workflow
 cmp.setup.filetype({ "sql" }, {

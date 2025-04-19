@@ -1,4 +1,3 @@
----
 # https://github.com/cheat/cheatsheets
 
 ## cheat tool configuration
@@ -19,38 +18,36 @@ cheatpaths:
   #   'readonly': shall user-created ('cheat -e') cheatsheets be saved here?
   - name: community
     path: ~/.config/cheat/cheatsheets/community
-    tags: [ community ]
+    tags: [community]
     readonly: true
 
-  ############################
-  ## Personal Cheat Dirs 
-  ############################
+############################
+## Personal Cheat Dirs 
+############################
 
-  ## VERSION CONTROLLED CHEATPATHS
 
-  # catch-all folder for things like stashing broken cheat comamnds, partially 
-  # completed cheatfiles, etc.
+  # version controlled
+  # use as "pristine" folder for personal cheatsheets
+  - name: pristine
+    path: ~/git/cheatbook/cheat/cheatfiles/pristine
+    tags: [personal, pristine]
+    readonly: true
+
+  # catch-all folder for things like stashing broken cheat comamnds, partially completed cheatfiles, etc.
   - name: unsorted
     path: ~/git/cheatbook/cheat/cheatfiles/unsorted
-    tags: [ personal, unsorted ]
+    tags: [personal, unsorted]
     readonly: false
-  # catch-all folder for things like stashing broken cheat 
 
-  # runbook-like folder for example code/snippets
-  # use for cheat examples that span more than a few lines
-  - #name: examples
-    #path: ~/git/cheatbook/cheat/cheatfiles/examples
-    # tags: [code-examples, personal, snippets]
-    # readonly: false
-
-  # for new and current cheatfiles, feeds into pristine 
+  # for creating new and updating current cheatfiles that will be feed into pristine 
   - name: work
     path: ~/git/cheatbook/cheat/cheatfiles/work
     tags: [personal, work]
     readonly: false
 
-  # use as "pristine" folder for personal cheatsheets
-  - name: pristine
-    path: ~/git/cheatbook/cheat/cheatfiles/pristine
-    tags: [personal, pristine]
+  # @TODO: Think about whether this should be "readonly" like "pristine"
+  # folder for telescope-formatted cheatsheets
+  - name: telescope
+    path: ~/git/cheatbook/cheat/cheatfiles/telescope
+    tags: [personal, telescope]
     readonly: false

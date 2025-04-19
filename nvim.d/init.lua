@@ -51,8 +51,6 @@ require("user.autocmds")
 -- @IMPORTANT: Has downstream dependencies
 require("extra.mason-lspconfig") -- all LSP configurations depend on this being loaded before they are ran
 
--- @IMPORTANT: EXTRA PLUGIN CONFIGURATION FILES DEFINED BELOW
-local ih = require("runtime.import_helper")
 --require("extra.mini-surround") -- use as reference for extending default plugin configurations
 
 -- sourcing start
@@ -67,8 +65,6 @@ require("extra.which_key")
 
 -- Luasnips: Custom and community snippets
 -- custom helper module for easier plugin module dependency management
-ih.import_custom_luasnips() -- loads all custom luasnip files that match specific regex
-require("extra.cmp-test")
 
 -- @IMPORTANT: All 2/25+ custom modules that PASSED INTEGRATION testing and can be permanetly added to init.lua
 -- BELOW PLUGINS PASSED TESTING/CHECKS
@@ -101,3 +97,8 @@ for _, file in ipairs(vim.fn.readdir(override_path)) do
 		end
 	end
 end
+
+-- new (directory location for nvim overrides/runtime config for ALL nvim configuration facets not just plugins)
+-- nvim.d/lua/overrides/active **main dir  (all subdir .lua files) should be sourced
+-- example: nvim.d/lua/overrides/active/utils/ui_test.lua
+-- ex2: nvim.d/lua/overrides/active/opts_ex.lua

@@ -183,9 +183,18 @@ cmp.setup({
 				fallback()
 			end
 		end,
-		["<CR>"] = cmp.mapping.confirm({
-			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
+
+		-- safely select entries with <Enter>
+		["<CR>"] = cmp.mapping({
+			i = function(fallback)
+				if cmp.visible() and cmp.get_active_entry() then
+					cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+				else
+					fallback()
+				end
+			end,
+			s = cmp.mapping.confirm({ select = true }),
+			c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
 		}),
 
 		-- <c-f> move (f)orward (to the right) of each expansion locations
@@ -225,7 +234,7 @@ cmp.setup({
 		{ name = "nvim_lsp", group_index = 2 },
 		{ name = "luasnip", group_index = 1 },
 		-- { name = "dadbod" , group_index = 2},
-		{ name = "copilot", group_index = 4 },
+		-- { name = "copilot", group_index = 4 },  -- @NOTE: temporarily suspendeding until fix accidental cmp issue
 		{ name = "buffer", group_index = 4 },
 		{ name = "path", group_index = 4 },
 		{ name = "cmdline", group_index = 4 },

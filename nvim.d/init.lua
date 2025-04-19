@@ -98,7 +98,55 @@ for _, file in ipairs(vim.fn.readdir(override_path)) do
 	end
 end
 
+-- @IMPORTANT: Expanding framework from above (with "extra/override" framework) to cover ALL NVIM configuration logic. This works by adding specific config types as subdirs to "overrides/active" and just source all files "active" filetree.
+
 -- new (directory location for nvim overrides/runtime config for ALL nvim configuration facets not just plugins)
 -- nvim.d/lua/overrides/active **main dir  (all subdir .lua files) should be sourced
 -- example: nvim.d/lua/overrides/active/utils/ui_test.lua
 -- ex2: nvim.d/lua/overrides/active/opts_ex.lua
+
+-- @TEST: Lua script that sources all .lua files in overrides/active dir or subdir at runtime
+local override_dir = vim.fn.stdpath("config") .. "/lua/overrides/active"
+local base_module = "overrides.active"
+
+local function rstrip_ext(filename)
+	return filename:gsub("%.lua$", "")
+end
+
+local function path_to_module(path)
+	-- Convert file path to Lua require path
+	local rel_path = path:sub(#override_dir + 2) -- +2 to remove "/" as well
+	return base_module .. "." .. rstrip_ext(rel_path):gsub("/", ".")
+end
+
+local function recursive_require(path)
+	local uv = vim.loop
+	local handle = uv.fs_scandir(path)
+	if not handle then
+		return
+	end
+
+	while true do
+		local name, typ = uv.fs_scandir_next(handle)
+		if not name then
+			break
+		end
+
+		local full_path = path .. "/" .. name
+
+		if typ == "file" and name:match("%.lua$") then
+			local ok, err = pcall(require, path_to_module(full_path))
+			if not ok then
+				vim.notify("Failed to load override: " .. full_path .. "\n" .. err, vim.log.levels.ERROR)
+		-- @TEST: my tweak
+		else
+				vim.notify("Loaded override: " .. full_path .. "\n")
+		
+			end
+		elseif typ == "directory" then
+			recursive_require(full_path)
+		end
+	end
+end
+
+recursive_require(override_dir)

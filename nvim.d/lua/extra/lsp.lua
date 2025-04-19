@@ -184,8 +184,9 @@ cmp.setup({
 			end
 		end,
 
-		-- safely select entries with <Enter>
+		-- smart safe <Enter> accept CMP suggestion
 		["<CR>"] = cmp.mapping({
+			-- Insert mode: Confirm selection if visible, else fallback (insert newline)
 			i = function(fallback)
 				if cmp.visible() and cmp.get_active_entry() then
 					cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
@@ -193,10 +194,35 @@ cmp.setup({
 					fallback()
 				end
 			end,
+
+			-- Select mode: Just confirm the selection
 			s = cmp.mapping.confirm({ select = true }),
-			c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+
+			-- Cmdline mode: Confirm if menu visible, else run the command
+			c = function(fallback)
+				if cmp.visible() and cmp.get_active_entry() then
+					cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
+				else
+					-- Simulate pressing <CR> to execute the command
+					vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, false, true), "n", false)
+				end
+			end,
 		}),
 
+		-- -- safely select entries with <Enter>
+		-- ["<CR>"] = cmp.mapping({
+		-- 	i = function(fallback)
+		-- 		if cmp.visible() and cmp.get_active_entry() then
+		-- 			cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+		-- 		else
+		-- 			fallback()
+		-- 		end
+		-- 	end,
+		-- 	s = cmp.mapping.confirm({ select = true }),
+		-- 	-- c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+		-- 	c = cmp.mapping.confirm({ select = true }),
+		-- }),
+		--
 		-- <c-f> move (f)orward (to the right) of each expansion locations
 		-- <c-b> same as above, except moving (b)ackwards
 		["<C-f>"] = cmp.mapping(function()

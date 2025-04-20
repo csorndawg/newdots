@@ -16,6 +16,6 @@ wk.register({
 -- mock keymaps just to test whichkey map behavior
 vim.keymap.set("n", "<leader>xx", "<cmd>echo 'Experimental Feature'<cr>", { desc = "Experimental Feature" })
 vim.keymap.set("n", "<leader>mm", "<cmd>echo 'Misc Function'<cr>", { desc = "Misc Function" })
-vim.keymap.set("n", "<leader>cvv", "<cmd>echo 'SWENV Venv Function'<cr>", { desc = "SWENV Placeholder" })
+vim.keymap.set("n", "<leader>cvz", "<cmd>echo 'Venv whichkey map test'<cr>", { desc = "Code Actions - Venv Function" })
 vim.keymap.set("n", "<leader>ta", "<cmd>Telescope builtin<cr>", { desc = "All builtins search" })
 vim.keymap.set("n", "<leader>Tl", "<cmd>Telescope luasnip<cr>", { desc = "Telescope Luasnip" })

@@ -1,6 +1,5 @@
 #!/usr/bin bash
 
-
 # "master" swenv dirpath
 UV_SRC_DIR="$venvs/uvv/"
 
@@ -8,8 +7,8 @@ UV_SRC_DIR="$venvs/uvv/"
 PY_VENVS_DIR="$HOME/.local/state/python/venvs"
 SHELLGPT_DIR="$HOME/.shellGPT/shellGPT_venv"
 
-
 # symlink to TARG (master swenv dir)
 
 ln -sr "$(pwd)" "$UV_SRC_DIR/python_state"
 ln -sr "$SHELLGPT_DIR" "$UV_SRC_DIR/shellgpt_venv"
+# ln -s "$HOME/.shellGPT/shellGPT_venv" "$HOME/.local/state/python/uv/venvs/"

@@ -166,3 +166,10 @@ artifacts**
 # ignore all config.d symlinks, actually config files will be written to a 
 # config.d/directory with the apps name (e.g. config.d/bat for bat)
 config.d/*.*
+
+# subdir/file patterns to ignore
+**/ignore
+**/patches
+**/diffs
+**/temp
+**/tmp

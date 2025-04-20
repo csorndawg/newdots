@@ -309,7 +309,7 @@ alias kbv="bat $HOME/.cheatlib/resources/keybindings-zc-cheatsheet.txt"
 # freq. venvs
 alias vv="source $HOME/.local/state/python/venvs/venv/bin/activate"  # default python venv
 alias vvs="source $HOME/.shellGPT/shellGPT_venv/bin/activate"
-alias uvv="source $HOME/.local/state/python/uv/uvv/bin/activate"   # default uv venv
+alias uvv="source $HOME/.local/state/python/uv/venvs/uvv/bin/activate"   # default uv venv
 
 # shell command pipelining
 alias xa='xargs -I "{}"'

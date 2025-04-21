@@ -427,6 +427,18 @@ eval "$(ssh-agent -s)" 1>/dev/null
 source "$HOME/git/zlib/bin/shellcomp_cache_ssh_passphrase.sh"
 source "$HOME/git/zlib/bin/cache_ssh_passphrase" 1>/dev/null
 
+
+# @IMPORTANT: Source all "active" runtime override files (<parent dir>/overrides/active/<files>)
+# @TODO: Make override sourcing logic more dynamic and configurable. Expand to more dorfile dirs.
+RC_OVRRD_DIR="$HOME/dotfiles/rc.d/overrides/active"
+# echo "" && echo "Starting sourcing for rc.d override files"
+for ovrrd in $(find $RC_OVRRD_DIR -type f); do 
+  # echo source "$ovrrd" 
+  source "$ovrrd" 
+done
+
+
+
 # ---------------------------------------------------------------------------------------------
 #		FZFCOMP EXTRAS
 #

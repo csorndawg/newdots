@@ -10,7 +10,18 @@ if todo_comments then
 			FIX = {
 				-- icon = "!! --->  ", -- icon used for the sign, and in search results
 				color = "error", -- can be a hex color, or a named color (see below)
-				alt = { "FIXME", "BROKEN", "BUG", "ERROR", "NEEDSFIX", "IMPORTANT", "ISSUE", "FAILED", "BROKEN" }, -- a set of other keywords that all map to this FIX keywords
+				alt = {
+					"FAILED",
+					"FIXME",
+					"BROKEN",
+					"BUG",
+					"ERROR",
+					"DEBUG",
+					"IMPORTANT",
+					"ISSUE",
+					"FAILED",
+					"BROKEN",
+				}, -- a set of other keywords that all map to this FIX keywords
 				-- signs = false, -- configure signs for some keywords individually
 			},
 			TODO = {
@@ -30,25 +41,35 @@ if todo_comments then
 			HACK = {
 				-- icon = ">> ",
 				color = "warning",
-				alt = { "INTERIM-FIX", "HOTFIX", "TEMPFIX", "WORKAROUND", "ONGOING", "HACK" },
+				alt = { "HOTFIX", "TEMPFIX", "WORKAROUND", "ONGOING", "HACK" },
 			},
 			WARN = {
 				-- icon = ">> ",
 				color = "warning",
-				alt = { "WARNING", "EXPERIMENTAL", "HELP", "SKIPPED", "XXX", "DECOMMISSIONED", "DECOMMISSIONING" },
+				alt = {
+					"WARNING",
+					"PLAY",
+					"MOCK",
+					"EXPERIMENTAL",
+					"HELP",
+					"SKIPPED",
+					"DECOMMISSIONED",
+					"DECOMMED",
+				},
 			},
 			PERF = {
 				-- icon = ">> ",
 				alt = {
 					"REFACTOR",
 					"PQ",
-					"VALIDATED",
+					-- "VALIDATED",
 					"PASSED",
-					"CONFIRMED",
+					-- "CONFIRMED",
 					"OPTIM",
 					"PERFORMANCE",
+					"PERF",
 					"FIXED",
-					"RESOLVED",
+					-- "RESOLVED",
 				},
 			},
 			NOTE = { -- icon = ">> ",
@@ -58,7 +79,17 @@ if todo_comments then
 			TEST = {
 				-- icon = "⏲ ",
 				color = "test_color",
-				alt = { "REVIEW", "TESTME", "TESTING", "UNTESTED", "VALIDATED", "PASSED", "INCONCLUSIVE", "FAILED" },
+				alt = {
+					"REVIEW",
+					"TESTME",
+					"TESTING",
+					"UNTESTED",
+					"VALIDATED",
+					"PASSED",
+					"RESOLVED",
+					"CONFIRMED",
+					"RC",
+				},
 			},
 		},
 		gui_style = {

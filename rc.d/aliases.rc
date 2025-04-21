@@ -409,3 +409,9 @@ alias sdir="cd $HOME/.local/var/scratch"
 # z/zoxide alias
 alias z="zoxide"
 alias zz="zoxide"
+
+# common show git branches
+alias gbs35="git branch --sort=-committerdate --all | head -n 35"
+alias gbs25="git branch --sort=-committerdate --all | head -n 25"
+alias gbs15="git branch --sort=-committerdate --all | head -n 15"
+alias gbs5="git branch --sort=-committerdate --all | head -n 5"

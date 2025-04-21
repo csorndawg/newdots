@@ -7,6 +7,7 @@ wk.register({
 	m = { name = "[M]iscellaneous" },
 	t = { name = "[t]elescope builtins" },
 	T = { name = "[T]elescope extensions" },
+	q = { name = "[q]uickfix" },
 }, { prefix = "<leader>" })
 
 -- @VALIDATED: validated all 4 keymaps work as intended

@@ -173,3 +173,7 @@ config.d/*.*
 **/diffs
 **/temp
 **/tmp
+
+**/*.bk
+**/*.bk.*
+

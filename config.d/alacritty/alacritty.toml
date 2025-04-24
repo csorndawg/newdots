@@ -1,3 +1,5 @@
+# For all configuration options see: https://alacritty.org/config-alacritty.html
+
 [terminal.shell]
 program = "C:\\Windows\\System32\\wsl.exe"
 args = ["~"]
@@ -13,24 +15,121 @@ foreground = '#D8DEE9'
 
 # Normal colors
 [colors.normal]
-black   = '#3B4252'
-red     = '#BF616A'
-green   = '#A3BE8C'
-yellow  = '#EBCB8B'
+black = '#3B4252'
+# custom (brighter and lighter) blacks:
+# #black   = '#5A667D'   
+# black   = '#3909DB3'
+red = '#BF616A'
+green = '#A3BE8C'
 
-blue    = '#81A1C1'
+yellow = '#EBCB8B'
+blue = '#81A1C1'
 magenta = '#B48EAD'
-cyan    = '#88C0D0'
-white   = '#E5E9F0'
+
+cyan = '#88C0D0'
+white = '#E5E9F0'
 
 # Bright colors
 [colors.bright]
+black = '#4C566A'
+#custom/testing: black   = '#3B4252'
 
-black   = '#4C566A'
-red     = '#BF616A'
-green   = '#A3BE8C'
-yellow  = '#EBCB8B'
-blue    = '#81A1C1'
+red = '#BF616A'
+green = '#A3BE8C'
+yellow = '#EBCB8B'
+blue = '#81A1C1'
 magenta = '#B48EAD'
-cyan    = '#8FBCBB'
-white   = '#ECEFF4'
+cyan = '#8FBCBB'
+white = '#ECEFF4'
+
+
+# colors misc. configurations
+
+# [colors.vi_mode_cursor]
+# vi_mode_cursor = { text = "<string>", cursor = "<string>" }   ## Default: { text = "CellBackground", cursor = "CellForeground" }
+
+# search 
+# This section documents the [colors.search] table of the configuration.
+
+# Allowed values are hexadecimal colors like #ff00ff, or CellForeground/CellBackground, which references the affected cell.
+# matches = { foreground = "<string>", background = "<string>" }
+# Default: { foreground = "#181818", background = "#ac4242" }
+# focused_match = { foreground = "<string>", background = "<string>" }
+# Default: { foreground = "#181818", background = "#f4bf75" }
+
+# # colors.selection
+# selection = { text = "<string>", background = "<string>" }
+# Colors used for drawing selections.
+# Allowed values are hexadecimal colors like #ff00ff, or CellForeground/CellBackground, which references the affected cell.
+# Default: { text = "CellBackground", background = "CellForeground" }
+
+
+## END OF COLORS CONFIGS
+
+# default browser integration
+#[mouse.url]
+#launcher = "xdg-open" 
+#args = []
+#modifiers = "Control" 
+
+[cursor]
+
+
+# Cursor style
+#
+
+# Values for 'style':
+#   - ▇ Block
+#   - _ Underline
+#   - | Beam
+#custom_cursor_colors = true
+
+style = "Beam"
+# vi_mode_style = { <shape>, <blinking> } | "None"
+
+# Live config reload (changes require restart)
+# live_config_reload = true
+
+# Shell
+#
+# You can set shell.program to the path of your favorite shell, e.g. /bin/zsh.
+# Entries in shell.args are passed unmodified as arguments to the shell.
+# shell:
+
+#   program: /usr/local/bin/zsh
+#   program: /usr/local/bin/bash
+#   args:
+#     - --command=tmux
+
+[window]
+title = "ZAlacritty"
+# decorations = 'buttonless'
+# full: borders and title bar
+# none: neither borders nor title bar
+
+# supress WARNING messages
+[debug]
+persistent_logging = false
+log_level = "Error"
+
+
+[font]
+
+size = 13
+
+[font.normal]
+family = "JetBrains Mono NL"
+style = "Regular"
+
+[font.bold]
+family = "JetBrains Mono NL"
+
+style = "Bold"
+
+[font.italic]
+family = "JetBrains Mono NL"
+style = "Italic"
+
+[font.bold_italic]
+family = "JetBrains Mono NL"
+style = "Bold Italic"

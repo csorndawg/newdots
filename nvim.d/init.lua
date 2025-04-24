@@ -65,11 +65,6 @@ require("extra.lint")
 require("extra.telescope.telescope-config")
 require("extra.which_key")
 
--- Luasnips: Custom and community snippets
--- custom helper module for easier plugin module dependency management
-ih.import_custom_luasnips() -- loads all custom luasnip files that match specific regex
-require("extra.cmp-test")
-
 -- @IMPORTANT: All 2/25+ custom modules that PASSED INTEGRATION testing and can be permanetly added to init.lua
 -- BELOW PLUGINS PASSED TESTING/CHECKS
 require("extra.oil_extra")

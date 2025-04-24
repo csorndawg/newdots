@@ -1,6 +1,11 @@
 -- Lualine configuration
 local M = {}
 
+-- local Lua function needed for add Swenv info to lualine, for python files only
+local function is_python_file()
+	return vim.bo.filetype == "python"
+end
+
 M.setup = function()
 	local lualine = require("lualine")
 
@@ -18,26 +23,36 @@ M.setup = function()
 			icons_enabled = true,
 		},
 		sections = {
-			lualine_a = { "mode" },
-			lualine_b = { "branch", "diff","diagnostics" },
+			lualine_a = {
+				{
+					"mode",
+				},
+				-- add compent for Swenv info for python files
+				{
+					"swenv",
+					cond = is_python_file,
+					color = { fg = "#ECEFF4", bg = "#5E81AC", gui = "bold" }, -- Nord theme colors
+				},
+			},
+			lualine_b = { "branch", "diff", "diagnostics" },
 			lualine_c = { "filename" },
 			lualine_x = { "encoding", "fileformat", "filetype" },
 			lualine_y = { "progress", "location", "hostname" },
 			lualine_z = { "location" },
 		},
 		inactive_sections = {
-		-- lualine_a = {},
-		-- lualine_b = {},
-		lualine_c = { "filename" },
-		lualine_x = { "location" },
-		-- lualine_y = {},
-		-- lualine_z = {},
-		-- },
-		--		tabline = {},
-		--		winbar = {},
-		--		inactive_winbar = {},
-		--		extensions = {},
-  },
+			-- lualine_a = {},
+			-- lualine_b = {},
+			lualine_c = { "filename" },
+			lualine_x = { "location" },
+			-- lualine_y = {},
+			-- lualine_z = {},
+			-- },
+			--		tabline = {},
+			--		winbar = {},
+			--		inactive_winbar = {},
+			--		extensions = {},
+		},
 	}
 
 	-- Apply the new configuration (merging it with the defaults)

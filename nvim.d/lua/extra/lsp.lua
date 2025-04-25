@@ -9,6 +9,7 @@ local lspconfig = require("lspconfig")
 local mason = require("mason")
 local mason_lspp = require("mason-lspconfig")
 local mason_tool_installer = require("mason-tool-installer")
+-- local lspicons = require("extra/cmp-lsp-lspkind")
 
 -- define LSP servers
 local servers = {
@@ -64,6 +65,9 @@ local formatters = {
 	"xmlformatter",
 	"yamlfmt",
 }
+
+-- @TESTME: Test code below to see if valid/setups LSP icons for CMP.
+-- require("extra.cmp-lsp-lspkind")
 
 -- concat all non-lsp mason tools
 local mason_nonlsp = {}

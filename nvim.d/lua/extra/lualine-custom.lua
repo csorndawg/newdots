@@ -6,6 +6,16 @@ local function is_python_file()
 	return vim.bo.filetype == "python"
 end
 
+-- helper function for trimming Venv path to its basename
+local function get_venv_name()
+	local venv = require("swenv.api").get_current_venv()
+	if not venv then
+		return ""
+	end
+	local lualine_venv = vim.fn.fnamemodify(venv.name, ":t") -- gets tail (basename) of venv variable (venv path)
+	return string.format("(%s)", lualine_venv) -- wraps venv name in parentheses `()` in lualine
+end
+
 M.setup = function()
 	local lualine = require("lualine")
 
@@ -22,30 +32,42 @@ M.setup = function()
 			},
 			icons_enabled = true,
 		},
+		-- "a" is leftmost section on lualine
+		-- "z" is rightmost section on lualine
 		sections = {
 			lualine_a = {
 				{
 					"mode",
 				},
-				-- add compent for Swenv info for python files
+			},
+			lualine_b = { "branch", "diff" },
+			lualine_c = {
+				"diagnostics", --@NOTE: leaning towards dropping component
+				-- add SWENV info to lualine for python filetypes
 				{
-					"swenv",
+					get_venv_name, -- @IMPORTANT: notice how parentheses `()` are not used when referencing functions defined within same file
 					cond = is_python_file,
-					color = { fg = "#ECEFF4", bg = "#5E81AC", gui = "bold" }, -- Nord theme colors
+					color = {
+						--bg = "#5E81AC",
+						fg = "#B48EAD", -- nord magenta
+						gui = "italic",
+						--bg = "#ECEFF4",
+						-- gui = "bold",
+					}, -- Nord theme colors
 				},
 			},
-			lualine_b = { "branch", "diff", "diagnostics" },
-			lualine_c = { "filename" },
-			lualine_x = { "encoding", "fileformat", "filetype" },
-			lualine_y = { "progress", "location", "hostname" },
-			lualine_z = { "location" },
+			lualine_x = { "filetype" },
+			lualine_y = { "progress", "location" },
+			lualine_z = {
+				"filename",
+			},
 		},
 		inactive_sections = {
 			-- lualine_a = {},
 			-- lualine_b = {},
 			lualine_c = { "filename" },
-			lualine_x = { "location" },
-			-- lualine_y = {},
+			lualine_x = { "fileformat", "encoding", "location" },
+			lualine_y = { "hostname" }, -- @verify: this is dropped from lualine
 			-- lualine_z = {},
 			-- },
 			--		tabline = {},

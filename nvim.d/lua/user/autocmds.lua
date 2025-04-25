@@ -131,3 +131,23 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 -- 		end
 -- 	end,
 -- })
+
+-- wrapper for inspecting output from Lua API that was called from an Ex-mode command 
+vim.api.nvim_create_user_command("InspectEval", function(opts)
+  local expr = opts.args
+  local wrapped = string.format('print(vim.inspect(%s))',expr)
+
+  -- echo wrapped expression
+  vim.api.nvim_echo({{"Wrapped: " .. wrapped, "Normal"}}, true, {})
+
+  -- load and execute wrapped command
+  local ok, err = pcall(load(
+  "return " .. wrapped
+  ))
+  if not ok then
+    vim.api.nvim_echo({{"Error: " .. err, "ErrorMsg"}}, true, {})
+  end
+end,{
+    nargs = 1,
+    complete = "lua", -- optional: helps tab-complete Lua expr
+})

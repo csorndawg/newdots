@@ -8,7 +8,6 @@ style: nord
 formatter: terminal256
 # TODO: check if bat can be used
 pager: less -Rij5
-
 ## CHEAT cheatpaths 
 cheatpaths:
   # Cheatpath properties mean the following:
@@ -20,34 +19,50 @@ cheatpaths:
     path: ~/.config/cheat/cheatsheets/community
     tags: [community]
     readonly: true
-
-############################
-## Personal Cheat Dirs 
-############################
-
-
-  # version controlled
+    ############################
+    ## Personal Cheat Dirs 
+    ############################
+  #
   # use as "pristine" folder for personal cheatsheets
   - name: pristine
+    # @TODO: Cleanup personal "traditional" cheatfiles subdirs, remove any folders that 
+    #         aren't needed after adding the new "flavored" sub directory folders to the config.
     path: ~/git/cheatbook/cheat/cheatfiles/pristine
     tags: [personal, pristine]
     readonly: true
-
-  # catch-all folder for things like stashing broken cheat comamnds, partially completed cheatfiles, etc.
+  #
+  # catch-all folder for "cheat-formatted" unfinished and/or unsorted files
   - name: unsorted
     path: ~/git/cheatbook/cheat/cheatfiles/unsorted
     tags: [personal, unsorted]
     readonly: false
-
+  #
+  # @TODO: Think about whether to make this "readonly" folder for telescope-formatted cheatsheets
+  - name: telescope
+    path: ~/git/cheatbook/cheat/cheatfiles/telescope
+    tags: [personal, telescope]
+    readonly: false
+  #
+  # for creating new and updating current cheatfiles that will be feed into pristine 
+  - name: snips
+    path: ~/git/cheatbook/cheat/cheatfiles/snips
+    tags: [personal, codesnippets, snips]
+    readonly: false
+  #
+  # personal maps/lookup tables for custom keymaps for CLI tools
+  - name: maps
+    path: ~/git/cheatbook/cheat/cheatfiles/maps
+    tags: [personal, maps, cli, dotfiles, keymaps, shortcuts, lookups]
+    readonly: false
+  #
+  # for multiline scripts, commands, or commands with multiline comment header 
+  - name: cookbooks
+    path: ~/git/cheatbook/cheat/cheatfiles/cookbooks
+    tags: [personal, cookbooks, recipes]
+    readonly: false
+  #
   # for creating new and updating current cheatfiles that will be feed into pristine 
   - name: work
     path: ~/git/cheatbook/cheat/cheatfiles/work
     tags: [personal, work]
-    readonly: false
-
-  # @TODO: Think about whether this should be "readonly" like "pristine"
-  # folder for telescope-formatted cheatsheets
-  - name: telescope
-    path: ~/git/cheatbook/cheat/cheatfiles/telescope
-    tags: [personal, telescope]
     readonly: false

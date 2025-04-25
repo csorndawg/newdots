@@ -1,16 +1,13 @@
 # For all configuration options see: https://alacritty.org/config-alacritty.html
-
 [terminal.shell]
 program = "C:\\Windows\\System32\\wsl.exe"
 args = ["~"]
-
 
 # Colors (Nord)
 
 # Default colors
 [colors.primary]
 background = '#2E3440'
-
 foreground = '#D8DEE9'
 
 # Normal colors
@@ -21,11 +18,9 @@ black = '#3B4252'
 # black   = '#3909DB3'
 red = '#BF616A'
 green = '#A3BE8C'
-
 yellow = '#EBCB8B'
 blue = '#81A1C1'
 magenta = '#B48EAD'
-
 cyan = '#88C0D0'
 white = '#E5E9F0'
 
@@ -33,7 +28,6 @@ white = '#E5E9F0'
 [colors.bright]
 black = '#4C566A'
 #custom/testing: black   = '#3B4252'
-
 red = '#BF616A'
 green = '#A3BE8C'
 yellow = '#EBCB8B'
@@ -43,67 +37,18 @@ cyan = '#8FBCBB'
 white = '#ECEFF4'
 
 
-# colors misc. configurations
-
-# [colors.vi_mode_cursor]
-# vi_mode_cursor = { text = "<string>", cursor = "<string>" }   ## Default: { text = "CellBackground", cursor = "CellForeground" }
-
-# search 
-# This section documents the [colors.search] table of the configuration.
-
-# Allowed values are hexadecimal colors like #ff00ff, or CellForeground/CellBackground, which references the affected cell.
-# matches = { foreground = "<string>", background = "<string>" }
-# Default: { foreground = "#181818", background = "#ac4242" }
-# focused_match = { foreground = "<string>", background = "<string>" }
-# Default: { foreground = "#181818", background = "#f4bf75" }
-
-# # colors.selection
-# selection = { text = "<string>", background = "<string>" }
-# Colors used for drawing selections.
-# Allowed values are hexadecimal colors like #ff00ff, or CellForeground/CellBackground, which references the affected cell.
-# Default: { text = "CellBackground", background = "CellForeground" }
-
-
-## END OF COLORS CONFIGS
-
-# default browser integration
-#[mouse.url]
-#launcher = "xdg-open" 
-#args = []
-#modifiers = "Control" 
-
 [cursor]
-
-
-# Cursor style
-#
-
-# Values for 'style':
-#   - ▇ Block
-#   - _ Underline
-#   - | Beam
-#custom_cursor_colors = true
 
 style = "Beam"
 # vi_mode_style = { <shape>, <blinking> } | "None"
 
-# Live config reload (changes require restart)
-# live_config_reload = true
-
-# Shell
-#
-# You can set shell.program to the path of your favorite shell, e.g. /bin/zsh.
-# Entries in shell.args are passed unmodified as arguments to the shell.
-# shell:
-
-#   program: /usr/local/bin/zsh
-#   program: /usr/local/bin/bash
-#   args:
-#     - --command=tmux
 
 [window]
-title = "ZAlacritty"
-# decorations = 'buttonless'
+title = "Zacs Alacritty"
+#startup_mode = "Fullscreen"
+decorations = 'buttonless'
+dynamic_padding = true
+
 # full: borders and title bar
 # none: neither borders nor title bar
 
@@ -113,23 +58,33 @@ persistent_logging = false
 log_level = "Error"
 
 
+# for windows font must be among fonts listed at: Settings > Personalization > Fonts
 [font]
 
-size = 13
+size = 11
 
 [font.normal]
-family = "JetBrains Mono NL"
-style = "Regular"
+family = "JetBrainsMono Nerd Font"
+style = "Light"
+#style = "Regular"
 
 [font.bold]
-family = "JetBrains Mono NL"
-
-style = "Bold"
+family = "JetBrainsMono Nerd Font"
+style = "SemiBold"
 
 [font.italic]
-family = "JetBrains Mono NL"
-style = "Italic"
+family = "JetBrainsMono Nerd Font"
+style = "Light Italic"
 
 [font.bold_italic]
-family = "JetBrains Mono NL"
-style = "Bold Italic"
+family = "JetBrainsMono Nerd Font"
+style = "SemiBold Italic"
+
+
+[scrolling]
+
+# max scroll history: 100000
+history = 15000
+
+[selection]
+save_to_clipboard = true

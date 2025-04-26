@@ -235,9 +235,12 @@ cmp.setup({
 			end
 		end, { "i", "s" }),
 
+		-- @IMPORTANT: Broken <Alt-Up>/<Alt-Down> are now working. Keep <Alt-k>/<Alt-j> alternates commented for now, until certain issue resolved.
 		-- scroll up/down
 		["<A-Up>"] = cmp.mapping.scroll_docs(-4),
 		["<A-Down>"] = cmp.mapping.scroll_docs(4),
+		-- ["<A-k>"] = cmp.mapping.scroll_docs(-4),
+		-- ["<A-j>"] = cmp.mapping.scroll_docs(4),
 
 		-- abort selection, without adding space, while remaining in Insert Mode
 		["<C-e>"] = cmp.mapping(function(fallback)

@@ -22,6 +22,8 @@ if todo_comments then
 					"broke",
 					"broken",
 					"IMPORTANT",
+					"WATCH",
+					"WATCHME",
 					"ISSUE",
 					"REMOVE_AFTER_TESTING",
 				}, -- a set of other keywords that all map to this FIX keywords

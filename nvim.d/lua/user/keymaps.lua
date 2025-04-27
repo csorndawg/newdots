@@ -18,17 +18,18 @@ local remapp = vim.api.nvim_set_keymap -- shorten NVIM remap function call
 
 --
 -- Normal Mode
---
-
--- remap Ff/Tt cycling to <Left/Right> arrows
-remapp("n", "<Right>", ";", opts)
-remapp("n", "<Left>", ", ", opts)
 
 -- better window navigation
-remapp("n", "<C-h><C-h>", "<C-w>h", opts)
-remapp("n", "<C-j><C-j>", "<C-w>j", opts)
-remapp("n", "<C-k><C-k>", "<C-w>k", opts)
-remapp("n", "<C-l><C-l>", "<C-w>l", opts)
+-- remapp("n", "<C-h><C-h>", "<C-w>h", opts)
+-- remapp("n", "<C-j><C-j>", "<C-w>j", opts)
+-- remapp("n", "<C-k><C-k>", "<C-w>k", opts)
+-- remapp("n", "<C-l><C-l>", "<C-w>l", opts)
+
+remapp("n", "<leader>h", "<C-w>h", opts)
+remapp("n", "<leader>j", "<C-w>j", opts)
+remapp("n", "<leader>k", "<C-w>k", opts)
+remapp("n", "<leader>l", "<C-w>l", opts)
+vim.keymap.set("n", "<leader>ww", "<C-w>w", { desc = "Cycle splits", silent = true, noremap = true })
 
 -- resize with arrows
 remapp("n", "<C-Up>", ":resize -2<CR>", opts)
@@ -36,29 +37,10 @@ remapp("n", "<C-Down>", ":resize +2<CR>", opts)
 remapp("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 remapp("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
--- move text up and down w/ <ALT-j><ALT-j>/<ALT-k><ALT-k>
---remapp("n", "<A-j>", ":m .+1<CR>==", opts)
---remapp("n", "<A-k>", ":m .-2<CR>==", opts)
 --
 -- (m)ove text up/down
 remapp("n", "mj", ":m .+1<CR>==", opts)
 remapp("n", "mk", ":m .-2<CR>==", opts)
-
--- @TODO: review NVIM docs to see if existing mapping exists for other Normal
--- Mode like actions within Insert Mode (ex. delete current word, but stay
--- in Insert mode whole time)
---
--- @STALE:
--- insert mode arrow key cursor navigation
--- remapp("i", "<A-h>", "<Left>", opts)
--- remapp("i", "<A-l>", "<Right>", opts)
--- remapp("i", "<A-k>", "<Up>", opts)
--- remapp("i", "<A-j>", "<Down>", opts)
-
--- @FIXME: Broken keymap. Use <Right> as 'next' fFtT match
--- Restore original find-repeat behavior BEFORE swapping ";"
-vim.keymap.set("n", "<A-;>", ";", { noremap = true }) -- Use Alt+; to repeat f/t
---vim.keymap.set("n", "<A-:>", ":", { noremap = true }) -- Optional: Alt+: for command mode
 
 -- Now swap ";" and ":"
 vim.keymap.set("n", ";", ":", { noremap = true })
@@ -174,74 +156,40 @@ remapp("n", "<Leader><Up>", ":<Up><CR>", opts)
 -- Terminal Mode
 --
 
--- better terminal navigation
---- remapp("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
--- remapp("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
--- remapp("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
--- remapp("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
---
 -- Command Mode
 --
 
 -- command/normal mode switch
 --remapp("c", ";;", "<Esc>", opts)
-remapp("c", "<C-;>", "<Esc>", opts)
+remapp("c", ";;", "<Esc>", opts)
 
 -- command/insert mode switch  (continue with comma `,` theme remaps linked with Insert Mode)
-remapp("c", "<A-,>", "<Esc>i", opts)
 remapp("c", ",,", "<Esc>i", opts)
-
--- @TODO - Try out <CTRL><key> vs. <key><key> movement remaps, and pick one method
--- to keep moving forward and remove other method after to free up binding.
--- CMD mode command line cursor movement remaps
-
--- <key><key> CMD movement remaps
-remapp("c", "HH", "<Home>", { noremap = true })
-remapp("c", "EE", "<End>", { noremap = true })
-remapp("c", "BB", "<C-Left>", { noremap = true })
-remapp("c", "WW", "<C-Right>", { noremap = true })
-remapp("c", "HH", "<Left>", { noremap = true })
-remapp("c", "LL", "<Right>", { noremap = true })
-
--- CMD history cycling remaps
-remapp("c", "<C-,>", "<Up>", { noremap = true })
-remapp("c", "<C-.>", "<Down>", { noremap = true })
 
 --
 -- Experimental Remaps
 --
 
 -- simple navigation/movements while staying in Insert Mode
-remapp("i", "<A-l><A-l>", "<Right>", { noremap = true })
-remapp("i", "<A-h><A-h>", "<Left>", opts)
-remapp("i", "<A-k><A-k>", "<Up>", opts)
-remapp("i", "<A-j><A-j>", "<Down>", opts)
+remapp("i", "<C-S-l>", "<Right>", { noremap = true })
+remapp("i", "<C-S-h>", "<Left>", opts)
+-- @FIX: Temp disabling to test cmp scrolling keymap
+-- remapp("i", "<C-S-k>", "<Up>", opts)
+-- remapp("i", "<C-S-j>", "<Down>", opts)
 
 -- <Ctrl-l><Ctrl-l> for omni line completion
-vim.keymap.set("i", "<C-l><C-l>", "<C-x><C-l>", { desc = "Line comp", noremap = true })
-vim.keymap.set("i", "<C-f><C-f>", "<C-x><C-f>", { desc = "Path comp", noremap = true })
+-- vim.keymap.set("i", "<C-l><C-l>", "<C-x><C-l>", { desc = "Line comp", noremap = true })
+-- vim.keymap.set("i", "<C-f><C-f>", "<C-x><C-f>", { desc = "Path comp", noremap = true })
 
 -- rerun last CMD mode command in normal/on visual block selection with <Leader>cx
 -- `:@:` recalls and executes the most recent `:` command
 vim.keymap.set({ "n", "v" }, "<Up><Up>", ":@:<Cr>", { silent = true, silent = true, desc = "Rerun last CMD command" })
 
--- @TODO: Better Cursor Movement/Workflow
--- For default movement mappings see: https://learnvim.irian.to/basics/moving_in_file#scrolling
-
--- scroll halfway up/down with <Ctrl-j/k>
--- @NEXT: expand mapping to visual mode (see <Up><Up> example above for ref)
--- @IDEA: make <Leader>m --> "Movement" group for cursor/scrolling remaps
-
--- simpler scrolling workflow (@TEST:)
 vim.keymap.set("n", "<A-k>", "<C-u>", { noremap = true, silent = true })
 vim.keymap.set("n", "<A-j>", "<C-d>", { noremap = true, silent = true })
 
 -- move cursor right with <Ctrl-Space> within insert
 vim.keymap.set("i", "<C-Space><C-Space>", "<Right>", { noremap = true, silent = true })
-
---  move cursor left with <Ctrl-h><Ctrl-h> or <Ctrl-BS><Ctrl-BS> as vim
--- natively maps <C-h> to <Bs>
-vim.keymap.set("i", "<C-h><C-h>", "<Left>", { noremap = true, silent = true })
 
 -- move cursor to start/end of line shortcuts
 vim.keymap.set("i", "00", "<Home>", { noremap = true, silent = true })
@@ -262,11 +210,6 @@ local map = vim.keymap.set
 map("n", "<C-a><C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
 map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
 map("i", "<C-e>", "<End>", { desc = "move end of line" })
-
-map("i", "<C-h>", "<Left>", { desc = "move left" })
-map("i", "<C-l>", "<Right>", { desc = "move right" })
-map("i", "<C-j>", "<Down>", { desc = "move down" })
-map("i", "<C-k>", "<Up>", { desc = "move up" })
 
 -- Lazy Vim
 -- Terminal Mappings

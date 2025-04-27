@@ -66,7 +66,7 @@ vim.keymap.set("n", ":", ";", { noremap = true })
 
 -- Normal/Insert mode switch 	(Cycle b/w two modes with `,,`)
 remapp("n", "<Leader>,", "i", opts)
-remapp("n", "<C-,>", "i", opts)
+remapp("n", ",,", "i", opts)
 
 -- toggle search highlighting
 remapp("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)
@@ -117,14 +117,8 @@ remapp("i", "kk", "<ESC>", opts)
 remapp("i", "ii", "<ESC>", opts)
 
 -- Insert/Command mode switch
---remapp("i", ";;", "<ESC>:", opts_loud) -- dont pass opts b/c we want to see CMD prompt
-remapp("i", "<C-;>", "<ESC>:", opts_loud)
-
 -- Normal/Insert Mode
-remapp("n", "<leader>,,", "i<Tab>", opts)
-
--- <Alt-,> simulates <TAB> key
-remapp("i", "<A-,>", "<Tab>", opts)
+-- remapp("n", "<leader>,,", "i<Tab>", opts)
 
 --
 -- Visual Mode
@@ -170,10 +164,8 @@ remapp("v", "<leader>n", "<C-c>", opts)
 --
 
 -- Move text up and down
-remapp("x", "J", ":m '>+1<CR>gv=gv", opts)
-remapp("x", "K", ":m '<-2<CR>gv=gv", opts)
-remapp("x", "<A-j>", ":m '>+1<CR>gv=gv", opts)
-remapp("x", "<A-k>", ":m '<-2<CR>gv=gv", opts)
+remapp("i", "<S-Down>", ":m '>+1<CR>gv=gv", opts)
+remapp("i", "<S-Up>", ":m '<-2<CR>gv=gv", opts)
 
 -- rerun last CMD command
 remapp("n", "<Leader><Up>", ":<Up><CR>", opts)
@@ -257,7 +249,9 @@ vim.keymap.set("i", "$$", "<End>", { noremap = true, silent = true })
 
 -- @PRELIM: Testing alternate buffer navigation/movement keybinds. After trying out remove if not helpful.
 vim.keymap.set("n", "<Leader>bn", ":bn<Cr>", { silent = true, desc = "Buffer next", noremap = true })
+vim.keymap.set("n", "<A-.>", ":bn<Cr>", { silent = true, desc = "Buffer next", noremap = true })
 vim.keymap.set("n", "<Leader>bp", ":bp<Cr>", { silent = true, desc = "Buffer prev", noremap = true })
+vim.keymap.set("n", "<A-,>", ":bp<Cr>", { silent = true, desc = "Buffer prev", noremap = true })
 vim.keymap.set("n", "<Leader>bl", ":buffers<Cr>", { desc = "List buffers", noremap = true })
 vim.keymap.set("n", "<Leader>bb", ":blast <Cr>", { silent = true, desc = "Last buffer", noremap = true })
 vim.keymap.set("n", "<Leader>bd", ":bd <Cr>", { silent = true, desc = "Delete buffer", noremap = true })
@@ -283,3 +277,7 @@ map("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
 map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
 map("n", "<leader>|", "<C-W>v", { desc = "Split Window Right", remap = true })
 map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
+
+-- @TESTME: Test below keymaps 4/26
+--vim.keymap.set("i", "<A-Right>", "<Tab>", { silent = true })
+vim.keymap.set("i", "<A-Right>", "<Tab>", { silent = true })

@@ -53,6 +53,11 @@ vim.keymap.set("c", "<, C-e>", "<Home>", { desc = "Move cursor to line end" })
 -- end, { noremap = true })
 -- simple/crude keymap for same functionality
 -- vim.keymap.set("c", "<A-h", "<Left>", { desc = "Move left/prev 1 char" }) --@FAILED: seems like <Alt-h> is not possible, all keymaps thus far have just kicked us back to normal mode
-vim.keymap.set("c", "hh", "<Left>", { desc = "Move left/prev 1 char - v2" }) -- @WORKS/@VALIDATED: keymap works but it annoying if need to move > 3 left chars. Checking for suitable alternative in the interim.
+
+-- swapping custom "hh" keymap with <C-h> default map (move left 1 char, no delete)
+vim.keymap.set("c", "hh", "<C-h>", { noremap = false, desc = "Move left/prev 1 char - v2" }) -- @WORKS/@VALIDATED: keymap works but it annoying if need to move > 3 left chars. Checking for suitable alternative in the interim.
+vim.keymap.set("c", "<C-h>", "<Left>", { desc = "Move left/prev 1 char - v2" }) -- @WORKS/@VALIDATED: keymap works but it annoying if need to move > 3 left chars. Checking for suitable alternative in the interim.
+--vim.keymap.set("c", "hh", "<Left>", { desc = "Move left/prev 1 char - v2" }) -- @WORKS/@VALIDATED: keymap works but it annoying if need to move > 3 left chars. Checking for suitable alternative in the interim.
+
+-- works no need to change
 vim.keymap.set("c", "<C-l>", "<Right>", { desc = "Move right/next 1 char - v2" })
--- vim.keymap.set("c", "<C-.>", "<Right>", { desc = "Move right/next 1 char - v2" })

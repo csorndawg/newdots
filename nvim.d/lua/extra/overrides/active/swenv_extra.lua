@@ -1,66 +1,52 @@
 -- experimental/test config for swenv
 
+local SWENV = require("swenv.api")
+
+-- @TESTING: Testing chatgpt fix for all 4 keymaps below
+--
+
 vim.keymap.set("n", "<Leader>cva", function()
-	local autovenv = require("swenv.api").auto_venv
-	local ok, err = pcall(autovenv)
+	local ok, err = pcall(function()
+		SWENV.auto_venv()
+	end)
 	if not ok then
-		vim.notify("auto_venv error: " .. err, vim.log.levels.ERROR)
+		vim.notify("autovenv error: " .. err, vim.log.levels.ERROR)
 	end
 end, { desc = "Automake venv", noremap = true })
 
--- @TESTME: Testing "vim.notify" integration
-vim.keymap.set(
-	"n",
-	"<Leader>cvp",
-	-- <cmd>lua require('swenv.api').pick_venv()<cr>,
-	function()
-		local pickvenv = require("swenv.api").pick_venv
-		local ok, err = pcall(pickvenv)
-		if not ok then
-			vim.notify("swenv pick venv error: " .. err, vim.log.levels.ERROR)
-		end
-	end,
-	{ desc = "Pick venv", noremap = true }
-)
-
--- -- @FFIXME:
-vim.keymap.set("n", "<Leader>cvs", function()
-	local setvenv = require("swenv.api").set_venv
-	local ok, err = pcall(setvenv)
+-- select venv from preset venv dir
+vim.keymap.set("n", "<Leader>cvp", function()
+	local ok, err = pcall(function()
+		SWENV.pick_venv()
+	end)
 	if not ok then
-		vim.notify("set_venv error: " .. err, vim.log.levels.ERROR)
+		vim.notify("pick_venv: " .. err, vim.log.levels.ERROR)
+	end
+end, { desc = "Pick venv", noremap = true })
+
+-- set venv dirpaths to check?? (review function in docs)
+vim.keymap.set("n", "<Leader>cvs", function()
+	local ok, err = pcall(function()
+		SWENV.set_venv()
+	end)
+	if not ok then
+		vim.notify("set_venv: " .. err, vim.log.levels.ERROR)
 	end
 end, { desc = "Search/Set venv", noremap = true })
 
--- @TEST: vim.notify to display "get_current_venv" results
+-- view currently enabled venv, otherwise return None
 vim.keymap.set("n", "<Leader>cvv", function()
-	local getvenvs = require("swenv.api").get_current_venv
-	local ok, err = pcall(getvenvs)
+	local ok, result = pcall(function()
+		return SWENV.get_current_venv() -- @IMPORTANT: unlike other API functions above, this pcall() is testing the FUNCTIONS RETURN VALUE, not the function itself
+	end)
 	if ok then
-		vim.notify("Current venv: " .. (getvenvs or "No active venv"), vim.log.levels.INFO)
+		if result then
+			-- assuming result is a table like { name = "...", path = "..." }
+			vim.notify("current_venv: " .. (result.name or "Unknown"), vim.log.levels.INFO)
+		else
+			vim.notify("current_venv: None", vim.log.levels.INFO)
+		end
 	else
-		vim.notify("get_current_venv error: " .. err, vim.log.levels.INFO)
+		vim.notify("get_current_venv error: " .. result, vim.log.levels.ERROR)
 	end
 end, { desc = "View current venv", noremap = true })
-
--- @TODO: Load 'lualine' and add SWENV info to lualine section
--- swenv docs copypasta
-
--- --  add to lualine component
--- sections = {
---         ...
---         lualine_a = 'swenv' -- uses default options
---         lualine_x = { 'swenv', icon = '<icon>' } -- passing lualine component options
---         ...
---     }
---
--- -- only show if FT=python
---     {
---         "swenv",
---         cond = function()
---             return vim.bo.filetype == "python"
---
---         end,
---     }
-
--- return M

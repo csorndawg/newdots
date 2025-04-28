@@ -145,9 +145,10 @@ remapp("v", "<leader>n", "<C-c>", opts)
 -- Visual Block Mode
 --
 
+-- @FIXME: not sure what this does/ if its broken (taken from nvim distro)
 -- Move text up and down
-remapp("i", "<S-Down>", ":m '>+1<CR>gv=gv", opts)
-remapp("i", "<S-Up>", ":m '<-2<CR>gv=gv", opts)
+-- remapp("i", "<S-Down>", ":m '>+1<CR>gv=gv", opts)
+-- remapp("i", "<S-Up>", ":m '<-2<CR>gv=gv", opts)
 
 -- rerun last CMD command
 remapp("n", "<Leader><Up>", ":<Up><CR>", opts)
@@ -171,11 +172,15 @@ remapp("c", ",,", "<Esc>i", opts)
 --
 
 -- simple navigation/movements while staying in Insert Mode
-remapp("i", "<C-S-l>", "<Right>", { noremap = true })
-remapp("i", "<C-S-h>", "<Left>", opts)
--- @FIX: Temp disabling to test cmp scrolling keymap
--- remapp("i", "<C-S-k>", "<Up>", opts)
--- remapp("i", "<C-S-j>", "<Down>", opts)
+vim.keymap.set("i", "<C-h>", "<Left>", { silent = true, noremap = true }) --- move cursor left 1 char
+vim.keymap.set("i", "<C-j>", "<Down>", { silent = true, noremap = true }) -- move cursor down 1 line
+vim.keymap.set("i", "<C-k>", "<Up>", { silent = true, noremap = true }) -- move cursor down 1 line
+vim.keymap.set("i", "<C-l>", "<Right>", { silent = true, noremap = true }) -- move cursor right 1 char
+
+-- delete and move cursor
+vim.keymap.set("i", "<C-S-h>", "<BS>", { silent = true, noremap = true })
+vim.keymap.set("i", "<A-h>", "<BS>", { silent = true, noremap = true }) -- delete previous char (ie. <Backspace>)
+vim.keymap.set("i", "<A-l>", "<Del>", { silent = true, noremap = true }) -- delete next char (ie. <Delete> key behavior)
 
 -- <Ctrl-l><Ctrl-l> for omni line completion
 -- vim.keymap.set("i", "<C-l><C-l>", "<C-x><C-l>", { desc = "Line comp", noremap = true })
@@ -222,5 +227,4 @@ map("n", "<leader>|", "<C-W>v", { desc = "Split Window Right", remap = true })
 map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
 
 -- @TESTME: Test below keymaps 4/26
---vim.keymap.set("i", "<A-Right>", "<Tab>", { silent = true })
 vim.keymap.set("i", "<A-Right>", "<Tab>", { silent = true })

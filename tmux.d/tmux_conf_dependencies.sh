@@ -24,3 +24,8 @@ if [[ ! -f "$TMUX_CONF_PLUGINS/tpm" ]]; then
 	echo "No tpm directory found, starting clone"
 	git clone https://github.com/tmux-plugins/tpm  2> /dev/null 
 fi
+
+if [[ ! -z "$TMUX_SYML_SRC/tmux.d" ]]; then
+	echo 'Remove duplicate/nested symlink'
+	rm -v "$TMUX_SYML_SRC/tmux.d"  2> /dev/null
+fi

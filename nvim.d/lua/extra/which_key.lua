@@ -74,7 +74,7 @@ wk.add({
 	{ "<leader>v", group = "Visual Mode" },
 
 	-- Trouble
-	{ "<leader>T", group = "[T]rouble" },
+	{ "<leader>S", group = "[S]nacks (WIP/TEST)" },
 })
 
 -- -- create 'ignore" (do not display in whichkey-menu) register

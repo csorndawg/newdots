@@ -3,23 +3,13 @@
 local builtin = require("telescope.builtin")
 
 -- create remaps for core telescope actions
-vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "Telescope find files" })
-vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "Telescope buffers" })
-vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "Telescope help tags" })
+-- vim.keymap.set("n", "<leader>tf", builtin.find_files, { desc = "Find files" })
+vim.keymap.set("n", "<leader>bs", builtin.buffers, { desc = "Buffers search" })
+vim.keymap.set("n", "<leader>tb", builtin.buffers, { desc = "Buffers search" })
+vim.keymap.set("n", "<leader>tvh", builtin.help_tags, { desc = "Help tags search" })
+vim.keymap.set("n", "<leader>ta", "<cmd>Telescope builtin <cr>", { noremap = true, desc = "All builtin telescopes" })
 
 -- Cherry-picked configuration recipes from: https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes
-
--- Clear prompt with <C-u>
-local actions = require("telescope.actions")
-require("telescope").setup({
-	defaults = {
-		mappings = {
-			i = {
-				["<C-u>"] = false,
-			},
-		},
-	},
-})
 
 -- toggle previewer (if applicable) with <Alt-p>
 local action_layout = require("telescope.actions.layout")

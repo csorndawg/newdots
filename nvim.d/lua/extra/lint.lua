@@ -28,8 +28,23 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 })
 
 -- Keymaps to toggle linting levels
-vim.api.nvim_set_keymap("n", "<leader>li", ":lua update_lint_level('info')<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>cli",
+	":lua update_lint_level('info')<CR>",
+	{ noremap = true, silent = true, desc = "Lint Level: Info" }
+)
 
-vim.api.nvim_set_keymap("n", "<leader>lw", ":lua update_lint_level('warning')<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>clw",
+	":lua update_lint_level('warning')<CR>",
+	{ noremap = true, silent = true, desc = "Lint Level: Warning" }
+)
 
-vim.api.nvim_set_keymap("n", "<leader>le", ":lua update_lint_level('error')<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>cle",
+	":lua update_lint_level('error')<CR>",
+	{ noremap = true, silent = true, desc = "Lint Level: Error" }
+)

@@ -4,6 +4,14 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
+		dependencies = {
+			{
+				"LiadOz/nvim-dap-repl-highlights",
+				config = function()
+					require("nvim-dap-repl-highlights").setup()
+				end,
+			},
+		},
 		config = function()
 			local configs = require("nvim-treesitter.configs")
 
@@ -14,7 +22,7 @@ return {
 					"c",
 					"comment",
 					"csv",
-					-- "dap_repl", -- note: plugin must be installed/setup or this will break
+					"dap_repl", -- note: plugin must be installed/setup or this will break
 					"diff",
 					"dockerfile",
 					"editorconfig",

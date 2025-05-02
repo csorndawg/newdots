@@ -282,6 +282,11 @@ cmp.setup({
 		},
 		-- priority_weight = {}	-- need to review docs first
 	},
+
+	-- cmp dap docs
+	enabled = function()
+		return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
+	end,
 })
 
 -- Now that standard cmp configuration is set by (set by above function)
@@ -360,5 +365,11 @@ cmp.setup.filetype({ "sql" }, {
 	sources = {
 		{ name = "vim-dadbod-completion" },
 		{ name = "buffer" },
+	},
+})
+
+cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+	sources = {
+		{ name = "dap" },
 	},
 })

@@ -9,10 +9,10 @@ local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
 local scan = require("plenary.scandir")
 
--- You can change this to any root you'd like
-local predefined_root = vim.fn.expand("~/.local/state/python/uv")
+-- dir for persistent/reusable venvs generated via "uv"
+local predefined_root = vim.fn.expand("~/.local/state/python/uv/venvs")
 
--- Stores the selected directory (can be accessed externally)
+-- stores the selected directory (can be accessed externally)
 M.selected_directory = nil
 
 local function get_dirs(path, opts)

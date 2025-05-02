@@ -32,7 +32,8 @@ local live_multigrep = function(opts)
 			---@diagnostic disable-next-line: deprecated
 			return vim.tbl_flatten({
 				args,
-				{ "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case" },
+				-- { "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case" },
+				{ "--color=auto", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case" },
 			})
 		end,
 		entry_maker = make_entry.gen_from_vimgrep(opts),
@@ -51,8 +52,7 @@ local live_multigrep = function(opts)
 end
 
 M.setup = function()
-	vim.keymap.set("n", "<leader>sm", live_multigrep, { desc = "Telescope multigrep" })
-	-- vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "Telescope live grep" })   -- not needed because of "multigrep" custom grep function/action
+	vim.keymap.set("n", "<leader>tm", live_multigrep, { desc = "Multigrep" })
 end
 
 return M

@@ -1,6 +1,6 @@
 -- Create keymap to custom telescope function that uses telescope to browse all
 -- telescope extensions, pick an extensions, and load the selected picker within our session
-vim.keymap.set("n", "<leader>te", function()
+vim.keymap.set("n", "<leader>Te", function()
 	local telescope = require("telescope")
 	local pickers = require("telescope.pickers")
 	local finders = require("telescope.finders")

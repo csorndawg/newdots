@@ -53,7 +53,7 @@ return {
 			statuscolumn = { enabled = false },
 			terminal = { enabled = false },
 			toggle = { enabled = false },
-			-- util = { enabled = false },
+			util = { enabled = false },
 			win = { enabled = false },
 			words = { enabled = false },
 			zen = { enabled = false },

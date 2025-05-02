@@ -25,11 +25,11 @@ local remapp = vim.api.nvim_set_keymap -- shorten NVIM remap function call
 -- remapp("n", "<C-k><C-k>", "<C-w>k", opts)
 -- remapp("n", "<C-l><C-l>", "<C-w>l", opts)
 
-remapp("n", "<leader>h", "<C-w>h", opts)
-remapp("n", "<leader>j", "<C-w>j", opts)
-remapp("n", "<leader>k", "<C-w>k", opts)
-remapp("n", "<leader>l", "<C-w>l", opts)
-vim.keymap.set("n", "<leader>ww", "<C-w>w", { desc = "Cycle splits", silent = true, noremap = true })
+vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
+vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
+vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
+vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
+vim.keymap.set("n", "<C-w><C-w>", "<C-w>w", { desc = "Cycle splits", silent = true, noremap = true })
 
 -- resize with arrows
 remapp("n", "<C-Up>", ":resize -2<CR>", opts)

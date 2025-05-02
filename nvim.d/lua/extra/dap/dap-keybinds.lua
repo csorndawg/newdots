@@ -40,3 +40,21 @@ end, { desc = "DAP Test Class", noremap = true })
 vim.keymap.set("n", "<leader>dS", function()
 	neotest.summary.toggle()
 end, { desc = "Test Summary", noremap = true })
+
+-- @TODO: Add actually keymappings for each whichkey item
+-- { "<leader>db ", desc = "Toggle Breakpoint" },
+-- { "<leader>dB", desc = "Set Breakpoint" },
+-- { "<leader>dk ", desc = "Step Back" },
+-- { "<leader>dc", desc = "Continue" },
+-- { "<leader>dd", desc = "Disconnect" },
+-- { "<leader>dg", desc = "Get Session" },
+-- { "<leader>ds", desc = "Start" },
+-- { "<leader>dp", desc = "Pause" },
+--{ "<leader>di ", desc = "Step Into" },
+--{ "<leader>do ", desc = "Step Out" },
+--{ "<leader>dC", desc = "Run To Cursor" },
+--{ "<leader>dU ", desc = "Toggle UI" },
+--{ "<leader>dq ", desc = "Quit" },
+--{ "<leader>dr ", desc = "Toggle Repl" },
+--{ "<leader>dt ", desc = "Toggle DAP-UI" },
+--{"<leader>dv ", desc = "Step Over" },

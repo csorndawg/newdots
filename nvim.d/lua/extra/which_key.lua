@@ -17,28 +17,22 @@ local wk = require("which-key")
 --]]
 
 wk.add({
-	-- Telescope [s]earch keymap group
-	{ "<leader>s", group = "Telescope [S]earch" }, -- telescope [s]earch group
-	{ "<leader>sn", desc = "Telescope find Nvim files" },
-	--{ "<leader>sl", desc = "Telescope livegrep" },
-	--{ "<leader>sm", desc = "Telescope multigrep" },
 
-	-- Telescope [L]sp subgroup keymap
-	{ "<leader>sl", group = "[L]SP Pickers" },
-	{ "<leader>sv", group = "[V]im Pickers" },
-	{ "<leader>sg", group = "[G]it Pickers" },
+	-- telescope sublabels
+	{ "<leader>tv", group = "[V]im Pickers" },
+	{ "<leader>tg", group = "[G]it Pickers" },
 
 	-- @TODO: Move debug 'desc' to corresponding remapping in dap-extras
 	-- DAP [d]ebug keymap group
 	{ "<leader>d", group = "[D]ebug" },
-	{ "<leader>db ", desc = "Toggle Breakpoint" },
-	{ "<leader>dB", desc = "Set Breakpoint" },
-	{ "<leader>dk ", desc = "Step Back" },
-	{ "<leader>dc", desc = "Continue" },
-	{ "<leader>dd", desc = "Disconnect" },
-	{ "<leader>dg", desc = "Get Session" },
-	{ "<leader>ds", desc = "Start" },
-	{ "<leader>dp", desc = "Pause" },
+	-- { "<leader>db ", desc = "Toggle Breakpoint" },
+	-- { "<leader>dB", desc = "Set Breakpoint" },
+	-- { "<leader>dk ", desc = "Step Back" },
+	-- { "<leader>dc", desc = "Continue" },
+	-- { "<leader>dd", desc = "Disconnect" },
+	-- { "<leader>dg", desc = "Get Session" },
+	-- { "<leader>ds", desc = "Start" },
+	-- { "<leader>dp", desc = "Pause" },
 	--{ "<leader>di ", desc = "Step Into" },
 	--{ "<leader>do ", desc = "Step Out" },
 	--{ "<leader>dC", desc = "Run To Cursor" },
@@ -65,7 +59,7 @@ wk.add({
 	-- { "<leader>ma", group = "[A]i" },
 
 	-- LSP
-	{ "<leader>l", group = "[L]SP" },
+	-- { "<leader>l", group = "[L]SP" },
 
 	-- Buffers
 	{ "<leader>b", group = "[B]uffers" },
@@ -74,7 +68,7 @@ wk.add({
 	{ "<leader>v", group = "Visual Mode" },
 
 	-- Trouble
-	{ "<leader>T", group = "[T]rouble" },
+	-- { "<leader>T", group = "[T]rouble" },
 })
 
 -- -- create 'ignore" (do not display in whichkey-menu) register
@@ -89,3 +83,27 @@ vim.keymap.set("n", "<leader>??", "<cmd>WhichKey <CR>", { desc = "view all which
 vim.keymap.set("n", "<leader>wq", function()
 	vim.cmd("WhichKey " .. vim.fn.input("WhichKey: "))
 end, { desc = "whichkey query lookup" })
+
+-- comment toggling convenience mapping
+-- normal mode comment toggling
+vim.keymap.set("n", "<leader><leader>c", function()
+	local count = vim.v.count
+	local start_line = vim.fn.line(".")
+	local end_line = start_line + (count > 0 and count or 1) - 1
+	if end_line < start_line then
+		end_line = start_line
+	end
+	vim.cmd(string.format("%d,%dnormal gcc", start_line, end_line))
+end, { desc = "Toggle comment (count-aware)", silent = true })
+
+-- visual mode toggle comment
+vim.keymap.set("v", "<leader><leader>c", function()
+	require("Comment.api").toggle.linewise(vim.fn.visualmode())
+end, { desc = "Toggle comment (visual)" })
+
+-- delete next character and remain in INSERT
+vim.keymap.set("i", "<C-x>", "<Del>", { silent = true, noremap = true })
+vim.keymap.set("i", "<A-x>", "<Esc>xi", { silent = true, noremap = true })
+
+vim.keymap.set("n", "<leader><leader>W", ":wa!", { desc = "Write (force) all buffers", silent = true, noremap = true })
+vim.keymap.set("n", "<leader><leader>Q", ":qa!", { desc = "Quit (force) all buffers", silent = true, noremap = true })

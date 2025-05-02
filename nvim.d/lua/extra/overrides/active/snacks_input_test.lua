@@ -1,7 +1,7 @@
 -- @TEMP: temporary keymap for testing snacks install/config
 
 -- test basic input (no prompt/no selections)
-vim.keymap.set("n", "<leader>ti", function()
+vim.keymap.set("n", "<leader>sI", function()
 	vim.ui.input({ prompt = "Test Snack Input:" }, function(input)
 		if input then
 			vim.notify("You entered: " .. input)
@@ -10,7 +10,7 @@ vim.keymap.set("n", "<leader>ti", function()
 end, { desc = "Test Snack Input" })
 
 -- test input with selection options
-vim.keymap.set("n", "<leader>ts", function()
+vim.keymap.set("n", "<leader>sS", function()
 	vim.ui.select({ "Option 1", "Option 2", "Option 3" }, { prompt = "Test Snack Select:" }, function(choice)
 		if choice then
 			vim.notify("You selected: " .. choice)

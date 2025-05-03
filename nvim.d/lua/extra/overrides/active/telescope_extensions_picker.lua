@@ -35,4 +35,4 @@ vim.keymap.set("n", "<leader>Te", function()
 			end,
 		})
 		:find()
-end, { desc = "Browse and load Telescope extensions" })
+end, { desc = "Browse/select installed extensions" })

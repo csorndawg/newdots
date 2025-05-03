@@ -129,7 +129,7 @@ remapp("v", "<C-/>", "y", { noremap = true })
 -- visual mode copy alt.
 remapp("v", "//", "y", { noremap = true })
 --remapp("v", ",,", "y", { noremap = true })
-remapp("v", "<leader>c", "y", { noremap = true })
+remapp("v", "<leader><leader>", "y", { noremap = true })
 
 -- easier pasting
 remapp("n", "<Alt-v>", "p", { noremap = true })

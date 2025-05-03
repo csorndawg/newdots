@@ -53,10 +53,12 @@ vim.keymap.set("c", "<C-l>", "<Right>", { desc = "Move right/next 1 char - v2" }
 
 -- delete entire line like "dd"
 vim.keymap.set("c", "<A-d><A-d>", "<C-e><c-u>", { desc = "Delete line" }) -- @PASSED: this keymap deleted all text in cmdline and remained in cmdline mode
+
+-- @WIP: Need to make function to get current position index, jump to end of Cmdline and delete chars until back to position index
 -- delete from cursor to start of line like "d$"
 vim.keymap.set("c", "<A-4>", "<C-k>", { desc = "Delete from cursor to SOL" }) -- <Alt-4> closest thing to d$
 
--- @WIP: Need to make function to get current position index, jump to end of Cmdline and delete chars until back to position index
+-- @PASSED: below passed test
 -- delete from cursor to end of line like "d$"
 vim.keymap.set(
 	"c",

@@ -5,6 +5,7 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+			"nvim-telescope/telescope-live-grep-args.nvim",
 		},
 		config = function()
 			require("telescope").setup({
@@ -49,7 +50,10 @@ return {
 			require("extra.telescope.vim_pickers").setup()
 			require("extra.telescope.git_pickers").setup()
 			require("extra.telescope.lsp_pickers").setup()
+
 			-- @TODO: Add review community pickers and add any useful ones below
+			-- Live-Grep Extension
+			require("telescope").load_extension("live_grep_args")
 		end,
 	},
 }

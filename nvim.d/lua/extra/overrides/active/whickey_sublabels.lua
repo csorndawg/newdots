@@ -4,6 +4,9 @@ local wk = require("which-key")
 -- Use the supported table format for group labels (still valid and preferred)
 wk.register({
 	x = { name = "e[X]perimental" },
+	-- Dedicated subkey space for testing/validating interim keymaps before updating for my use case
+	-- Subkey space is intentionally inconvient to avoid namespace conflicts with actual mappings
+	z9 = { name = "Nonprod Testing/Validating Space" },
 	m = { name = "[M]iscellaneous" },
 	t = { name = "[t]elescope builtins" },
 	T = { name = "[T]elescope extensions" },
@@ -24,3 +27,9 @@ vim.keymap.set("n", "<leader>mm", "<cmd>echo 'Misc Function'<cr>", { desc = "Mis
 vim.keymap.set("n", "<leader>clz", "<cmd>echo 'Test LSP Lint subkey'<cr>", { desc = "Code Actions - Venv Function" })
 vim.keymap.set("n", "<leader>ta", "<cmd>Telescope builtin<cr>", { desc = "All builtins search" })
 vim.keymap.set("n", "<leader>Tl", "<cmd>Telescope luasnip<cr>", { desc = "Telescope Luasnip" })
+vim.keymap.set(
+	"n",
+	"<leader>z9e",
+	"<cmd>echo 'This subkey is for testing/validating TEMPORARY keymaps that will be updated before released to PROD.'<cr>",
+	{ desc = "Subkey Description" }
+)

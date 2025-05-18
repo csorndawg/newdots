@@ -95,7 +95,6 @@ vim.api.nvim_create_autocmd("User", {
 vim.cmd([[
   command! -nargs=* Help vertical rightbelow help <args>
 ]])
-
 -- Autocmd to move help buffers to the right side and resize
 vim.api.nvim_create_autocmd("BufEnter", {
 	pattern = "*.txt",
@@ -109,7 +108,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 -- ensure ".rc" and ".comp" files are treated as "bash" filetypes
 vim.api.nvim_create_augroup("FileTypeRC", { clear = true })
-
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = { "rc", "comp" },
 	callback = function()
@@ -118,38 +116,63 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	group = "FileTypeRC",
 })
 
--- @WIP: More testing/debugging needed to ensure this doesnt break other plugins/code
--- -- set commentstring for files with 'bash' filetype but only for specific patterns
--- -- this doesnt imapct actual ".bash" files since their extension doesnt match
--- -- the autocmd pattern, thus never gets triggered
--- vim.api.nvim_create_autocmd("FileType", {
--- 	pattern = "bash",
--- 	callback = function()
--- 		local filename = vim.fn.expand("%:t")
--- 		if filename:match("%.rc$") or filename:match("%.comp$") then
--- 			vim.bo.commentstring = "#%s"
--- 		end
--- 	end,
--- })
-
--- wrapper for inspecting output from Lua API that was called from an Ex-mode command 
+-- wrapper for inspecting output from Lua API that was called from an Ex-mode command
 --    usage:    `:InspectEval <lua function>`
 --    example:  `:InspectEval require("swenv.api").get_current_venv()`
 vim.api.nvim_create_user_command("InspectEval", function(opts)
-  local expr = opts.args
-  local wrapped = string.format('print(vim.inspect(%s))',expr)
+	local expr = opts.args
+	local wrapped = string.format("print(vim.inspect(%s))", expr)
 
-  -- echo wrapped expression
-  vim.api.nvim_echo({{"Wrapped: " .. wrapped, "Normal"}}, true, {})
+	-- echo wrapped expression
+	vim.api.nvim_echo({ { "Wrapped: " .. wrapped, "Normal" } }, true, {})
 
-  -- load and execute wrapped command
-  local ok, err = pcall(load(
-  "return " .. wrapped
-  ))
-  if not ok then
-    vim.api.nvim_echo({{"Error: " .. err, "ErrorMsg"}}, true, {})
-  end
-end,{
-    nargs = 1,
-    complete = "lua", -- optional: helps tab-complete Lua expr
+	-- load and execute wrapped command
+	local ok, err = pcall(load("return " .. wrapped))
+	if not ok then
+		vim.api.nvim_echo({ { "Error: " .. err, "ErrorMsg" } }, true, {})
+	end
+end, {
+	nargs = 1,
+	complete = "lua", -- optional: helps tab-complete Lua expr
 })
+
+-- --
+-- -- Show active keymaps for current Nvim-mode in Messages floating  window/buffer
+-- --
+--
+-- -- mode-specific autocmds
+-- vim.api.nvim_create_autocmd("InsertEnter", {
+-- 	callback = function()
+-- 		vim.cmd("verbose imap")
+-- 	end,
+-- 	desc = "Show insert mode mappings on InsertEnter",
+-- })
+--
+-- vim.api.nvim_create_autocmd("CmdlineEnter", {
+-- 	callback = function()
+-- 		vim.cmd("verbose cmap")
+-- 	end,
+-- 	desc = "Show command-line mode mappings on CmdlineEnter",
+-- })
+--
+-- vim.api.nvim_create_autocmd("InsertLeave", {
+-- 	callback = function()
+-- 		vim.cmd("verbose nmap")
+-- 	end,
+-- 	desc = "Show normal mode mappings on exiting insert mode",
+-- })
+--
+-- vim.api.nvim_create_autocmd("ModeChanged", {
+-- 	pattern = "*",
+-- 	callback = function(args)
+-- 		local new_mode = vim.fn.mode()
+-- 		if new_mode == "i" then
+-- 			vim.cmd("verbose imap")
+-- 		elseif new_mode == "n" then
+-- 			vim.cmd("verbose nmap")
+-- 		elseif new_mode == "v" or new_mode == "V" or new_mode == "\22" then
+-- 			vim.cmd("verbose vmap")
+-- 		end
+-- 	end,
+-- 	desc = "Auto-show mode-specific keymaps",
+-- })

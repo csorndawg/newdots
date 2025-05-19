@@ -415,3 +415,5 @@ alias gbs35="git branch --sort=-committerdate --all | head -n 35"
 alias gbs25="git branch --sort=-committerdate --all | head -n 25"
 alias gbs15="git branch --sort=-committerdate --all | head -n 15"
 alias gbs5="git branch --sort=-committerdate --all | head -n 5"
+
+alias taskToday="task entry:today"

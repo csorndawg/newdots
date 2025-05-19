@@ -64,14 +64,19 @@ return {
 					cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy"),
 				})
 			end, { desc = "Lazy search" })
+			-- nvim-cmd history searcher
+			vim.keymap.set(
+				"n",
+				"<Leader>tc",
+				require("telescope.builtin").command_history,
+				{ desc = "Cmd-Mode History", noremap = true }
+			) -- cmd remapped to <Leader>sh in telescope-config
 
 			require("extra.telescope.multigrep").setup()
-			-- @TODO: Review functionality and/or fix broken/misused pickers
 			require("extra.telescope.vim_pickers").setup()
 			require("extra.telescope.git_pickers").setup()
 			require("extra.telescope.lsp_pickers").setup()
 
-			-- @TODO: Add review community pickers and add any useful ones below
 			-- Live-Grep Extension
 			require("telescope").load_extension("live_grep_args")
 		end,

@@ -69,6 +69,18 @@ require("telescope").setup({
 	pickers = {
 		find_files = {
 			find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
+			mappings = {
+				n = {
+					["kj"] = "close",
+					["cd"] = function(prompt_bufnr)
+						local selection = require("telescope.actions.state").get_selected_entry()
+						local dir = vim.fn.fnamemodify(selection.path, ":p:h")
+						require("telescope.actions").close(prompt_bufnr)
+						-- Depending on what you want put `cd`, `lcd`, `tcd`
+						vim.cmd(string.format("silent lcd %s", dir))
+					end,
+				},
+			},
 		},
 	},
 })
@@ -98,5 +110,50 @@ end
 require("telescope").setup({
 	defaults = {
 		buffer_previewer_maker = new_maker,
+	},
+})
+
+-- Help/Which mappings for current picker
+
+-- clear prompt
+local actions = require("telescope.actions")
+require("telescope").setup({
+	defaults = {
+		mappings = {
+			i = {
+				-- toggle all picker items (switch to C-z if name issue occurs)
+				["<M-u>"] = require("telescope.actions").preview_scrolling_up,
+				["<C-u>"] = false,
+				["<C-c>"] = require("telescope.actions").close,
+			},
+		},
+	},
+})
+
+-- swap  send all selec/se
+local actions = require("telescope.actions")
+local action_state = require("telescope.actions.state")
+require("telescope").setup({
+	defaults = {
+		mappings = {
+			i = {
+				-- swap send to quickfix default mappings
+				["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist, -- selected only
+				["<S-q>"] = actions.add_selected_to_qflist + actions.open_qflist, -- append selected-only to quickfix
+				["<M-x>"] = actions.send_to_qflist + actions.open_qflist, -- send unselected only
+				["<C-a>"] = actions.toggle_all,
+				["<C-z>"] = function(prompt_bufnr)
+					require("telescope.actions").which_key(prompt_bufnr)
+				end,
+			},
+			n = {
+				["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+				["<C-a>"] = actions.send_to_qflist + actions.open_qflist,
+				["<M-x>"] = actions.send_to_qflist + actions.open_qflist, -- send unselected only
+				["?"] = function(prompt_bufnr)
+					require("telescope.actions").which_key(prompt_bufnr)
+				end,
+			},
+		},
 	},
 })

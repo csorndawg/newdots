@@ -85,23 +85,30 @@ require("extra.dap")
 
 -- @IMPORTANT: Below is still being tested. But if successfully it will allow for all config changes to be tested as overrides first, then moved to perm spot before merging with MAIN
 -- Load only active overrides from lua/extra/overrides/active/
-local override_path = vim.fn.stdpath("config") .. "/lua/extra/overrides/active"
-
--- for _, file in ipairs(vim.fn.readdir(override_path)) do
--- 	if file:sub(-4) == ".lua" then
--- 		local module_name = "extra.overrides.active." .. file:sub(1, -5)
--- 		local ok, mod = pcall(require, module_name)
--- 		if ok and type(mod) == "table" and mod.setup then
--- 			pcall(mod.setup) -- call setup() if defined
--- 		end
--- 	end
--- end
 
 -- Sources all lua files in "overrides/active" like above commented out code
 -- except this also returns info about any failed loads for debugging.
+local override_path = vim.fn.stdpath("config") .. "/lua/extra/overrides/active"
 for _, file in ipairs(vim.fn.readdir(override_path)) do
 	if file:sub(-4) == ".lua" then
 		local module_name = "extra.overrides.active." .. file:sub(1, -5)
+		local ok, mod = pcall(require, module_name)
+		if not ok then
+			vim.notify("Failed to load " .. module_name .. ": " .. mod, vim.log.levels.ERROR)
+		elseif type(mod) == "table" and mod.setup then
+			local setup_ok, err = pcall(mod.setup)
+			if not setup_ok then
+				vim.notify("Error running setup() in " .. module_name .. ": " .. err, vim.log.levels.ERROR)
+			end
+		end
+	end
+end
+
+-- @WIP: Source LuaSnips Experimental snippets directory for testing/developing. Comment out if issues occurr, and test manually.
+local experimental_luasnips_dir = vim.fn.stdpath("config") .. "/lua/extra/overrides/active/ExperimentalLoosnips"
+for _, file in ipairs(vim.fn.readdir(experimental_luasnips_dir)) do
+	if file:sub(-4) == ".lua" then
+		local module_name = "extra.overrides.active.ExperimentalLoosnips." .. file:sub(1, -5)
 		local ok, mod = pcall(require, module_name)
 		if not ok then
 			vim.notify("Failed to load " .. module_name .. ": " .. mod, vim.log.levels.ERROR)

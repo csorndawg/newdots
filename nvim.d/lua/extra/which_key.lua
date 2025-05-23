@@ -102,7 +102,6 @@ vim.keymap.set("v", "<leader><leader>c", function()
 end, { desc = "Toggle comment (visual)" })
 
 -- delete next character and remain in INSERT
-vim.keymap.set("i", "<C-x>", "<Del>", { silent = true, noremap = true })
 vim.keymap.set("i", "<A-x>", "<Esc>xi", { silent = true, noremap = true })
 
 vim.keymap.set("n", "<leader><leader>W", ":wa!", { desc = "Write (force) all buffers", silent = true, noremap = true })

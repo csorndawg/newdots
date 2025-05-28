@@ -3,6 +3,7 @@
 ------------------------
 
 local cmp = require("cmp")
+local cmp_under_comparator = require("cmp-under-comparator")
 local luasnip = require("luasnip")
 
 -- better autocompletion experience
@@ -11,7 +12,7 @@ vim.o.completeopt = "menuone,noselect"
 cmp.setup({
 	-- Format the autocomplete menu
 	-- formatting = {
-	--		format = lspkind.cmp_format()
+	--		format = llspkind.luaspkind.cmp_format()
 	--	},
 
 	-- configure cmp popup menu
@@ -128,7 +129,7 @@ cmp.setup({
 			cmp.config.compare.score,
 			-- double underscore  methods (eg.  __repl__()) are sorted after, all other cmp choices
 			-- keeps cmp options for Python clean and uncluttered
-			require("cmp-under-comparator").under,
+			cmp_under_comparator.under, --@TEST: Test if 'local' version works, like its 'require(<name>) works'
 			cmp.config.compare.kind,
 			cmp.config.compare.sort_text,
 			cmp.config.compare.length,

@@ -116,12 +116,30 @@ for _, file in ipairs(vim.fn.readdir(override_path)) do
 	end
 end
 
--- @CONFIRMED: I've tested/verified that "extra/cmp" modules are being sourced correctly/work as expected.
+-- @CONFIRMED: I've tested/verified that "extra/cmp" modules are being sourced correctly for the ROOT LEVEL snippets. TOML snippets still not loading.
 -- Source custom cmp/luasnips modules
 local experimental_luasnips_dir = vim.fn.stdpath("config") .. "/lua/extra/cmp"
 for _, file in ipairs(vim.fn.readdir(experimental_luasnips_dir)) do
 	if file:sub(-4) == ".lua" then
 		local module_name = "extra.cmp." .. file:sub(1, -5)
+		local ok, mod = pcall(require, module_name)
+		if not ok then
+			vim.notify("Failed to load " .. module_name .. ": " .. mod, vim.log.levels.ERROR)
+		elseif type(mod) == "table" and mod.setup then
+			local setup_ok, err = pcall(mod.setup)
+			if not setup_ok then
+				vim.notify("Error running setup() in " .. module_name .. ": " .. err, vim.log.levels.ERROR)
+			end
+		end
+	end
+end
+
+-- @TESTME: TEST if below allows for non-root cmp snippet files to be sourced (eg. "snippets/toml.lua")
+-- Source custom cmp/luasnips modules
+local experimental_luasnips_dir = vim.fn.stdpath("config") .. "/lua/extra/cmp/snippets"
+for _, file in ipairs(vim.fn.readdir(experimental_luasnips_dir)) do
+	if file:sub(-4) == ".lua" then
+		local module_name = "extra.cmp.snippets." .. file:sub(1, -5)
 		local ok, mod = pcall(require, module_name)
 		if not ok then
 			vim.notify("Failed to load " .. module_name .. ": " .. mod, vim.log.levels.ERROR)

@@ -116,12 +116,30 @@ for _, file in ipairs(vim.fn.readdir(override_path)) do
 	end
 end
 
--- @WIP: Source all modules in the new LuaSnips/Cmp directory
--- lua/extra/cmp/
+-- @CONFIRMED: I've tested/verified that "extra/cmp" modules are being sourced correctly/work as expected.
+-- Source custom cmp/luasnips modules
 local experimental_luasnips_dir = vim.fn.stdpath("config") .. "/lua/extra/cmp"
 for _, file in ipairs(vim.fn.readdir(experimental_luasnips_dir)) do
 	if file:sub(-4) == ".lua" then
 		local module_name = "extra.cmp." .. file:sub(1, -5)
+		local ok, mod = pcall(require, module_name)
+		if not ok then
+			vim.notify("Failed to load " .. module_name .. ": " .. mod, vim.log.levels.ERROR)
+		elseif type(mod) == "table" and mod.setup then
+			local setup_ok, err = pcall(mod.setup)
+			if not setup_ok then
+				vim.notify("Error running setup() in " .. module_name .. ": " .. err, vim.log.levels.ERROR)
+			end
+		end
+	end
+end
+
+-- @TESTME: Need to test "extra/lsp" integration before releasing
+-- Source custom lsp-related (lsp, conform, etc.) modules
+local experimental_luasnips_dir = vim.fn.stdpath("config") .. "/lua/extra/lsp"
+for _, file in ipairs(vim.fn.readdir(experimental_luasnips_dir)) do
+	if file:sub(-4) == ".lua" then
+		local module_name = "extra.lsp." .. file:sub(1, -5)
 		local ok, mod = pcall(require, module_name)
 		if not ok then
 			vim.notify("Failed to load " .. module_name .. ": " .. mod, vim.log.levels.ERROR)

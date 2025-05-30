@@ -61,7 +61,7 @@ require("extra.todo-comments-custom")
 
 -- experimental post-install configurations
 require("extra.experimental")
-require("extra.lint")
+
 require("extra.telescope.telescope-config")
 require("extra.which_key")
 
@@ -71,8 +71,6 @@ require("extra.oil_extra")
 require("extra.toggleterm_x")
 require("extra.git-keymaps") -- custom keymaps for git-related plugins (fugitive, telescope, etc.)
 
-require("extra.lsp")
-require("extra.conform")
 require("extra.toggleterm_x")
 
 -- @WIP: Below modules are still in the process of being defined/tested/integrated as of 3/3+
@@ -82,6 +80,20 @@ require("extra.ufo")
 
 -- @TESTING: Dap configs
 require("extra.dap")
+
+------------------------------------------------
+-- @TEST: Testing still WIP for modularizing linked plugins
+-- Refactored/Modularized Plugins for Core Functionality
+
+-- LSP: lsp/conform/lint
+require("extra.lsp.lsp")
+require("extra.lsp.conform")
+require("extra.lsp.lint")
+
+-- CMP: nvim-cmp, <>, ..
+
+-- LuaSnips: loosnips (custom luasnips), <>, ...
+------------------------------------------------
 
 -- @IMPORTANT: Below is still being tested. But if successfully it will allow for all config changes to be tested as overrides first, then moved to perm spot before merging with MAIN
 -- Load only active overrides from lua/extra/overrides/active/
@@ -104,11 +116,12 @@ for _, file in ipairs(vim.fn.readdir(override_path)) do
 	end
 end
 
--- @WIP: Source LuaSnips Experimental snippets directory for testing/developing. Comment out if issues occurr, and test manually.
-local experimental_luasnips_dir = vim.fn.stdpath("config") .. "/lua/extra/overrides/active/ExperimentalLoosnips"
+-- @WIP: Source all modules in the new LuaSnips/Cmp directory
+-- lua/extra/cmp/
+local experimental_luasnips_dir = vim.fn.stdpath("config") .. "/lua/extra/cmp"
 for _, file in ipairs(vim.fn.readdir(experimental_luasnips_dir)) do
 	if file:sub(-4) == ".lua" then
-		local module_name = "extra.overrides.active.ExperimentalLoosnips." .. file:sub(1, -5)
+		local module_name = "extra.cmp." .. file:sub(1, -5)
 		local ok, mod = pcall(require, module_name)
 		if not ok then
 			vim.notify("Failed to load " .. module_name .. ": " .. mod, vim.log.levels.ERROR)

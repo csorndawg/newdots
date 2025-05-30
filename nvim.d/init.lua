@@ -51,16 +51,9 @@ require("user.autocmds")
 -- @IMPORTANT: Has downstream dependencies
 require("extra.mason-lspconfig") -- all LSP configurations depend on this being loaded before they are ran
 
--- @IMPORTANT: EXTRA PLUGIN CONFIGURATION FILES DEFINED BELOW
-local ih = require("runtime.import_helper")
---require("extra.mini-surround") -- use as reference for extending default plugin configurations
-
 -- sourcing start
 require("extra.lazy_remaps")
 require("extra.todo-comments-custom")
-
--- experimental post-install configurations
-require("extra.experimental")
 
 require("extra.telescope.telescope-config")
 require("extra.which_key")
@@ -70,40 +63,28 @@ require("extra.which_key")
 require("extra.oil_extra")
 require("extra.toggleterm_x")
 require("extra.git-keymaps") -- custom keymaps for git-related plugins (fugitive, telescope, etc.)
-
 require("extra.toggleterm_x")
 
 -- @WIP: Below modules are still in the process of being defined/tested/integrated as of 3/3+
---require("extra.lsp-extra")
 require("extra.telescope.mycustom_pickers")
 require("extra.ufo")
 
+------------------------------------------------
+
 -- @TESTING: Dap configs
-require("extra.dap")
+-- require("extra.dap")
 
 ------------------------------------------------
--- @TEST: Testing still WIP for modularizing linked plugins
--- Refactored/Modularized Plugins for Core Functionality
 
 -- LSP: lsp/conform/lint
-require("extra.lsp.lsp")
-require("extra.lsp.conform")
-require("extra.lsp.lint")
-
--- CMP: nvim-cmp, <>, ..
-
--- LuaSnips: loosnips (custom luasnips), <>, ...
-------------------------------------------------
-
--- @IMPORTANT: Below is still being tested. But if successfully it will allow for all config changes to be tested as overrides first, then moved to perm spot before merging with MAIN
--- Load only active overrides from lua/extra/overrides/active/
-
--- Sources all lua files in "overrides/active" like above commented out code
--- except this also returns info about any failed loads for debugging.
-local override_path = vim.fn.stdpath("config") .. "/lua/extra/overrides/active"
-for _, file in ipairs(vim.fn.readdir(override_path)) do
+-- @VALIDATED: Confirmed extra/lsp files are being sourced without issue. Tested LSP-CMP integration with pd.Dataframe cmp, which
+--             worked (however expansion doesn't trigger till after most of text typed out, should look to fix/improve this in future)
+--
+-- Source custom lsp-related (lsp, conform, etc.) modules
+local experimental_luasnips_dir = vim.fn.stdpath("config") .. "/lua/extra/lsp"
+for _, file in ipairs(vim.fn.readdir(experimental_luasnips_dir)) do
 	if file:sub(-4) == ".lua" then
-		local module_name = "extra.overrides.active." .. file:sub(1, -5)
+		local module_name = "extra.lsp." .. file:sub(1, -5)
 		local ok, mod = pcall(require, module_name)
 		if not ok then
 			vim.notify("Failed to load " .. module_name .. ": " .. mod, vim.log.levels.ERROR)
@@ -117,7 +98,7 @@ for _, file in ipairs(vim.fn.readdir(override_path)) do
 end
 
 -- @CONFIRMED: I've tested/verified that "extra/cmp" modules are being sourced correctly for the ROOT LEVEL snippets. TOML snippets still not loading.
--- Source custom cmp/luasnips modules
+-- Source custom CMP/LUASNIPS modules
 local experimental_luasnips_dir = vim.fn.stdpath("config") .. "/lua/extra/cmp"
 for _, file in ipairs(vim.fn.readdir(experimental_luasnips_dir)) do
 	if file:sub(-4) == ".lua" then
@@ -135,7 +116,7 @@ for _, file in ipairs(vim.fn.readdir(experimental_luasnips_dir)) do
 end
 
 -- @TESTME: TEST if below allows for non-root cmp snippet files to be sourced (eg. "snippets/toml.lua")
--- Source custom cmp/luasnips modules
+-- Source custom CMP/LUASNIPS SNIPPET modules
 local experimental_luasnips_dir = vim.fn.stdpath("config") .. "/lua/extra/cmp/snippets"
 for _, file in ipairs(vim.fn.readdir(experimental_luasnips_dir)) do
 	if file:sub(-4) == ".lua" then
@@ -152,12 +133,11 @@ for _, file in ipairs(vim.fn.readdir(experimental_luasnips_dir)) do
 	end
 end
 
--- @TESTME: Need to test "extra/lsp" integration before releasing
--- Source custom lsp-related (lsp, conform, etc.) modules
-local experimental_luasnips_dir = vim.fn.stdpath("config") .. "/lua/extra/lsp"
-for _, file in ipairs(vim.fn.readdir(experimental_luasnips_dir)) do
+-- Always source below last, since they are adhoc patch/override configuraiton code/files
+local override_path = vim.fn.stdpath("config") .. "/lua/extra/overrides/active"
+for _, file in ipairs(vim.fn.readdir(override_path)) do
 	if file:sub(-4) == ".lua" then
-		local module_name = "extra.lsp." .. file:sub(1, -5)
+		local module_name = "extra.overrides.active." .. file:sub(1, -5)
 		local ok, mod = pcall(require, module_name)
 		if not ok then
 			vim.notify("Failed to load " .. module_name .. ": " .. mod, vim.log.levels.ERROR)

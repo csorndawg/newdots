@@ -49,7 +49,7 @@ require("user.keymaps")
 require("user.autocmds")
 
 -- @IMPORTANT: Has downstream dependencies
-require("extra.mason-lspconfig") -- all LSP configurations depend on this being loaded before they are ran
+--require("extra.mason-lspconfig") -- all LSP configurations depend on this being loaded before they are ran
 
 -- sourcing start
 require("extra.lazy_remaps")
@@ -76,9 +76,13 @@ require("extra.ufo")
 
 ------------------------------------------------
 
--- LSP: lsp/conform/lint
+-- Source Mason configuration from extra/mason
+-- @NOTE: Fairly certain this must be sourced before LSP/CMP/DAP modules b/c of dependencies
+-- require("extra.mason.mason-lspconfig")
+
 -- @VALIDATED: Confirmed extra/lsp files are being sourced without issue. Tested LSP-CMP integration with pd.Dataframe cmp, which
---             worked (however expansion doesn't trigger till after most of text typed out, should look to fix/improve this in future)
+--              worked (however expansion doesn't trigger till after most of text is typed out. I should look 
+--              to fix/improve this in future)
 --
 -- Source custom lsp-related (lsp, conform, etc.) modules
 local experimental_luasnips_dir = vim.fn.stdpath("config") .. "/lua/extra/lsp"

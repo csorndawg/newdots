@@ -78,10 +78,11 @@ require("extra.ufo")
 
 -- Source Mason configuration from extra/mason
 -- @NOTE: Fairly certain this must be sourced before LSP/CMP/DAP modules b/c of dependencies
--- require("extra.mason.mason-lspconfig")
+require("extra.mason.mason")
+print("\nMason loaded successfully")
 
 -- @VALIDATED: Confirmed extra/lsp files are being sourced without issue. Tested LSP-CMP integration with pd.Dataframe cmp, which
---              worked (however expansion doesn't trigger till after most of text is typed out. I should look 
+--              worked (however expansion doesn't trigger till after most of text is typed out. I should look
 --              to fix/improve this in future)
 --
 -- Source custom lsp-related (lsp, conform, etc.) modules
@@ -100,6 +101,7 @@ for _, file in ipairs(vim.fn.readdir(experimental_luasnips_dir)) do
 		end
 	end
 end
+print("\nExtra/Lsp loaded successfully")
 
 -- @CONFIRMED: I've tested/verified that "extra/cmp" modules are being sourced correctly for the ROOT LEVEL snippets. TOML snippets still not loading.
 -- Source custom CMP/LUASNIPS modules
@@ -118,9 +120,10 @@ for _, file in ipairs(vim.fn.readdir(experimental_luasnips_dir)) do
 		end
 	end
 end
+print("\nExtra/Cmp loaded successfully")
 
 -- @TESTME: TEST if below allows for non-root cmp snippet files to be sourced (eg. "snippets/toml.lua")
--- Source custom CMP/LUASNIPS SNIPPET modules
+-- Source custom LUASNIPS SNIPPETS
 local experimental_luasnips_dir = vim.fn.stdpath("config") .. "/lua/extra/cmp/snippets"
 for _, file in ipairs(vim.fn.readdir(experimental_luasnips_dir)) do
 	if file:sub(-4) == ".lua" then
@@ -136,6 +139,7 @@ for _, file in ipairs(vim.fn.readdir(experimental_luasnips_dir)) do
 		end
 	end
 end
+print("\nExtra/Cmp/Snippets/ (LuaSnips Custom Snippets) loaded successfully")
 
 -- Always source below last, since they are adhoc patch/override configuraiton code/files
 local override_path = vim.fn.stdpath("config") .. "/lua/extra/overrides/active"
@@ -153,3 +157,4 @@ for _, file in ipairs(vim.fn.readdir(override_path)) do
 		end
 	end
 end
+print("\nNvim override modules from 'extra/overrides/active/' were loaded successfully")

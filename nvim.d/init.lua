@@ -101,7 +101,7 @@ for _, file in ipairs(vim.fn.readdir(experimental_luasnips_dir)) do
 		end
 	end
 end
-print("\nExtra/Lsp loaded successfully")
+print("Extra/Lsp loaded successfully")
 
 -- @CONFIRMED: I've tested/verified that "extra/cmp" modules are being sourced correctly for the ROOT LEVEL snippets. TOML snippets still not loading.
 -- Source custom CMP/LUASNIPS modules
@@ -120,7 +120,7 @@ for _, file in ipairs(vim.fn.readdir(experimental_luasnips_dir)) do
 		end
 	end
 end
-print("\nExtra/Cmp loaded successfully")
+print("Extra/Cmp loaded successfully")
 
 -- @TESTME: TEST if below allows for non-root cmp snippet files to be sourced (eg. "snippets/toml.lua")
 -- Source custom LUASNIPS SNIPPETS
@@ -139,7 +139,7 @@ for _, file in ipairs(vim.fn.readdir(experimental_luasnips_dir)) do
 		end
 	end
 end
-print("\nExtra/Cmp/Snippets/ (LuaSnips Custom Snippets) loaded successfully")
+print("Extra/Cmp/Snippets/ (LuaSnips Custom Snippets) loaded successfully")
 
 -- Always source below last, since they are adhoc patch/override configuraiton code/files
 local override_path = vim.fn.stdpath("config") .. "/lua/extra/overrides/active"
@@ -157,4 +157,4 @@ for _, file in ipairs(vim.fn.readdir(override_path)) do
 		end
 	end
 end
-print("\nNvim override modules from 'extra/overrides/active/' were loaded successfully")
+print("Nvim override modules from 'extra/overrides/active/' were loaded successfully")

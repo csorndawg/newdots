@@ -4,16 +4,21 @@
 
 -- import dependencies
 local lspconfig = require("lspconfig")
-local mason_tools = require("extra.mason.mason")
+local mason = require("extra.mason")
+local lsp_util = require("extra.lsp.lsp_utils")
 
--- Build LSP servers table dynamically
+-- Convert Mason LSP list to valid lspconfig servers
+local valid_servers = lsp_util.filter_lspconfig_servers(mason.lsp)
+
+-- build LSP servers table dynamically after translating "Mason LSP" to "lspconfig" format
 local servers = {}
-for _, name in ipairs(mason_tools.lsp) do
+for _, name in ipairs(valid_servers) do
 	servers[name] = {}
 end
+servers["ts_query_ls"] = {} -- must install here since treesitter-query LSP not available in Mason registry
 
 -- special handling for ruff (ruff is only for linting/formatting, not LSP)
-servers["ruff"] = nil
+-- servers["ruff"] = nil
 
 -- setup LSP capabilities and on_attach settings
 local capabilities = vim.lsp.protocol.make_client_capabilities()

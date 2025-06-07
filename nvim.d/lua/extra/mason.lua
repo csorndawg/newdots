@@ -1,6 +1,8 @@
--- Define LSP servers, DAP debuggers, Code Linters, and Code Formatters for Mason to install
-
--- Central list of tools to install via Mason
+-- Define LSP servers, DAP debuggers, linters, and formatters for Mason to install
+--
+-- After updating any of the tables below run `:MasonToolsUpdate` in Cmd-mode to sync changes
+-- To list all available tool names run: `:lua require("mason-registry").get_all_package_names()`
+--
 
 local linters = {
 	"shellcheck",
@@ -13,8 +15,7 @@ local linters = {
 	"write-good",
 	"hadolint",
 	"selene",
-	"phpcs",
-	"bacon",
+	"editorconfig-checker",
 }
 
 local formatters = {
@@ -27,43 +28,43 @@ local formatters = {
 	"superhtml",
 	"xmlformatter",
 	"ruff",
-	"duster",
+	"ast-grep",
+	"sqruff",
 }
 
 local null_ls = {}
 vim.list_extend(null_ls, linters)
 vim.list_extend(null_ls, formatters)
 
+-- LSP servers (Mason LSP format)
 local lsp = {
-	-- "ansiblels",
 	"ansible-language-server",
 	"awk-language-server",
 	"bash-language-server",
 	"dockerfile-language-server",
 	"docker-compose-language-service",
-	-- "jinja_lsp",
-	-- "jsonls",
-	-- "lua_ls",
+	"jinja-lsp",
+	"json-lsp",
 	"lua-language-server",
-	"ruff-lsp",
 	"pyright",
-	-- "sqls",
-	-- "taplo",
-	-- "ts_query_ls",
-	-- "vimls",
+	"sqls",
+	"taplo",
+	-- "tree-sitter-query-language-server",   -- not listed in Mason registry, can only be installed via lspconfig
 	"vim-language-server",
-	-- "yamlls",
 	"yaml-language-server",
-	-- "marksman",
-	-- "diagnosticls",
-	"sorbet",
-	-- "jqls",
+	"marksman",
+	"diagnostic-languageserver",
+	"terraform-ls",
+	"just-lsp",
+	-- "jqls", -- if supported in future
 }
 
 local debuggers = {
 	"debugpy",
 	"bash-debug-adapter",
-	"firefox-debug-adapter",
+	"local-lua-debugger-vscode",
+	"cpptools",
+	"netcoredbg",
 }
 
 return {

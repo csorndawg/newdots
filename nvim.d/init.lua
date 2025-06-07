@@ -73,7 +73,8 @@ require("extra.ufo")
 ------------------------------------------------------------------------------------------------------------------------------------------------
 -- Source Mason configuration from extra/mason
 -- @NOTE: Fairly certain this must be sourced before LSP/CMP/DAP modules b/c of dependencies
-require("extra.mason.mason")
+-- require("extra.mason.mason")
+-- require("extra.mason")   <<------- Removing since its already "required" (sourced) from "plugins/mason.lua"
 print("\nMason loaded successfully")
 
 -- Source custom lsp-related (lsp, conform, etc.) modules

@@ -178,3 +178,4 @@ config.d/*.*
 **/*.bk.*
 
 .temp/
+**.rej

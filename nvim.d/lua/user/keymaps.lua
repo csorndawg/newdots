@@ -201,30 +201,119 @@ vim.keymap.set("i", "00", "<Home>", { noremap = true, silent = true })
 vim.keymap.set("i", "$$", "<End>", { noremap = true, silent = true })
 
 -- @PRELIM: Testing alternate buffer navigation/movement keybinds. After trying out remove if not helpful.
-vim.keymap.set("n", "<Leader>bn", ":bn<Cr>", { silent = true, desc = "Buffer next", noremap = true })
-vim.keymap.set("n", "<A-.>", ":bn<Cr>", { silent = true, desc = "Buffer next", noremap = true })
-vim.keymap.set("n", "<Leader>bp", ":bp<Cr>", { silent = true, desc = "Buffer prev", noremap = true })
-vim.keymap.set("n", "<A-,>", ":bp<Cr>", { silent = true, desc = "Buffer prev", noremap = true })
+vim.keymap.set("n", "<C-.>", ":bn<Cr>", { silent = true, desc = "Buffer next", noremap = true })
+vim.keymap.set("n", "<C-,>", ":bp<Cr>", { silent = true, desc = "Buffer prev", noremap = true })
 vim.keymap.set("n", "<Leader>bl", ":buffers<Cr>", { desc = "List buffers", noremap = true })
 vim.keymap.set("n", "<Leader>bb", ":blast <Cr>", { silent = true, desc = "Last buffer", noremap = true })
 vim.keymap.set("n", "<Leader>bd", ":bd <Cr>", { silent = true, desc = "Delete buffer", noremap = true })
 vim.keymap.set("n", "<Leader>bD", ":bd <Cr>", { silent = true, desc = "Force Delete buffer", noremap = true })
 
 -- @EXPERIMENTAL: https://github.com/NvChad/NvChad/blob/v2.5/lua/nvchad/mappings.lua
-local map = vim.keymap.set
-map("n", "<C-a><C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
-map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
-map("i", "<C-e>", "<End>", { desc = "move end of line" })
+-- local map = vim.keymap.set
+vim.keymap.set("n", "<C-a><C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
+vim.keymap.set("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
+vim.keymap.set("i", "<C-e>", "<End>", { desc = "move end of line" })
 
 -- Lazy Vim
 -- Terminal Mappings
-map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
-map("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
+vim.keymap.set("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+vim.keymap.set("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
 
 -- windows
-map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
-map("n", "<leader>|", "<C-W>v", { desc = "Split Window Right", remap = true })
-map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
+vim.keymap.set("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", noremap = true })
+vim.keymap.set("n", "<leader>|", "<C-W>v", { desc = "Split Window Right", noremap = true })
+vim.keymap.set("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", noremap = true })
 
 -- @TESTME: Test below keymaps 4/26
 vim.keymap.set("i", "<A-Right>", "<Tab>", { silent = true })
+vim.keymap.set("i", "<A-Left>", "<BS><BS>", { silent = true }) -- assumes <Tab>=2 spaces
+
+-- buffer cycling
+-- vim.keymap.set("n", "<C-.>", "<cmd>bn<cr>", { desc = "Buffer next", noremap = true, silent = true })
+-- vim.keymap.set("n", "<C-,>,", "<cmd>bp<cr>", { desc = "Buffer prev", noremap = true, silent = true })
+
+-- [m]isc sublabel remaps
+vim.keymap.set("n", "<leader>ms", ":set signcolumn=no<CR>", { silent = true, desc = "Disable sign column" })
+vim.keymap.set("n", "<leader>mS", ":set signcolumn=auto<CR>", { silent = true, desc = "Enable sign column" })
+
+-- toggle line numbers on/off
+vim.keymap.set(
+	"n",
+	"<leader>ml",
+	":set norelativenumber nonumber <Cr>",
+	{ silent = true, desc = "Toggle line numbers off" }
+)
+vim.keymap.set("n", "<leader>mL", ":set relativenumber number <Cr>", { silent = true, desc = "Toggle line numbers on" })
+
+-- toggle fold column on/off
+vim.keymap.set("n", "<leader>mf", ":set foldcolumn=0<Cr>", { silent = true, desc = "Toggle fold column off" })
+vim.keymap.set("n", "<leader>mF", ":set foldcolumn=1<Cr>", { silent = true, desc = "Toggle fold column on" })
+
+-- paste toggling
+vim.keymap.set("n", "<leader>mp", ":set paste<cr>", { desc = "Paste on", silent = false })
+vim.keymap.set("n", "<leader>mP", ":set nopaste<cr>", { desc = "Paste off", silent = false })
+
+-- easier save/quit remaps
+vim.keymap.set("n", "<leader><leader>w", "<cmd>w<CR>", { silent = false, noremap = true, desc = "Save" })
+vim.keymap.set("n", "<leader>W", "<cmd>w!<CR>", { silent = false, noremap = true, desc = "Forcefully save" })
+vim.keymap.set("n", "<leader><leader>q", "<cmd>q<CR>", { silent = false, noremap = true, desc = "Quit" })
+vim.keymap.set("n", "<leader><leader>Q", "<cmd>q!<CR>", { silent = false, noremap = true, desc = "Forcefully quit" })
+vim.keymap.set("n", "<leader><leader>x", "<cmd>wq<CR>", { silent = false, noremap = true, desc = "Save & quit" })
+vim.keymap.set(
+	"n",
+	"<leader><leader>X",
+	"<cmd>w!q!<CR>",
+	{ silent = false, noremap = true, desc = "Forcefully save & quit" }
+)
+-- map("n", "<leader>X", "<cmd>wq!<CR>", opts) -- Save and quit forcefully
+
+-- quickfix navigation
+vim.keymap.set("n", "<leader>qo", "<cmd>copen <cr>", { desc = "Open quicklist", silent = false })
+vim.keymap.set("n", "<leader>qc", "<cmd>cclose <cr>", { desc = "Close quicklist", silent = false })
+vim.keymap.set("n", "<leader>qn", "<cmd>cnext <cr>", { desc = "Next quicklist", silent = false })
+vim.keymap.set("n", "<leader>qp", "<cmd>cprev <cr>", { desc = "Prev quiclist", silent = false })
+
+-- @TODO: Look to mirror code below to create additional Cmd-mode keybinds for removing/adding text.
+
+-- custom function to have "<C-w>" behave like emacs keybinding in Command mode
+-- and delete from cursor to beginning of word
+vim.keymap.set("c", "<C-w>", function()
+	-- get the current command-line text and cursor position
+	local line = vim.fn.getcmdline()
+	local pos = vim.fn.getcmdpos()
+
+	-- if we're at the start, do nothing
+	if pos <= 1 then
+		return ""
+	end
+
+	-- get text before cursor
+	local before = line:sub(1, pos - 1)
+	local after = line:sub(pos)
+
+	-- remove from cursor to beginning of previous word
+	-- this matches the last "word" (alphanumeric/underscore) before cursor
+	before = before:gsub("[^%w_]*[%w_]+$", "")
+
+	-- move cursor to new position and return updated command line
+	vim.fn.setcmdline(before .. after)
+	vim.fn.setcmdpos(#before + 1)
+	return ""
+end, { expr = true })
+
+-- compliment of above function
+-- in Cmd-mode "<C-f>" removes text from cursor to end of word
+vim.keymap.set("c", "<C-f>", function()
+	local line = vim.fn.getcmdline()
+	local pos = vim.fn.getcmdpos()
+
+	local before = line:sub(1, pos - 1)
+	local after = line:sub(pos)
+
+	-- Remove from cursor to end of word (alphanumeric/underscore characters)
+	after = after:gsub("^[%w_]+", "")
+
+	vim.fn.setcmdline(before .. after)
+	vim.fn.setcmdpos(#before + 1)
+	return ""
+end, { expr = true })

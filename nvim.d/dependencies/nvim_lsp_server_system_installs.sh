@@ -18,7 +18,8 @@ function configure_taplo {
     source $HOME/.cargo/env
 
  	# install Taplo: Use Cargo, Rust's package manager, to install Taplo:
-    cargo install taplo-cli --features lsp
+    # cargo install taplo-cli --features lsp
+    cargo install taplo-cli --locked
 
   # verify Installation: Check if Taplo is installed correctly by running:
     taplo-lsp --version

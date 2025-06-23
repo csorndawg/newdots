@@ -5,31 +5,37 @@
 --
 
 local linters = {
-	"shellcheck",
-	"yamllint",
 	"ansible-lint",
-	"ruff",
 	"commitlint",
-	"vint",
-	"sqlfluff",
-	"write-good",
-	"hadolint",
-	"selene",
 	"editorconfig-checker",
+	"hadolint",
+	"ruff",
+	"selene",
+	"shellcheck",
+	"sqlfluff",
+	"vint",
+	"write-good",
+	"yamllint",
+	"cpplint",
+	"kube-linter",
+	"postgrestools",
+	"tombi",
 }
 
 local formatters = {
-	"black",
-	"stylua",
-	"shfmt",
-	"yamlfmt",
-	"jq",
-	"sqlfmt",
-	"superhtml",
-	"xmlformatter",
-	"ruff",
 	"ast-grep",
+	"black",
+	"jq",
+	"pgformatter",
+	"ruff",
+	"shfmt",
+	"sqlfmt",
 	"sqruff",
+	"stylua",
+	"superhtml",
+	"tombi",
+	"xmlformatter",
+	"yamlfmt",
 }
 
 local null_ls = {}
@@ -56,6 +62,10 @@ local lsp = {
 	"diagnostic-languageserver",
 	"terraform-ls",
 	"just-lsp",
+	"yaml-language-server",
+	"pyright",
+	"ruff-lsp",
+	"powershell-editor-services",
 	-- "jqls", -- if supported in future
 }
 

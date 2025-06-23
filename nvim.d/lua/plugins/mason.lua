@@ -25,7 +25,8 @@ return {
 
 			require("mason-tool-installer").setup({
 				ensure_installed = all_tools,
-				auto_update = false,
+				-- auto_update = false,
+				auto_update = true,
 				run_on_start = true,
 				start_delay = 3000, -- ms
 				debounce_hours = 5,

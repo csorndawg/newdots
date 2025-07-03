@@ -20,7 +20,6 @@ wk.register({
 	cv = { name = "[V]env" },
 }, { prefix = "<leader>" })
 
--- @VALIDATED: validated all 4 keymaps work as intended
 -- mock keymaps just to test whichkey map behavior
 vim.keymap.set("n", "<leader>xx", "<cmd>echo 'Experimental Feature'<cr>", { desc = "Experimental Feature" })
 vim.keymap.set("n", "<leader>mm", "<cmd>echo 'Misc Function'<cr>", { desc = "Misc Function" })
@@ -30,6 +29,6 @@ vim.keymap.set("n", "<leader>Tl", "<cmd>Telescope luasnip<cr>", { desc = "Telesc
 vim.keymap.set(
 	"n",
 	"<leader>z9e",
-	"<cmd>echo 'This subkey is for testing/validating TEMPORARY keymaps that will be updated before released to PROD.'<cr>",
+	"<cmd>echo 'z9 subkey is used solely for testing, and the real whichkey mapping will be defined after validation.",
 	{ desc = "Subkey Description" }
 )

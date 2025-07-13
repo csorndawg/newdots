@@ -13,6 +13,7 @@ local valid_servers = lsp_util.filter_lspconfig_servers(mason.lsp)
 -- build LSP servers table dynamically after translating "Mason LSP" to "lspconfig" format
 local servers = {}
 for _, name in ipairs(valid_servers) do
+	print("Adding LSP server: " .. name)
 	servers[name] = {}
 end
 servers["ts_query_ls"] = {} -- must install here since treesitter-query LSP not available in Mason registry
@@ -48,24 +49,40 @@ local on_attach = function(client, bufnr)
 	map("n", "<space>cf", vim.lsp.buf.format, "Format Code")
 end
 
--- Setup LSP servers
-for lsp, _ in pairs(servers) do
-	local config = {
-		capabilities = capabilities,
-		on_attach = on_attach,
-	}
+-- Install/Setup Mason tools defined in extra/mason.lua
+require("mason-lspconfig").setup({
+	ensure_installed = valid_servers,
+	automatic_installation = true,
+	handlers = {
+		function(server_name)
+			local config = {
+				capabilities = capabilities,
+				on_attach = on_attach,
+			}
 
-	-- yamlls: add schema store config
-	if lsp == "yamlls" then
-		config.settings = {
-			yaml = {
-				schemaStore = {
-					enable = true,
-					url = "https://www.schemastore.org/api/json/catalog.json",
-				},
-			},
-		}
-	end
+			if server_name == "lua_ls" then
+				config.settings = {
+					Lua = {
+						runtime = { version = "LuaJIT" },
+						workspace = {
+							checkThirdParty = false,
+							library = { vim.env.VIMRUNTIME },
+						},
+						telemetry = { enable = false },
+					},
+				}
+			elseif server_name == "yamlls" then
+				config.settings = {
+					yaml = {
+						schemaStore = {
+							enable = true,
+							url = "https://www.schemastore.org/api/json/catalog.json",
+						},
+					},
+				}
+			end
 
-	lspconfig[lsp].setup(config)
-end
+			require("lspconfig")[server_name].setup(config)
+		end,
+	},
+})

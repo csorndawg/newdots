@@ -74,7 +74,7 @@ require("extra.ufo")
 -- Source Mason configuration from extra/mason
 -- @NOTE: Fairly certain this must be sourced before LSP/CMP/DAP modules b/c of dependencies
 -- require("extra.mason.mason")
--- require("extra.mason")   <<------- Removing since its already "required" (sourced) from "plugins/mason.lua"
+require("extra.mason")   -- <<------- Removing since its already "required" (sourced) from "plugins/mason"
 print("\nMason loaded successfully")
 
 -- Source custom lsp-related (lsp, conform, etc.) modules
@@ -83,6 +83,10 @@ for _, file in ipairs(vim.fn.readdir(experimental_luasnips_dir)) do
 	if file:sub(-4) == ".lua" then
 		local module_name = "extra.lsp." .. file:sub(1, -5)
 		local ok, mod = pcall(require, module_name)
+    if ok then
+      -- vim.notify("Successfully sourced module:  " .. module_name .. ": " .. mod, vim.log.levels.WARN)
+      vim.notify("Successfully sourced module:  " .. module_name, vim.log.levels.WARN)
+    end
 		if not ok then
 			vim.notify("Failed to load " .. module_name .. ": " .. mod, vim.log.levels.ERROR)
 		elseif type(mod) == "table" and mod.setup then

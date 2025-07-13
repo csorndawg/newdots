@@ -480,3 +480,4 @@ _fzf_or_default_completion() {
 
 # IMPORTANT: Must be last line sourced!!
 complete -D -F _fzf_or_default_completion # Apply the modified completion function to all commands
+. "$HOME/.cargo/env"

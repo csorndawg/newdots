@@ -141,8 +141,9 @@ config.d/task/taskchampion.sqlite3
 *.BROKEN
 
 
-# ignore original pre-patch files 
+# ignore patch generated files
 **.orig
+**.rej
 
 .WIPs/
 .staging/

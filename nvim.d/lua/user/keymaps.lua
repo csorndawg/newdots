@@ -32,10 +32,10 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
 vim.keymap.set("n", "<C-w><C-w>", "<C-w>w", { desc = "Cycle splits", silent = true, noremap = true })
 
 -- resize with arrows
-remapp("n", "<C-Up>", ":resize -2<CR>", opts)
-remapp("n", "<C-Down>", ":resize +2<CR>", opts)
-remapp("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-remapp("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+remapp("n", "<S-Up>", ":resize -2<CR>", opts)
+remapp("n", "<S-Down>", ":resize +2<CR>", opts)
+remapp("n", "<S-Left>", ":vertical resize -2<CR>", opts)
+remapp("n", "<S-Right>", ":vertical resize +2<CR>", opts)
 
 --
 -- (m)ove text up/down
@@ -120,9 +120,9 @@ remapp("v", "p", '"_dP', opts)
 remapp("v", "<leader>.", "<C-c>", { noremap = true })
 
 -- Tmux-like remap for entering/exiting visual block/copy mode
-remapp("n", "<C-.>", "<C-v>", { noremap = true })
-remapp("v", "<C-.>", "<C-c>", { noremap = true })
-remapp("v", "<C-/>", "y", { noremap = true })
+-- remapp("n", "<C-.>", "<C-v>", { noremap = true })
+-- remapp("v", "<C-.>", "<C-c>", { noremap = true })
+-- remapp("v", "<C-/>", "y", { noremap = true })
 --remapp("v", ",,","<C-c>", {noremap = true})
 
 -- @experimental
@@ -188,7 +188,7 @@ vim.keymap.set("i", "<A-l>", "<Del>", { silent = true, noremap = true }) -- dele
 
 -- rerun last CMD mode command in normal/on visual block selection with <Leader>cx
 -- `:@:` recalls and executes the most recent `:` command
-vim.keymap.set({ "n", "v" }, "<Up><Up>", ":@:<Cr>", { silent = true, silent = true, desc = "Rerun last CMD command" })
+vim.keymap.set({ "n", "v" }, "<Up><Up>", ":@:<Cr>", { silent = true, noremap = true, desc = "Rerun last CMD command" })
 
 vim.keymap.set("n", "<A-k>", "<C-u>", { noremap = true, silent = true })
 vim.keymap.set("n", "<A-j>", "<C-d>", { noremap = true, silent = true })
@@ -199,14 +199,6 @@ vim.keymap.set("i", "<C-Space><C-Space>", "<Right>", { noremap = true, silent = 
 -- move cursor to start/end of line shortcuts
 vim.keymap.set("i", "00", "<Home>", { noremap = true, silent = true })
 vim.keymap.set("i", "$$", "<End>", { noremap = true, silent = true })
-
--- @PRELIM: Testing alternate buffer navigation/movement keybinds. After trying out remove if not helpful.
-vim.keymap.set("n", "<C-.>", ":bn<Cr>", { silent = true, desc = "Buffer next", noremap = true })
-vim.keymap.set("n", "<C-,>", ":bp<Cr>", { silent = true, desc = "Buffer prev", noremap = true })
-vim.keymap.set("n", "<Leader>bl", ":buffers<Cr>", { desc = "List buffers", noremap = true })
-vim.keymap.set("n", "<Leader>bb", ":blast <Cr>", { silent = true, desc = "Last buffer", noremap = true })
-vim.keymap.set("n", "<Leader>bd", ":bd <Cr>", { silent = true, desc = "Delete buffer", noremap = true })
-vim.keymap.set("n", "<Leader>bD", ":bd <Cr>", { silent = true, desc = "Force Delete buffer", noremap = true })
 
 -- @EXPERIMENTAL: https://github.com/NvChad/NvChad/blob/v2.5/lua/nvchad/mappings.lua
 -- local map = vim.keymap.set
@@ -233,25 +225,30 @@ vim.keymap.set("i", "<A-Left>", "<BS><BS>", { silent = true }) -- assumes <Tab>=
 -- vim.keymap.set("n", "<C-,>,", "<cmd>bp<cr>", { desc = "Buffer prev", noremap = true, silent = true })
 
 -- [m]isc sublabel remaps
-vim.keymap.set("n", "<leader>ms", ":set signcolumn=no<CR>", { silent = true, desc = "Disable sign column" })
-vim.keymap.set("n", "<leader>mS", ":set signcolumn=auto<CR>", { silent = true, desc = "Enable sign column" })
+vim.keymap.set("n", "<leader>ms", "<cmd>set signcolumn=no<CR>", { silent = true, desc = "Disable sign column" })
+vim.keymap.set("n", "<leader>mS", "<cmd>set signcolumn=auto<CR>", { silent = true, desc = "Enable sign column" })
 
 -- toggle line numbers on/off
 vim.keymap.set(
 	"n",
 	"<leader>ml",
-	":set norelativenumber nonumber <Cr>",
+	"<cmd>set norelativenumber nonumber <Cr>",
 	{ silent = true, desc = "Toggle line numbers off" }
 )
-vim.keymap.set("n", "<leader>mL", ":set relativenumber number <Cr>", { silent = true, desc = "Toggle line numbers on" })
+vim.keymap.set(
+	"n",
+	"<leader>mL",
+	"<cmd>set relativenumber number <Cr>",
+	{ silent = true, desc = "Toggle line numbers on" }
+)
 
 -- toggle fold column on/off
-vim.keymap.set("n", "<leader>mf", ":set foldcolumn=0<Cr>", { silent = true, desc = "Toggle fold column off" })
-vim.keymap.set("n", "<leader>mF", ":set foldcolumn=1<Cr>", { silent = true, desc = "Toggle fold column on" })
+vim.keymap.set("n", "<leader>mf", "<cmd>set foldcolumn=0<Cr>", { silent = true, desc = "Toggle fold column off" })
+vim.keymap.set("n", "<leader>mF", "<cmd>set foldcolumn=1<Cr>", { silent = true, desc = "Toggle fold column on" })
 
 -- paste toggling
-vim.keymap.set("n", "<leader>mp", ":set paste<cr>", { desc = "Paste on", silent = false })
-vim.keymap.set("n", "<leader>mP", ":set nopaste<cr>", { desc = "Paste off", silent = false })
+vim.keymap.set("n", "<leader>mp", "<cmd>set paste<cr>", { desc = "Paste on", silent = false })
+vim.keymap.set("n", "<leader>mP", "<cmd>set nopaste<cr>", { desc = "Paste off", silent = false })
 
 -- easier save/quit remaps
 vim.keymap.set("n", "<leader><leader>w", "<cmd>w<CR>", { silent = false, noremap = true, desc = "Save" })

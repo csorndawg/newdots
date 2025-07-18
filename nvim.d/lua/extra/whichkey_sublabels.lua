@@ -20,6 +20,22 @@ wk.register({
 	cv = { name = "[V]env" },
 }, { prefix = "<leader>" })
 
+-- @TODO: Review code to migrate above code to the cleaner/newer syntax below
+-- Suggested Spec:
+-- {
+--   { "<leader>S", group = "[S]nacks" },
+--   { "<leader>T", group = "[T]elescope extensions" },
+--   { "<leader>c", group = "[C]ode Actions" },
+--   { "<leader>cl", group = "[L]int" },
+--   { "<leader>cv", group = "[V]env" },
+--   { "<leader>l", group = "LSP" },
+--   { "<leader>lL", group = "Lsp 2" },
+--   { "<leader>m", group = "[M]iscellaneous" },
+--   { "<leader>q", group = "[q]uickfix" },
+--   { "<leader>t", group = "[t]elescope builtins" },
+--   { "<leader>x", group = "e[X]perimental" },
+--   { "<leader>z9", group = "Nonprod Testing/Validating Space" },
+-- }
 -- mock keymaps just to test whichkey map behavior
 vim.keymap.set("n", "<leader>xx", "<cmd>echo 'Experimental Feature'<cr>", { desc = "Experimental Feature" })
 vim.keymap.set("n", "<leader>mm", "<cmd>echo 'Misc Function'<cr>", { desc = "Misc Function" })

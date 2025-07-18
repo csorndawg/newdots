@@ -170,4 +170,4 @@ print("Loaded custom Nvim override modules from 'extra/overrides/active/' succes
 
 -- source plugin remaps last to ensure they aren't overwritten
 require("extra.whichkey_sublabels")
-require("extra.extra_keymaps")
+require("extra.keymaps_extra")

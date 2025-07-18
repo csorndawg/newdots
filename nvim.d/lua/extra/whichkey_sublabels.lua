@@ -6,16 +6,17 @@ wk.register({
 	x = { name = "e[X]perimental" },
 	-- Dedicated subkey space for testing/validating interim keymaps before updating for my use case
 	-- Subkey space is intentionally inconvient to avoid namespace conflicts with actual mappings
-	z9 = { name = "Nonprod Testing/Validating Space" },
+	z9 = { name = "Experimental/Overrides/Testing" },
+	-- z = { name = "Dummy Subkey Labels" },
 	m = { name = "[M]iscellaneous" },
 	t = { name = "[t]elescope builtins" },
 	T = { name = "[T]elescope extensions" },
 	q = { name = "[q]uickfix" },
 	c = { name = "[C]ode Actions" },
 	-- l = { name = "[L]SP" },
-	l = { name = "LSP" },
+	l = { name = "[L]SP" },
 	lL = { name = "Lsp 2" },
-	S = { name = "[S]nacks" }, -- keep on 'S' for now, but might move to 's'
+	s = { name = "[s]nacks" }, -- keep on 'S' for now, but might move to 's'
 	cl = { name = "[L]int" },
 	cv = { name = "[V]env" },
 }, { prefix = "<leader>" })
@@ -48,3 +49,23 @@ vim.keymap.set(
 	"<cmd>echo 'z9 subkey is used solely for testing, and the real whichkey mapping will be defined after validation.",
 	{ desc = "Subkey Description" }
 )
+
+-- @Experimental: Assigning dummy subkey label to "<Leader>z" for keymaps that don't begin with <leader>.
+local wk = require("which-key")
+
+wk.register({
+	z = {
+		name = "Dummy Subkey Label",
+		["sa"] = "Add surrounding",
+		["sd"] = "Delete surrounding",
+		["sr"] = "Replace surrounding",
+		["sf"] = "Find next (right) surrounding",
+		["sF"] = "Find prev (left) surrounding",
+		["<C-Right>"] = "Next buffer: <Ctrl-Right>",
+		["<C-Left>"] = "Prev buffer: <Ctrl-Left>",
+		["<S-Up>"] = "Resize split upwards: <Shift-Up>",
+		["<S-Down>"] = "Resize split downwards: <Shift-Down>",
+		["<S-Left>"] = "Resize split leftwards: <Shift-Left>",
+		["<S-Right>"] = "Resize split rightwards: <Shift-Right>",
+	},
+}, { prefix = "<leader>" })

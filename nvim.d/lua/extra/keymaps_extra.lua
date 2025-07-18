@@ -19,3 +19,6 @@ vim.keymap.set("n", "<Leader>bD", "<cmd>bd! <Cr>", { silent = true, desc = "Forc
 
 vim.keymap.set("n", "<C-Right>", ":bnext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-Left>", ":bprevious<CR>", { noremap = true, silent = true })
+
+-- delete blank lines in visual selection
+vim.keymap.set("v", "<Leader>db", ":g/^$/d <CR>", { desc = "Delete blank lines", noremap = true, silent = false })

@@ -61,6 +61,8 @@ wk.register({
 		["sr"] = "Replace surrounding",
 		["sf"] = "Find next (right) surrounding",
 		["sF"] = "Find prev (left) surrounding",
+		["sh"] = "Highlight surrounding",
+		["sn"] = "Change number of neighbor lines",
 		["<C-Right>"] = "Next buffer: <Ctrl-Right>",
 		["<C-Left>"] = "Prev buffer: <Ctrl-Left>",
 		["<S-Up>"] = "Resize split upwards: <Shift-Up>",

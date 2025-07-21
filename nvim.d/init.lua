@@ -61,6 +61,14 @@ require("extra.ufo")
 require("extra.git-keymaps") -- custom keymaps for git-related plugins (fugitive, telescope, etc.)
 print("Loaded oneoff config modules successfully")
 
+-- Aerial
+-- local module_name = vim.fn.stdpath("config") .. "/lua/extra/aerial-custom"
+-- local ok, mod = pcall(require, module_name)
+local ok, mod = pcall(require, "extra.aerial-custom")
+if not ok then
+	vim.notify("Error - failed to load " .. module_name, vim.log.levels.ERROR)
+end
+
 -- Mason configuration
 require("extra.mason")
 -- print("\nMason loaded successfully")

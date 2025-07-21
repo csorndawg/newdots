@@ -16,7 +16,7 @@ wk.register({
 	-- l = { name = "[L]SP" },
 	l = { name = "[L]SP" },
 	lL = { name = "Lsp 2" },
-	s = { name = "[s]nacks" }, -- keep on 'S' for now, but might move to 's'
+	S = { name = "[S]nacks" }, -- keep on 'S' for now, but might move to 's'
 	cl = { name = "[L]int" },
 	cv = { name = "[V]env" },
 }, { prefix = "<leader>" })

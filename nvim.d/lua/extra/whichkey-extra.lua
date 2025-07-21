@@ -67,6 +67,12 @@ wk.add({
 	-- Visual
 	{ "<leader>v", group = "Visual Mode" },
 
+	-- Whichkey
+	{ "<leader>w", group = "Whichkey (Meta)" },
+
+	-- Aerial
+	{ "<leader>a", group = "Aerial" },
+
 	-- Trouble
 	-- { "<leader>T", group = "[T]rouble" },
 })

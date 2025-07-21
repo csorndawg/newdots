@@ -250,18 +250,6 @@ vim.keymap.set("n", "<leader>mF", "<cmd>set foldcolumn=1<Cr>", { silent = true, 
 vim.keymap.set("n", "<leader>mp", "<cmd>set paste<cr>", { desc = "Paste on", silent = false })
 vim.keymap.set("n", "<leader>mP", "<cmd>set nopaste<cr>", { desc = "Paste off", silent = false })
 
--- easier save/quit remaps
-vim.keymap.set("n", "<leader><leader>w", "<cmd>w<CR>", { silent = false, noremap = true, desc = "Save" })
-vim.keymap.set("n", "<leader>W", "<cmd>w!<CR>", { silent = false, noremap = true, desc = "Forcefully save" })
-vim.keymap.set("n", "<leader><leader>q", "<cmd>q<CR>", { silent = false, noremap = true, desc = "Quit" })
-vim.keymap.set("n", "<leader><leader>Q", "<cmd>q!<CR>", { silent = false, noremap = true, desc = "Forcefully quit" })
-vim.keymap.set("n", "<leader><leader>x", "<cmd>wq<CR>", { silent = false, noremap = true, desc = "Save & quit" })
-vim.keymap.set(
-	"n",
-	"<leader><leader>X",
-	"<cmd>w!q!<CR>",
-	{ silent = false, noremap = true, desc = "Forcefully save & quit" }
-)
 -- map("n", "<leader>X", "<cmd>wq!<CR>", opts) -- Save and quit forcefully
 
 -- quickfix navigation

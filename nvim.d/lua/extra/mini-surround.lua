@@ -4,11 +4,11 @@ local ms = require("mini.surround")
 ms.setup({
 
 	highlight_duration = 750,
-	mappings = {
-		add = "msa", -- test
-		highlight = "msh",
-	},
-	search_method = "cover_or_next", -- default: cover
+	-- mappings = {
+	-- 	add = "msa", -- test
+	-- 	highlight = "msh",
+	-- },
+	search_method = "cover", -- cover_or_next
 })
 
 --vim.print(ms)

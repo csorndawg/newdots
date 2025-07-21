@@ -32,51 +32,42 @@ require("lazy").setup({
 	},
 })
 
--- ---------------------------------------------------
---  source custom nvim config submodules
--- ---------------------------------------------------
-
--- editor configurations
+-- source custom colorscheme
 require("extra.colorschemes.nord")
 --require("extra.bufferline-custom")
 --require("extra.lualine-custom")
 
--- EXPERIMENTAL/DEV configs (comment out below if breaking changes occur)
+-- ------------------------------------------------------------
+-- Custom native nvim (non-plugin) configuration code
+-- ------------------------------------------------------------
 
--- Custom settings
 require("user.opts")
 require("user.keymaps")
 require("user.autocmds")
+print("Loaded native Nvim custom config modules successfully")
 
--- @IMPORTANT: Has downstream dependencies
---require("extra.mason-lspconfig") -- all LSP configurations depend on this being loaded before they are ran
-
--- sourcing start
-require("extra.lazy_remaps")
+-- ------------------------------------------------------------
+-- Custom "extra" (plugin related) configuration modules
+-- ------------------------------------------------------------
+require("extra.lazy-remaps")
 require("extra.todo-comments-custom")
+require("extra.oil-extra")
+require("extra.toggleterm-extra")
 
+-- Telescope
 require("extra.telescope.telescope-config")
-require("extra.which_key")
-
--- @IMPORTANT: All 2/25+ custom modules that PASSED INTEGRATION testing and can be permanetly added to init.lua
--- BELOW PLUGINS PASSED TESTING/CHECKS
-require("extra.oil_extra")
-require("extra.toggleterm_x")
-require("extra.git-keymaps") -- custom keymaps for git-related plugins (fugitive, telescope, etc.)
-require("extra.toggleterm_x")
-
--- @WIP: Below modules are still in the process of being defined/tested/integrated as of 3/3+
 require("extra.telescope.mycustom_pickers")
 require("extra.ufo")
+require("extra.git-keymaps") -- custom keymaps for git-related plugins (fugitive, telescope, etc.)
+print("Loaded oneoff config modules successfully")
 
-------------------------------------------------------------------------------------------------------------------------------------------------
--- Source Mason configuration from extra/mason
+-- Mason configuration
 require("extra.mason")
 -- print("\nMason loaded successfully")
 
--- Source custom lsp-related (lsp, conform, etc.) modules
-local experimental_luasnips_dir = vim.fn.stdpath("config") .. "/lua/extra/lsp"
-for _, file in ipairs(vim.fn.readdir(experimental_luasnips_dir)) do
+-- LSP-related (lsp, conform, etc.) modules
+local extra_lsp_dir = vim.fn.stdpath("config") .. "/lua/extra/lsp"
+for _, file in ipairs(vim.fn.readdir(extra_lsp_dir)) do
 	if file:sub(-4) == ".lua" then
 		local module_name = "extra.lsp." .. file:sub(1, -5)
 		local ok, mod = pcall(require, module_name)
@@ -94,11 +85,11 @@ for _, file in ipairs(vim.fn.readdir(experimental_luasnips_dir)) do
 		end
 	end
 end
-print("Loaded 'extra/lsp' modules successfully")
+print("Loaded LSP modules successfully")
 
--- Source custom CMP/LUASNIPS modules
-local experimental_luasnips_dir = vim.fn.stdpath("config") .. "/lua/extra/cmp"
-for _, file in ipairs(vim.fn.readdir(experimental_luasnips_dir)) do
+-- CMP-related (nvim-cmp, dadbod, etc.) modules
+local extra_cmp_dir = vim.fn.stdpath("config") .. "/lua/extra/cmp"
+for _, file in ipairs(vim.fn.readdir(extra_cmp_dir)) do
 	if file:sub(-4) == ".lua" then
 		local module_name = "extra.cmp." .. file:sub(1, -5)
 		local ok, mod = pcall(require, module_name)
@@ -112,11 +103,11 @@ for _, file in ipairs(vim.fn.readdir(experimental_luasnips_dir)) do
 		end
 	end
 end
-print("Loaded 'extra/cmp' modules successfully")
+print("Loaded nvim-cmp modules successfully")
 
--- Source custom LUASNIPS SNIPPETS
-local experimental_luasnips_dir = vim.fn.stdpath("config") .. "/lua/extra/cmp/snippets"
-for _, file in ipairs(vim.fn.readdir(experimental_luasnips_dir)) do
+-- LuaSnip
+local luasnips_snippets_dir = vim.fn.stdpath("config") .. "/lua/extra/cmp/snippets"
+for _, file in ipairs(vim.fn.readdir(luasnips_snippets_dir)) do
 	if file:sub(-4) == ".lua" then
 		local module_name = "extra.cmp.snippets." .. file:sub(1, -5)
 		local ok, mod = pcall(require, module_name)
@@ -130,11 +121,11 @@ for _, file in ipairs(vim.fn.readdir(experimental_luasnips_dir)) do
 		end
 	end
 end
-print("Loaded custom LuaSnips snippets from 'extra/cmp/snippets' successfully")
+print("Loaded custom LuaSnips snippets successfully")
 
--- Source DAP submodules
-local override_path = vim.fn.stdpath("config") .. "/lua/extra/dap"
-for _, file in ipairs(vim.fn.readdir(override_path)) do
+-- DAP-related modules
+local extra_dap_dir = vim.fn.stdpath("config") .. "/lua/extra/dap"
+for _, file in ipairs(vim.fn.readdir(extra_dap_dir)) do
 	if file:sub(-4) == ".lua" then
 		local module_name = "extra.dap." .. file:sub(1, -5)
 		local ok, mod = pcall(require, module_name)
@@ -148,7 +139,7 @@ for _, file in ipairs(vim.fn.readdir(override_path)) do
 		end
 	end
 end
-print("Loaded 'extra/dap' modules successfully")
+print("Loaded DAP modules successfully")
 
 -- Always source below last, since they are adhoc patch/override configuraiton code/files
 local override_path = vim.fn.stdpath("config") .. "/lua/extra/overrides/active"
@@ -166,8 +157,10 @@ for _, file in ipairs(vim.fn.readdir(override_path)) do
 		end
 	end
 end
-print("Loaded custom Nvim override modules from 'extra/overrides/active/' successfully")
+print("Loaded custom Nvim override modules from successfully")
 
 -- source plugin remaps last to ensure they aren't overwritten
-require("extra.whichkey_sublabels")
-require("extra.keymaps_extra")
+require("extra.whichkey-sublabels")
+require("extra.whichkey-extra")
+require("extra.keymaps-extra")
+print("Loaded whichkey modules successfully")

@@ -22,3 +22,16 @@ vim.keymap.set("n", "<C-Left>", ":bprevious<CR>", { noremap = true, silent = tru
 
 -- delete blank lines in visual selection
 vim.keymap.set("v", "<Leader>db", ":g/^$/d <CR>", { desc = "Delete blank lines", noremap = true, silent = false })
+
+-- easier save/quit remaps
+vim.keymap.set("n", "<leader><leader>w", ":w<CR>", { silent = false, noremap = true, desc = "Save" })
+vim.keymap.set("n", "<leader>W", ":w!<CR>", { silent = false, noremap = true, desc = "Forcefully save" })
+vim.keymap.set("n", "<leader><leader>q", ":q<CR>", { silent = false, noremap = true, desc = "Quit" })
+vim.keymap.set("n", "<leader><leader>Q", ":<cmd>q!<CR>", { silent = false, noremap = true, desc = "Forcefully quit" })
+vim.keymap.set("n", "<leader><leader>x", ":<cmd>wq<CR>", { silent = false, noremap = true, desc = "Save & quit" })
+vim.keymap.set(
+	"n",
+	"<leader><leader>X",
+	":w!<cr>:q!<CR>",
+	{ silent = false, noremap = true, desc = "Forcefully save & quit" }
+)

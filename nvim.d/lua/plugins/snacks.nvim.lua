@@ -1,78 +1,98 @@
 return {
-	{
-		"folke/snacks.nvim", -- correct repo
-		priority = 1000, -- optional: make it load early
-		lazy = false, -- load on startup (important for UI plugins)
-		opts = {
-			picker = {
-				enabled = true,
-				backend = "telescope", -- or "vim.ui.select", "mini.pick"
-				theme = "ivy", -- optional: "ivy", "dropdown", "cursor"
-			},
-			input = {
-				enabled = true,
-				style = "minimal",
-				relative = "editor",
-				width = 40,
-				height = 1,
-				row = math.floor(vim.o.lines / 2 - 1),
-				col = math.floor(vim.o.columns / 2 - 20),
-				border = "rounded",
-			},
-			notifier = {
-				enabled = true,
-				timeout = 2400, -- milliseconds
-				level = vim.log.levels.DEBUG,
-				style = "compact",
-				top_down = true,
-				date_format = "%R",
-				padding = true,
-				sort = { "level", "added" },
-			},
-			scratch = {
-				enabled = true,
-			},
-			-- disable unrelated modules
-			animate = { enabled = false },
-			bigfile = { enabled = false },
-			bufdelete = { enabled = false },
-			dashboard = { enabled = false },
-			debug = { enabled = false },
-			dim = { enabled = false },
-			explorer = { enabled = false },
-			git = { enabled = false },
-			gitbrowse = { enabled = false },
-			image = { enabled = false },
-			indent = { enabled = false },
-			layout = { enabled = false },
-			lazygit = { enabled = false },
-			profiler = { enabled = false },
-			rename = { enabled = false },
-			scope = { enabled = false },
-			scroll = { enabled = false },
-			statuscolumn = { enabled = false },
-			terminal = { enabled = false },
-			toggle = { enabled = false },
-			util = { enabled = false },
-			win = { enabled = false },
-			words = { enabled = false },
-			zen = { enabled = false },
+	"folke/snacks.nvim",
+	event = "VeryLazy",
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"MunifTanjim/nui.nvim",
+	},
+	opts = {
+		notifier = {
+			enabled = true,
+			view = "mini", -- or "native", "notify"
+			timeout = 4000,
+			level = vim.log.levels.INFO,
+			stages = "fade_in_slide_out",
 		},
-		keys = {
-			{
-				"<leader>sp",
-				function()
-					Snacks.scratch()
-				end,
-				desc = "Toggle Scratchpad",
+		notify = {
+			enabled = true,
+			level = vim.log.levels.INFO,
+			timeout = 5000,
+			render = "default",
+		},
+		input = {
+			enabled = true,
+			border = "rounded",
+			relative = "editor", -- can be win, cursor, editor
+			win_options = {
+				winblend = 10,
 			},
-			{
-				"<leader>ss",
-				function()
-					Snacks.scratch.select()
-				end,
-				desc = "Select Scratch Buffer",
+		},
+		picker = {
+			enabled = true,
+			backend = "telescope", -- or "builtin" for snacks-native
+			mappings = {
+
+				i = {
+					["<C-j>"] = "move_selection_next",
+					["<C-k>"] = "move_selection_previous",
+				},
+			},
+		},
+		scratch = {
+			enabled = true,
+			default_filetype = "lua",
+			border = "single",
+			mappings = {
+				normal = {
+					["<leader>SS"] = "<cmd>ScratchNew<CR>",
+				},
+			},
+		},
+
+		terminal = {
+			enabled = true,
+			border = "double",
+			float_opts = {
+				width = 0.9,
+				height = 0.8,
+			},
+			mappings = {
+				toggle = "<leader>tt", -- toggle terminal
+				new = "<leader>tn", -- new terminal window
+			},
+		},
+		util = {
+			enabled = true,
+			auto_cd_root = true,
+		},
+		git = {
+			enabled = true,
+			signs = true,
+			blame_line = true,
+			-- mappings = {
+			-- 	["<leader>gs"] = "<cmd>SnacksGitStatus<CR>",
+			-- 	["<leader>gb"] = "<cmd>SnacksGitBlameLine<CR>",
+			-- },
+		},
+		lazygit = {
+			enabled = true,
+			-- mapping = "<leader>gz", -- launches lazygit popup
+			layout = {
+				width = 0.9,
+				height = 0.9,
 			},
 		},
 	},
+	config = function(_, opts)
+		require("snacks").setup(opts)
+
+		-- Optional: Add custom commands
+		vim.api.nvim_create_user_command("SnackTerm", function()
+			require("snacks.terminal").open()
+		end, {})
+
+		vim.api.nvim_create_user_command("SnackScratch", function()
+			require("snacks.scratch").open()
+		end, {})
+	end,
 }

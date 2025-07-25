@@ -76,6 +76,13 @@ if not ok then
 	vim.notify("Error - failed to load " .. module_name, vim.log.levels.ERROR)
 end
 
+-- Magma
+local module_name = "extra.magma-extra"
+local ok, mod = pcall(require, module_name)
+if not ok then
+	vim.notify("Error - failed to load " .. module_name, vim.log.levels.ERROR)
+end
+
 -- Mason configuration
 require("extra.mason")
 -- print("\nMason loaded successfully")

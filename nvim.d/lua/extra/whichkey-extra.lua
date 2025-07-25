@@ -85,7 +85,6 @@ wk.add({
 -- alt. mapping to view keymaps
 vim.keymap.set("n", "<leader>wK", "<cmd>WhichKey <CR>", { desc = "view all whichkey keymaps" })
 vim.keymap.set("n", "<leader>??", "<cmd>WhichKey <CR>", { desc = "view all whichkey keymaps" })
-
 vim.keymap.set("n", "<leader>wq", function()
 	vim.cmd("WhichKey " .. vim.fn.input("WhichKey: "))
 end, { desc = "whichkey query lookup" })

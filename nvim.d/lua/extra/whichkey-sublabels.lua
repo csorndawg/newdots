@@ -3,7 +3,7 @@ local wk = require("which-key")
 
 -- Use the supported table format for group labels (still valid and preferred)
 wk.register({
-	x = { name = "e[X]perimental" },
+	-- x = { name = "e[X]perimental" },
 	-- Dedicated subkey space for testing/validating interim keymaps before updating for my use case
 	-- Subkey space is intentionally inconvient to avoid namespace conflicts with actual mappings
 	z9 = { name = "Experimental/Overrides/Testing" },
@@ -13,12 +13,12 @@ wk.register({
 	T = { name = "[T]elescope extensions" },
 	q = { name = "[q]uickfix" },
 	c = { name = "[C]ode Actions" },
-	-- l = { name = "[L]SP" },
+	cm = { name = "[M]agma" },
+	cl = { name = "[L]int" },
+	cv = { name = "[V]env" },
 	l = { name = "[L]SP" },
 	lL = { name = "Lsp 2" },
 	S = { name = "[S]nacks" }, -- keep on 'S' for now, but might move to 's'
-	cl = { name = "[L]int" },
-	cv = { name = "[V]env" },
 }, { prefix = "<leader>" })
 
 -- @TODO: Review code to migrate above code to the cleaner/newer syntax below
@@ -38,7 +38,7 @@ wk.register({
 --   { "<leader>z9", group = "Nonprod Testing/Validating Space" },
 -- }
 -- mock keymaps just to test whichkey map behavior
-vim.keymap.set("n", "<leader>xx", "<cmd>echo 'Experimental Feature'<cr>", { desc = "Experimental Feature" })
+-- vim.keymap.set("n", "<leader>xx", "<cmd>echo 'Experimental Feature'<cr>", { desc = "Experimental Feature" })
 vim.keymap.set("n", "<leader>mm", "<cmd>echo 'Misc Function'<cr>", { desc = "Misc Function" })
 vim.keymap.set("n", "<leader>clz", "<cmd>echo 'Test LSP Lint subkey'<cr>", { desc = "Code Actions - Venv Function" })
 vim.keymap.set("n", "<leader>ta", "<cmd>Telescope builtin<cr>", { desc = "All builtins search" })
@@ -49,6 +49,12 @@ vim.keymap.set(
 	"<cmd>echo 'z9 subkey is used solely for testing, and the real whichkey mapping will be defined after validation.",
 	{ desc = "Subkey Description" }
 )
+vim.keymap.set(
+	"n",
+	"<leader>cmz",
+	"<cmd>echo 'Magma Subkey Label Test'<cr>",
+	{ desc = "Dummy Magma Subkey Keymap Actions" }
+)
 
 -- @Experimental: Assigning dummy subkey label to "<Leader>z" for keymaps that don't begin with <leader>.
 local wk = require("which-key")
@@ -56,13 +62,13 @@ local wk = require("which-key")
 wk.register({
 	z = {
 		name = "Dummy Subkey Label",
-		["sa"] = "Add surrounding",
-		["sd"] = "Delete surrounding",
-		["sr"] = "Replace surrounding",
-		["sf"] = "Find next (right) surrounding",
-		["sF"] = "Find prev (left) surrounding",
-		["sh"] = "Highlight surrounding",
-		["sn"] = "Change number of neighbor lines",
+		["sa"] = "Add surrounding: <sa>",
+		["sd"] = "Delete surrounding: <sd>",
+		["sr"] = "Replace surrounding: <sr>",
+		["sf"] = "Find next (right) surrounding: <sf>",
+		["sF"] = "Find prev (left) surrounding: <sF>",
+		["sh"] = "Highlight surrounding: <sh>",
+		["sn"] = "Change number of neighbor lines: <sn>",
 		["<C-Right>"] = "Next buffer: <Ctrl-Right>",
 		["<C-Left>"] = "Prev buffer: <Ctrl-Left>",
 		["<S-Up>"] = "Resize split upwards: <Shift-Up>",

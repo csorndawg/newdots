@@ -1,41 +1,47 @@
--- Magma Custom Configuration
-
--- Keymaps
-
--- "operator" is any text selected while in "operator" mode
-vim.keymap.set(
-	"n",
-	"<Leader>cmr",
-	":MagmaEvaluateOperator<CR>",
-	{ silent = true, expr = true, desc = "Magma run selection" }
-)
-vim.keymap.set("n", "<Leader>cml", ":MagmaEvaluateLine<CR>", { silent = false, desc = "Magma run line" })
-vim.keymap.set("x", "<Leader>cmv", ":<C-u>MagmaEvaluateVisual<CR>", { silent = true, desc = "Magma run visual" })
-vim.keymap.set("n", "<Leader>cmc", ":MagmaReevaluateCell<CR>", { silent = true, desc = "Magma rerun cell" })
-vim.keymap.set("n", "<Leader>cmd", ":MagmaDelete<CR>", { silent = true, desc = "Magma delete" })
-vim.keymap.set("n", "<Leader>cmo", ":MagmaShowOutput<CR>", { silent = true, desc = "View Magma output" })
-vim.keymap.set("n", "<Leader>cms", ":MagmaSave<CR>", { silent = true, desc = "Save Magma as JSON" })
--- vim.keymap.set("n", "<Leader>cmO", ":noautocmd MagmaEnterOutput<CR>", { silent = true, desc = "Enter Magma output" })
-
--- Settings
-vim.g.magma_automatically_open_output = false
-vim.g.magma_save_path = vim.fn.stdpath("data") .. "/magma"
--- vim.g.magma_image_provider = "ueberzug"  -- default to "None"
-
--- Function
-
-function _G.MagmaInitPython()
-	-- @NOTE: Uncomment below if "python" instead of "python3" raises errors
-	-- vim.cmd("MagmaInit python3")
-	vim.cmd("MagmaInit python")
-	vim.cmd("MagmaEvaluateArgument a=5")
-end
-
--- Command
-vim.cmd("command! MagmaInitPython lua MagmaInitPython()")
-
--- Magma Default Autocmds
--- MagmaInitPre: runs right before MagmaInit initialization happens for a buffer
--- MagmaInitPost: runs right after MagmaInit initialization happens for a buffer
--- MagmaDeinitPre: runs right before MagmaDeinit deinitialization happens for a buffer
--- MagmaDeinitPost: runs right after MagmaDeinit deinitialization happens for a buffer
+-- -- Magma Custom Configuration
+--
+-- -- Keymaps
+--
+-- -- "operator" is any text selected while in "operator" mode
+-- vim.keymap.set(
+-- 	"n",
+-- 	"<Leader>cmr",
+-- 	":MagmaEvaluateOperator<CR>",
+-- 	{ silent = true, expr = true, desc = "Magma run selection" }
+-- )
+-- vim.keymap.set("n", "<Leader>cml", ":MagmaEvaluateLine<CR>", { silent = false, desc = "Magma run line" })
+-- vim.keymap.set("x", "<Leader>cmv", ":<C-u>MagmaEvaluateVisual<CR>", { silent = true, desc = "Magma run visual" })
+-- vim.keymap.set("n", "<Leader>cmc", ":MagmaReevaluateCell<CR>", { silent = true, desc = "Magma rerun cell" })
+-- vim.keymap.set("n", "<Leader>cmd", ":MagmaDelete<CR>", { silent = true, desc = "Magma delete" })
+-- vim.keymap.set("n", "<Leader>cmo", ":MagmaShowOutput<CR>", { silent = true, desc = "View Magma output" })
+-- vim.keymap.set("n", "<Leader>cms", ":MagmaSave<CR>", { silent = true, desc = "Save Magma as JSON" })
+-- -- vim.keymap.set("n", "<Leader>cmO", ":noautocmd MagmaEnterOutput<CR>", { silent = true, desc = "Enter Magma output" })
+--
+-- -- Settings
+-- vim.g.magma_automatically_open_output = false
+-- vim.g.magma_save_path = vim.fn.stdpath("data") .. "/magma"
+-- -- vim.g.magma_image_provider = "ueberzug"  -- default to "None"
+--
+-- -- Functions
+-- -- function _G.MagmaInitPython()
+-- -- 	-- @NOTE: Uncomment below if "python" instead of "python3" raises errors
+-- -- 	-- vim.cmd("MagmaInit python3")
+-- -- 	vim.cmd("MagmaInit python")
+-- -- 	vim.cmd("MagmaEvaluateArgument a=5")
+-- -- end
+-- --
+--
+-- function M.MagmaInitPython()
+-- 	-- adjust this path to your active venv python if necessary
+-- 	local python_path = vim.fn.expand("~/.virtualenvs/yourenv/bin/python")
+-- 	require("magma").init_python({ python_cmd = python_path })
+-- end
+--
+-- -- Command
+-- vim.cmd("command! MagmaInitPython lua MagmaInitPython()")
+--
+-- -- Magma Default Autocmds
+-- -- MagmaInitPre: runs right before MagmaInit initialization happens for a buffer
+-- -- MagmaInitPost: runs right after MagmaInit initialization happens for a buffer
+-- -- MagmaDeinitPre: runs right before MagmaDeinit deinitialization happens for a buffer
+-- -- MagmaDeinitPost: runs right after MagmaDeinit deinitialization happens for a buffer

@@ -71,13 +71,30 @@ end
 
 -- Snacks
 local module_name = "extra.snacks-extra"
-local ok, mod = pcall(require,module_name)
+local ok, mod = pcall(require, module_name)
 if not ok then
 	vim.notify("Error - failed to load " .. module_name, vim.log.levels.ERROR)
 end
 
 -- Magma
-local module_name = "extra.magma-extra"
+--local module_name = "extra.magma-extra"
+--local ok, mod = pcall(require, module_name)
+--if not ok then
+--	vim.notify("Error - failed to load " .. module_name, vim.log.levels.ERROR)
+--end
+
+-- @EXPERIMENTAL: Added 8/1/25
+-- @REVIEW: New changes and/or functionality that needs to be monitored (and more than likely, tinkered with) before fully releasing
+--
+-- Fix silent macros
+local module_name = "extra.macros"
+local ok, mod = pcall(require, module_name)
+if not ok then
+	vim.notify("Error - failed to load " .. module_name, vim.log.levels.ERROR)
+end
+
+-- Better insert/cmd experience with basic normal-mode like actions
+local module_name = "extra.keymaps_crossmodal"
 local ok, mod = pcall(require, module_name)
 if not ok then
 	vim.notify("Error - failed to load " .. module_name, vim.log.levels.ERROR)

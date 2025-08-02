@@ -55,10 +55,10 @@ remapp("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)
 
 -- @experimental
 -- quickfix navigation
-remapp("n", "<leader>qo", "copen", { desc = "Open quicklist", silent = false })
-remapp("n", "<leader>qc", "cclose", { desc = "Close quicklist", silent = false })
-remapp("n", "<leader>qn", "cnext", { desc = "Next quicklist", silent = false })
-remapp("n", "<leader>qp", "cprev", { desc = "Prev quiclist", silent = false })
+remapp("n", "<leader>Qo", "copen", { desc = "Open quicklist", silent = false })
+remapp("n", "<leader>Qc", "cclose", { desc = "Close quicklist", silent = false })
+remapp("n", "<leader>Qn", "cnext", { desc = "Next quicklist", silent = false })
+remapp("n", "<leader>Qp", "cprev", { desc = "Prev quiclist", silent = false })
 
 -- if possible, create new vert window from current file
 vim.keymap.set("n", "<C-n>", function()
@@ -80,12 +80,6 @@ remapp("n", "<leader><leader>l", "L", { desc = "Move cursor to bottom", silent =
 
 -- show path of current file
 remapp("n", "<Leader>ep", ":echo expand('%')<Cr>", { desc = "Echo path", noremap = true })
-
--- add description later
--- run (p)ython/(b)ash buffer
-remapp("n", "<leader>rp", ":w !python3 %<Tab><Cr>", { noremap = true })
-remapp("n", "<leader>rl", ":w !lua %<Tab><Cr>", { noremap = true })
-remapp("n", "<leader>rb", ":w !bash  %<Tab><Cr>", opts)
 
 --
 -- Insert Mode
@@ -302,3 +296,8 @@ vim.keymap.set("c", "<C-f>", function()
 	vim.fn.setcmdpos(#before + 1)
 	return ""
 end, { expr = true })
+
+-- move cursor in Insert/Command mode wth <Ctrl-Backspace>/<Ctrl-Shift-Backspace>
+
+-- @EXPERIMENTAL: Testing alternative/simpler <ESC> keymap
+vim.keymap.set({ "n", "c", "i" }, "<Leader><Leader>c", "<Esc>")

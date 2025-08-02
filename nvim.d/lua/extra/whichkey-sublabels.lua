@@ -6,12 +6,13 @@ wk.register({
 	-- x = { name = "e[X]perimental" },
 	-- Dedicated subkey space for testing/validating interim keymaps before updating for my use case
 	-- Subkey space is intentionally inconvient to avoid namespace conflicts with actual mappings
-	z9 = { name = "Experimental/Overrides/Testing" },
+	Z9 = { name = "Experimental/Overrides/Testing" },
+	ZZ = { name = "Reserving for dummy keylabel spillover" },
 	-- z = { name = "Dummy Subkey Labels" },
 	m = { name = "[M]iscellaneous" },
 	t = { name = "[t]elescope builtins" },
 	T = { name = "[T]elescope extensions" },
-	q = { name = "[q]uickfix" },
+	Q = { name = "[Q]uickfix" },
 	c = { name = "[C]ode Actions" },
 	cm = { name = "[M]agma" },
 	cl = { name = "[L]int" },
@@ -21,22 +22,6 @@ wk.register({
 	S = { name = "[S]nacks" }, -- keep on 'S' for now, but might move to 's'
 }, { prefix = "<leader>" })
 
--- @TODO: Review code to migrate above code to the cleaner/newer syntax below
--- Suggested Spec:
--- {
---   { "<leader>S", group = "[S]nacks" },
---   { "<leader>T", group = "[T]elescope extensions" },
---   { "<leader>c", group = "[C]ode Actions" },
---   { "<leader>cl", group = "[L]int" },
---   { "<leader>cv", group = "[V]env" },
---   { "<leader>l", group = "LSP" },
---   { "<leader>lL", group = "Lsp 2" },
---   { "<leader>m", group = "[M]iscellaneous" },
---   { "<leader>q", group = "[q]uickfix" },
---   { "<leader>t", group = "[t]elescope builtins" },
---   { "<leader>x", group = "e[X]perimental" },
---   { "<leader>z9", group = "Nonprod Testing/Validating Space" },
--- }
 -- mock keymaps just to test whichkey map behavior
 -- vim.keymap.set("n", "<leader>xx", "<cmd>echo 'Experimental Feature'<cr>", { desc = "Experimental Feature" })
 vim.keymap.set("n", "<leader>mm", "<cmd>echo 'Misc Function'<cr>", { desc = "Misc Function" })
@@ -45,8 +30,14 @@ vim.keymap.set("n", "<leader>ta", "<cmd>Telescope builtin<cr>", { desc = "All bu
 vim.keymap.set("n", "<leader>Tl", "<cmd>Telescope luasnip<cr>", { desc = "Telescope Luasnip" })
 vim.keymap.set(
 	"n",
-	"<leader>z9e",
-	"<cmd>echo 'z9 subkey is used solely for testing, and the real whichkey mapping will be defined after validation.",
+	"<leader>ZZe",
+	"<cmd>echo 'ZZ is reservered keylabel, incase <Leader>Z runs out of mapping space.'",
+	{ desc = "ZZ Sublabel Description" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>Z9e",
+	"<cmd>echo 'Z9 subkey is used solely for testing, and the real whichkey mapping will be defined after validation.'",
 	{ desc = "Subkey Description" }
 )
 vim.keymap.set(
@@ -60,7 +51,7 @@ vim.keymap.set(
 local wk = require("which-key")
 
 wk.register({
-	z = {
+	Z = {
 		name = "Dummy Subkey Label",
 		["sa"] = "Add surrounding: <sa>",
 		["sd"] = "Delete surrounding: <sd>",
@@ -69,11 +60,12 @@ wk.register({
 		["sF"] = "Find prev (left) surrounding: <sF>",
 		["sh"] = "Highlight surrounding: <sh>",
 		["sn"] = "Change number of neighbor lines: <sn>",
-		["<C-Right>"] = "Next buffer: <Ctrl-Right>",
-		["<C-Left>"] = "Prev buffer: <Ctrl-Left>",
-		["<S-Up>"] = "Resize split upwards: <Shift-Up>",
-		["<S-Down>"] = "Resize split downwards: <Shift-Down>",
-		["<S-Left>"] = "Resize split leftwards: <Shift-Left>",
-		["<S-Right>"] = "Resize split rightwards: <Shift-Right>",
+		["1"] = "Next buffer: <Ctrl-Right> or <Ctrl-.>",
+		["2"] = "Next buffer: <Ctrl-Left> or <Ctrl-,>",
+		["3"] = "Resize split up: <Shift-Up>",
+		["4"] = "Resize split down: <Shift-Down>",
+		["5"] = "Resize split left: <Shift-Left>",
+		["6"] = "Resize split right: <Shift-Right>",
+		["a"] = "Echo Path: <Leader>ep",
 	},
 }, { prefix = "<leader>" })

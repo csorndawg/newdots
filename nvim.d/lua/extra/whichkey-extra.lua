@@ -109,5 +109,15 @@ end, { desc = "Toggle comment (visual)" })
 -- delete next character and remain in INSERT
 vim.keymap.set("i", "<A-x>", "<Esc>xi", { silent = true, noremap = true })
 
-vim.keymap.set("n", "<leader><leader>W", ":wa!", { desc = "Write (force) all buffers", silent = true, noremap = true })
-vim.keymap.set("n", "<leader><leader>Q", ":qa!", { desc = "Quit (force) all buffers", silent = true, noremap = true })
+vim.keymap.set(
+	"n",
+	"<leader><leader>W",
+	":wa!",
+	{ desc = "Write all buffers (forcibly)", silent = true, noremap = true }
+)
+vim.keymap.set(
+	"n",
+	"<leader><leader>X",
+	":qa!",
+	{ desc = "EXit all buffers (forcibly) ", silent = true, noremap = true }
+)

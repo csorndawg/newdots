@@ -28,5 +28,5 @@ vim.keymap.set("v", "<Leader>db", ":g/^$/d <CR>", { desc = "Delete blank lines",
 -- easier save/quit remaps
 vim.keymap.set("n", "<leader><leader>w", ":w<CR>", { silent = false, noremap = true, desc = "Save" })
 vim.keymap.set("n", "<leader>W", ":w!<CR>", { silent = false, noremap = true, desc = "Forcefully save" })
-vim.keymap.set("n", "<leader><leader>x", ":q<CR>", { silent = false, noremap = true, desc = "eXit (quit)" })
-vim.keymap.set("n", "<leader><leader>X", ":<cmd>q!<CR>", { silent = false, noremap = true, desc = "Forcefully eXit" })
+vim.keymap.set("n", "<leader><leader>q", ":q<CR>", { silent = false, noremap = true, desc = "Quit" })
+vim.keymap.set("n", "<leader><leader>Q", ":<cmd>q!<CR>", { silent = false, noremap = true, desc = "Forcefully quit" })

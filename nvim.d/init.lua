@@ -42,9 +42,10 @@ require("extra.colorschemes.nord")
 -- ------------------------------------------------------------
 
 require("user.opts")
+require("user.functions")
 require("user.keymaps")
 require("user.autocmds")
-print("Loaded native Nvim custom config modules successfully")
+-- print("Loaded native Nvim config modules successfully")
 
 -- ------------------------------------------------------------
 -- Custom "extra" (plugin related) configuration modules
@@ -59,10 +60,10 @@ require("extra.telescope.telescope-config")
 require("extra.telescope.mycustom_pickers")
 require("extra.ufo")
 require("extra.git-keymaps") -- custom keymaps for git-related plugins (fugitive, telescope, etc.)
-print("Loaded oneoff config modules successfully")
+-- print("Loaded oneoff config modules successfully")
 
 -- Aerial
-local module_name = "/lua/extra/aerial-custom"
+local module_name = "extra.aerial-custom"
 local ok, mod = pcall(require, module_name)
 -- local ok, mod = pcall(require, "extra.aerial-custom")
 if not ok then
@@ -124,7 +125,7 @@ for _, file in ipairs(vim.fn.readdir(extra_lsp_dir)) do
 		end
 	end
 end
-print("Loaded LSP modules successfully")
+-- print("Loaded LSP modules successfully")
 
 -- CMP-related (nvim-cmp, dadbod, etc.) modules
 local extra_cmp_dir = vim.fn.stdpath("config") .. "/lua/extra/cmp"
@@ -142,7 +143,7 @@ for _, file in ipairs(vim.fn.readdir(extra_cmp_dir)) do
 		end
 	end
 end
-print("Loaded nvim-cmp modules successfully")
+-- print("Loaded nvim-cmp modules successfully")
 
 -- LuaSnip
 local luasnips_snippets_dir = vim.fn.stdpath("config") .. "/lua/extra/cmp/snippets"
@@ -160,7 +161,7 @@ for _, file in ipairs(vim.fn.readdir(luasnips_snippets_dir)) do
 		end
 	end
 end
-print("Loaded custom LuaSnips snippets successfully")
+-- print("Loaded custom LuaSnips snippets successfully")
 
 -- DAP-related modules
 local extra_dap_dir = vim.fn.stdpath("config") .. "/lua/extra/dap"
@@ -178,7 +179,7 @@ for _, file in ipairs(vim.fn.readdir(extra_dap_dir)) do
 		end
 	end
 end
-print("Loaded DAP modules successfully")
+-- print("Loaded DAP modules successfully")
 
 -- Always source below last, since they are adhoc patch/override configuraiton code/files
 local override_path = vim.fn.stdpath("config") .. "/lua/extra/overrides/active"
@@ -196,10 +197,10 @@ for _, file in ipairs(vim.fn.readdir(override_path)) do
 		end
 	end
 end
-print("Loaded custom Nvim override modules from successfully")
+-- print("Loaded custom Nvim override modules from successfully")
 
 -- source plugin remaps last to ensure they aren't overwritten
 require("extra.whichkey-sublabels")
 require("extra.whichkey-extra")
 require("extra.keymaps-extra")
-print("Loaded whichkey modules successfully")
+-- print("Loaded whichkey modules successfully")

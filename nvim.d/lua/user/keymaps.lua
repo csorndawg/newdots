@@ -300,4 +300,9 @@ end, { expr = true })
 -- move cursor in Insert/Command mode wth <Ctrl-Backspace>/<Ctrl-Shift-Backspace>
 
 -- @EXPERIMENTAL: Testing alternative/simpler <ESC> keymap
-vim.keymap.set({ "n", "c", "i" }, "<Leader><Leader>c", "<Esc>")
+vim.keymap.set({ "v", "n", "c", "i" }, "<Leader><Leader>c", "<Esc>", { noremap = true })
+vim.keymap.set({ "v", "n", "c", "i" }, "<C-_><C-_>", "<Esc>", { noremap = true })
+
+-- buffer cycling all modes
+vim.keymap.set({ "v", "n", "c", "i" }, "<C-Home>", "<Esc><cmd>bn<cr>", { noremap = true })
+vim.keymap.set({ "v", "n", "c", "i" }, "<C-End>", "<Esc><cmd>bn<cr>", { noremap = true })

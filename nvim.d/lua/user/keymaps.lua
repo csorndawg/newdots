@@ -249,8 +249,14 @@ vim.keymap.set("n", "<leader>mP", "<cmd>set nopaste<cr>", { desc = "Paste off", 
 -- quickfix navigation
 vim.keymap.set("n", "<leader>qo", "<cmd>copen <cr>", { desc = "Open quicklist", silent = false })
 vim.keymap.set("n", "<leader>qc", "<cmd>cclose <cr>", { desc = "Close quicklist", silent = false })
-vim.keymap.set("n", "<leader>qn", "<cmd>cnext <cr>", { desc = "Next quicklist", silent = false })
-vim.keymap.set("n", "<leader>qp", "<cmd>cprev <cr>", { desc = "Prev quiclist", silent = false })
+vim.keymap.set("n", "<leader>qn", "<cmd>cnext <cr>", { desc = "Next quickfix list", silent = false })
+vim.keymap.set("n", "<leader>qp", "<cmd>cprev <cr>", { desc = "Prev quickfix list", silent = false })
+vim.keymap.set(
+	"n",
+	"<leader>qp",
+	"<cmd>lua vim.fn.setqflist({}, 'f')<cr>",
+	{ desc = "Clear current quickfix list", silent = false }
+)
 
 -- @TODO: Look to mirror code below to create additional Cmd-mode keybinds for removing/adding text.
 

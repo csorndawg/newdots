@@ -312,3 +312,5 @@ vim.keymap.set({ "v", "n", "c", "i" }, "<C-_><C-_>", "<Esc>", { noremap = true }
 -- buffer cycling all modes
 vim.keymap.set({ "v", "n", "c", "i" }, "<C-Home>", "<Esc><cmd>bn<cr>", { noremap = true })
 vim.keymap.set({ "v", "n", "c", "i" }, "<C-End>", "<Esc><cmd>bn<cr>", { noremap = true })
+
+vim.keymap.set("v", "<Leader>vs", ":sort<cr>", { noremap = true, desc = "Sort visual selection" })

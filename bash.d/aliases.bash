@@ -23,7 +23,8 @@ alias twa="cd $HOME/git/taskwarra"
 alias dob="cd $HOME/git/dataops_bible"
 alias dot="cd $HOME/git/newdots"
 alias obb="cd $HOME/git/obsiddy"
-alias clb="cd $HOME/git/cheatbook"
+alias chtr="cd /home/tlop/git/cheatfiles-zc"
+alias clbo="cd $HOME/git/cheatbook"
 alias tbx="cd $HOME/git/toolbox"
 alias kb="cd $HOME/git/kb2"
 alias fkx="cd $HOME/git/fortknox"
@@ -44,3 +45,9 @@ alias xargs='xargs -I "{}"'
 alias WSL_CDRIVE="/mnt/c/Users"
 alias WSL_ZACCS="/mnt/c/Users/zaccs"
 alias WSL_ZCSOR="/mnt/c/Users/zcsor"
+
+# convenience aliases
+alias tll=tldr
+alias cb="cd $HOME/mycodebase"
+alias xcc="xclip -se clipboard"  # sends pipeline output to system clipboard
+alias clip="xclip -se clipboard"  # sends pipeline output to system clipboard

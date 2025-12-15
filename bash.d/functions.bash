@@ -216,3 +216,22 @@ edf() {
 		;;
 	esac
 }
+
+
+# add specified venv to kernel list
+function venvKernelAdd() {
+     if [ -z "$1" ]; then
+         echo "Error - venv name must be passed" 
+         return 0
+     fi
+
+    if [ ! -z "$2" ];
+    then
+        displayName="$2"
+    else
+        displayName="$1"
+    fi
+    venvName="$1"
+    python -m ipykernel install --user --name="$venvName" --display-name="venv_lab1"
+}
+

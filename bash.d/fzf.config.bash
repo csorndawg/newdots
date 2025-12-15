@@ -1,0 +1,122 @@
+##############################
+#   Key Binding Configs
+##############################
+
+# Run FZF dependency management script
+bash "$HOME/dotfiles/utils.d/helpers/fzf_dependencies_setup.sh" 2>&1 /dev/null
+
+# Ensure fzf key-binding and shell configuration is included in users shell rc
+function update_shell_rc {
+  is_zsh=$(echo "$SHELL" | egrep -c '\/zsh$')
+  if [[ $((is_zsh)) -ge 1 ]]; then
+    shell="zsh"
+    source <(fzf --zsh)
+  else
+    shell="bash"
+    eval "$(fzf --bash)" 
+  fi
+  echo "Succesfully sourced FZF key-bindings and completion scripts for $shell shell"
+}
+
+# Set up fzf key bindings and fuzzy completion
+update_shell_rc #1>/dev/null
+
+# Source custom FZF functions
+source ~/dotfiles/rc.d/fzf.rc #2>&1 /dev/null
+
+
+##############################
+#	FZF CONFIGURATIONS
+##############################
+
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git --ignore-file "$HOME/dotfiles/config.d/fd/fdignore"'
+
+
+# nord color scheme 
+export FZF_DEFAULT_OPTS="
+  --no-height
+  --color=fg:#e5e9f0,bg:#3b4252,hl:#81a1c1 
+  --color=fg+:#e5e9f0,bg+:#3b4252,hl+:#81a1c1
+  --color=info:#eacb8a,prompt:#bf6069,pointer:#b48dac 
+  --color header:italic
+  --color=marker:#a3be8b,spinner:#b48dac,header:#a3be8b"
+
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS
+  --multi \
+  --bind 'ctrl-space:toggle' \
+  --bind 'ctrl-g:accept' \
+  --header=italic  \
+  --header 'ZAC TEST. Default header. Toggle selection with <Ctrl-Space>. Accept selections with <Enter> or <Ctrl-g>.' \
+  --header-first \
+  --header-border=sharp \
+  --cycle \
+"
+# --bind 'alt-space:toggle' \
+
+# @EXPERIMENTAL: All experimental arguments are added to below ENV. variable which will be 
+# appended FZF_DEFAULT_OPTS. If any breaking changes occurr just comment out appended variable revert.
+export FZF_EXPERIMENTAL_OPTS="--bind 'ctrl-a:toggle-all' \
+--pointer='>>' \
+"
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS $FZF_EXPERIMENTAL_OPTS"
+
+
+# CTRL-T
+export FZF_CTRL_T_COMMAND='fd -t f'
+export FZF_CTRL_T_OPTS="  --preview 'bat -n --color=always {}'"
+
+# ALT-C
+export FZF_ALT_C_COMMAND='fd -t d . $HOME'    # use $HOME instead of CWD as FZF starting point
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+
+# CTRL-R/History
+export FZF_CTRL_R_OPTS="
+  --preview 'echo {}' --preview-window up:3:hidden:wrap 
+  --bind 'ctrl-e:toggle-preview' 
+  --bind 'ctrl-s:accept+execute-silent(eval {})'
+  --color header:italic 
+  --header '<Ctrl-S> to accept+execute. <Enter> to accept. <CTRL-E> to toggle command preview'
+"
+
+_fzf_complete_man(){
+    local lbuf="$1"
+    local prefix="$2"
+    local name section dash description
+    local matches=($(man -k . | fzf -m | while read -r name section dash description; do
+        echo "$name.${${section#\(}%\)}"
+    done))
+    [ -z "$matches" ] && return 1
+    LBUFFER="$LBUFFER${matches[@]}"
+}
+
+
+## FZF FUZZY SHELL COMPLETION 
+## doc: https://github.com/junegunn/fzf?tab=readme-ov-file#customizing-fzf-options-for-completion
+
+# Use ,, as the trigger sequence instead of the default **
+export FZF_COMPLETION_TRIGGER=',,'
+
+# Options to fzf command
+export FZF_COMPLETION_OPTS='--border --info=inline'
+
+# Options for path completion (e.g. vim **<TAB>)
+export FZF_COMPLETION_PATH_OPTS='--walker file,dir,follow,hidden'
+
+# Options for directory completion (e.g. cd **<TAB>)
+export FZF_COMPLETION_DIR_OPTS='--walker dir,follow'
+
+# Advanced customization of fzf options via _fzf_comprun function
+# - The first argument to the function is the name of the command.
+# - You should make sure to pass the rest of the arguments ($@) to fzf.
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           fzf --preview 'tree -C {} | head -200'   "$@" ;;
+    tree)           fzf --preview 'tree -C {} | head -200'   "$@" ;;
+    #export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
+    #ssh)          fzf --preview 'dig {}'                   "$@" ;;
+    *)            fzf --preview 'bat -n --color=always {}' "$@" ;;
+  esac
+}

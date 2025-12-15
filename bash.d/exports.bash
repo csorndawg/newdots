@@ -21,3 +21,8 @@ export LOCAL_KB2_HOME="$HOME/git/kb2"
 export LOCAL_DOTFILES_HOME="$HOME/git/newdots"
 export LOCAL_ZXPLORE_HOME="$HOME/git/zxp"
 export LOCAL_GIT_HOME="$HOME/git"
+
+# ubu envs.
+export MYCODEBASE_HOME="$HOME/mycodebase"
+export UBU_CODEBASE_HOME="/usr/codebase"
+export CHEATFILES_ZC_HOME="$HOME/git/cheatfiles-zc"

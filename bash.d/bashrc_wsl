@@ -9,6 +9,8 @@
 #fi
 #
 
+BASHRC_RUNTIME_LOGFILE="$HOME/.local/runtime/logs/bashrc.log"
+
 # If not running interactively, don't do anything
 case $- in
 *i*) ;;
@@ -128,8 +130,8 @@ fi
 # RC - SHARED BASH/ZSH CONFIGURATIONS
 source ~/dotfiles/rc.d/aliases.rc 2>/dev/null
 source ~/dotfiles/rc.d/aliases_experimental.rc 2>/dev/null
-source ~/dotfiles/rc.d/exports.rc   #2>/dev/null
-source ~/dotfiles/rc.d/functions.rc #|| echo "Error occurred while sourcing rc.d/functions file"
+source ~/dotfiles/rc.d/exports.rc   2>/dev/null
+source ~/dotfiles/rc.d/functions.rc || echo "Error occurred while sourcing rc.d/functions file" >> $BASHRC_RUNTIME_LOGFILE
 
 # BASH ONLY CONFIGS
 source ~/dotfiles/bash.d/functions.bash 1>/dev/null
@@ -137,6 +139,29 @@ source ~/dotfiles/bash.d/exports.bash 1>/dev/null
 source ~/dotfiles/bash.d/experimental.bash 1>/dev/null
 source ~/dotfiles/bash.d/prompt.bash 1>/dev/null
 source ~/dotfiles/bash.d/aliases.bash 1>/dev/null
+source ~/dotfiles/bash.d/linode.bash 1>/dev/null
+
+BASHD_DIR="$HOME/dotfiles/bash.d" 
+# BASHD_DIR="/home/tlop/git/dot_omega/bash.d" 
+BASHD_COMP_DIR="$BASHD_DIR/completers"
+
+# Example ignore patterns (space or newline separated)
+BASHD_COMP_IGNORES=(
+	'\.ignore'
+	'_pyth.+argcomp'
+  '<future ignore patter>'
+)
+
+for x in $(find "$BASHD_COMP_DIR" -type f -maxdepth 1 2> /dev/null); do
+  for ignr in "${BASHD_COMP_IGNORES[@]}"; do
+    if echo "$x" | grep -qE "$ignr"; then
+      # echo "Skipping: $x"
+      continue 2
+    fi
+  done
+  echo "Sourcing: $x" >> "$HOME/.local/runtime/logs/bashrc.log" 2>&1
+  source $x
+done
 
 #####
 ##### WSL2 BASH SPECIFIC LOGIC/CONFIGURATIONS
@@ -296,24 +321,25 @@ llr() {
 export XDG_ASUS_HOME="/mnt/c/Users/zaccs/Desktop"
 alias dsktp="cd /mnt/c/Users/zaccs/Desktop/Personal"
 
-# SOURCE DOTFILES BASH COMPLETION SCRIPTS
-bashcomps() {
-  COMP_DIR="$HOME/dotfiles/bash.d/completers"
+# # SOURCE DOTFILES BASH COMPLETION SCRIPTS
+# bashcomps() {
+#   COMP_DIR="$HOME/dotfiles/bash.d/completers"
 
-  # ignore patterns for broken/experimental completion scripts
-  # need to add place holder pattern if no patterns are currently
-  # being ignored as temp. workaround
-  IGNORE_REGX="fallback"
+#   # ignore patterns for broken/experimental completion scripts
+#   # need to add place holder pattern if no patterns are currently
+#   # being ignored as temp. workaround
+#   IGNORE_REGX="fallback"
 
-  for x in $(find $COMP_DIR -type f); do
-    # skip sourcing if matches ignore regex
-    if [ $(echo $x | egrep -ci "$IGNORE_REGX") -ge 1 ]; then
-      continue
-    fi
-    source "$x"
-  done
-}
-bashcomps
+#   for x in $(find $COMP_DIR -type f); do
+#     # skip sourcing if matches ignore regex
+#     if [ $(echo $x | egrep -ci "$IGNORE_REGX") -ge 1 ]; then
+#       continue
+#     fi
+#     source "$x"
+#     # echo "Sourced: $x"
+#   done
+# }
+# bashcomps
 
 # Source WSL configs if working on local machine
 if [[ "$HOSTNAME" = "DESKTOP-FPDD922" ]]; then
@@ -374,30 +400,61 @@ source "$HOME/dotfiles/bash.d/lib/shellGPT_conf.bash"
 ## DOTFILE CONFIG.D FILES
 source "$HOME/dotfiles/config.d/fzf/fzf.config" 1>/dev/null
 
-source_bashrc_custom_comp_modules() {
-  local BASH_CUSTOM_COMP_DIR="$HOME/dotfiles/bash.d/lib/custom/comps"
-  local SRC_FILE_LIST=$(find $BASH_CUSTOM_COMP_DIR -type f)
-  local IGNORE_LIST=(gitignore test)
-  for comp_file in $SRC_FILE_LIST; do
-    local SKIP_FLAG=0
-    for ignore_pattern in ${IGNORE_LIST[@]}; do
-      IGNORE_FLAG=$(echo $comp_file | egrep -c "$ignore_pattern")
-      #echo "IGNORE_FLAG: $IGNORE_FLAG"
-      if (($IGNORE_FLAG > 0)); then
-        echo "Skip $comp_file"
-        SKIP_FLAG=1
-        break
-      fi
-    done
-    if [[ $SKIP_FLAG -eq 1 ]]; then
-      continue
-    fi
-    #echo "comp_file: $comp_file"
-    echo "source $comp_file"
-    source $comp_file
-  done
-} 1>/dev/null
-source_bashrc_custom_comp_modules
+##########################################################################
+## Source BASHRC Modules
+#########################################################################
+
+# recursively source all ".bash" files in dotfiles bashrc directory
+BASHRC_DIR="$HOME/git/dotfiles/bash.d"	## temp overwrite above to prevent incidentally picking up NEWDOT bash files
+BASHRC_LOGFILE="$HOME/.local/runtime/logs/bashrc.log"
+
+# ensure logging works
+if [[ -z "$BASHRC_LOGFILE" ]]; then
+    echo "Making logfile..."
+    mkdir -pv "$(basename $BASHRC_LOGFILE)"
+    touch $BASHRC_LOGFILE
+fi
+
+if [ -n "$BASHRC_DIR" ]; then
+	for bashModule in $(find "$BASHRC_DIR" -type f -name "*.bash");
+	do
+		moduleName=$(basename "$bashModule")
+		source "$bashModule" >> "$BASHRC_LOGFILE"  #2>&1
+	done
+# else
+# 	echo "$BASHRC_DIR does not exist on local machine" | tee  "$HOME/.logs/shell/bashrc.log"
+fi
+echo "Succesfully sourced $BASHRC_DIR bash modules"
+echo ""
+
+#source_bashrc_custom_comp_modules() {
+#  local BASH_CUSTOM_COMP_DIR="$HOME/dotfiles/bash.d/lib/custom/comps"
+#  local SRC_FILE_LIST=$(find $BASH_CUSTOM_COMP_DIR -type f)
+#  local IGNORE_LIST=(gitignore test)
+#  for comp_file in $SRC_FILE_LIST; do
+#    local SKIP_FLAG=0
+#    for ignore_pattern in ${IGNORE_LIST[@]}; do
+#      IGNORE_FLAG=$(echo $comp_file | egrep -c "$ignore_pattern")
+#      #echo "IGNORE_FLAG: $IGNORE_FLAG"
+#      if (($IGNORE_FLAG > 0)); then
+#        echo "Skip $comp_file"
+#        SKIP_FLAG=1
+#        break
+#      fi
+#    done
+#    if [[ $SKIP_FLAG -eq 1 ]]; then
+#      continue
+#    fi
+#    #echo "comp_file: $comp_file"
+#    echo "source $comp_file"
+#    source $comp_file
+#  done
+#  echo "Succesfully sourced $BASH_CUSTOM_COMP_DIR bash modules"
+#} 1>/dev/null
+#source_bashrc_custom_comp_modules
+#echo "Succesfully sourced bash completion modules"
+#echo ""
+
 
 # TODO: update go install script to add below env/exports
 # from go installer pb
@@ -424,7 +481,7 @@ export PATH="$PATH:$HOME/git/zlib/bin"
 #   export SSH_AUTH_SOCK
 # fi
 eval "$(ssh-agent -s)" 1>/dev/null
-source "$HOME/git/zlib/bin/shellcomp_cache_ssh_passphrase.sh"
+source "$HOME/git/zlib/bin/shellcomp_cache_ssh_passphrase.sh" 1> /dev/null
 source "$HOME/git/zlib/bin/cache_ssh_passphrase" 1>/dev/null
 
 
@@ -434,10 +491,8 @@ RC_OVRRD_DIR="$HOME/dotfiles/rc.d/overrides/active"
 # echo "" && echo "Starting sourcing for rc.d override files"
 for ovrrd in $(find $RC_OVRRD_DIR -type f); do 
   # echo source "$ovrrd" 
-  source "$ovrrd" 
+  source "$ovrrd"  2> /dev/null
 done
-
-
 
 # ---------------------------------------------------------------------------------------------
 #		FZFCOMP EXTRAS
@@ -481,3 +536,15 @@ _fzf_or_default_completion() {
 # IMPORTANT: Must be last line sourced!!
 complete -D -F _fzf_or_default_completion # Apply the modified completion function to all commands
 . "$HOME/.cargo/env"
+
+# source segue file, which contains shared bashrc configuration code, thats 
+# shared b/w current dotfiles bashrc (this file) and my new dotfiles 
+# bashrc (omega) that I will switch to after handling existing dependencies
+source "$HOME/git/dot_omega/bash.d/segue.bash" 2> /dev/null
+
+
+# zoxide comp 
+eval "$(zoxide init bash)"
+
+alias jl="jupyter lab"
+alias jc="jupyter console"

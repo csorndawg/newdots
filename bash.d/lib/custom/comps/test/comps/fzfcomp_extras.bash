@@ -1,6 +1,6 @@
 # Extends FZF_COMP functionality to specified custom aliases
 
-source $HOME/dotfiles/bash.d/lib/custom/comps/aliases/git.comp
+source $HOME/dotfiles/bash.d/lib/custom/comps/aliases/git.comp >> "$HOME/.local/runtime/logs/bashrc.log" 2>&1
 
 # @FIXME: Below works for some of use cases not all, needs logic improvement
 # example: grss wont work if you've removed the file since FZF_COMP_PATH wont see it
